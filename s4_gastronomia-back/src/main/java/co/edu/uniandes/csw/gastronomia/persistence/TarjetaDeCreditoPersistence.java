@@ -10,6 +10,7 @@ import com.sun.istack.internal.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.logging.*;
 
 /**
  *
@@ -17,6 +18,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class TarjetaDeCreditoPersistence {
+   
+    
     @PersistenceContext(unitName = "gastronomiaPU")
     protected EntityManager em; 
     
