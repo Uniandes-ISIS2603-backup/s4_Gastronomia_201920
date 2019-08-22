@@ -6,12 +6,10 @@
 package co.edu.uniandes.csw.gastronomia.persistence;
 
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
-import com.sun.istack.internal.logging.Logger;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.logging.*;
 import javax.persistence.Query;
 
 /**
