@@ -109,7 +109,7 @@ public class TarjetaDeCreditoPersistenceTest {
     @Test
     public void deleteTarjetaDeCreditoTest()
     {
-        PodamFactory factory = new PodamFactoryImpl();
+      PodamFactory factory = new PodamFactoryImpl();
       TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
       
       TarjetaDeCreditoEntity result = tarjetaPersistence.create(tarjetaNueva);
