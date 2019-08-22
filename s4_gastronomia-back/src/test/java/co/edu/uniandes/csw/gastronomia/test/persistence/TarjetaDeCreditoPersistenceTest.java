@@ -31,9 +31,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class TarjetaDeCreditoPersistenceTest {
     @Inject
     private TarjetaDeCreditoPersistence tarjetaPersistence; 
-    
-    private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<TarjetaDeCreditoEntity>();
-    
+ 
     @PersistenceContext(unitName = "gastronomiaPU")
     private EntityManager em;
     
