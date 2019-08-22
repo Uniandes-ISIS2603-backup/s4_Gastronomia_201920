@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.gastronomia.test.persistence;
 
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.gastronomia.persistence.TarjetaDeCreditoPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,6 +32,8 @@ public class TarjetaDeCreditoPersistenceTest {
     @Inject
     private TarjetaDeCreditoPersistence tarjetaPersistence; 
     
+    private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<TarjetaDeCreditoEntity>();
+    
     @PersistenceContext(unitName = "gastronomiaPU")
     private EntityManager em;
     
@@ -42,6 +46,7 @@ public class TarjetaDeCreditoPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+    
  /**
   * Prueba para crear una tarjeta de credio
   */
@@ -61,6 +66,94 @@ public class TarjetaDeCreditoPersistenceTest {
         Assert.assertEquals(tarjetaNueva.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
        
     }
+    /**
+     * Prueba para actualizar una tarjeta de credito
+     */
+    @Test
+    public void updateTarjetaDeCreditoTest()
+    {
+         PodamFactory factory = new PodamFactoryImpl();
+      TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      TarjetaDeCreditoEntity tarjetaVieja = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      
+      TarjetaDeCreditoEntity nueva = tarjetaPersistence.create(tarjetaNueva);
+      TarjetaDeCreditoEntity vieja = tarjetaPersistence.create(tarjetaVieja);
+      
+      nueva.setId(vieja.getId());
+      tarjetaPersistence.update(nueva);
+      TarjetaDeCreditoEntity respuesta = em.find(TarjetaDeCreditoEntity.class, vieja.getId()); 
+      Assert.assertEquals(nueva.getBanco(),respuesta.getBanco());
+      Assert.assertEquals(nueva.getCvv(),respuesta.getCvv());
+      Assert.assertEquals(nueva.getFechaDeVencimiento(),respuesta.getFechaDeVencimiento());
+      Assert.assertEquals(nueva.getNumero(),respuesta.getNumero());
+    }
+    /**
+     * Prueba para encontrar una tarjeta de credito
+     */
+    @Test
+    public void findTarjetaDeCreditoTest()
+    {
+         PodamFactory factory = new PodamFactoryImpl();
+      TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      
+      TarjetaDeCreditoEntity result = tarjetaPersistence.create(tarjetaNueva);
+       Assert.assertNotNull(result);
+       
+       TarjetaDeCreditoEntity entity = em.find(TarjetaDeCreditoEntity.class, result.getId());
+       Assert.assertEquals(tarjetaNueva.getNumero(), entity.getNumero());
+        Assert.assertEquals(tarjetaNueva.getCvv(), entity.getCvv());
+        Assert.assertEquals(tarjetaNueva.getBanco(),entity.getBanco());
+        Assert.assertEquals(tarjetaNueva.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+    }
+    /**
+     * Prueba para eliminar una tarjeta de credito
+     */
+    @Test
+    public void deleteTarjetaDeCreditoTest()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+      TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      
+      TarjetaDeCreditoEntity result = tarjetaPersistence.create(tarjetaNueva);
+
+      tarjetaPersistence.delete(result.getId());
+      
+      TarjetaDeCreditoEntity borrada = em.find(TarjetaDeCreditoEntity.class,result.getId()); 
+      Assert.assertNull(borrada);
+    }
+    /**
+     * Prueba para encontrar las tarjetas de credito
+     */
+    @Test
+    public void findAllTarjetaDeCreditoTest()
+    {
+        List<TarjetaDeCreditoEntity> data = new ArrayList<TarjetaDeCreditoEntity>();
+        PodamFactory factory = new PodamFactoryImpl();
+        for(int i = 0 ; i < 3; i++)
+        {
+            TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+            TarjetaDeCreditoEntity result = tarjetaPersistence.create(tarjetaNueva);
+            data.add(result);
+        }
+        List<TarjetaDeCreditoEntity> lista = tarjetaPersistence.findAll();
+        Assert.assertEquals(data.size(), lista.size());
+        for(TarjetaDeCreditoEntity e: data)
+        {
+            boolean encontrado = false;
+            for(TarjetaDeCreditoEntity f: data)
+            {
+                if(e.getId().equals(f.getId()))
+                {
+                    encontrado = true;
+                }
+            }
+            Assert.assertTrue(encontrado);
+        }
+        
+        
+    }
+    
+    
     
     
     
