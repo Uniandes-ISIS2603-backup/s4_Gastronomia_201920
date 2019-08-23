@@ -5,24 +5,30 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 /**
  *
- * @author Estudiante Angela Maria Suarez P
+ * @author Angela Maria Suarez P
  */
 
 /**
  * Clase que modela un usuario.<br>
  */
 
-@Entity
-public  class UsuarioEntity  extends BaseEntity  
-{
+@MappedSuperclass
+public abstract class UsuarioEntity extends BaseEntity {
      // -----------------------------------------------------------------
     // Atributos
     // -----------------------------------------------------------------
 
+   
+   
     /**
      * Nombre del usuario.
      */
@@ -54,6 +60,8 @@ public  class UsuarioEntity  extends BaseEntity
     // -----------------------------------------------------------------
     // Constructor
     // -----------------------------------------------------------------
+    
+     
     /**
      * Crea un usuario de la aplicacion de gastronomia. <br>
      * <b>post: </b> Se creó un usuario con los valores pasados por parámetro.<br>
@@ -171,7 +179,6 @@ public  class UsuarioEntity  extends BaseEntity
         this.contrasena = pContrasena;
     
     }
-    
-  
+   
 
 }
