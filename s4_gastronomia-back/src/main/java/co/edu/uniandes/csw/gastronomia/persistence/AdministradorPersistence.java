@@ -46,14 +46,19 @@ public class AdministradorPersistence {
     
     public AdministradorEntity update( AdministradorEntity pAdministrador)
     {
+        pAdministrador.getId();
         return em.merge(pAdministrador);
+        
+         
     }
     
     public void delete(Long administradorId)
     {
         AdministradorEntity administrador = em.find(AdministradorEntity.class, administradorId);
        
-        em.remove(administradorId);
+        em.remove(administrador);
+        
+        
     }
 
     

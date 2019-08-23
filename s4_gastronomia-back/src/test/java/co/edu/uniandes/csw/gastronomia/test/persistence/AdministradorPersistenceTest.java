@@ -32,39 +32,48 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class AdministradorPersistenceTest 
 {
-    @Inject
-    private AdministradorPersistence administradorPersistence;
-    
-    @PersistenceContext(unitName = "gastronomiaPU")
-    private EntityManager em;
-    
    @Inject
+   AdministradorPersistence administradorPersistencia;
+           
+   @Inject   
    UserTransaction utx;
+    
+   @PersistenceContext(unitName = "gastronomiaPU")
+   private EntityManager em;
    
    private List<AdministradorEntity> data = new ArrayList<>();
     
-    @Deployment
-    public static JavaArchive createDeployment()
+   @Deployment
+    public static JavaArchive createDeployment() 
     {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(AdministradorEntity.class.getPackage())
                 .addPackage(AdministradorPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml" , "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml" , "beans.xml");
-        
-        
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
     
-     @Before
-    public void configTest() {
-        try {
-            utx.begin();
-            em.joinTransaction();
-            clearData();
-            insertData();
-            utx.commit();
-        } catch (Exception e) {
+    
+    @Before
+    public void configList() 
+    {
+        try
+        {
+        utx.begin();
+        em.joinTransaction();
+        em.createQuery("delete from AdministradorEntity").executeUpdate();
+        PodamFactory factory = new PodamFactoryImpl();
+          for(int i = 0; i < 3; i++)
+          {
+            AdministradorEntity admin = factory.manufacturePojo(AdministradorEntity.class);
+            em.persist(admin); 
+            data.add(admin);
+          }
+          utx.commit();
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
             try {
                 utx.rollback();
@@ -72,8 +81,9 @@ public class AdministradorPersistenceTest
                 e1.printStackTrace();
             }
         }
-    }
            
+    }
+        
     private void clearData() {
         em.createQuery("delete from AdministardorEntity").executeUpdate();
     }
@@ -87,40 +97,104 @@ public class AdministradorPersistenceTest
             data.add(entity);
         }
     }
-
-      @Test
-    public void createAdministradorTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
-        AdministradorEntity result = administradorPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
-
-        Assert.assertEquals(entity.getId(), result.getId());
-    }
-    
+     
+     /**
+     * Prueba para crear un administrador 
+     */
     @Test
-    public void updateAdministradorTest() {
+    public void createAdministradorEntityTest()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        AdministradorEntity admin = factory.manufacturePojo(AdministradorEntity.class);
+        AdministradorEntity result = administradorPersistencia.create(admin);
+        Assert.assertNotNull(result);
+        AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId()); 
+        
+        Assert.assertEquals(entity.getApellido(), admin.getApellido());
+        Assert.assertEquals(entity.getName(),admin.getName());
+        Assert.assertEquals(entity.getPhone() , admin.getPhone() );
+        Assert.assertEquals(entity.getEmail() ,admin.getEmail());
+        Assert.assertEquals(entity.getUsername(), admin.getUsername());
+        Assert.assertEquals(entity.getContrasena() , admin.getContrasena());
+        
+        
+        
+    }
+    /**
+     * prueba para actualizar un admin
+     */
+    @Test
+    public void updateAdministradorEntityTest()
+    {
         AdministradorEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
-
         newEntity.setId(entity.getId());
 
-        administradorPersistence.update(newEntity);
+        administradorPersistencia.update(newEntity);
 
         AdministradorEntity resp = em.find(AdministradorEntity.class, entity.getId());
 
-        //Assert.assertEquals(newEntity., resp.getName());
-    }
-    
-     @Test
-    public void getAdministradorTest() {
-        AdministradorEntity entity = data.get(0);
-        AdministradorEntity newEntity = administradorPersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getContrasena() , resp.getContrasena());
+        Assert.assertEquals(newEntity.getApellido(), resp.getApellido());
+        Assert.assertEquals(newEntity.getName(),resp.getName());
+        Assert.assertEquals(newEntity.getPhone() , resp.getPhone() );
+        Assert.assertEquals(newEntity.getEmail() ,resp.getEmail());
+        Assert.assertEquals(newEntity.getUsername(), resp.getUsername());
+        
        
     }
+    /**
+     * Prueba par encontrar un admin
+     */
+    @Test
+    public void findAdministradorTest()
+    {
+        AdministradorEntity admin = data.get(0); 
+        AdministradorEntity entity = em.find(AdministradorEntity.class, admin.getId()); 
+        Assert.assertNotNull(entity);
+         Assert.assertEquals(entity.getApellido(), admin.getApellido());
+        Assert.assertEquals(entity.getName(),admin.getName());
+        Assert.assertEquals(entity.getPhone() , admin.getPhone() );
+        Assert.assertEquals(entity.getEmail() ,admin.getEmail());
+        Assert.assertEquals(entity.getUsername(), admin.getUsername());
+        Assert.assertEquals(entity.getContrasena() , admin.getContrasena());
+    }
+    /**
+     * Prueba para encontrar todos los administradores de la base de datos
+     */
+    @Test
+    public void findAllAdministradorEntityTest()
+    {
+        List<AdministradorEntity> lista = administradorPersistencia.findAll(); 
+        Assert.assertEquals(data.size(), lista.size());
+        for(AdministradorEntity e: lista)
+        {
+            boolean found = false; 
+            for(AdministradorEntity f: data)
+            {
+                if(e.getId().equals(f.getId()))
+                {
+                    found = true; 
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    /**
+     * 
+     * Prueba para probar la eliminacion de un administrador de la base de datos
+     */
+    @Test
+    public void deleteAdministradorEntityTest()
+    {
+       AdministradorEntity admin =  data.get(0); 
+
+       administradorPersistencia.delete(admin.getId());
+       AdministradorEntity borrado = em.find(AdministradorEntity.class,admin.getId()); 
+       Assert.assertNull(borrado);
+
+    }
+
+     
 }
