@@ -23,10 +23,30 @@ import javax.persistence.Entity;
      * <b>post: </b> Se creó un administrador con los valores pasados por parámetro.<br>
      */
 @Entity
-public class AdministradorEntity  extends UsuarioEntity{
-    
-    public AdministradorEntity(String name, String apellido, String username, String contrasena, String email) {
-        super(name, apellido, username, contrasena, email);
+public class AdministradorEntity  extends UsuarioEntity
+{
+   private long phone;
+
+    public AdministradorEntity() {
+        super();
     }
+   
+   public AdministradorEntity(String name , String apellido , String username , String contrasena , String email , long pPhone)
+   {
+       super(name, apellido, username, contrasena, email);
+       this.phone = pPhone;
+   }
+   
+   public long getPhone()
+   {
+   return phone;
+   }
+   
+   public void setPhone(long pViejo)
+   {
+   phone = pViejo ;
+    }
+   
+   
     
 }
