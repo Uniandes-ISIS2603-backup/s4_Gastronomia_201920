@@ -46,7 +46,7 @@ public class TipoComidaPersistence
      */
     public List<TipoComidaEntity> findAll()
     {
-        Query q = em.createQuery("select u from BookEntity u");
+        Query q = em.createQuery("select u from TipoComidaEntity u");
         return q.getResultList();
     }
     
@@ -75,7 +75,7 @@ public class TipoComidaPersistence
 
     /**
      *
-     * Borra un TipoComida de la base de datos recibiendo como argumento el nombre
+     * Borra un TipoComida de la base de datos recibiendo como argumento el id
      *
      * @param tipoId: id correspondiente al libro a borrar.
      */

@@ -5,14 +5,15 @@
  */
 package co.edu.uniandes.csw.gastronomia.test.persistence;
 
-
-import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
-import co.edu.uniandes.csw.gastronomia.persistence.TipoComidaPersistence;
+import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
+import co.edu.uniandes.csw.gastronomia.persistence.FacturaPersistence;
 import java.util.*;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import static org.glassfish.api.admin.Supplemental.Timing.Before;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -29,10 +30,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author af.benitez
  */
 @RunWith(Arquillian.class)
-public class TipoComidaTest 
+public class FacturaTest 
 {
-    @Inject
-    private TipoComidaPersistence tPersistence;
+     @Inject
+    private FacturaPersistence fPersistence;
 
     @PersistenceContext
     private EntityManager em;
@@ -40,7 +41,7 @@ public class TipoComidaTest
     @Inject
     UserTransaction utx;
 
-    private List<TipoComidaEntity> data = new ArrayList<TipoComidaEntity>();
+    private List<FacturaEntity> data = new ArrayList<FacturaEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -51,8 +52,8 @@ public class TipoComidaTest
     public static JavaArchive createDeployment() 
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(TipoComidaEntity.class.getPackage())
-                .addPackage(TipoComidaPersistence.class.getPackage())
+                .addPackage(FacturaEntity.class.getPackage())
+                .addPackage(FacturaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -84,7 +85,7 @@ public class TipoComidaTest
      */
     private void clearData() 
     {
-        em.createQuery("delete from TipoComidaEntity").executeUpdate();
+        em.createQuery("delete from FacturaEntity").executeUpdate();
     }
 
     /**
@@ -95,7 +96,7 @@ public class TipoComidaTest
     {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            TipoComidaEntity entity = factory.manufacturePojo(TipoComidaEntity.class);
+            FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -103,33 +104,35 @@ public class TipoComidaTest
     }
 
     /**
-     * Prueba para crear un tipo de comida.
+     * Prueba para crear una factura.
      */
     @Test
-    public void createTipoTest()
+    public void createFacturaTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        TipoComidaEntity newEntity = factory.manufacturePojo(TipoComidaEntity.class);
-        TipoComidaEntity result = tPersistence.create(newEntity);
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        FacturaEntity result = fPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        TipoComidaEntity entity = em.find(TipoComidaEntity.class, result.getId());
+        FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getValor(), entity.getValor());
+        Assert.assertEquals(newEntity.getValorCompleto(), entity.getValorCompleto());
+       
     }
 
     /**
-     * Prueba para consultar la lista de tipos de comidas.
+     * Prueba para consultar la lista de facturas.
      */
     @Test
-    public void getListTipoTest() {
-        List<TipoComidaEntity> list = tPersistence.findAll();
+    public void getListFacturaTest() {
+        List<FacturaEntity> list = fPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for(TipoComidaEntity ent : list) 
+        for (FacturaEntity ent : list) 
         {
             boolean found = false;
-            for (TipoComidaEntity entity : data)
+            for (FacturaEntity entity : data)
             {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
@@ -140,46 +143,50 @@ public class TipoComidaTest
     }
 
     /**
-     * Prueba para consultar un tipo de comida.
+     * Prueba para consultar un factura.
      */
     @Test
-    public void getTipoTest() 
+    public void getFacturaTest() 
     {
-        TipoComidaEntity entity = data.get(0);
-        TipoComidaEntity newEntity = tPersistence.find(entity.getId());
+        FacturaEntity entity = data.get(0);
+        FacturaEntity newEntity = fPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getValor(), newEntity.getValor());
+        Assert.assertEquals(entity.getValorCompleto(), newEntity.getValorCompleto());
+        
     }
 
     /**
-     * Prueba para eliminar un tipo de comida.
+     * Prueba para eliminar una factura.
      */
     @Test
-    public void deleteTipoTest() {
-        TipoComidaEntity entity = data.get(0);
-        tPersistence.delete(entity.getId());
-        TipoComidaEntity deleted = em.find(TipoComidaEntity.class, entity.getId());
+    public void deleteFacturaTest() {
+        FacturaEntity entity = data.get(0);
+        fPersistence.delete(entity.getId());
+        FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un tipo de comida.
+     * Prueba para actualizar una factura.
      */
     @Test
-    public void updateTipoTest()
+    public void updateFacturaTest()
     {
-        TipoComidaEntity entity = data.get(0);
+        FacturaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        TipoComidaEntity newEntity = factory.manufacturePojo(TipoComidaEntity.class);
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
 
         newEntity.setId(entity.getId());
 
-        tPersistence.update(newEntity);
+        fPersistence.update(newEntity);
 
-        TipoComidaEntity resp = em.find(TipoComidaEntity.class, entity.getId());
+        FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(newEntity.getValor(), resp.getValor());
+        Assert.assertEquals(newEntity.getValorCompleto(), resp.getValorCompleto());
+      
     }
 
-    
+   
 }
