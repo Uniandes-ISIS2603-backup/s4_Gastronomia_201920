@@ -111,7 +111,7 @@ public class AdministradorPersistenceTest
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId()); 
         
         Assert.assertEquals(entity.getApellido(), admin.getApellido());
-        Assert.assertEquals(entity.getName(),admin.getName());
+        Assert.assertEquals(entity.getNombre(),admin.getNombre());
         Assert.assertEquals(entity.getPhone() , admin.getPhone() );
         Assert.assertEquals(entity.getEmail() ,admin.getEmail());
         Assert.assertEquals(entity.getUsername(), admin.getUsername());
@@ -137,7 +137,7 @@ public class AdministradorPersistenceTest
 
         Assert.assertEquals(newEntity.getContrasena() , resp.getContrasena());
         Assert.assertEquals(newEntity.getApellido(), resp.getApellido());
-        Assert.assertEquals(newEntity.getName(),resp.getName());
+        Assert.assertEquals(newEntity.getNombre(),resp.getNombre());
         Assert.assertEquals(newEntity.getPhone() , resp.getPhone() );
         Assert.assertEquals(newEntity.getEmail() ,resp.getEmail());
         Assert.assertEquals(newEntity.getUsername(), resp.getUsername());
@@ -154,7 +154,7 @@ public class AdministradorPersistenceTest
         AdministradorEntity entity = em.find(AdministradorEntity.class, admin.getId()); 
         Assert.assertNotNull(entity);
          Assert.assertEquals(entity.getApellido(), admin.getApellido());
-        Assert.assertEquals(entity.getName(),admin.getName());
+        Assert.assertEquals(entity.getNombre(),admin.getNombre());
         Assert.assertEquals(entity.getPhone() , admin.getPhone() );
         Assert.assertEquals(entity.getEmail() ,admin.getEmail());
         Assert.assertEquals(entity.getUsername(), admin.getUsername());

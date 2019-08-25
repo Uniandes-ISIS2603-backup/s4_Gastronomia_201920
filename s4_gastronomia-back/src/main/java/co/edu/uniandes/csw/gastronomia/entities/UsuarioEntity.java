@@ -32,7 +32,7 @@ public abstract class UsuarioEntity extends BaseEntity {
     /**
      * Nombre del usuario.
      */
-    private String name;
+    private String nombre;
     
     /**
      * Apellido del usuario.
@@ -72,9 +72,9 @@ public abstract class UsuarioEntity extends BaseEntity {
      * @param contrasena Corresponde a la contraseña del usuario
      */
     
-    public UsuarioEntity( String name , String apellido , String username , String contrasena , String email)
+    public UsuarioEntity( String nombre , String apellido , String username , String contrasena , String email)
     {
-        this.name = name;
+        this.nombre = nombre;
         this.apellido = apellido;
         this.username = username;
         this.contrasena = contrasena;
@@ -92,9 +92,9 @@ public abstract class UsuarioEntity extends BaseEntity {
      * Retorna el nombre del usuario. <br>
      * @return El nombre del usario.
      */
-    public String getName()
+    public String getNombre()
     {
-        return name;
+        return nombre;
     }
     
     
@@ -136,11 +136,11 @@ public abstract class UsuarioEntity extends BaseEntity {
     
     /**
      * Modifica el nombre del usuario. <br>
-     * @param pName  nuevo nombre del usario.
+     * @param pNombre  nuevo nombre del usario.
      */
-    public void setName( String pName)
+    public void setNombre( String pNombre)
     {
-        this.name = pName;
+        this.nombre = pNombre;
     }
    
     /**

@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * @author Cristina González
  */
 @Entity
-public class ClienteEntity extends BaseEntity{
+public class ClienteEntity extends UsuarioEntity{
     
     private Date cumpleanos;
     
@@ -22,9 +22,11 @@ public class ClienteEntity extends BaseEntity{
     private int puntos;
 
     public ClienteEntity() {
+        super();
     }
 
-    public ClienteEntity(Date cumpleanos, String numeroContacto, int puntos) {
+    public ClienteEntity(String name , String apellido , String username , String contrasena , String email, Date cumpleanos, String numeroContacto, int puntos) {
+        super(name, apellido, username, contrasena, email);
         this.cumpleanos = cumpleanos;
         this.numeroContacto = numeroContacto;
         this.puntos = puntos;

@@ -108,6 +108,11 @@ public class ClientePersistenceTest {
         ClienteEntity result = clientePersistence.create(newEntity);
         Assert.assertNotNull(result);
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getApellido(), entity.getApellido());
+        Assert.assertEquals(newEntity.getUsername(), entity.getUsername());
+        Assert.assertEquals(newEntity.getEmail(), entity.getEmail());
+        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
         Assert.assertEquals(newEntity.getCumpleanos(), entity.getCumpleanos());
         Assert.assertEquals(newEntity.getNumeroContacto(), entity.getNumeroContacto());
         Assert.assertEquals(newEntity.getPuntos(), entity.getPuntos());
@@ -122,6 +127,11 @@ public class ClientePersistenceTest {
         ClienteEntity entity = data.get(0);
         ClienteEntity newEntity = clientePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getApellido(), entity.getApellido());
+        Assert.assertEquals(newEntity.getUsername(), entity.getUsername());
+        Assert.assertEquals(newEntity.getEmail(), entity.getEmail());
+        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
         Assert.assertEquals(newEntity.getCumpleanos(), entity.getCumpleanos());
         Assert.assertEquals(newEntity.getNumeroContacto(), entity.getNumeroContacto());
         Assert.assertEquals(newEntity.getPuntos(), entity.getPuntos());
@@ -170,8 +180,12 @@ public class ClientePersistenceTest {
         clientePersistence.update(newEntity);
 
         ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
-
-         Assert.assertEquals(newEntity.getCumpleanos(), resp.getCumpleanos());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(newEntity.getApellido(), resp.getApellido());
+        Assert.assertEquals(newEntity.getUsername(), resp.getUsername());
+        Assert.assertEquals(newEntity.getEmail(), resp.getEmail());
+        Assert.assertEquals(newEntity.getContrasena(), resp.getContrasena());
+        Assert.assertEquals(newEntity.getCumpleanos(), resp.getCumpleanos());
         Assert.assertEquals(newEntity.getNumeroContacto(), resp.getNumeroContacto());
         Assert.assertEquals(newEntity.getPuntos(), resp.getPuntos());
     }
