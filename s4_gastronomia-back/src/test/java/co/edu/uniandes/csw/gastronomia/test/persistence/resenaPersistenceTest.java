@@ -41,9 +41,8 @@ public class resenaPersistenceTest {
     private List<ResenaEntity> data = new ArrayList<>();
 
     /**
-     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
-     * El jar contiene las clases, el descriptor de la base de datos y el
-     * archivo beans.xml para resolver la inyección de dependencias.
+     * @return etorna el jar de arquilian que usa payara para crear la base dedatos.
+     * 
      */
     @Deployment
     public static JavaArchive createDeployment() {
@@ -76,15 +75,14 @@ public class resenaPersistenceTest {
     }
 
     /**
-     * Limpia las tablas que están implicadas en la prueba.
+     * Limpia los datos creados en la prueba de las tablas.
      */
     private void clearData() {
         em.createQuery("delete from ResenaEntity").executeUpdate();
     }
 
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las
-     * pruebas.
+    * Inserta los datos creados en las tablas relacionales para iniciar las pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -95,6 +93,9 @@ public class resenaPersistenceTest {
             data.add(entity);
         }
     }
+    /**
+     * Crea el test creando una instancia de ResenaPersistence
+     */
     @Test
     public void createTest(){
         PodamFactory factory = new PodamFactoryImpl();
@@ -102,6 +103,9 @@ public class resenaPersistenceTest {
         ResenaEntity rta=resenaPersistence.create(e);
         Assert.assertNotNull(rta);
     }
+    /**
+     * Test del metodo buscar todos.
+     */
     @Test
     public void findAlltest()
     {
@@ -117,6 +121,9 @@ public class resenaPersistenceTest {
             Assert.assertTrue(found);
         }
     }
+     /**
+     * Prueba para encontrar uno de los Foodblogs creados en el test con un id pasado por parametro
+     */
     @Test
     public void findTest()
     {
@@ -127,6 +134,9 @@ public class resenaPersistenceTest {
         Assert.assertEquals(entity.getCalificacion(), newEntity.getCalificacion());
     
     }
+    /**
+     *Prueba el metodo update pasando una resena por parametro.
+     */
     @Test
     public void updateTest()
     {
@@ -141,6 +151,9 @@ public class resenaPersistenceTest {
         Assert.assertEquals(newFBEntity.getId(), resp.getId());
         
     }
+    /**
+     * Prueba el metodo delete pasando por parametro el id de un a resena creada en el test.
+     */
     @Test
     public void deleteTest()
     {

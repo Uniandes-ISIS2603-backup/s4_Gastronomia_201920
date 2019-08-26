@@ -30,6 +30,10 @@ public class FoodBlogPersistence {
         LOGGER.log(Level.INFO, "Se creo el foodblog con el  id={0}", foodBlog.getId());
         return foodBlog;
     }
+    /**
+     * Encuentra todas los foodblogs disponibles en la base de datos.
+     * @return 
+     */
     public List<FoodBlogEntity> findAll()            
     {
         LOGGER.log(Level.INFO, "Se buscan todos los food blogs");
@@ -37,9 +41,9 @@ public class FoodBlogPersistence {
         return (List<FoodBlogEntity>)q.getResultList();
     }
      /**
-     * Busca si hay alguna foodBlog con el id que se envía de argumento
+     * Busca si hay alguna foodBlog con el id pasado por parametro
      *
-     * @param foodBlogsId: id correspondiente a la foodBlog buscada.
+     * @param foodBlogsId: id correspondiente a la foodBlog buscado.
      * @return un foodBlog.
      */
     public FoodBlogEntity find(Long foodBlogsId) {
@@ -49,11 +53,10 @@ public class FoodBlogPersistence {
     }
 
     /**
-     * Actualiza una foodBlog.
+     * Actualiza una foodBlog con los datos pasadoos por parametro
      *
      * @param foodBlogEntity: la foodBlog que viene con los nuevos cambios. Por
-     * ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
-     * update.
+     * ejemplo el nombre pudo cambiar. 
      * @return un foodBlog con los cambios aplicados.
      */
     public FoodBlogEntity update(FoodBlogEntity foodBlogEntity) {
@@ -63,9 +66,7 @@ public class FoodBlogPersistence {
     }
 
     /**
-     * Borra una foodBlog de la base de datos recibiendo como argumento el id de
-     * la foodBlog
-     *
+     * Borra una foodBlog de la base de datos recibiendo pr parametro el id del foodblog que se quiere borrar
      * @param foodBlogsId: foodblog que se va a borrar.
      */
     public void delete(Long foodBlogsId) {

@@ -24,13 +24,17 @@ public class ResenaPersistence {
      private static Logger LOGGER = Logger.getLogger(ResenaEntity.class.getName());
     @PersistenceContext (unitName = "gastronomiaPU")
     protected EntityManager em;
-    public ResenaEntity create(ResenaEntity resenaBlog)
+    public ResenaEntity create(ResenaEntity resena)
     {
-        LOGGER.log(Level.INFO, "Se está creando el foodblog con el id={0}", resenaBlog.getId());
-        em.persist(resenaBlog);
-        LOGGER.log(Level.INFO, "Se creo el foodblog con el  id={0}", resenaBlog.getId());
-        return resenaBlog;
+        LOGGER.log(Level.INFO, "Se está creando la resena con el id={0}", resena.getId());
+        em.persist(resena);
+        LOGGER.log(Level.INFO, "Se creo la resena con el  id={0}", resena.getId());
+        return resena;
     }
+    /**
+     * Retorna una lista con todoas la resenas en la base de datos.
+     * @return 
+     */
     public List<ResenaEntity> findAll()            
     {
         LOGGER.log(Level.INFO, "Se buscan las resenas");
@@ -38,43 +42,40 @@ public class ResenaPersistence {
         return (List<ResenaEntity>)q.getResultList();
     }
      /**
-     * Busca si hay alguna resenaBlog con el id que se envía de argumento
+     * Busca si hay alguna resena con el id pasado por parametro
      *
-     * @param resenaBlogsId: id correspondiente a la resenaBlog buscada.
-     * @return un resenaBlog.
+     * @param resenasId: id correspondiente a la resena buscada.
+     * @return un resena.
      */
-    public ResenaEntity find(Long resenaBlogsId) {
-        LOGGER.log(Level.INFO, "Consultando el foodblog con id={0}", resenaBlogsId);
+    public ResenaEntity find(Long resenasId) {
+        LOGGER.log(Level.INFO, "Consultando la resena con id={0}", resenasId);
        
-        return em.find(ResenaEntity.class, resenaBlogsId);
+        return em.find(ResenaEntity.class, resenasId);
     }
 
     /**
-     * Actualiza una resenaBlog.
+     * Actualiza una resena con la informacion nueva pasada por parametro.
      *
-     * @param resenaBlogEntity: la resenaBlog que viene con los nuevos cambios. Por
-     * ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
-     * update.
-     * @return un resenaBlog con los cambios aplicados.
+     * @param resenaEntity: la resena nueva 
+     * @return un resena con los cambios aplicados.
      */
-    public ResenaEntity update(ResenaEntity resenaBlogEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el resenaBlog con id={0}", resenaBlogEntity.getId());
+    public ResenaEntity update(ResenaEntity resenaEntity) {
+        LOGGER.log(Level.INFO, "Actualizando la resena con id={0}", resenaEntity.getId());
        
-        return em.merge(resenaBlogEntity);
+        return em.merge(resenaEntity);
     }
 
     /**
-     * Borra una resenaBlog de la base de datos recibiendo como argumento el id de
-     * la resenaBlog
+     *Borra una resena con el d pasado por parametro
      *
-     * @param resenaBlogsId: foodblog que se va a borrar.
+     * @param resenasId: food que se va a borrar.
      */
-    public void delete(Long resenaBlogsId) {
+    public void delete(Long resenasId) {
 
-        LOGGER.log(Level.INFO, "Borrando el resenaBlog con id={0}", resenaBlogsId);
+        LOGGER.log(Level.INFO, "Borrando la resena con id={0}", resenasId);
         
-        ResenaEntity resenaBlogEntity = em.find(ResenaEntity.class, resenaBlogsId);
+        ResenaEntity resenaEntity = em.find(ResenaEntity.class, resenasId);
        
-        em.remove(resenaBlogEntity);
+        em.remove(resenaEntity);
     }
 }
