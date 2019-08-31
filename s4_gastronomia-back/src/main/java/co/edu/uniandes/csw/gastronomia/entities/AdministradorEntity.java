@@ -47,17 +47,6 @@ public class AdministradorEntity  extends UsuarioEntity
    phone = pViejo ;
     }
    
-    public boolean equals(Object ob)
-    {
-        if(! super.equals(ob))
-        {
-            return false;
-        }
-        AdministradorEntity usuarioOb = ( AdministradorEntity) ob ;
-        return getName().equals(usuarioOb.getName());
-        
-        
-    }
-
+    
    
 }
