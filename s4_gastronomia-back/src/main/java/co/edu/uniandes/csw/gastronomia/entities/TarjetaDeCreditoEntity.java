@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.entities;
 
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 
 /**
@@ -85,6 +86,27 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
      */
     public void setBanco(String banco) {
         this.banco = banco;
+    }
+    /**
+     * 
+     * @param o. Objeto con el que se va a realizar la comparacion
+     * @return  retorna true si el objeto es igual al ingresado por parametros. False de lo contrario
+     */
+    @Override
+    public boolean equals(Object o)
+    {
+      if(!super.equals(o))
+      {     
+          return false;
+      }
+      TarjetaDeCreditoEntity tarjeta = (TarjetaDeCreditoEntity) o; 
+      return this.banco.equals(tarjeta.getBanco()) &&
+             this.cvv == tarjeta.getCvv() && 
+             this.fechaDeVencimiento.equals(tarjeta.getFechaDeVencimiento()) &&
+             this.numero == tarjeta.getNumero() &&
+             Objects.equals(this.getId(), tarjeta.getId());
+      
+      
     }
     
 
