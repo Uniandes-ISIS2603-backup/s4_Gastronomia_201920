@@ -80,9 +80,16 @@ public class ClienteEntity extends UsuarioEntity{
           return false;
         }
         ClienteEntity clienteObj = (ClienteEntity) obj;
-        if (this.getId().equals(clienteObj.getId())) {
-          return true;
+        return this.getUsername().equals(clienteObj.getUsername());
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        if (this.getUsername() != null)
+        {
+            return this.getUsername().hashCode();
         }
-        return false;
+        return super.hashCode();
     }
 }
