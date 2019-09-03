@@ -176,6 +176,7 @@ public abstract class UsuarioEntity extends BaseEntity {
     }
    
 
+    @Override
     public boolean equals(Object ob)
     {
         if(! super.equals(ob))
