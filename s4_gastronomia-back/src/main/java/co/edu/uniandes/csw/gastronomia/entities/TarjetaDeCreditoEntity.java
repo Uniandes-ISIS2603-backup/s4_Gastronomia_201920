@@ -20,18 +20,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     private Date fechaDeVencimiento; 
     private int cvv; 
     private String banco; 
-
-    public TarjetaDeCreditoEntity() {
-    }
-
-    public TarjetaDeCreditoEntity(int numero, Date fechaDeVencimiento, int cvv, String banco) {
-        this.numero = numero;
-        this.fechaDeVencimiento = fechaDeVencimiento;
-        this.cvv = cvv;
-        this.banco = banco;
-    }
     
-
     /**
      * @return the numero
      */
