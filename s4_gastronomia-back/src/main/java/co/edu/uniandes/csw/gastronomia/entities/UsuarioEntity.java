@@ -5,11 +5,6 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -180,5 +175,18 @@ public abstract class UsuarioEntity extends BaseEntity {
     
     }
    
+
+    @Override
+    public boolean equals(Object ob)
+    {
+        if(! super.equals(ob))
+        {
+            return false;
+        }
+        UsuarioEntity usuarioOb = ( UsuarioEntity) ob ;
+        return username.equals(usuarioOb.getUsername());
+        
+        
+    }
 
 }
