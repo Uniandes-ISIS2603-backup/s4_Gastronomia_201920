@@ -51,4 +51,30 @@ public class ResenaEntity extends BaseEntity implements Serializable {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+     @Override
+    public boolean equals(Object obj)
+    {
+        if(! super.equals(obj))
+        {
+            return false;
+        } 
+        ResenaEntity resenaObj=(ResenaEntity) obj;
+        return comentario.equals(resenaObj.getComentario());
+    }
+   @Override
+    public int hashCode()
+   {
+       
+       
+       if(this.getComentario()!=null)
+       {
+           return this.getComentario().hashCode();
+       }
+       return super.hashCode();
+   }
+   
+    
+    
+
+    
 }

@@ -109,5 +109,29 @@ private String comentarios;
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(! super.equals(obj))
+        {
+            return false;
+        } 
+        FoodBlogEntity foodblogObj=(FoodBlogEntity) obj;
+        return texto.equals(foodblogObj.getTexto());
+    }
+   @Override
+    public int hashCode()
+   {
+       
+       
+       if(this.getTexto()!=null)
+       {
+           return this.getTexto().hashCode();
+       }
+       return super.hashCode();
+   }
+   
+    
+    
     
 }
