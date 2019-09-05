@@ -189,4 +189,14 @@ public abstract class UsuarioEntity extends BaseEntity {
         
     }
 
+    
+    @Override
+    public int hashCode()
+    {
+        if (this.getUsername() != null) {
+            return this.getUsername().hashCode();
+        }
+        return super.hashCode();
+    } 
+            
 }
