@@ -20,14 +20,14 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class FoodBlogPersistence {
-    private static Logger LOGGER = Logger.getLogger(FoodBlogEntity.class.getName());
+    private static Logger logger = Logger.getLogger(FoodBlogEntity.class.getName());
     @PersistenceContext (unitName = "gastronomiaPU")
     protected EntityManager em;
     public FoodBlogEntity create(FoodBlogEntity foodBlog)
     {
-        LOGGER.log(Level.INFO, "Se está creando el foodblog con el id={0}", foodBlog.getId());
+      logger.log(Level.INFO, "Se está creando el foodblog con el id={0}", foodBlog.getId());
         em.persist(foodBlog);
-        LOGGER.log(Level.INFO, "Se creo el foodblog con el  id={0}", foodBlog.getId());
+      logger.log(Level.INFO, "Se creo el foodblog con el  id={0}", foodBlog.getId());
         return foodBlog;
     }
     /**
@@ -36,7 +36,7 @@ public class FoodBlogPersistence {
      */
     public List<FoodBlogEntity> findAll()            
     {
-        LOGGER.log(Level.INFO, "Se buscan todos los food blogs");
+      logger.log(Level.INFO, "Se buscan todos los food blogs");
         TypedQuery q = em.createQuery("select u from FoodBlogEntity u", FoodBlogEntity.class);
         return (List<FoodBlogEntity>)q.getResultList();
     }
@@ -47,7 +47,7 @@ public class FoodBlogPersistence {
      * @return un foodBlog.
      */
     public FoodBlogEntity find(Long foodBlogsId) {
-        LOGGER.log(Level.INFO, "Consultando el foodblog con id={0}", foodBlogsId);
+      logger.log(Level.INFO, "Consultando el foodblog con id={0}", foodBlogsId);
        
         return em.find(FoodBlogEntity.class, foodBlogsId);
     }
@@ -60,7 +60,7 @@ public class FoodBlogPersistence {
      * @return un foodBlog con los cambios aplicados.
      */
     public FoodBlogEntity update(FoodBlogEntity foodBlogEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el foodBlog con id={0}", foodBlogEntity.getId());
+      logger.log(Level.INFO, "Actualizando el foodBlog con id={0}", foodBlogEntity.getId());
        
         return em.merge(foodBlogEntity);
     }
@@ -71,7 +71,7 @@ public class FoodBlogPersistence {
      */
     public void delete(Long foodBlogsId) {
 
-        LOGGER.log(Level.INFO, "Borrando el foodBlog con id={0}", foodBlogsId);
+      logger.log(Level.INFO, "Borrando el foodBlog con id={0}", foodBlogsId);
         
         FoodBlogEntity foodBlogEntity = em.find(FoodBlogEntity.class, foodBlogsId);
        
