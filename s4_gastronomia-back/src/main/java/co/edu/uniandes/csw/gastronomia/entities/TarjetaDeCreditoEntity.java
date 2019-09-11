@@ -5,9 +5,13 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -16,15 +20,18 @@ import javax.persistence.Entity;
 @Entity
 public class TarjetaDeCreditoEntity extends BaseEntity{
     
-    private int numero; 
+    private long numero; 
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaDeVencimiento; 
+    @PodamIntValue(minValue = 100, maxValue = 999)
     private int cvv; 
     private String banco; 
     
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public long getNumero() {
         return numero;
     }
 
@@ -64,19 +71,6 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     }
 
     /**
-     * @return the banco
-     */
-    public String getBanco() {
-        return banco;
-    }
-
-    /**
-     * @param banco the banco to set
-     */
-    public void setBanco(String banco) {
-        this.banco = banco;
-    }
-    /**
      * 
      * @param o. Objeto con el que se va a realizar la comparacion
      * @return  retorna true si el objeto es igual al ingresado por parametros. False de lo contrario
@@ -84,24 +78,12 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     @Override
     public boolean equals(Object o)
     {
-      if(!super.equals(o))
-      {     
-          return false;
-      }
-      TarjetaDeCreditoEntity tarjeta = (TarjetaDeCreditoEntity) o; 
-      return this.banco.equals(tarjeta.getBanco()) &&
-             this.cvv == tarjeta.getCvv() && 
-             this.fechaDeVencimiento.equals(tarjeta.getFechaDeVencimiento()) &&
-             this.numero == tarjeta.getNumero() &&
-             Objects.equals(this.getId(), tarjeta.getId());
-      
-      
+      return super.equals(o);
     }
-    
-
-
-    
-    
-   
-    
+     @Override
+    @Deprecated
+    public int hashCode()
+    {
+        return super.hashCode();
+    }
 }

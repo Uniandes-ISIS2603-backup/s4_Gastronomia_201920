@@ -30,6 +30,10 @@ public class PlatoLogic {
         {
             throw new BusinessLogicException("El precio del plato es  negativo");
         }
+        else if(plato.getNombreComida() == null)
+        {
+            throw new BusinessLogicException("El plato no tiene un nombre");
+        }
         plato = persistence.create(plato);
         return plato; 
     }

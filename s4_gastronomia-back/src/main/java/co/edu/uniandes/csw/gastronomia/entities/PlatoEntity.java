@@ -77,15 +77,13 @@ public class PlatoEntity extends BaseEntity {
     @Override
     public boolean equals(Object o)
     {
-        if(!super.equals(o))
-        {
-            return false;
-        }
-        PlatoEntity plato = (PlatoEntity) o; 
-        return this.descripcion.equals(plato.getDescripcion())&&
-               this.nombreComida.equals(plato.getNombreComida()) &&
-               this.precio == plato.getPrecio() &&
-               this.rutaImagen.equals(plato.getRutaImagen()) &&
-               getId().equals(plato.getId());
+       return super.equals(o);
     }
+    @Override
+    @Deprecated
+    public int hashCode()
+    {
+        return super.hashCode();
+    }
+    
 }
