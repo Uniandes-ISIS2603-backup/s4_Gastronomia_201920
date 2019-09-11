@@ -107,7 +107,7 @@ public class RestaurantePersistenciaTest
     public void getRestaurantesTest()
     {
         List<RestauranteEntity> list = persistencia.findAll();
-        Assert.assertEquals(list, data);
+        Assert.assertEquals(data.size(), list.size());
         for(RestauranteEntity e : list)
         {
             boolean flag = false;
@@ -120,6 +120,8 @@ public class RestaurantePersistenciaTest
             }
             Assert.assertTrue(flag);
         }
+        
+        
     }
     
     @Test
