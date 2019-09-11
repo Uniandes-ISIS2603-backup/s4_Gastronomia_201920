@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.entities;
 
 import javax.persistence.Entity;
-
 /**
  *
  * @author Estudiante Angela Maria Suarez P
@@ -47,6 +46,27 @@ public class AdministradorEntity  extends UsuarioEntity
    phone = pViejo ;
     }
    
+     @Override
+    public boolean equals(Object ob)
+    {
+       if(! super.equals(ob))
+        {
+            return false;
+        }
+        UsuarioEntity usuarioOb = ( UsuarioEntity) ob ;
+        String usuario = usuarioOb.getUsername();
+        return usuario.equals(usuarioOb.getUsername());
+        
+    }
     
+    @Override
+    public int hashCode()
+    {
+     
+        if (this.getUsername() != null) {
+            return this.getUsername().hashCode();
+        }
+        return super.hashCode();
+    } 
    
 }

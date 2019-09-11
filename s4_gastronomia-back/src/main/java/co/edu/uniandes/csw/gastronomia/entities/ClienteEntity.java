@@ -74,4 +74,22 @@ public class ClienteEntity extends UsuarioEntity{
         this.puntos = puntos;
     }   
     
+    @Override
+    public boolean equals(Object obj) {
+        if (! super.equals(obj)) {
+          return false;
+        }
+        ClienteEntity clienteObj = (ClienteEntity) obj;
+        return this.getUsername().equals(clienteObj.getUsername());
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        if (this.getUsername() != null)
+        {
+            return this.getUsername().hashCode();
+        }
+        return super.hashCode();
+    }
 }

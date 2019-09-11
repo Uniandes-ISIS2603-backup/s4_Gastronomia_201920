@@ -123,5 +123,23 @@ public class ReservaEntity extends BaseEntity{
         this.numeroContacto = numeroContacto;
     }
     
+   @Override
+    public boolean equals(Object obj) {
+        if (! super.equals(obj)) {
+          return false;
+        }
+        ReservaEntity reservaObj = (ReservaEntity) obj;
+        return this.getId().equals(reservaObj.getId());
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        if (this.getId() != null)
+        {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    } 
     
 }

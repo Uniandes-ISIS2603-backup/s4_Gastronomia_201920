@@ -21,14 +21,14 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ResenaPersistence {
-     private static Logger LOGGER = Logger.getLogger(ResenaEntity.class.getName());
+     private static Logger logger = Logger.getLogger(ResenaEntity.class.getName());
     @PersistenceContext (unitName = "gastronomiaPU")
     protected EntityManager em;
     public ResenaEntity create(ResenaEntity resena)
     {
-        LOGGER.log(Level.INFO, "Se está creando la resena con el id={0}", resena.getId());
+        logger.log(Level.INFO, "Se está creando la resena con el id={0}", resena.getId());
         em.persist(resena);
-        LOGGER.log(Level.INFO, "Se creo la resena con el  id={0}", resena.getId());
+        logger.log(Level.INFO, "Se creo la resena con el  id={0}", resena.getId());
         return resena;
     }
     /**
@@ -37,7 +37,7 @@ public class ResenaPersistence {
      */
     public List<ResenaEntity> findAll()            
     {
-        LOGGER.log(Level.INFO, "Se buscan las resenas");
+        logger.log(Level.INFO, "Se buscan las resenas");
         TypedQuery q = em.createQuery("select u from ResenaEntity u", ResenaEntity.class);
         return (List<ResenaEntity>)q.getResultList();
     }
@@ -48,7 +48,7 @@ public class ResenaPersistence {
      * @return un resena.
      */
     public ResenaEntity find(Long resenasId) {
-        LOGGER.log(Level.INFO, "Consultando la resena con id={0}", resenasId);
+        logger.log(Level.INFO, "Consultando la resena con id={0}", resenasId);
        
         return em.find(ResenaEntity.class, resenasId);
     }
@@ -60,7 +60,7 @@ public class ResenaPersistence {
      * @return un resena con los cambios aplicados.
      */
     public ResenaEntity update(ResenaEntity resenaEntity) {
-        LOGGER.log(Level.INFO, "Actualizando la resena con id={0}", resenaEntity.getId());
+        logger.log(Level.INFO, "Actualizando la resena con id={0}", resenaEntity.getId());
        
         return em.merge(resenaEntity);
     }
@@ -72,7 +72,7 @@ public class ResenaPersistence {
      */
     public void delete(Long resenasId) {
 
-        LOGGER.log(Level.INFO, "Borrando la resena con id={0}", resenasId);
+        logger.log(Level.INFO, "Borrando la resena con id={0}", resenasId);
         
         ResenaEntity resenaEntity = em.find(ResenaEntity.class, resenasId);
        
