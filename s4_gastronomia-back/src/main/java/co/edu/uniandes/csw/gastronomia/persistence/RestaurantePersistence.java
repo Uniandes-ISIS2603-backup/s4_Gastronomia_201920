@@ -152,6 +152,15 @@ public class RestaurantePersistence
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.nombre = :nombre and u.contrasena = :pass", RestauranteEntity.class);
         q.setParameter("nombre", nombre);
         q.setParameter("pass", pass);
-        return (RestauranteEntity)q.getSingleResult();
+        try
+        {
+            RestauranteEntity r =(RestauranteEntity) q.getSingleResult();
+            return r;
+        }
+        catch(Exception e )
+        {
+            //
+        }
+        return null;
     }
 }

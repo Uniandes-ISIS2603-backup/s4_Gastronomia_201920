@@ -243,6 +243,13 @@ public class RestaurantePersistenciaTest
         Assert.assertTrue(r.equals(r1));
     }
     @Test
+    public void findNombrePasswordNoExTest()
+    {
+        RestauranteEntity r1=persistencia.findNombrePassword("","");
+        Assert.assertNull(r1);
+       
+    }
+    @Test
     public void findPreccioReservaRangoTest()
     {
         List<RestauranteEntity> r =new ArrayList<>();

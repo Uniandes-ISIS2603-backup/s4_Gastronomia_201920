@@ -37,9 +37,21 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El restaurante no tiene nombre");
         }
-        if(r.getContrasena()==null | r.getContrasena().isEmpty() | r.getContrasena().length() < 8)
+        if(r.getNombre().isEmpty())
+        {
+            throw new BusinessLogicException("El restaurante no tiene nombre");
+        }
+        if(r.getContrasena()==null )
         {
             throw new BusinessLogicException("Bad password sheme ");
+        }
+        if(r.getContrasena().isEmpty() )
+        {
+           throw new BusinessLogicException("Bad password sheme "); 
+        }
+        if( r.getContrasena().length() < 8)
+        {
+            throw new BusinessLogicException("Bad password sheme "); 
         }
         if(r.getZonaDeFumadores()==null)
         {
@@ -57,14 +69,22 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
         }
-        if(r.getImagen()==null | r.getImagen().isEmpty())
+        if(r.getImagen()==null )
         {
             throw new BusinessLogicException("La imagen está vaci o no existe");
         }
-        if(r.getDireccion()==null|r.getDireccion().isEmpty())
+        if( r.getImagen().isEmpty())
+        {
+            throw new BusinessLogicException("La imagen está vaci o no existe");
+        }
+        if(r.getDireccion()==null)
         {
             throw new BusinessLogicException("La direcion es nula o no tiene");
         }               
+        if(r.getDireccion().isEmpty())
+        {
+            throw new BusinessLogicException("La direcion es nula o no tiene");
+        }
         if(r.getHorario()==null)
         {
             throw new BusinessLogicException("No tiene horario");
@@ -73,11 +93,15 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
-        if(r.getCostoReserva()<0.0)
+        if(r.getCostoReserva()<=0.0)
         {
             throw new BusinessLogicException("El costo de reserva es negativo");
         }
-        if(r.getTipoRestaurante()==null | r.getTipoRestaurante().isEmpty())
+        if(r.getTipoRestaurante()==null)
+        {
+            throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
+        }
+        if(r.getTipoRestaurante().isEmpty())
         {
             throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
         }
@@ -89,7 +113,7 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
         }
-        if(r.getPrecioPorPersona()<0.0)
+        if(r.getPrecioPorPersona()<=0.0)
         {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }
@@ -107,15 +131,28 @@ public class RestauranteLogic
     
     public RestauranteEntity getRestauranteContrasenaNombre(String nombre , String contrasena) throws BusinessLogicException
     {
-        if(nombre==null|nombre.isEmpty())
+        if(nombre==null)
         {
-            throw new BusinessLogicException("Bad name format");
+            throw new BusinessLogicException("Bad name format, null string");
         }
-        if(contrasena==null|contrasena.isEmpty())
+        if(nombre.isEmpty())
         {
-            throw new BusinessLogicException("Bad password format");
+            throw new BusinessLogicException("Bad name format, empty string");
         }
-        return persistence.findNombrePassword(nombre, contrasena);
+        if(contrasena==null)
+        {
+            throw new BusinessLogicException("Bad password format, null string");
+        }
+        if(contrasena.isEmpty())
+        {
+            throw new BusinessLogicException("Bad password format, empty string");
+        }
+        RestauranteEntity r = persistence.findNombrePassword(nombre, contrasena);
+        if(r==null)
+        {
+            throw new BusinessLogicException("Wrong, it doesn´t exist");
+        }
+        return r;
     }
     
     public List<RestauranteEntity> getRestaurantesPetFriendly(Boolean b)throws  BusinessLogicException
@@ -145,7 +182,7 @@ public class RestauranteLogic
         return persistence.findServicioALaMesa(b);
     }
     
-    public List<RestauranteEntity> getRestaurantesDescuentoCumpleaños(Boolean b)throws  BusinessLogicException
+    public List<RestauranteEntity> getRestaurantesDescuentoCumpleanos(Boolean b)throws  BusinessLogicException
     {
         if(b==null)
         {
@@ -190,16 +227,23 @@ public class RestauranteLogic
     
     public List<RestauranteEntity> getRestaurantesDireccion(String dir)throws BusinessLogicException
     {
-        if(dir==null|dir.isEmpty())
+        if(dir==null){
+            throw new BusinessLogicException("Bad String format");
+        }
+        if(dir.isEmpty())
         {
-            throw new BusinessLogicException("Bad direction fomrat");
+            throw new BusinessLogicException("Bad String format");
         }
         return persistence.findDireccion(dir);
     }
     
     public List<RestauranteEntity> getRestauranteNombre(String nombre)throws BusinessLogicException
     {
-        if(nombre==null|nombre.isEmpty()){
+        if(nombre==null){
+            throw new BusinessLogicException("Bad name format");
+        }
+        if(nombre.isEmpty())
+        {
             throw new BusinessLogicException("Bad name format");
         }
         return persistence.findNombre(nombre);
@@ -229,9 +273,21 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El restaurante no tiene nombre");
         }
-        if(r.getContrasena()==null | r.getContrasena().isEmpty() | r.getContrasena().length() < 8)
+        if(r.getNombre().isEmpty())
+        {
+            throw new BusinessLogicException("El restaurante no tiene nombre");
+        }
+        if(r.getContrasena()==null )
         {
             throw new BusinessLogicException("Bad password sheme ");
+        }
+        if(r.getContrasena().isEmpty() )
+        {
+           throw new BusinessLogicException("Bad password sheme "); 
+        }
+        if( r.getContrasena().length() < 8)
+        {
+            throw new BusinessLogicException("Bad password sheme "); 
         }
         if(r.getZonaDeFumadores()==null)
         {
@@ -249,14 +305,22 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
         }
-        if(r.getImagen()==null | r.getImagen().isEmpty())
+        if(r.getImagen()==null )
         {
             throw new BusinessLogicException("La imagen está vaci o no existe");
         }
-        if(r.getDireccion()==null|r.getDireccion().isEmpty())
+        if( r.getImagen().isEmpty())
+        {
+            throw new BusinessLogicException("La imagen está vaci o no existe");
+        }
+        if(r.getDireccion()==null)
         {
             throw new BusinessLogicException("La direcion es nula o no tiene");
         }               
+        if(r.getDireccion().isEmpty())
+        {
+            throw new BusinessLogicException("La direcion es nula o no tiene");
+        }
         if(r.getHorario()==null)
         {
             throw new BusinessLogicException("No tiene horario");
@@ -265,11 +329,15 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
-        if(r.getCostoReserva()<0.0)
+        if(r.getCostoReserva()<=0.0)
         {
             throw new BusinessLogicException("El costo de reserva es negativo");
         }
-        if(r.getTipoRestaurante()==null | r.getTipoRestaurante().isEmpty())
+        if(r.getTipoRestaurante()==null)
+        {
+            throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
+        }
+        if(r.getTipoRestaurante().isEmpty())
         {
             throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
         }
@@ -281,7 +349,7 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
         }
-        if(r.getPrecioPorPersona()<0.0)
+        if(r.getPrecioPorPersona()<=0.0)
         {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }
