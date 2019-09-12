@@ -52,6 +52,8 @@ public class AdministradorLogicTest {
     * El jar contiene las clases, el descriptor de la base de datos y el archivo
     * beans.xml para resolver la inyección de dependencia
     */
+    
+    
     @Deployment
     public static JavaArchive createDeployment()
     {
