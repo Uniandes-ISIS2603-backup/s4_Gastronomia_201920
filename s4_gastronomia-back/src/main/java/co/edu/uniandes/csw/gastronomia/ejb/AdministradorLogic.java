@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Angela Maria Suarez
+ * @author Angela Maria Suarez Parra
  */
 @Stateless
 public class AdministradorLogic {
@@ -47,6 +47,7 @@ public class AdministradorLogic {
              throw new BusinessLogicException("El nombre esta vacio");
         }
         
+  
         else if(administradorEntity.getUsername() == null)
         {
              throw new BusinessLogicException("El nombre esta vacio");
