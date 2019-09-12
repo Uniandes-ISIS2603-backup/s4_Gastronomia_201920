@@ -46,8 +46,6 @@ public class AdministradorLogic {
         {
              throw new BusinessLogicException("El nombre esta vacio");
         }
-        
-  
         else if(administradorEntity.getUsername() == null)
         {
              throw new BusinessLogicException("El nombre esta vacio");
