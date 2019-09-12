@@ -212,11 +212,13 @@ public class AdministradorLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void updateAdministradorConUserNameInvdalido() throws BusinessLogicException
     {
+        //update
         AdministradorEntity entity  = data.get(0);
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setUsername(null);
         pojoEntity.setId(entity.getId());
         administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        
         
     }
     
