@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.entities;
 
 import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
+import co.edu.uniandes.csw.gastronomia.podam.NumeroTarjetaDeCreditoStrategy;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
@@ -19,15 +20,13 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 public class TarjetaDeCreditoEntity extends BaseEntity{
-    
+    @PodamStrategyValue(NumeroTarjetaDeCreditoStrategy.class)
     private long numero; 
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaDeVencimiento; 
     @PodamIntValue(minValue = 100, maxValue = 999)
     private int cvv; 
-    private String banco; 
-    
     /**
      * @return the numero
      */
@@ -38,7 +37,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(long numero) {
         this.numero = numero;
     }
 
