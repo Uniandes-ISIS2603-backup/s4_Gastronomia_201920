@@ -61,5 +61,26 @@ public class AdministradorPersistence {
         
     }
 
+    public AdministradorEntity findByUserName(String username)
+    {
+        TypedQuery query = em.createQuery("Select e From AdministradorEntity e where e.username = :username", AdministradorEntity.class);
+        query = query.setParameter("username", username);
+        List<AdministradorEntity> sameUsername = query.getResultList();
+        AdministradorEntity resultado;
+        if( sameUsername == null)
+        {
+            resultado = null;
+        }
+        else if( sameUsername.isEmpty())
+        {
+            resultado = null;
+        }
+        else
+        {
+            resultado = sameUsername.get(0);
+        }
+        
+        return resultado;
+    }
     
 }
