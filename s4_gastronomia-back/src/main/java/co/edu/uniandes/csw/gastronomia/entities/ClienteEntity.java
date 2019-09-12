@@ -25,13 +25,6 @@ public class ClienteEntity extends UsuarioEntity{
         super();
     }
 
-    public ClienteEntity(String name , String apellido , String username , String contrasena , String email, Date cumpleanos, String numeroContacto, int puntos) {
-        super(name, apellido, username, contrasena, email);
-        this.cumpleanos = cumpleanos;
-        this.numeroContacto = numeroContacto;
-        this.puntos = puntos;
-    }
-
     /**
      * @return the cumpleanos
      */

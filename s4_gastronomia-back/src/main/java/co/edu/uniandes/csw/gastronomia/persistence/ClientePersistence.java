@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -46,6 +47,54 @@ public class ClientePersistence {
      */
     public ClienteEntity find (Long clienteId) {
         return em.find(ClienteEntity.class, clienteId);
+    }
+    
+    /**
+     * Busca si hay algún cliente con el username que se envía de argumento
+     *
+     * @param username: username del cliente que se está buscando
+     * @return null si no existe ningún cliente con el username del argumento. 
+     * Si existe alguno devuelve el primero.
+     */
+    public ClienteEntity findByUsername(String username) {
+        LOGGER.log(Level.INFO, "Consultando clientes por username ", username);
+        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.username = :username", ClienteEntity.class);
+        query = query.setParameter("username", username);
+        List<ClienteEntity> sameUsername = query.getResultList();
+        ClienteEntity result;
+        if (sameUsername == null) {
+            result = null;
+        } else if (sameUsername.isEmpty()) {
+            result = null;
+        } else {
+            result = sameUsername.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por username ", username);
+        return result;
+    }
+    
+    /**
+     * Busca si hay algún cliente con el email que se envía de argumento
+     *
+     * @param email: email del cliente que se está buscando
+     * @return null si no existe ningún cliente con el email del argumento. 
+     * Si existe alguno devuelve el primero.
+     */
+    public ClienteEntity findByEmail(String email) {
+        LOGGER.log(Level.INFO, "Consultando clientes por email ", email);
+        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.email = :email", ClienteEntity.class);
+        query = query.setParameter("email", email);
+        List<ClienteEntity> sameEmail = query.getResultList();
+        ClienteEntity result;
+        if (sameEmail == null) {
+            result = null;
+        } else if (sameEmail.isEmpty()) {
+            result = null;
+        } else {
+            result = sameEmail.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por email ", email);
+        return result;
     }
     
      /**
