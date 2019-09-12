@@ -26,7 +26,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Cristina González
+ * @author Cristina Isabel González Osorio
  */
 @RunWith(Arquillian.class)
 public class ClientePersistenceTest {
@@ -92,7 +92,6 @@ public class ClientePersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
-
             em.persist(entity);
             data.add(entity);
         }
@@ -120,21 +119,21 @@ public class ClientePersistenceTest {
     }
     
     /**
-     * Prueba para consultar una reserva.
+     * Prueba para consultar un cliente.
      */
     @Test
     public void findTest() {
         ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = clientePersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getApellido(), entity.getApellido());
-        Assert.assertEquals(newEntity.getUsername(), entity.getUsername());
-        Assert.assertEquals(newEntity.getEmail(), entity.getEmail());
-        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
-        Assert.assertEquals(newEntity.getCumpleanos(), entity.getCumpleanos());
-        Assert.assertEquals(newEntity.getNumeroContacto(), entity.getNumeroContacto());
-        Assert.assertEquals(newEntity.getPuntos(), entity.getPuntos());
+        ClienteEntity resultEntity = clientePersistence.find(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(resultEntity.getApellido(), entity.getApellido());
+        Assert.assertEquals(resultEntity.getUsername(), entity.getUsername());
+        Assert.assertEquals(resultEntity.getEmail(), entity.getEmail());
+        Assert.assertEquals(resultEntity.getContrasena(), entity.getContrasena());
+        Assert.assertEquals(resultEntity.getCumpleanos(), entity.getCumpleanos());
+        Assert.assertEquals(resultEntity.getNumeroContacto(), entity.getNumeroContacto());
+        Assert.assertEquals(resultEntity.getPuntos(), entity.getPuntos());
     }
     
     /**
