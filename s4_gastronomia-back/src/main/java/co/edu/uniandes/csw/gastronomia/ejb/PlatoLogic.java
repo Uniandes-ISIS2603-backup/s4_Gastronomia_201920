@@ -34,6 +34,15 @@ public class PlatoLogic {
         {
             throw new BusinessLogicException("El plato no tiene un nombre");
         }
+        else if(plato.getDescripcion() == null)
+        {
+            throw new BusinessLogicException("El plato no tiene una descripcion");
+        }
+        else if(persistence.find(plato.getId()) != null)
+        {
+            throw new BusinessLogicException("El plato ya existe");
+        }
+        
         plato = persistence.create(plato);
         return plato; 
     }
