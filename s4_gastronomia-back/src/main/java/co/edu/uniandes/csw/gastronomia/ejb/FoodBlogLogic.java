@@ -83,11 +83,16 @@ public class FoodBlogLogic {
     /**
      * Elimina una instancia de Foodblog de la base de datos.
      *
-     * @param authorsId Identificador de la instancia a eliminar.
+     * @param foodblogid Identificador de la instancia a eliminar.
      * @throws BusinessLogicException si el autor tiene libros asociados.
      */
-    public void deleteFoodBlog(Long authorsId) throws BusinessLogicException
+    public void deleteFoodBlog(Long foodblogId) throws BusinessLogicException
     {
+         LOGGER.log(Level.INFO, "Inicia proceso de borrar el foodBlog con id = {0}", foodblogId);
+         
+         
+         persistence.delete(foodblogId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el foodBlog con id = {0}", foodblogId);
         
     }
     

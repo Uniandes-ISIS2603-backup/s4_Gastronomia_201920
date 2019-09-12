@@ -81,14 +81,18 @@ public class ResenaLogic {
         return newfoodBlogEntity;
     }
     /**
-     * Elimina una instancia de Foodblog de la base de datos.
+     * Elimina una instancia de resena de la base de datos.
      *
-     * @param authorsId Identificador de la instancia a eliminar.
+     * @param foodblogId Identificador de la instancia a eliminar.
      * @throws BusinessLogicException si el autor tiene libros asociados.
      */
-    public void deleteResena(Long authorsId) throws BusinessLogicException
+    public void deleteResena(Long resenaId) throws BusinessLogicException
     {
-        
+         LOGGER.log(Level.INFO, "Inicia proceso de borrar la resena con id = {0}", resenaId);
+         
+         
+         persistence.delete(resenaId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la resena con id = {0}", resenaId);
     }
     
 }
