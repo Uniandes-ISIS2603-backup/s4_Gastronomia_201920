@@ -5,9 +5,17 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -19,7 +27,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     /**
      * La imagen del restaurante
      */
-    private String RUTA_IMAGEN_RESTAURANTE;
+    private String imagen;
     /**
      * el nombre del restaurante
      */
@@ -43,7 +51,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     /**
      * si hay descuento por cumpleaños
      */
-    private Boolean descuentaoCumpleaños;
+    private Boolean descuentaoCumpleanos;
     /**
      * si tiene ona de fumadores
      */
@@ -67,35 +75,92 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     /**
      * el horario
      */
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date horario;
+    
+//    @PodamExclude
+//    @ManyToOne
+//    private AdministradorEntity administrador;
+//    
+//    @PodamExclude
+//    @OneToMany
+//    private List<PlatoEntity> platos ;
+//    
+//    @PodamExclude
+//    @OneToMany
+//    private List<ReservaEntity> reservas;
 
     public RestauranteEntity()
     {
         //Empty constructor
     }
 
-    public RestauranteEntity(String RUTA_IMAGEN_RESTAURANTE, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleaños, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario) {
-        this.RUTA_IMAGEN_RESTAURANTE = RUTA_IMAGEN_RESTAURANTE;
-        this.nombre = nombre;
-        this.contrasena = contrasena;
-        this.direccion = direccion;
-        this.tipoRestaurante = tipoRestaurante;
-        this.precioPorPersona = precioPorPersona;
-        this.descuentaoCumpleaños = descuentaoCumpleaños;
-        this.zonaDeFumadores = zonaDeFumadores;
-        this.petFriendly = petFriendly;
-        this.servicioALaMesa = servicioALaMesa;
-        this.musicaEnVivo = musicaEnVivo;
-        this.costoReserva = costoReserva;
-        this.horario = horario;
+    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario) {
+        this.imagen = imagen;//ya
+        this.nombre = nombre;//ya
+        this.contrasena = contrasena;//ya
+        this.direccion = direccion;//ya
+        this.tipoRestaurante = tipoRestaurante;//ya
+        this.precioPorPersona = precioPorPersona;//ya
+        this.descuentaoCumpleanos = descuentaoCumpleanos;//ya
+        this.zonaDeFumadores = zonaDeFumadores;//ya
+        this.petFriendly = petFriendly;//ya
+        this.servicioALaMesa = servicioALaMesa;//ya
+        this.musicaEnVivo = musicaEnVivo;//ya
+        this.costoReserva = costoReserva;//ya
+        this.horario = horario;//ya
     }
 
-    public String getRUTA_IMAGEN_RESTAURANTE() {
-        return RUTA_IMAGEN_RESTAURANTE;
+//    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
+//        this.imagen = imagen;
+//        this.nombre = nombre;
+//        this.contrasena = contrasena;
+//        this.direccion = direccion;
+//        this.tipoRestaurante = tipoRestaurante;
+//        this.precioPorPersona = precioPorPersona;
+//        this.descuentaoCumpleanos = descuentaoCumpleanos;
+//        this.zonaDeFumadores = zonaDeFumadores;
+//        this.petFriendly = petFriendly;
+//        this.servicioALaMesa = servicioALaMesa;
+//        this.musicaEnVivo = musicaEnVivo;
+//        this.costoReserva = costoReserva;
+//        this.horario = horario;
+//        this.administrador = administrador;
+//        this.platos = platos;
+//        this.reservas = reservas;
+//    }
+//
+//    public AdministradorEntity getAdministrador() {
+//        return administrador;
+//    }
+//
+//    public void setAdministrador(AdministradorEntity administrador) {
+//        this.administrador = administrador;
+//    }
+//
+//    public List<PlatoEntity> getPlatos() {
+//        return platos;
+//    }
+//
+//    public void setPlatos(List<PlatoEntity> platos) {
+//        this.platos = platos;
+//    }
+//
+//    public List<ReservaEntity> getReservas() {
+//        return reservas;
+//    }
+//
+//    public void setReservas(List<ReservaEntity> reservas) {
+//        this.reservas = reservas;
+//    }
+        
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setRUTA_IMAGEN_RESTAURANTE(String RUTA_IMAGEN_RESTAURANTE) {
-        this.RUTA_IMAGEN_RESTAURANTE = RUTA_IMAGEN_RESTAURANTE;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getNombre() {
@@ -138,12 +203,12 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.precioPorPersona = precioPorPersona;
     }
 
-    public Boolean getDescuentaoCumpleaños() {
-        return descuentaoCumpleaños;
+    public Boolean getDescuentaoCumpleanos() {
+        return descuentaoCumpleanos;
     }
 
     public void setDescuentaoCumpleaños(Boolean descuentaoCumpleaños) {
-        this.descuentaoCumpleaños = descuentaoCumpleaños;
+        this.descuentaoCumpleanos = descuentaoCumpleaños;
     }
 
     public Boolean getZonaDeFumadores() {
@@ -192,5 +257,10 @@ public class RestauranteEntity extends BaseEntity implements Serializable
 
     public void setHorario(Date horario) {
         this.horario = horario;
-    }   
+    } 
+    
+    public boolean equals(RestauranteEntity other)
+    {
+        return super.equals(other);
+    }
 }
