@@ -100,7 +100,7 @@ public class RestaurantePersistenciaTest
         
         RestauranteEntity entity = em.find(RestauranteEntity.class, result.getId());
         
-        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertTrue(entity.equals(newEntity));
     }
     
     @Test
@@ -130,14 +130,7 @@ public class RestaurantePersistenciaTest
         RestauranteEntity e = data.get(0);
         RestauranteEntity newEntity = persistencia.find(e.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(e.getNombre(), newEntity.getNombre());
-        Assert.assertEquals(e.getContrasena(), newEntity.getContrasena());
-        Assert.assertEquals(e.getCostoReserva(), newEntity.getCostoReserva());
-        Assert.assertEquals(e.getDireccion(), newEntity.getDireccion());
-        Assert.assertEquals(e.getHorario(), newEntity.getHorario());
-        Assert.assertEquals(e.getPrecioPorPersona(), newEntity.getPrecioPorPersona());
-        Assert.assertEquals(e.getRUTA_IMAGEN_RESTAURANTE(), newEntity.getRUTA_IMAGEN_RESTAURANTE());
-        Assert.assertEquals(e.getPetFriendly(), newEntity.getPetFriendly());
+        Assert.assertTrue(newEntity.equals(e));
     }
     
     @Test
@@ -152,7 +145,7 @@ public class RestaurantePersistenciaTest
         persistencia.update(newEntity);
 
         RestauranteEntity resp = em.find(RestauranteEntity.class, entity.getId());
-        Assert.assertEquals(resp.getNombre(), newEntity.getNombre());
+        Assert.assertTrue(resp.equals(newEntity));
     }
     
     @Test
@@ -163,4 +156,394 @@ public class RestaurantePersistenciaTest
         RestauranteEntity r = em.find(RestauranteEntity.class, e.getId());
         Assert.assertNull(r);
     }
+    
+    @Test
+    public void findNombreTest1()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        RestauranteEntity e = factory.manufacturePojo(RestauranteEntity.class);
+        persistencia.create(e);
+        RestauranteEntity n = persistencia.findNombre(e.getNombre()).get(0);
+        Assert.assertNotNull(n);
+        Assert.assertTrue(e.equals(n));
+    }
+    @Test
+    public void findNombreTestN()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        RestauranteEntity e = factory.manufacturePojo(RestauranteEntity.class);
+        RestauranteEntity e1 = factory.manufacturePojo(RestauranteEntity.class);
+        e1.setNombre(e.getNombre());
+        persistencia.create(e);
+        persistencia.create(e1);
+        List<RestauranteEntity> n = persistencia.findNombre(e.getNombre());
+        int c=0;
+        for(RestauranteEntity x: n)
+        {
+            Assert.assertNotNull(x);
+            if(x.equals(e))
+            {
+                c++;
+            }
+            else if(x.equals(e1))
+            {
+                c++;
+            }
+        }
+        Assert.assertNotNull(n);
+        Assert.assertTrue(c==2);
+    }
+    @Test
+    public void findNombreTestNoExiste()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        RestauranteEntity e = factory.manufacturePojo(RestauranteEntity.class);
+        
+        List<RestauranteEntity> n = persistencia.findNombre(e.getNombre());
+        Assert.assertTrue(n.isEmpty());
+        
+    }
+    @Test
+    public void findPreccioPromedioRangoTest()
+    {
+        List<RestauranteEntity> r =new ArrayList<>();
+        Double min = 2.0;
+        Double max= 5.0;
+        for(RestauranteEntity x : data)
+        {
+            if(x.getPrecioPorPersona()>=min & x.getPrecioPorPersona()<=min)
+            {
+                r.add(x);
+            }
+        }
+        List<RestauranteEntity> r1 = persistencia.findPrecioPromedioRango(min, max);
+        Assert.assertTrue(r1.size()==r.size());
+        if(!r.isEmpty())
+        {
+            int c=0;
+            for(RestauranteEntity x : r1)
+            {
+                for(RestauranteEntity y : r)
+                {
+                    if(x.equals(y))
+                    {
+                        c++;
+                    }
+                }
+            }
+            Assert.assertTrue(c==r.size());
+        }
+    }
+    @Test
+    public void findNombrePasswordTest()
+    {
+        RestauranteEntity r = data.get(0);
+        RestauranteEntity r1=persistencia.findNombrePassword(r.getNombre(),r.getContrasena() );
+        Assert.assertNotNull(r1);
+        Assert.assertTrue(r.equals(r1));
+    }
+    @Test
+    public void findNombrePasswordNoExTest()
+    {
+        RestauranteEntity r1=persistencia.findNombrePassword("","");
+        Assert.assertNull(r1);
+       
+    }
+    @Test
+    public void findPreccioReservaRangoTest()
+    {
+        List<RestauranteEntity> r =new ArrayList<>();
+        Double min = 2.0;
+        Double max= 5.0;
+        for(RestauranteEntity x : data)
+        {
+            if(x.getCostoReserva()>=min & x.getCostoReserva()<=min)
+            {
+                r.add(x);
+            }
+        }
+        List<RestauranteEntity> r1 = persistencia.findPrecioReservaRango(min, max);
+        Assert.assertTrue(r1.size()==r.size());
+        if(!r.isEmpty())
+        {
+            int c=0;
+            for(RestauranteEntity x : r1)
+            {
+                for(RestauranteEntity y : r)
+                {
+                    if(x.equals(y))
+                    {
+                        c++;
+                    }
+                }
+            }
+            Assert.assertTrue(c==r.size());
+        }
+    }
+    @Test
+    public void findDescuentoCumpleanosTest()
+    {
+        List<RestauranteEntity> t = new ArrayList<>();
+        List<RestauranteEntity> f = new ArrayList<>();
+        for(RestauranteEntity x : data)
+        {
+            
+            if(x.getDescuentaoCumpleanos()!=null)
+            {
+                if(x.getDescuentaoCumpleanos())
+                {
+                    t.add(x);
+                }
+                else
+                {
+                    f.add(x);
+                }
+            }
+        }
+        List<RestauranteEntity> t1 = persistencia.findDescuentoCumpleanos(Boolean.TRUE);
+        List<RestauranteEntity> f1 = persistencia.findDescuentoCumpleanos(Boolean.FALSE);
+        Assert.assertTrue(t.size()==t1.size());
+        Assert.assertTrue(f.size()==f1.size());
+        if(!t.isEmpty())
+        {
+            int ct=0;
+            for(RestauranteEntity x : t1)
+            {
+                for(RestauranteEntity y : t)
+                {
+                    if(x.equals(y))
+                    {
+                        ct++;
+                    }
+                }
+            }
+            Assert.assertTrue(ct==t.size());
+        }
+        if(!f.isEmpty())
+        {
+            int cf=0;
+            for(RestauranteEntity x : f1)
+            {
+                for(RestauranteEntity y : f)
+                {
+                    if(x.equals(y))
+                    {
+                        cf++;
+                    }
+                }
+            }
+            Assert.assertTrue(cf==t.size());
+        }
+    }
+    @Test
+    public void findServicioALaMesaTest()
+    {
+        List<RestauranteEntity> t = new ArrayList<>();
+        List<RestauranteEntity> f = new ArrayList<>();
+        for(RestauranteEntity x : data)
+        {
+            
+            if(x.getServicioALaMesa()!=null)
+            {
+                if(x.getServicioALaMesa())
+                {
+                    t.add(x);
+                }
+                else
+                {
+                    f.add(x);
+                }
+            }
+        }
+        List<RestauranteEntity> t1 = persistencia.findServicioALaMesa(Boolean.TRUE);
+        List<RestauranteEntity> f1 = persistencia.findServicioALaMesa(Boolean.FALSE);
+        Assert.assertTrue(t.size()==t1.size());
+        Assert.assertTrue(f.size()==f1.size());
+        if(!t.isEmpty())
+        {
+            int ct=0;
+            for(RestauranteEntity x : t1)
+            {
+                for(RestauranteEntity y : t)
+                {
+                    if(x.equals(y))
+                    {
+                        ct++;
+                    }
+                }
+            }
+            Assert.assertTrue(ct==t.size());
+        }
+        if(!f.isEmpty())
+        {
+            int cf=0;
+            for(RestauranteEntity x : f1)
+            {
+                for(RestauranteEntity y : f)
+                {
+                    if(x.equals(y))
+                    {
+                        cf++;
+                    }
+                }
+            }
+            Assert.assertTrue(cf==t.size());
+        }
+    }
+    @Test
+    public void findMusicaEnVivoTest()
+    {
+        List<RestauranteEntity> t = new ArrayList<>();
+        List<RestauranteEntity> f = new ArrayList<>();
+        for(RestauranteEntity x : data)
+        {
+            
+            if(x.getMusicaEnVivo()!=null)
+            {
+                if(x.getMusicaEnVivo())
+                {
+                    t.add(x);
+                }
+                else
+                {
+                    f.add(x);
+                }
+            }
+        }
+        List<RestauranteEntity> t1 = persistencia.findMusicaEnVivo(Boolean.TRUE);
+        List<RestauranteEntity> f1 = persistencia.findMusicaEnVivo(Boolean.FALSE);
+        Assert.assertTrue(t.size()==t1.size());
+        Assert.assertTrue(f.size()==f1.size());
+        if(!t.isEmpty())
+        {
+            int ct=0;
+            for(RestauranteEntity x : t1)
+            {
+                for(RestauranteEntity y : t)
+                {
+                    if(x.equals(y))
+                    {
+                        ct++;
+                    }
+                }
+            }
+            Assert.assertTrue(ct==t.size());
+        }
+        if(!f.isEmpty())
+        {
+            int cf=0;
+            for(RestauranteEntity x : f1)
+            {
+                for(RestauranteEntity y : f)
+                {
+                    if(x.equals(y))
+                    {
+                        cf++;
+                    }
+                }
+            }
+            Assert.assertTrue(cf==t.size());
+        }
+    }
+    @Test
+    public void findPetFriendlyTest()
+    {
+        List<RestauranteEntity> t = new ArrayList<>();
+        List<RestauranteEntity> f = new ArrayList<>();
+        for(RestauranteEntity x : data)
+        {
+            
+            if(x.getPetFriendly()!=null)
+            {
+                if(x.getPetFriendly())
+                {
+                    t.add(x);
+                }
+                else
+                {
+                    f.add(x);
+                }
+            }
+        }
+        List<RestauranteEntity> t1 = persistencia.findPetFriendly(Boolean.TRUE);
+        List<RestauranteEntity> f1 = persistencia.findPetFriendly(Boolean.FALSE);
+        Assert.assertTrue(t.size()==t1.size());
+        Assert.assertTrue(f.size()==f1.size());
+        if(!t.isEmpty())
+        {
+            int ct=0;
+            for(RestauranteEntity x : t1)
+            {
+                for(RestauranteEntity y : t)
+                {
+                    if(x.equals(y))
+                    {
+                        ct++;
+                    }
+                }
+            }
+            Assert.assertTrue(ct==t.size());
+        }
+        if(!f.isEmpty())
+        {
+            int cf=0;
+            for(RestauranteEntity x : f1)
+            {
+                for(RestauranteEntity y : f)
+                {
+                    if(x.equals(y))
+                    {
+                        cf++;
+                    }
+                }
+            }
+            Assert.assertTrue(cf==t.size());
+        }
+    }
+    @Test
+    public void findDireccionTest1()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        RestauranteEntity e = factory.manufacturePojo(RestauranteEntity.class);
+        persistencia.create(e);
+        RestauranteEntity n = persistencia.findDireccion(e.getDireccion()).get(0);
+        Assert.assertNotNull(n);
+        Assert.assertTrue(e.equals(n));
+    }
+    @Test
+    public void findDireccionTestN()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        RestauranteEntity e = factory.manufacturePojo(RestauranteEntity.class);
+        RestauranteEntity e1 = factory.manufacturePojo(RestauranteEntity.class);
+        e1.setDireccion(e.getDireccion());
+        persistencia.create(e);
+        persistencia.create(e1);
+        List<RestauranteEntity> n = persistencia.findDireccion(e.getDireccion());
+        int c=0;
+        for(RestauranteEntity x: n)
+        {
+            Assert.assertNotNull(x);
+            if(x.equals(e))
+            {
+                c++;
+            }
+            else if(x.equals(e1))
+            {
+                c++;
+            }
+        }
+        Assert.assertNotNull(n);
+        Assert.assertTrue(c==2);
+    }
+    @Test
+    public void findDireccionTestNoExiste()
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        RestauranteEntity e = factory.manufacturePojo(RestauranteEntity.class);
+        
+        List<RestauranteEntity> n = persistencia.findDireccion(e.getDireccion());
+        Assert.assertTrue(n.isEmpty());
+        
+    }    
 }

@@ -19,20 +19,6 @@ public class PlatoEntity extends BaseEntity {
     
     private String nombreComida; 
     
-    
-    
-    public PlatoEntity()
-    {
-        
-    }
-
-    public PlatoEntity(String rutaImagen, double precio, String descripcion, String nombreComida) {
-        this.rutaImagen = rutaImagen;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.nombreComida = nombreComida;
-    }
-    
     /**
      * @return the rutaImagen
      */
@@ -87,6 +73,17 @@ public class PlatoEntity extends BaseEntity {
      */
     public void setNombreComida(String nombreComida) {
         this.nombreComida = nombreComida;
+    }
+    @Override
+    public boolean equals(Object o)
+    {
+       return super.equals(o);
+    }
+    @Override
+    @Deprecated
+    public int hashCode()
+    {
+        return super.hashCode();
     }
     
 }

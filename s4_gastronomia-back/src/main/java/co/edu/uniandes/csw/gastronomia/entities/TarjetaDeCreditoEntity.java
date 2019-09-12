@@ -5,8 +5,14 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
+import co.edu.uniandes.csw.gastronomia.podam.NumeroTarjetaDeCreditoStrategy;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -14,34 +20,24 @@ import javax.persistence.Entity;
  */
 @Entity
 public class TarjetaDeCreditoEntity extends BaseEntity{
-    
-    private int numero; 
+    @PodamStrategyValue(NumeroTarjetaDeCreditoStrategy.class)
+    private long numero; 
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaDeVencimiento; 
+    @PodamIntValue(minValue = 100, maxValue = 999)
     private int cvv; 
-    private String banco; 
-
-    public TarjetaDeCreditoEntity() {
-    }
-
-    public TarjetaDeCreditoEntity(int numero, Date fechaDeVencimiento, int cvv, String banco) {
-        this.numero = numero;
-        this.fechaDeVencimiento = fechaDeVencimiento;
-        this.cvv = cvv;
-        this.banco = banco;
-    }
-    
-
     /**
      * @return the numero
      */
-    public int getNumero() {
+    public long getNumero() {
         return numero;
     }
 
     /**
      * @param numero the numero to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(long numero) {
         this.numero = numero;
     }
 
@@ -74,23 +70,19 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     }
 
     /**
-     * @return the banco
+     * 
+     * @param o. Objeto con el que se va a realizar la comparacion
+     * @return  retorna true si el objeto es igual al ingresado por parametros. False de lo contrario
      */
-    public String getBanco() {
-        return banco;
+    @Override
+    public boolean equals(Object o)
+    {
+      return super.equals(o);
     }
-
-    /**
-     * @param banco the banco to set
-     */
-    public void setBanco(String banco) {
-        this.banco = banco;
+     @Override
+    @Deprecated
+    public int hashCode()
+    {
+        return super.hashCode();
     }
-    
-
-
-    
-    
-   
-    
 }
