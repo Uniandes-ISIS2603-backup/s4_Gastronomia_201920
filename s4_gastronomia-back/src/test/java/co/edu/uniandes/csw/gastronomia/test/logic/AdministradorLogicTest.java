@@ -20,7 +20,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -57,7 +56,6 @@ public class AdministradorLogicTest {
     {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(AdministradorEntity.class.getPackage())
-                .addPackage(AdministradorLogic.class.getPackage())
                 .addPackage(AdministradorPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -67,7 +65,6 @@ public class AdministradorLogicTest {
     *
     * Configuración Inicial de la prueba
     */
-    @Before
     public void configTest()
     {
         try
@@ -210,11 +207,13 @@ public class AdministradorLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void updateAdministradorConUserNameInvdalido() throws BusinessLogicException
     {
+        //update
         AdministradorEntity entity  = data.get(0);
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setUsername(null);
         pojoEntity.setId(entity.getId());
         administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        
         
     }
     
