@@ -50,6 +50,10 @@ public class AdministradorLogic {
         {
             throw new BusinessLogicException("El nombre esta vacio");
         }
+        else if(administradorEntity.getUsername() == null)
+        {
+            throw new BusinessLogicException("El username es null");
+        }
         administradorEntity = persistence.create(administradorEntity);
         return administradorEntity;
     }
@@ -100,6 +104,10 @@ public class AdministradorLogic {
         else if(administradorEntity.getName() == null )
         {
              throw new BusinessLogicException("El nombre a cambiar esta vacio");
+        }
+         else if(administradorEntity.getUsername() == null)
+        {
+            throw new BusinessLogicException("El username es null");
         }
         AdministradorEntity newEntity = persistence.update(administradorEntity);
         return newEntity;
