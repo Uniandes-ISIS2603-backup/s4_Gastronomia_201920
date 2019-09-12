@@ -132,7 +132,7 @@ public class AdministradorLogicTest {
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
         Assert.assertEquals(newAdministrador.getId(), entity.getId());
         Assert.assertEquals(newAdministrador.getApellido(), entity.getApellido());
-        Assert.assertEquals(newAdministrador.getName(), entity.getName());
+        Assert.assertEquals(newAdministrador.getNombre(), entity.getNombre());
         Assert.assertEquals(newAdministrador.getContrasena(), entity.getContrasena());
         Assert.assertEquals(newAdministrador.getEmail(), entity.getEmail());
         Assert.assertEquals(newAdministrador.getUsername(), entity.getUsername());
@@ -161,7 +161,7 @@ public class AdministradorLogicTest {
         Assert.assertEquals(getAdministrador.getPhone(), entity.getPhone());
         Assert.assertEquals(getAdministrador.getContrasena(), entity.getContrasena());
         Assert.assertEquals(getAdministrador.getId(), entity.getId());
-        Assert.assertEquals(getAdministrador.getName(), entity.getName());
+        Assert.assertEquals(getAdministrador.getNombre(), entity.getNombre());
         Assert.assertEquals(getAdministrador.getApellido(), entity.getApellido());
     }
     
@@ -204,7 +204,7 @@ public class AdministradorLogicTest {
         Assert.assertEquals(pojoEntity.getPhone(), resp.getPhone());
         Assert.assertEquals(pojoEntity.getContrasena(), resp.getContrasena());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
         Assert.assertEquals(pojoEntity.getApellido(), resp.getApellido());
    
     }

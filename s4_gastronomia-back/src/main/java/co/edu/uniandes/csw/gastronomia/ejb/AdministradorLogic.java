@@ -42,7 +42,7 @@ public class AdministradorLogic {
         {
              throw new BusinessLogicException("La contraseña esta vacio");
         }
-        else if(administradorEntity.getName() == null)
+        else if(administradorEntity.getNombre() == null)
         {
              throw new BusinessLogicException("El nombre esta vacio");
         }
@@ -102,7 +102,7 @@ public class AdministradorLogic {
         {
              throw new BusinessLogicException("El email a cambiar esta vacio");
         }
-        else if(administradorEntity.getName() == null )
+        else if(administradorEntity.getNombre() == null )
         {
              throw new BusinessLogicException("El nombre a cambiar esta vacio");
         }
