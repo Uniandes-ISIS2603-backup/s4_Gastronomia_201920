@@ -146,6 +146,39 @@ public class AdministradorLogicTest {
         newEntity.setUsername(null);
         AdministradorEntity resultado = administradorLogic.createAdministrador(newEntity);
     }
+    
+    @Test( expected = BusinessLogicException.class)
+    public void createAdministradorNameNull() throws BusinessLogicException
+    {
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+        newEntity.setNombre(null);
+        AdministradorEntity resultado = administradorLogic.createAdministrador(newEntity);
+    }
+    
+    @Test( expected = BusinessLogicException.class)
+    public void createAdministradorApellidoNull() throws BusinessLogicException
+    {
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+        newEntity.setApellido(null);
+        AdministradorEntity resultado = administradorLogic.createAdministrador(newEntity);
+    }
+    
+    @Test( expected = BusinessLogicException.class)
+    public void createAdministradorEmailNull() throws BusinessLogicException
+    {
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+        newEntity.setEmail(null);
+        AdministradorEntity resultado = administradorLogic.createAdministrador(newEntity);
+    }
+    
+    @Test( expected = BusinessLogicException.class)
+    public void createAdministradorContrasenaNull() throws BusinessLogicException
+    {
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+        newEntity.setContrasena(null);
+        AdministradorEntity resultado = administradorLogic.createAdministrador(newEntity);
+    }
+    
      /**
     *
     * Prueba para consultar un administrador
@@ -222,6 +255,56 @@ public class AdministradorLogicTest {
         
     }
     
+     @Test(expected = BusinessLogicException.class)
+    public void updateAdministradorConNameInvdalido() throws BusinessLogicException
+    {
+        //update
+        AdministradorEntity entity  = data.get(0);
+        AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
+        pojoEntity.setNombre(null);
+        pojoEntity.setId(entity.getId());
+        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        
+        
+    }
+    
+     @Test(expected = BusinessLogicException.class)
+    public void updateAdministradorContrasenaInvdalido() throws BusinessLogicException
+    {
+        //update
+        AdministradorEntity entity  = data.get(0);
+        AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
+        pojoEntity.setContrasena(null);
+        pojoEntity.setId(entity.getId());
+        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        
+        
+    }
+    
+     @Test(expected = BusinessLogicException.class)
+    public void updateAdministradorConApellidoInvdalido() throws BusinessLogicException
+    {
+        //update
+        AdministradorEntity entity  = data.get(0);
+        AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
+        pojoEntity.setApellido(null);
+        pojoEntity.setId(entity.getId());
+        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        
+        
+    }
+     @Test(expected = BusinessLogicException.class)
+    public void updateAdministradorConEmailInvdalido() throws BusinessLogicException
+    {
+        //update
+        AdministradorEntity entity  = data.get(0);
+        AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
+        pojoEntity.setEmail(null);
+        pojoEntity.setId(entity.getId());
+        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        
+        
+    }
      
     
     @Test 
