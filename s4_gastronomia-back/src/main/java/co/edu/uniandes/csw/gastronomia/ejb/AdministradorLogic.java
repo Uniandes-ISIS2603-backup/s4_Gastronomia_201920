@@ -22,6 +22,9 @@ public class AdministradorLogic {
     @Inject
     private AdministradorPersistence persistence; 
     
+    private static final String UPDATE = " a actualizar esta en null o vacio";
+    private static final String CREATE = " a crear  esta en null o vacio";
+    
     /**
      * Se encarga de crear un Administrador en la base de datos.
      *
@@ -32,30 +35,30 @@ public class AdministradorLogic {
     {
         if(administradorEntity.getApellido() == null )
         {
-            throw new BusinessLogicException("El apellido esta vacio");
+            throw new BusinessLogicException("El apellido" + CREATE);
         }
         else if(administradorEntity.getEmail() == null )
         {
-             throw new BusinessLogicException("El email  esta vacio");
+             throw new BusinessLogicException("El email" + CREATE);
         }
          else if(administradorEntity.getContrasena() == null)
         {
-             throw new BusinessLogicException("La contraseña esta vacio");
+             throw new BusinessLogicException("La contraseña" + CREATE);
         }
         else if(administradorEntity.getNombre() == null)
         {
-             throw new BusinessLogicException("El nombre esta vacio");
+             throw new BusinessLogicException("El nombre" +CREATE );
         }
         else if(administradorEntity.getUsername() == null)
         {
-             throw new BusinessLogicException("El nombre esta vacio");
+             throw new BusinessLogicException("El nombre" + CREATE);
         }
         
         else if ( persistence.findByUserName(administradorEntity.getUsername()) != null)
         {
             throw new BusinessLogicException("El nombre esta vacio");
         }
-        administradorEntity = persistence.create(administradorEntity);
+         persistence.create(administradorEntity);
         return administradorEntity;
     }
     
@@ -92,27 +95,29 @@ public class AdministradorLogic {
     {
         if(administradorEntity.getApellido() == null )
         {
-            throw new BusinessLogicException("El apellido a cambiar esta vacio");
+            throw new BusinessLogicException("El apellido" + UPDATE);
         }
         else if(administradorEntity.getEmail() == null)
         {
-             throw new BusinessLogicException("El email a cambiar esta vacio");
+             throw new BusinessLogicException("El email" + UPDATE);
         }
          else if(administradorEntity.getContrasena() == null )
         {
-             throw new BusinessLogicException("El email a cambiar esta vacio");
+             throw new BusinessLogicException("La contrasena" + UPDATE );
         }
         else if(administradorEntity.getNombre() == null )
         {
-             throw new BusinessLogicException("El nombre a cambiar esta vacio");
+             throw new BusinessLogicException("El nombre" + UPDATE);
         }
         
         else if(administradorEntity.getUsername() == null )
         {
-             throw new BusinessLogicException("El nombre a cambiar esta vacio");
+             throw new BusinessLogicException("El Username" + UPDATE);
         }
-        AdministradorEntity newEntity = persistence.update(administradorEntity);
-        return newEntity;
+        
+        
+         persistence.update(administradorEntity);
+        return administradorEntity;
     }
     
     /**
