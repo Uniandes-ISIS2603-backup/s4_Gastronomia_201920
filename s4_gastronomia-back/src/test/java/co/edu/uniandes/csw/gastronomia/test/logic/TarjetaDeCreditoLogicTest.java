@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.TarjetaDeCreditoPersistence;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
 import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -42,7 +44,7 @@ public class TarjetaDeCreditoLogicTest {
     @Inject
     private UserTransaction utx;
     
-    private ArrayList<TarjetaDeCreditoEntity> data = new ArrayList<TarjetaDeCreditoEntity>();
+    private List<TarjetaDeCreditoEntity> data = new ArrayList<TarjetaDeCreditoEntity>();
     
     SecureRandom random = new SecureRandom();
     
@@ -168,6 +170,10 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setNumero(Long.parseLong("111111111111111"));
         TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
     }
+    /**
+     * Test para actualizar una tarjeta de credito
+     * @throws BusinessLogicException 
+     */
     @Test
     public void updateTarjetaDeCreditoTest() throws BusinessLogicException
     {
@@ -181,6 +187,10 @@ public class TarjetaDeCreditoLogicTest {
       Assert.assertEquals(tarjeta.getFechaDeVencimiento(),result.getFechaDeVencimiento());
       Assert.assertEquals(tarjeta.getNumero(),result.getNumero());
     }
+    /**
+     * Test para verficar regla de negocio. Cvv no puede ser negativo
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaCvvNegativoTest() throws BusinessLogicException
     {
@@ -190,6 +200,10 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setCvv(-12);
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
+    /**
+     * Test para verificar la regla de negocio Cvv no valido.
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaCvvNoValidoTest() throws BusinessLogicException
     {
@@ -199,6 +213,10 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setCvv(45656465);
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
+    /**
+     * Test para verificar la regla de negocio. La fecha no puede ser null.
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaFechaNullTest() throws BusinessLogicException
     {
@@ -208,7 +226,10 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setFechaDeVencimiento(null);
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
-    
+    /**
+     * Test para verificar que el numero de la tarjeta de credito tenga la longitud deseada.
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaNumeroNoValidoTest() throws BusinessLogicException
     {
@@ -218,6 +239,10 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setNumero(44444);
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
+    /**
+     * Test para verficar que la tarjeta de credito no tenga un numero negativo
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaNumeroNegativoTest() throws BusinessLogicException
     {
@@ -227,6 +252,10 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setNumero(Long.parseLong("-444444444444444"));
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
+    /**
+     * Test para vertificar que la tarjeta pertenezca a un Banco valido.
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaBancoNoValidoTest() throws BusinessLogicException
     {
@@ -235,6 +264,57 @@ public class TarjetaDeCreditoLogicTest {
         tarjeta.setId(entity.getId());
         tarjeta.setNumero(Long.parseLong("1111111111111111"));
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
+    }
+    /**
+     * Test para consultar una tarjeta de credito
+     */
+    @Test
+    public void findTarjetaTest()
+    {
+        TarjetaDeCreditoEntity entity = data.get(0);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.findTarjetaDeCredito(entity.getId());
+       Assert.assertNotNull(resultado);
+       Assert.assertEquals(resultado.getNumero(), entity.getNumero());
+        Assert.assertEquals(resultado.getCvv(), entity.getCvv());
+        Assert.assertEquals(resultado.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+    }
+    /**
+     * Test para encontrar todas las tarjetas. 
+     */
+    @Test
+    public void findAllTarjetasTest()
+    {
+        List<TarjetaDeCreditoEntity> lista = tarjetaLogic.findAllTarjetas();
+        Assert.assertEquals(data.size(), lista.size());
+        for(TarjetaDeCreditoEntity e: lista)
+        {
+            boolean found = false; 
+            for(TarjetaDeCreditoEntity f: data)
+            {
+                if(e.getId().equals(f.getId()))
+                {
+                    found = true; 
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    /**
+     * Test para borrar una tarjeta decredito
+     * @throws BusinessLogicException
+     */
+    @Test
+    public void deleteTarjetaDeCreditoTest()throws BusinessLogicException
+    {
+      
+      TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+      
+      TarjetaDeCreditoEntity result = tarjetaLogic.createTarjetaDeCredito(tarjetaNueva);
+
+      tarjetaLogic.deleteTarjetaDeCredito(tarjetaNueva.getId());
+      
+      TarjetaDeCreditoEntity borrada = em.find(TarjetaDeCreditoEntity.class,result.getId()); 
+      Assert.assertNull(borrada);
     }
    
     
