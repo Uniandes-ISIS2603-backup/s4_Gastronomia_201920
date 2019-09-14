@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import java.util.Collection;
 import javax.persistence.Entity;
 /**
  *
@@ -24,6 +25,14 @@ import javax.persistence.Entity;
 @Entity
 public class AdministradorEntity  extends UsuarioEntity
 {
+    
+   @javax.persistence.OneToMany(
+        mappedBy = "administrador",
+        fetch = javax.persistence.FetchType.LAZY
+    )
+    Collection<RestauranteEntity> restaurantes;
+   
+   
    private long phone;
 
     public AdministradorEntity() {
@@ -69,4 +78,11 @@ public class AdministradorEntity  extends UsuarioEntity
         return super.hashCode();
     } 
    
+    public void setRestaurantes(Collection<RestauranteEntity> restaurantes) {
+        this.restaurantes = restaurantes;
+    }
+
+    public Collection<RestauranteEntity> getDepartments() {
+        return this.restaurantes;
+    }
 }
