@@ -19,16 +19,37 @@ public class TipoComidaEntity extends BaseEntity
     /**
      * @return the nombre
      */
-    public String getNombre() {
+    public String getNombre()
+    {
         return nombre;
     }
 
     /**
      * @param nombre the nombre to set
      */
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) 
+    {
         this.nombre = nombre;
     }
     
+     @Override
+    public boolean equals(Object obj)
+    {
+        if (! super.equals(obj)) 
+        {
+          return false;
+        }
+        TipoComidaEntity reservaObj = (TipoComidaEntity) obj;
+        return this.getId().equals(reservaObj.getId());
+    }
     
+    @Override
+    public int hashCode()
+    {
+        if (this.getId() != null)
+        {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    } 
 }

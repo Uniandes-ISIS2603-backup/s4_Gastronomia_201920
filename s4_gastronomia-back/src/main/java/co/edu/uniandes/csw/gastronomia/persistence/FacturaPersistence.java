@@ -31,6 +31,7 @@ public class FacturaPersistence
      */
     public FacturaEntity create(FacturaEntity facturaEntity) 
     {
+       
         em.persist(facturaEntity);
         
         return facturaEntity;
