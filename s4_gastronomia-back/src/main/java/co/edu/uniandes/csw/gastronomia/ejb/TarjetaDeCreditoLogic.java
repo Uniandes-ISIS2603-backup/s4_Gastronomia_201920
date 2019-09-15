@@ -58,9 +58,8 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("La tarjeta no es visa ni mastercard");
         }
-        tarjeta = persistence.create(tarjeta); 
-        LOGGER.info("Termina proceso de creación de tarjeta");
-        return tarjeta; 
+         LOGGER.info("Termina proceso de creación de tarjeta");
+        return tarjeta = persistence.create(tarjeta);   
     }
     /**
      * Metodo
@@ -71,6 +70,7 @@ public class TarjetaDeCreditoLogic {
      */
     public TarjetaDeCreditoEntity updatetarjetaDeCredito(Long tarjetaId, TarjetaDeCreditoEntity tarjetaEntity) throws BusinessLogicException
     {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar tarjeta con id = {0}", tarjetaId);
          if(tarjetaEntity.getCvv() < 0)
         {
             throw new BusinessLogicException("El cvv no es negativo");
@@ -95,9 +95,8 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("La tarjeta no es visa ni mastercard");
         }
-        TarjetaDeCreditoEntity tarjeta = persistence.update(tarjetaEntity);
-        return tarjeta;
-        
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar tarjeta con id = {0}", tarjetaId);
+        return persistence.update(tarjetaEntity);
     }
     /**
      * Metodo para eliminar una tarjeta de credito
@@ -105,29 +104,31 @@ public class TarjetaDeCreditoLogic {
      */
     public void deleteTarjetaDeCredito(Long tarjetaId)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar premio con id = {0}", tarjetaId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar tarjeta con id = {0}", tarjetaId);
         persistence.delete(tarjetaId);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar premio con id = {0}", tarjetaId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar tarjeta con id = {0}", tarjetaId);
     }
     /**
      * Metodo para obtener todas las tarjetas de credtio
      * @return 
      */
-    public List<TarjetaDeCreditoEntity> getTarjetas()
+    public List<TarjetaDeCreditoEntity> findAllTarjetas()
     {
-        LOGGER.info("Inicia proceso de consultar todos las tarjetas");
-        List<TarjetaDeCreditoEntity> tarjetas = persistence.findAll();
-         LOGGER.info("Termina proceso de consultar todas las tarjetas");
-        return tarjetas;
+        
+        return persistence.findAll();
+        
     }
-    
-    public TarjetaDeCreditoEntity getTarjetaDeCredito(Long tarjetaId)
+    /**
+     * Metodo para consultar una tarjeta de credito segun el id dado.
+     * @param tarjetaId. Id de la tarjeta que se quiere consultar
+     * @return Tarjeta con el id indicado. Null en caso de que no exista ninguna tarjeta.
+     */
+    public TarjetaDeCreditoEntity findTarjetaDeCredito(Long tarjetaId)
     {   
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar premio con id = {0}", tarjetaId);
-        TarjetaDeCreditoEntity tarjeta = persistence.find(tarjetaId);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar premio con id = {0}", tarjeta.getId());
-        return tarjeta;
+        return persistence.find(tarjetaId);
     }
+       
+    
     
     
     
