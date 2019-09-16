@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.gastronomia.dtos;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import java.io.Serializable;
 import java.util.Date;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -24,6 +26,14 @@ public class TarjetaDeCreditoDTO implements Serializable {
         numero = tarjeta.getNumero(); 
         cvv = tarjeta.getCvv(); 
         fechaVencimiento = tarjeta.getFechaDeVencimiento(); 
+    }
+    public TarjetaDeCreditoEntity toEntity()
+    {
+        TarjetaDeCreditoEntity retorno = new TarjetaDeCreditoEntity(); 
+        retorno.setCvv(cvv);
+        retorno.setFechaDeVencimiento(fechaVencimiento);
+        retorno.setNumero(numero);
+        return retorno;
     }
 
     /**
@@ -66,5 +76,10 @@ public class TarjetaDeCreditoDTO implements Serializable {
      */
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
+    }
+    @Override 
+    public String toString()
+    {
+          return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

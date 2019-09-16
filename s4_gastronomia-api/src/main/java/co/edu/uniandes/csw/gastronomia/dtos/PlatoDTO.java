@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.gastronomia.dtos;
 
 import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -28,6 +30,15 @@ public class PlatoDTO implements Serializable {
         rutaImagen  = plato.getRutaImagen();
         descripcion = plato.getDescripcion(); 
         nombre = plato.getNombreComida();
+    }
+    public PlatoEntity toEntity()
+    {
+     PlatoEntity retorno = new PlatoEntity(); 
+     retorno.setDescripcion(descripcion);
+     retorno.setNombreComida(nombre);
+     retorno.setPrecio(precio);
+     retorno.setRutaImagen(rutaImagen);
+     return retorno;
     }
 
     /**
@@ -84,6 +95,11 @@ public class PlatoDTO implements Serializable {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
     
     
