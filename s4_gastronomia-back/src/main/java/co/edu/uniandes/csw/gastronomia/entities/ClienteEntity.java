@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -22,6 +24,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ClienteEntity extends UsuarioEntity{
     
+    @Temporal(TemporalType.DATE)
     private Date cumpleanos;
     
     private String numeroContacto;
