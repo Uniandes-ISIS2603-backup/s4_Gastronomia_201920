@@ -5,8 +5,15 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,12 +27,32 @@ public class ClienteEntity extends UsuarioEntity{
     private String numeroContacto;
     
     private int puntos;
+    
+    @PodamExclude
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private TarjetaDeCreditoEntity tarjetaCredito;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<TipoComidaEntity> preferencias = new ArrayList<TipoComidaEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 
     public ClienteEntity() {
         super();
     }
-
-    /**
+    
+     /**
      * @return the cumpleanos
      */
     public Date getCumpleanos() {
@@ -47,6 +74,41 @@ public class ClienteEntity extends UsuarioEntity{
     }
 
     /**
+     * @return the tarjetaCredito
+     */
+    public TarjetaDeCreditoEntity getTarjetaCredito() {
+        return tarjetaCredito;
+    }
+
+    /**
+     * @return the foodBlogs
+     */
+    public List<FoodBlogEntity> getFoodBlogs() {
+        return foodBlogs;
+    }
+
+    /**
+     * @return the preferencias
+     */
+    public List<TipoComidaEntity> getPreferencias() {
+        return preferencias;
+    }
+
+    /**
+     * @return the facturas
+     */
+    public List<FacturaEntity> getFacturas() {
+        return facturas;
+    }
+
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    /**
      * @param cumpleanos the cumpleanos to set
      */
     public void setCumpleanos(Date cumpleanos) {
@@ -65,7 +127,42 @@ public class ClienteEntity extends UsuarioEntity{
      */
     public void setPuntos(int puntos) {
         this.puntos = puntos;
-    }   
+    }
+
+    /**
+     * @param tarjetaCredito the tarjetaCredito to set
+     */
+    public void setTarjetaCredito(TarjetaDeCreditoEntity tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+    }
+
+    /**
+     * @param foodBlogs the foodBlogs to set
+     */
+    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs) {
+        this.foodBlogs = foodBlogs;
+    }
+
+    /**
+     * @param preferencias the preferencias to set
+     */
+    public void setPreferencias(List<TipoComidaEntity> preferencias) {
+        this.preferencias = preferencias;
+    }
+
+    /**
+     * @param facturas the facturas to set
+     */
+    public void setFacturas(List<FacturaEntity> facturas) {
+        this.facturas = facturas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
     
     @Override
     public boolean equals(Object obj) {

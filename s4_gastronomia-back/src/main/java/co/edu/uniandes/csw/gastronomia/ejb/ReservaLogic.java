@@ -35,9 +35,7 @@ public class ReservaLogic {
      */
     public ReservaEntity createReserva (ReservaEntity reservaEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del reserva");
-        if (reservaEntity.getFecha() == null) {
-           throw new BusinessLogicException("La fecha de la reserva es inválida"); 
-        }
+        checkBusinessLogic(reservaEntity);
         reservaEntity = persistence.create(reservaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del reserva");
         return reservaEntity;
@@ -81,9 +79,7 @@ public class ReservaLogic {
      */
     public ReservaEntity updateReserva(Long reservaId, ReservaEntity reservaEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la reserva con id = {0}", reservaId);
-        if (reservaEntity.getFecha() == null) {
-           throw new BusinessLogicException("La fecha de la reserva es inválida"); 
-        }
+        checkBusinessLogic(reservaEntity);
         ReservaEntity newEntity = persistence.update(reservaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la reserva con id = {0}", reservaEntity.getId());
         return newEntity;
@@ -99,6 +95,12 @@ public class ReservaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la reserva con id = {0}", reservaId);
         persistence.delete(reservaId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la reserva con id = {0}", reservaId);
+    }
+    
+    private void checkBusinessLogic(ReservaEntity reservaEntity) throws BusinessLogicException{
+        if (reservaEntity.getFecha() == null) {
+           throw new BusinessLogicException("La fecha de la reserva es inválida"); 
+        }
     }
     
 }
