@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
 import java.io.Serializable;
 
 /**
@@ -23,6 +24,34 @@ public class TipoComidaDTO implements Serializable
     public TipoComidaDTO()
     {
         
+    }
+    
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param tEntity La entidad de tipo comida
+     */
+    public TipoComidaDTO(TipoComidaEntity tEntity) 
+    {
+        if (tEntity != null) 
+        {
+            this.id = tEntity.getId();
+            this.nombre = tEntity.getNombre(); 
+        }
+    }
+
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de tipo comida asociado.
+     */
+    public TipoComidaEntity toEntity() 
+    {
+        TipoComidaEntity tipoEntity = new TipoComidaEntity();
+        tipoEntity.setId(this.id);
+        tipoEntity.setNombre(this.nombre);
+       
+        return tipoEntity;
     }
 
     /**

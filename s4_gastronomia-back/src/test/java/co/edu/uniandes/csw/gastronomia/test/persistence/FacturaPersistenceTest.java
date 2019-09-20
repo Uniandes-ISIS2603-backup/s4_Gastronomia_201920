@@ -124,9 +124,11 @@ public class FacturaPersistenceTest
 
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
 
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getValor(), entity.getValor());
         Assert.assertEquals(newEntity.getValorCompleto(), entity.getValorCompleto());
         Assert.assertEquals(newEntity.getSePago(), entity.getSePago());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
     }
 
     /**
@@ -159,9 +161,12 @@ public class FacturaPersistenceTest
         FacturaEntity entity = data.get(0);
         FacturaEntity newEntity = fPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getValor(), newEntity.getValor());
         Assert.assertEquals(entity.getValorCompleto(), newEntity.getValorCompleto());
         Assert.assertEquals(entity.getSePago(), newEntity.getSePago());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
     }
 
     /**
@@ -191,9 +196,11 @@ public class FacturaPersistenceTest
 
         FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
 
+        Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getValor(), resp.getValor());
         Assert.assertEquals(newEntity.getValorCompleto(), resp.getValorCompleto());
         Assert.assertEquals(newEntity.getSePago(), resp.getSePago());
+        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
       
     }
  
@@ -227,10 +234,12 @@ public class FacturaPersistenceTest
         FacturaEntity entity = data.get(0);
         FacturaEntity newEntity = fPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getValor(), newEntity.getValor());
         Assert.assertEquals(entity.getValorCompleto(), newEntity.getValorCompleto());
         Assert.assertEquals(entity.getSePago(), newEntity.getSePago());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
         
     }
    

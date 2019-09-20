@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class FacturaEntity extends BaseEntity
 {
+
     private int valorCompleto;
     
     private int valor;
@@ -71,6 +72,19 @@ public class FacturaEntity extends BaseEntity
         this.sePago = sePago;
     }
     
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
     @Override
     public boolean equals(Object obj)
     {

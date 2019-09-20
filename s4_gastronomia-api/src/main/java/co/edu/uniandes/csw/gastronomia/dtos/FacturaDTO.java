@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -31,7 +32,38 @@ public class FacturaDTO implements Serializable
    {
        
    }
-   
+  
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param fEntity La entidad de factura
+     */
+    public FacturaDTO(FacturaEntity fEntity) {
+        if (fEntity != null) {
+            this.id = fEntity.getId();
+            this.valorCompleto = fEntity.getValorCompleto();
+            this.valor = fEntity.getValor();
+            this.sePago = fEntity.getSePago();
+            this.fecha = fEntity.getFecha();
+            
+        }
+    }
+
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de factura asociado.
+     */
+    public FacturaEntity toEntity() {
+        FacturaEntity facturaEntity = new FacturaEntity();
+        facturaEntity.setId(this.id);
+        facturaEntity.setValor(this.valorCompleto);
+        facturaEntity.setValor(this.valor);
+        facturaEntity.setSePago(this.sePago);
+        facturaEntity.setFecha(this.fecha);
+       
+        return facturaEntity;
+    }
     /**
      * @return the id
      */
