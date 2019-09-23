@@ -164,4 +164,141 @@ public class FoodBlogPersistenceTest {
         FoodBlogEntity deleted = em.find(FoodBlogEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+
+    /**
+     * Prueba el metodo getTexto de la clase foodblogentity.
+     */
+     @Test
+     public void getTextoTest()
+     {
+           FoodBlogEntity entity = data.get(0);
+        String  entityString = entity.getTexto();
+        Assert.assertNotNull(entityString);
+        Assert.assertEquals(entity.getTexto(), entityString);
+        
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase fodblogentity
+      */
+     @Test
+     public void setTextoTest()
+     {
+        FoodBlogEntity entity=data.get(0);
+        PodamFactory fBFactory = new PodamFactoryImpl();
+        String  newStringCreated= "Aa1";
+        entity.setTexto(newStringCreated);
+        Assert.assertNotNull(entity.getTexto());
+        Assert.assertEquals(entity.getTexto(), newStringCreated);
+        
+     }
+     
+     /**
+     * Prueba el metodo getTexto de la clase foodblogentity.
+     */
+     @Test
+     public void getNumeroMeGustaTest()
+     {
+           FoodBlogEntity entity = data.get(0);
+       int  entityint = entity.getNumeroMeGusta();
+        Assert.assertNotNull(entityint);
+        Assert.assertEquals(entityint, entity.getNumeroMeGusta());
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase fodblogentity
+      */
+     @Test
+     public void setNumeroMeGustaTest()
+     {
+        FoodBlogEntity entity=data.get(0);
+        int  newIntreated= 12345;
+        entity.setNumeroMeGusta(newIntreated);
+        Assert.assertNotNull(entity.getNumeroMeGusta());
+        Assert.assertEquals(entity.getNumeroMeGusta(), newIntreated);
+        
+     }
+     
+     /**
+     * Prueba el metodo getTexto de la clase foodblogentity.
+     */
+     @Test
+     public void getNumeroNoMeGustaTest()
+     {
+           FoodBlogEntity entity = data.get(0);
+        int  entityint = entity.getNumeroNoMegusta();
+        Assert.assertNotNull(entityint);
+        Assert.assertEquals(entityint, entity.getNumeroNoMegusta());
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase fodblogentity
+      */
+     @Test
+     public void setNumeroNoMeGustaTest()
+     {
+        FoodBlogEntity entity=data.get(0);
+        int  newIntreated= 12345;
+        entity.setNumeroNoMegusta(newIntreated);
+        Assert.assertNotNull(entity.getNumeroNoMegusta());
+        Assert.assertEquals(entity.getNumeroNoMegusta(), newIntreated);
+        
+     }
+     /**
+     * Prueba el metodo getTexto de la clase foodblogentity.
+     */
+     @Test
+     public void getArchivoMultimediaTest()
+     {
+           FoodBlogEntity entity = data.get(0);
+        String  entityString = entity.getArchivoMultimedia();
+        Assert.assertNotNull(entityString);
+        Assert.assertEquals(entity.getArchivoMultimedia(), entityString);
+        
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase fodblogentity
+      */
+     @Test
+     public void setArchivoMultimediaTest()
+     {
+        FoodBlogEntity entity=data.get(0);
+        
+        String  newStringCreated= "Aa1";
+        entity.setArchivoMultimedia(newStringCreated);
+        Assert.assertNotNull(entity.getArchivoMultimedia());
+        Assert.assertEquals(entity.getArchivoMultimedia(), newStringCreated);
+        
+     }
+     
+     /**
+     * Prueba el metodo getTexto de la clase foodblogentity.
+     */
+     @Test
+     public void getComentariosTest()
+     {
+           FoodBlogEntity entity = data.get(0);
+        String  entityString = entity.getComentarios();
+        Assert.assertNotNull(entityString);
+        Assert.assertEquals(entity.getComentarios(), entityString);
+        
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase fodblogentity
+      */
+     @Test
+     public void setComentariosTest()
+     {
+        FoodBlogEntity entity=data.get(0);
+        
+        String  newStringCreated= "Aa1";
+        entity.setComentarios(newStringCreated);
+        Assert.assertNotNull(entity.getComentarios());
+        Assert.assertEquals(entity.getComentarios(), newStringCreated);
+        
+     }
+         
+     
 }
