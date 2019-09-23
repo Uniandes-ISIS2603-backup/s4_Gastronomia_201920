@@ -30,15 +30,6 @@ public class ReservaEntity extends BaseEntity{
     public ReservaEntity() {
     }
 
-    public ReservaEntity(String motivo, Date fecha, int numPersonas, String nombreCliente, boolean cancelada, String numeroContacto) {
-        this.motivo = motivo;
-        this.fecha = fecha;
-        this.numPersonas = numPersonas;
-        this.nombreCliente = nombreCliente;
-        this.cancelada = cancelada;
-        this.numeroContacto = numeroContacto;
-    }
-
     /**
      * @return the motivo
      */

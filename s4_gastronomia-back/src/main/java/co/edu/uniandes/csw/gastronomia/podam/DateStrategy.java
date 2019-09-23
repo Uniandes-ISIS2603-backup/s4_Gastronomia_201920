@@ -53,4 +53,5 @@ public class DateStrategy implements AttributeStrategy<Date> {
         c.set(Calendar.MILLISECOND, c.getActualMinimum(Calendar.MILLISECOND));
         return c.getTime();
     }
+    
 }

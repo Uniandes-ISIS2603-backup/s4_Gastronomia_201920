@@ -110,8 +110,10 @@ public class AdministradorPersistenceTest
         Assert.assertNotNull(result);
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId()); 
         
+       
+        
         Assert.assertEquals(entity.getApellido(), admin.getApellido());
-        Assert.assertEquals(entity.getNombre(),admin.getNombre());
+        Assert.assertEquals(entity.getNombre(), admin.getNombre());
         Assert.assertEquals(entity.getPhone() , admin.getPhone() );
         Assert.assertEquals(entity.getEmail() ,admin.getEmail());
         Assert.assertEquals(entity.getUsername(), admin.getUsername());
@@ -196,5 +198,18 @@ public class AdministradorPersistenceTest
 
     }
 
-     
+     /**
+     * 
+     * Prueba para probar que funciona el método equals
+     */
+    @Test
+    public void equalsAdministradorEntityTest()
+    {
+        AdministradorEntity admin = data.get(0); 
+        AdministradorEntity entity = em.find(AdministradorEntity.class, admin.getId());
+      Assert.assertTrue( entity.equals(entity));
+      
+    }
+    
+    
 }
