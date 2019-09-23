@@ -22,9 +22,11 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class TarjetaDeCreditoEntity extends BaseEntity{
     @PodamStrategyValue(NumeroTarjetaDeCreditoStrategy.class)
     private long numero; 
+    
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaDeVencimiento; 
+    
     @PodamIntValue(minValue = 100, maxValue = 999)
     private int cvv; 
     /**
