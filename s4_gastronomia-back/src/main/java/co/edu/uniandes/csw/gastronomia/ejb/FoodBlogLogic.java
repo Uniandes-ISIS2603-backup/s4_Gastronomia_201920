@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.gastronomia.ejb;
 import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.FoodBlogPersistence;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -29,13 +31,18 @@ public class FoodBlogLogic {
     private FoodBlogPersistence persistence;
     /**
      * Crea un food blog entra por parametro un foodblog.
-     * @param foodblog que se quiere crear.
+     * @param fb que se quiere crear.
      * @return el food blog que se creo.
      */
-    public FoodBlogEntity createFoodBlog(FoodBlogEntity foodblog)
+    public FoodBlogEntity createFoodBlog(FoodBlogEntity fb)
     {
-       LOGGER.log(Level.INFO,"creacion de los foodblogs");
-        FoodBlogEntity neFoodBlogentity  = persistence.create(foodblog);
+       LOGGER.log(Level.INFO,"creacion delfoodblog");
+       fb.setNumeroMeGusta(0);
+       fb.setNumeroNoMegusta(0);
+       fb.setTexto("");
+       fb.setComentarios("");
+      fb.setArchivoMultimedia("");
+          FoodBlogEntity neFoodBlogentity  = persistence.create(fb);
         LOGGER.log(Level.INFO, "Termina la creacion de foodblogs");
         return neFoodBlogentity;
     }
@@ -74,8 +81,11 @@ public class FoodBlogLogic {
      * @param fbEntity Instancia de fbEntity con los nuevos datos.
      * @return Instancia de fbEntity con los datos actualizados.
      */
-    public FoodBlogEntity updatefoodBlog(Long fbId, FoodBlogEntity fbEntity) {
+    public FoodBlogEntity updatefoodBlog(Long fbId, FoodBlogEntity fbEntity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el foodblog con id = {0}", fbId);
+        if (fbEntity==null) {
+            throw new BusinessLogicException("el food blog que se quiere actualizar es nulo");
+        }
         FoodBlogEntity newfoodBlogEntity = persistence.update(fbEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el foodblog con id = {0}", fbId);
         return newfoodBlogEntity;
@@ -89,11 +99,15 @@ public class FoodBlogLogic {
     public void deleteFoodBlog(Long foodblogId) throws BusinessLogicException
     {
          LOGGER.log(Level.INFO, "Inicia proceso de borrar el foodBlog con id = {0}", foodblogId);
-         
+         FoodBlogEntity fb=persistence.find(foodblogId);
+         if (fb==null) {
+            throw new BusinessLogicException("El id buscdo es nulo");
+        }
          
          persistence.delete(foodblogId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el foodBlog con id = {0}", foodblogId);
         
     }
+    
     
 }
