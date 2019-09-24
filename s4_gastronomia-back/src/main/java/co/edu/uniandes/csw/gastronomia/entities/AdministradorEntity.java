@@ -82,7 +82,7 @@ public class AdministradorEntity  extends UsuarioEntity
         this.restaurantes = restaurantes;
     }
 
-    public Collection<RestauranteEntity> getDepartments() {
+    public Collection<RestauranteEntity> getRestaurantes() {
         return this.restaurantes;
     }
 }
