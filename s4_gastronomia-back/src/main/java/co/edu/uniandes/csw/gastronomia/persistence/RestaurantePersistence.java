@@ -55,6 +55,10 @@ public class RestaurantePersistence
     public RestauranteEntity find(Long id)
     {
         LOGGER.log(Level.INFO, "Busando restaurante con id={0}", id);
+        if(id==null)
+        {
+            return null;
+        }
         return em.find(RestauranteEntity.class, id);
     }
     /**
