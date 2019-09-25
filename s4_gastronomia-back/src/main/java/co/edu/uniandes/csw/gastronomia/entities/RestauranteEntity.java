@@ -93,10 +93,12 @@ public class RestauranteEntity extends BaseEntity implements Serializable
 
     public RestauranteEntity()
     {
+        super();
         //Empty constructor
     }
 
     public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario) {
+        super();
         this.imagen = imagen;//ya
         this.nombre = nombre;//ya
         this.contrasena = contrasena;//ya

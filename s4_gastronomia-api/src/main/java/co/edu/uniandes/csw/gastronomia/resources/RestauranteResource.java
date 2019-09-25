@@ -50,7 +50,9 @@ public class RestauranteResource
         LOGGER.log(Level.INFO, "RestauranteResource createRestaurante: output: {0}", rDTO);
         return rDTO;
     }
-    
+    //--------------------------------------------------------------------------
+    //Delte method
+    //--------------------------------------------------------------------------
     @DELETE
     @Path("{restaurantesId: \\d+}")
     public void deleteRestaurante(@PathParam("restaurantesId") Long restaurantesId) throws BusinessLogicException
@@ -59,7 +61,9 @@ public class RestauranteResource
         logic.deleteRestaurante(restaurantesId);
         LOGGER.log(Level.INFO, "RestauranteResource createRestaurante: output: void");
     }
-    
+    //--------------------------------------------------------------------------
+    //Get methods
+    //--------------------------------------------------------------------------
     @GET
     @Path("{restaurantesId: \\d+}")
     public RestauranteDetailDTO getRestaurante(@PathParam("restaurantesId") Long id) throws BusinessLogicException
@@ -80,6 +84,10 @@ public class RestauranteResource
         return r;
     }
     
+    
+    //--------------------------------------------------------------------------
+    //Put method
+    //--------------------------------------------------------------------------
     @PUT
     @Path("{restaurantesId: \\d+}")
     public RestauranteDetailDTO updateRestaurante(@PathParam("restaurantesId") Long id, RestauranteDetailDTO r) throws BusinessLogicException
@@ -92,7 +100,9 @@ public class RestauranteResource
         RestauranteDetailDTO rr = new RestauranteDetailDTO(logic.updateRestaurante(r.toEntity(), id));
         return rr;
     }
-    
+    //--------------------------------------------------------------------------
+    //private methods
+    //--------------------------------------------------------------------------
     private List<RestauranteDetailDTO> entity2DTO(List<RestauranteEntity> l)
     {
         List<RestauranteDetailDTO> ll = new ArrayList<>();
