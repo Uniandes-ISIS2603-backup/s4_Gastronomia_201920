@@ -14,10 +14,11 @@ import java.io.Serializable;
  */
 public class RestauranteDetailDTO extends RestauranteDTO implements Serializable 
 {
-
+    private AdministradorDTO administrador;
     public RestauranteDetailDTO(RestauranteEntity r) 
     {
         super(r);
+        administrador= new AdministradorDTO(r.getAdministrador());
     }
     public RestauranteDetailDTO() 
     {
@@ -27,5 +28,15 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
     {
         RestauranteEntity r = super.toEntity();
         return r;
+    }
+    
+    public AdministradorDTO getAdministrador()
+    {
+        return administrador;
+    }
+    
+    public void setAdministrador(AdministradorDTO admi)
+    {
+        administrador=admi;
     }
 }
