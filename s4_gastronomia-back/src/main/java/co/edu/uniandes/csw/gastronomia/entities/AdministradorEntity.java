@@ -5,8 +5,12 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Estudiante Angela Maria Suarez P
@@ -25,12 +29,9 @@ import javax.persistence.Entity;
 @Entity
 public class AdministradorEntity  extends UsuarioEntity
 {
-    
-   @javax.persistence.OneToMany(
-        mappedBy = "administrador",
-        fetch = javax.persistence.FetchType.LAZY
-    )
-    Collection<RestauranteEntity> restaurantes;
+   @PodamExclude
+   @OneToMany(mappedBy = "administrador",fetch = javax.persistence.FetchType.LAZY )
+   private List<RestauranteEntity> restaurantes = new ArrayList<>();
    
    
    private long phone;
@@ -78,11 +79,11 @@ public class AdministradorEntity  extends UsuarioEntity
         return super.hashCode();
     } 
    
-    public void setRestaurantes(Collection<RestauranteEntity> restaurantes) {
+    public void setRestaurantes(List<RestauranteEntity> restaurantes) {
         this.restaurantes = restaurantes;
     }
 
-    public Collection<RestauranteEntity> getRestaurantes() {
+    public List<RestauranteEntity> getRestaurantes() {
         return this.restaurantes;
     }
 }

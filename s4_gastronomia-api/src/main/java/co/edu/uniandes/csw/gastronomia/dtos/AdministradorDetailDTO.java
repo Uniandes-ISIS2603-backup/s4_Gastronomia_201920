@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.dtos;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,11 @@ import java.io.Serializable;
  */
 public class AdministradorDetailDTO extends AdministradorDTO implements Serializable
 {
+    private List<RestauranteDTO> restuarntes;
+    
+    public AdministradorDetailDTO()
+    {
+        super();
+    }
     
 }

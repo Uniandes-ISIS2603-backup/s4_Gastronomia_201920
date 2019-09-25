@@ -48,6 +48,7 @@ public class AdministradorDTO implements  Serializable
     {
     }
     
+    
     public AdministradorDTO(AdministradorEntity administradorEntity)
     {
         if( administradorEntity != null)
