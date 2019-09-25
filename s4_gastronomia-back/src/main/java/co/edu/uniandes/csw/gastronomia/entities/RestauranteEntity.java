@@ -79,14 +79,14 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     @PodamStrategyValue(DateStrategy.class)
     private Date horario;
     
-//    @PodamExclude
-//    @ManyToOne
-//    private AdministradorEntity administrador;
-//    
+    @PodamExclude
+    @ManyToOne
+    private AdministradorEntity administrador;
+    
 //    @PodamExclude
 //    @OneToMany
 //    private List<PlatoEntity> platos ;
-//    
+    
 //    @PodamExclude
 //    @OneToMany
 //    private List<ReservaEntity> reservas;
@@ -114,33 +114,33 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.horario = horario;//ya
     }
 
-//    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
-//        this.imagen = imagen;
-//        this.nombre = nombre;
-//        this.contrasena = contrasena;
-//        this.direccion = direccion;
-//        this.tipoRestaurante = tipoRestaurante;
-//        this.precioPorPersona = precioPorPersona;
-//        this.descuentaoCumpleanos = descuentaoCumpleanos;
-//        this.zonaDeFumadores = zonaDeFumadores;
-//        this.petFriendly = petFriendly;
-//        this.servicioALaMesa = servicioALaMesa;
-//        this.musicaEnVivo = musicaEnVivo;
-//        this.costoReserva = costoReserva;
-//        this.horario = horario;
-//        this.administrador = administrador;
+    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.direccion = direccion;
+        this.tipoRestaurante = tipoRestaurante;
+        this.precioPorPersona = precioPorPersona;
+        this.descuentaoCumpleanos = descuentaoCumpleanos;
+        this.zonaDeFumadores = zonaDeFumadores;
+        this.petFriendly = petFriendly;
+        this.servicioALaMesa = servicioALaMesa;
+        this.musicaEnVivo = musicaEnVivo;
+        this.costoReserva = costoReserva;
+        this.horario = horario;
+        this.administrador = administrador;
 //        this.platos = platos;
 //        this.reservas = reservas;
-//    }
-//
-//    public AdministradorEntity getAdministrador() {
-//        return administrador;
-//    }
-//
-//    public void setAdministrador(AdministradorEntity administrador) {
-//        this.administrador = administrador;
-//    }
-//
+    }
+
+    public AdministradorEntity getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(AdministradorEntity administrador) {
+        this.administrador = administrador;
+    }
+
 //    public List<PlatoEntity> getPlatos() {
 //        return platos;
 //    }
