@@ -83,9 +83,9 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     @ManyToOne
     private AdministradorEntity administrador;
     
-//    @PodamExclude
-//    @OneToMany
-//    private List<PlatoEntity> platos ;
+    @PodamExclude
+    @OneToMany
+    private List<PlatoEntity> platos ;
     
 //    @PodamExclude
 //    @OneToMany
@@ -129,7 +129,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.costoReserva = costoReserva;
         this.horario = horario;
         this.administrador = administrador;
-//        this.platos = platos;
+        this.platos = platos;
 //        this.reservas = reservas;
     }
 
@@ -141,13 +141,13 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.administrador = administrador;
     }
 
-//    public List<PlatoEntity> getPlatos() {
-//        return platos;
-//    }
-//
-//    public void setPlatos(List<PlatoEntity> platos) {
-//        this.platos = platos;
-//    }
+    public List<PlatoEntity> getPlatos() {
+        return platos;
+    }
+
+    public void setPlatos(List<PlatoEntity> platos) {
+        this.platos = platos;
+    }
 //
 //    public List<ReservaEntity> getReservas() {
 //        return reservas;

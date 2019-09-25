@@ -5,8 +5,11 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
 import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,10 +18,16 @@ import java.io.Serializable;
 public class RestauranteDetailDTO extends RestauranteDTO implements Serializable 
 {
     private AdministradorDTO administrador;
+    private List<PlatoDTO> platos = new ArrayList<>();
     public RestauranteDetailDTO(RestauranteEntity r) 
     {
         super(r);
         administrador= new AdministradorDTO(r.getAdministrador());
+        List<PlatoEntity> lista= r.getPlatos();
+        for(PlatoEntity p: lista)
+        {
+            platos.add(new PlatoDTO(p));
+        }
     }
     public RestauranteDetailDTO() 
     {
@@ -27,6 +36,13 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
     public RestauranteEntity toEntity()
     {
         RestauranteEntity r = super.toEntity();
+        r.setAdministrador(administrador.toEntity());
+        List<PlatoEntity> lista= new ArrayList<>();
+        for(PlatoDTO pp : platos)
+        {
+            lista.add(pp.toEntity());
+        }
+        r.setPlatos(lista);
         return r;
     }
     
@@ -39,4 +55,13 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
     {
         administrador=admi;
     }
+
+    public List<PlatoDTO> getPlatos() {
+        return platos;
+    }
+
+    public void setPlatos(List<PlatoDTO> platos) {
+        this.platos = platos;
+    }
+    
 }
