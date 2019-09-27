@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author af.benitez
  */
 @RunWith(Arquillian.class)
-public class TipoComidaTest 
+public class TipoComidaPersistenceTest 
 {
     @Inject
     private TipoComidaPersistence tPersistence;
@@ -63,17 +63,23 @@ public class TipoComidaTest
     @Before
     public void configTest() 
     {
-        try {
+        try 
+        {
             utx.begin();
             em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             e.printStackTrace();
-            try {
+            try 
+            {
                 utx.rollback();
-            } catch (Exception e1) {
+            } 
+            catch (Exception e1) 
+            {
                 e1.printStackTrace();
             }
         }
@@ -94,7 +100,8 @@ public class TipoComidaTest
     private void insertData()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) 
+        {
             TipoComidaEntity entity = factory.manufacturePojo(TipoComidaEntity.class);
 
             em.persist(entity);
@@ -123,7 +130,8 @@ public class TipoComidaTest
      * Prueba para consultar la lista de tipos de comidas.
      */
     @Test
-    public void getListTipoTest() {
+    public void getListTipoTest()
+    {
         List<TipoComidaEntity> list = tPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for(TipoComidaEntity ent : list) 
@@ -131,7 +139,8 @@ public class TipoComidaTest
             boolean found = false;
             for (TipoComidaEntity entity : data)
             {
-                if (ent.getId().equals(entity.getId())) {
+                if (ent.getId().equals(entity.getId()))
+                {
                     found = true;
                 }
             }
@@ -155,7 +164,8 @@ public class TipoComidaTest
      * Prueba para eliminar un tipo de comida.
      */
     @Test
-    public void deleteTipoTest() {
+    public void deleteTipoTest()
+    {
         TipoComidaEntity entity = data.get(0);
         tPersistence.delete(entity.getId());
         TipoComidaEntity deleted = em.find(TipoComidaEntity.class, entity.getId());
@@ -181,5 +191,38 @@ public class TipoComidaTest
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
 
+    /**
+     * Test del metodo buscar todos.
+     */
+    @Test
+    public void findAlltest()
+    {
+        List<TipoComidaEntity> list = tPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (TipoComidaEntity ent : list)
+        {
+            boolean found = false;
+            for (TipoComidaEntity entity : data)
+            {
+                if (ent.getId().equals(entity.getId()))
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+     /**
+     * Test del metodo buscar una factura por el metodo creado por el id.
+     */
+    @Test
+    public void findTest()
+    {
+        TipoComidaEntity entity = data.get(0);
+        TipoComidaEntity newEntity = tPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     
+    }
 }

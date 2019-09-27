@@ -15,12 +15,14 @@ import javax.persistence.Entity;
 @Entity
 public class FacturaEntity extends BaseEntity
 {
+
     private int valorCompleto;
     
     private int valor;
 
     private Date fecha;
         
+    private boolean sePago;
 
     /**
      * @return el valorCompleto
@@ -54,5 +56,56 @@ public class FacturaEntity extends BaseEntity
         this.valor = pValor;
     }
 
+    /**
+     * @return sePago
+     */
+    public boolean getSePago() 
+    {
+        return sePago;
+    }
+
+    /**
+     * @param sePago boolean a asignar a sePago
+     */
+    public void setSePago(boolean sePago) 
+    {
+        this.sePago = sePago;
+    }
+    
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (! super.equals(obj)) 
+        {
+          return false;
+        }
+        FacturaEntity reservaObj = (FacturaEntity) obj;
+        return this.getId().equals(reservaObj.getId());
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        if (this.getId() != null)
+        {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    } 
+
+    
   
 }

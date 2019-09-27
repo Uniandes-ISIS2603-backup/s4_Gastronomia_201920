@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author af.benitez
  */
 @RunWith(Arquillian.class)
-public class FacturaTest 
+public class FacturaPersistenceTest 
 {
      @Inject
     private FacturaPersistence fPersistence;
@@ -64,17 +64,23 @@ public class FacturaTest
     @Before
     public void configTest() 
     {
-        try {
+        try 
+        {
             utx.begin();
             em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
-            try {
+            try 
+            {
                 utx.rollback();
-            } catch (Exception e1) {
+            } 
+            catch (Exception e1)
+            {
                 e1.printStackTrace();
             }
         }
@@ -95,7 +101,8 @@ public class FacturaTest
     private void insertData()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
 
             em.persist(entity);
@@ -117,9 +124,11 @@ public class FacturaTest
 
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
 
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getValor(), entity.getValor());
         Assert.assertEquals(newEntity.getValorCompleto(), entity.getValorCompleto());
-       
+        Assert.assertEquals(newEntity.getSePago(), entity.getSePago());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
     }
 
     /**
@@ -134,7 +143,8 @@ public class FacturaTest
             boolean found = false;
             for (FacturaEntity entity : data)
             {
-                if (ent.getId().equals(entity.getId())) {
+                if (ent.getId().equals(entity.getId()))
+                {
                     found = true;
                 }
             }
@@ -151,9 +161,12 @@ public class FacturaTest
         FacturaEntity entity = data.get(0);
         FacturaEntity newEntity = fPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getValor(), newEntity.getValor());
         Assert.assertEquals(entity.getValorCompleto(), newEntity.getValorCompleto());
-        
+        Assert.assertEquals(entity.getSePago(), newEntity.getSePago());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
     }
 
     /**
@@ -183,10 +196,51 @@ public class FacturaTest
 
         FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
 
+        Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getValor(), resp.getValor());
         Assert.assertEquals(newEntity.getValorCompleto(), resp.getValorCompleto());
+        Assert.assertEquals(newEntity.getSePago(), resp.getSePago());
+        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
       
     }
-
+ 
+     /**
+     * Test del metodo buscar todos.
+     */
+    @Test
+    public void findAlltest()
+    {
+        List<FacturaEntity> list = fPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (FacturaEntity ent : list) 
+        {
+            boolean found = false;
+            for (FacturaEntity entity : data)
+            {
+                if (ent.getId().equals(entity.getId()))
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+     /**
+     * Test del metodo buscar una factura por el metodo creado por el id.
+     */
+    @Test
+    public void findTest()
+    {
+        FacturaEntity entity = data.get(0);
+        FacturaEntity newEntity = fPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getValor(), newEntity.getValor());
+        Assert.assertEquals(entity.getValorCompleto(), newEntity.getValorCompleto());
+        Assert.assertEquals(entity.getSePago(), newEntity.getSePago());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        
+    }
    
 }
