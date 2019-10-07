@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -67,4 +69,9 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
         this.restaurantes = restaurantes;
     }
     
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }
