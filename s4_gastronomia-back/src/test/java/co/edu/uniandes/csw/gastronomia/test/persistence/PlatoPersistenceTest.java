@@ -131,27 +131,7 @@ public class PlatoPersistenceTest {
         Assert.assertEquals(entity.getRutaImagen(), plato.getRutaImagen());
         
     }
-    /**
-     * Prueba para encontrar todos los platos de la base de datos
-     */
-    @Test
-    public void findAllPlatoEntityTest()
-    {
-        List<PlatoEntity> lista = platoPersistence.findAll(); 
-        Assert.assertEquals(data.size(), lista.size());
-        for(PlatoEntity e: lista)
-        {
-            boolean found = false; 
-            for(PlatoEntity f: data)
-            {
-                if(e.getId().equals(f.getId()))
-                {
-                    found = true; 
-                }
-            }
-            Assert.assertTrue(found);
-        }
-    }
+    
     /**
      * 
      * Prueba para probar la eliminacion de un plato de la base de datos

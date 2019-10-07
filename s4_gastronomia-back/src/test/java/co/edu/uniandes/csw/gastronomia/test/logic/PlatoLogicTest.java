@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.test.logic;
 import co.edu.uniandes.csw.gastronomia.ejb.PlatoLogic;
 import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
+import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.PlatoPersistence;
 import javax.inject.Inject;
@@ -43,6 +44,9 @@ public class PlatoLogicTest {
     private EntityManager em; 
     
     
+    private RestauranteEntity restaurante; 
+    
+    
     private ArrayList<PlatoEntity> data = new ArrayList<PlatoEntity>();
     /**
      * Configuracion del ambiente
@@ -70,11 +74,16 @@ public class PlatoLogicTest {
         em.joinTransaction();
         em.createQuery("delete from PlatoEntity").executeUpdate();
         PodamFactory factory = new PodamFactoryImpl();
+        
+        restaurante = factory.manufacturePojo(RestauranteEntity.class);
+        em.persist(restaurante);
+        
           for(int i = 0; i < 3; i++)
           {
-            PlatoEntity tarjeta = factory.manufacturePojo(PlatoEntity.class);
-            em.persist(tarjeta); 
-            data.add(tarjeta);
+            PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
+            plato.setRestaurante(restaurante);
+            em.persist(plato); 
+            data.add(plato);
           }
           utx.commit();
         }
@@ -100,7 +109,8 @@ public class PlatoLogicTest {
     public void createPlatoTest()throws BusinessLogicException
     {
         PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
-        PlatoEntity resultado = platoLogic.createPlato(plato);
+        plato.setRestaurante(restaurante);
+        PlatoEntity resultado = platoLogic.createPlato(restaurante.getId(), plato);
         Assert.assertNotNull(resultado);
         PlatoEntity entidad = em.find(PlatoEntity.class, resultado.getId()); 
         Assert.assertEquals(entidad.getDescripcion(), resultado.getDescripcion());
@@ -118,8 +128,9 @@ public class PlatoLogicTest {
     public void createPlatoPrecioNegativoTest()throws BusinessLogicException
     {
         PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
+        plato.setRestaurante(restaurante);
         plato.setPrecio(-1);
-        PlatoEntity resultado = platoLogic.createPlato(plato);
+        PlatoEntity resultado = platoLogic.createPlato(restaurante.getId(),  plato);
     }
     /**
      * Test para crear un plato sin nombre
@@ -129,14 +140,15 @@ public class PlatoLogicTest {
     public void createPlatoNombreNullTest()throws BusinessLogicException
     {
         PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
+        plato.setRestaurante(restaurante);
         plato.setNombreComida(null);
-        PlatoEntity resultado = platoLogic.createPlato(plato);
+        PlatoEntity resultado = platoLogic.createPlato(restaurante.getId(), plato);
     }
     @Test(expected = BusinessLogicException.class)
     public void createPlatoExistenteTest()throws BusinessLogicException
     {
-        PlatoEntity platoExistente = data.get(0); 
-        platoLogic.createPlato(platoExistente);
+        PlatoEntity platoExistente = data.get(0);
+        platoLogic.createPlato( restaurante.getId(), platoExistente);
     }
     /**
      * Test para crear un plato con una descripcion nula.
@@ -146,8 +158,9 @@ public class PlatoLogicTest {
     public void createPlatoDescripcionNullTest()throws BusinessLogicException
     {
         PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
+        plato.setRestaurante(restaurante);
         plato.setDescripcion(null);
-        PlatoEntity resultado = platoLogic.createPlato(plato);
+        PlatoEntity resultado = platoLogic.createPlato(restaurante.getId(), plato);
     }
     /**
      * Test para actualizar un plato
@@ -212,34 +225,14 @@ public class PlatoLogicTest {
     public void findPlatoTest()
     {
         PlatoEntity entity = data.get(0); 
-        PlatoEntity resultado = platoLogic.findPlato(entity.getId());
+        PlatoEntity resultado = platoLogic.findPlato(restaurante.getId(), entity.getId());
         Assert.assertNotNull(resultado);
         Assert.assertEquals(entity.getPrecio(),resultado.getPrecio(), 0.0 );
         Assert.assertEquals(entity.getDescripcion(),resultado.getDescripcion());
         Assert.assertEquals(entity.getRutaImagen(),resultado.getRutaImagen());
         Assert.assertEquals(entity.getId(),resultado.getId());
     }
-    /**
-     * Test para consultar todos los platos.
-     */
-    @Test
-    public void findAllPlatosTest()
-    {
-        List<PlatoEntity> platos = platoLogic.findAllPlato();
-        Assert.assertEquals(data.size(), platos.size());
-        for(PlatoEntity e: platos)
-        {
-            boolean found = false; 
-            for(PlatoEntity f: data)
-            {
-                if(e.getId().equals(f.getId()))
-                {
-                    found = true; 
-                }
-            }
-            Assert.assertTrue(found);
-        }
-    }
+  
  
     
     

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 /**
  *
  * @author Estudiante
@@ -18,6 +19,9 @@ public class PlatoEntity extends BaseEntity {
     private String descripcion; 
     
     private String nombreComida; 
+    
+    @ManyToOne
+    private RestauranteEntity restaurante;
     
     /**
      * @return the rutaImagen
@@ -73,6 +77,18 @@ public class PlatoEntity extends BaseEntity {
      */
     public void setNombreComida(String nombreComida) {
         this.nombreComida = nombreComida;
+    }
+       /**
+     * 
+     * @param restaurante 
+     */
+    public void setRestaurante(RestauranteEntity restaurante)
+    {
+        this.restaurante = restaurante;
+    }
+    public RestauranteEntity getRestaurante()
+    {
+        return restaurante;
     }
     @Override
     public boolean equals(Object o)
