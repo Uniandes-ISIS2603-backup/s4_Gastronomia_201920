@@ -83,9 +83,9 @@ public class RestauranteEntity extends BaseEntity implements Serializable
 //    @ManyToOne
 //    private AdministradorEntity administrador;
 //    
-      @PodamExclude
-      @OneToMany
-      private List<PlatoEntity> platos ;
+//    @PodamExclude
+//    @OneToMany
+//    private List<PlatoEntity> platos ;
 //    
 //    @PodamExclude
 //    @OneToMany
