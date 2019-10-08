@@ -19,15 +19,25 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * <pre>
  *   {
  *      "id": number,
- *      "name": string
+ *      "nombre": string,
+ *      "apellido": string,
+ *      "username": string,
+ *      "email": string,
+ *      "contrasena": string,
+ *      "phone": number
  *   }
- * </pre> Por ejemplo una editorial se representa asi:<br>
+ * </pre> Por ejemplo un administrador se representa asi:<br>
  *
  * <pre>
  *
  *   {
  *      "id": 1,
- *      "name": "Norma"
+ *      "nombre": Angela Maria,
+ *      "apellido": Suarez Parra,
+ *      "username": amsuarezp18,
+ *      "email": amsuarezp@gmail.com,
+ *      "contrasena": pepitoPerez,
+ *      "phone": 3125671890
  *   }
  *
  * </pre>
