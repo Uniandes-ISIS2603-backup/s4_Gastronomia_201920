@@ -56,7 +56,7 @@ public class AdministradorLogic {
         
         else if ( persistence.findByUserName(administradorEntity.getUsername()) != null)
         {
-            throw new BusinessLogicException("El nombre esta vacio");
+            throw new BusinessLogicException("EL usernme ya existe");
         }
          persistence.create(administradorEntity);
         return administradorEntity;
