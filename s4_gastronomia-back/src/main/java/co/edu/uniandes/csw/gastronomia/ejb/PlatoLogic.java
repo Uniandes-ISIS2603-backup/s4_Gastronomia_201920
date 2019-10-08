@@ -106,6 +106,16 @@ public class PlatoLogic {
         
         return persistence.find(restauranteId, platoId); 
     }
+    /**
+     * Metodo para consultar todos los platos de un restaurante
+     * @param restauranteId
+     * @return 
+     */
+    public List<PlatoEntity> getPlatos(Long restauranteId)
+    {
+        RestauranteEntity restauranteEntity = restaurantePersistence.find(restauranteId);
+        return restauranteEntity.getPlatos();
+    }
 
     
     

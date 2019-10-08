@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.gastronomia.test.persistence;
 
 import co.edu.uniandes.csw.gastronomia.persistence.PlatoPersistence;
 import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
+import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import javax.inject.Inject;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.junit.Arquillian;
@@ -41,6 +42,8 @@ public class PlatoPersistenceTest {
     
     private List<PlatoEntity> data = new ArrayList<PlatoEntity>();
     
+    private RestauranteEntity restaurante;
+    
     @Deployment
     public static JavaArchive createDeployment() 
     {
@@ -61,10 +64,13 @@ public class PlatoPersistenceTest {
         utx.begin();
         em.joinTransaction();
         em.createQuery("delete from PlatoEntity").executeUpdate();
+        em.createQuery("delete from RestauranteEntity").executeUpdate();
         PodamFactory factory = new PodamFactoryImpl();
+        restaurante = factory.manufacturePojo(RestauranteEntity.class);
           for(int i = 0; i < 3; i++)
           {
             PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
+            plato.setRestaurante(restaurante);
             em.persist(plato); 
             data.add(plato);
           }
