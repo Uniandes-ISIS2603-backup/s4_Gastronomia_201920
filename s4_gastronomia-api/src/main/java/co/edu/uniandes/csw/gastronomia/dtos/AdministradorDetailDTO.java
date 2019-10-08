@@ -14,8 +14,57 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
+ * Clase que extiende de {@link AdministradirDTO} para manejar las relaciones entre los
+ * AdministradirDTO y otros DTOs. Para conocer el contenido de un AdministradirDTO vaya a la
+ * documentacion de {@link AdministradirDTO}
  *
- * @author Angela Suarez Parra
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      
+ *      "id": number,
+ *      "nombre": string,
+ *      "apellido": string,
+ *      "username": string,
+ *      "email": string,
+ *      "contrasena": string,
+ *      "phone": number
+ *      "restaurantes": [{@link RestaurantedDTO}]
+ *   }
+ * </pre> Por ejemplo un autor se representa asi:<br>
+ *
+ * <pre>
+ *
+ *   {
+ *     "id": 1,
+ *      "nombre": Angela Maria,
+ *      "apellido": Suarez Parra,
+ *      "username": amsuarezp18,
+ *      "email": amsuarezp@gmail.com,
+ *      "contrasena": pepitoPerez,
+ *      "phone": 3125671890, 
+ *      "restaurantes" : [
+ *          "id"=,
+ *          "imagen":,
+ *          "nombre":,
+ *          "contrasena":,
+ *          "direccion":,
+ *          "tipoRestaurante":,
+ *          "precioPorPersona":,
+ *          "descuentoCumpleanos":,
+ *          "zonaDeFumadores":,
+ *          "petFriendly":,
+ *          "servicioALaMesa":,
+ *          "musicaEnVivo":,
+ *          "costoReserva":,
+ *           "horario":
+ *              
+ *      ]
+ *   }
+ *
+ * </pre>
+ *
+ * @author Angela 
  */
 public class AdministradorDetailDTO extends AdministradorDTO implements Serializable
 {
