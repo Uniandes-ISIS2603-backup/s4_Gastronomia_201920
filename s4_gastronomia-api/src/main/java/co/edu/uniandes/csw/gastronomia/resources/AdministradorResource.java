@@ -60,8 +60,12 @@ public class AdministradorResource
     @Path("{administradorId: \\d+}")
     public void deleteAdministrador(@PathParam("administradorId") Long administradorId) throws BusinessLogicException
     {
-       LOGGER.log(Level.INFO, "AdministradorResource delete: input: {0}", administradorId);
-       administradorLogic.deleteAdministrador(administradorId);
+         LOGGER.log(Level.INFO, "administrador administradorId: input: {0}", administradorId);
+        if( administradorLogic.getAdministrador(administradorId) == null)
+        {
+             throw new WebApplicationException("El recurso /administrador/" + administradorId + " no existe.", 404);
+        }
+         administradorLogic.deleteAdministrador(administradorId);
         LOGGER.log(Level.INFO, "AdministradorResource deleteAdmin: output: void");
     }
     
