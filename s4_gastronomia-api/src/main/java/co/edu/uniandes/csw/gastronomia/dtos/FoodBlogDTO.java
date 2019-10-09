@@ -46,6 +46,11 @@ private String comentarios;
      this.comentarios=fb.getComentarios();
      this.archivoMultimedia=fb.getArchivoMultimedia();
       }
+ 
+ public FoodBlogDTO()
+ {
+     //
+ }
  public FoodBlogEntity toEntity()
  {
      FoodBlogEntity fb=new FoodBlogEntity();

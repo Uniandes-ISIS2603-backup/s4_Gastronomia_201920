@@ -49,7 +49,7 @@ public class FoodBlogLogic {
      *
      * @return en una List todos los foodblogs creados.
      */
-    public List<FoodBlogEntity> getFoodblogs() 
+    public List<FoodBlogEntity> getFoodBlogs() 
     {
                 LOGGER.log(Level.INFO, "Obtiene todos los foodblogs");
         List<FoodBlogEntity> lista = persistence.findAll();
@@ -62,7 +62,7 @@ public class FoodBlogLogic {
      * @param fbId del foodblog que se esta buscando.
      * @return La informacion del foodblog buscado.
      */
-    public FoodBlogEntity getfoodBlog(Long fbId) {
+    public FoodBlogEntity getFoodBlog(Long fbId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el food blog con id = {0}", fbId);
         FoodBlogEntity fbEntity = persistence.find(fbId);
         if (fbEntity == null) {
@@ -79,7 +79,7 @@ public class FoodBlogLogic {
      * @param fbEntity Instancia de fbEntity con los nuevos datos.
      * @return Instancia de fbEntity con los datos actualizados.
      */
-    public FoodBlogEntity updatefoodBlog(Long fbId, FoodBlogEntity fbEntity) throws BusinessLogicException{
+    public FoodBlogEntity updateFoodBlog(Long fbId, FoodBlogEntity fbEntity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el foodblog con id = {0}", fbId);
         if (fbEntity==null) {
             throw new BusinessLogicException("el food blog que se quiere actualizar es nulo");
