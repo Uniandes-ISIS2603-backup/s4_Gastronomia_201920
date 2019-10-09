@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "b4d1e3fa-be9f-4692-b2ce-8f7a43b455be",
+		"name": "RestauranteResourceTest",
+		"description": "Restaurante Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Restaurantes con tamaño 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f50251c1-2fd7-4167-9c07-1d21256269c9",
+						"exec": [
+							"tests[\"No genera error en el Gell All\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Restaurante id inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9a8fa0a-baf6-42ba-9c84-d0a009aa307d",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be5d022a-14c5-43bc-9dd2-3462e5d0c6b8",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"El restaurante se creo\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contrasena\": \"qbB1mondegnengoennsdnflsndgklsfdngkldNA\",\r\n    \"costoReserva\": 71.69,\r\n    \"descuentoCumpleanos\": false,\r\n    \"direccion\": \"32 Montana Terrace\",\r\n    \"horario\": \"2020-03-16T05:00:00Z[UTC]\",\r\n    \"imagen\": \"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n    \"musicaEnVivo\": true,\r\n    \"nombre\": \"El David\",\r\n    \"petFriendly\": true,\r\n    \"precioPorPersona\": 4.74,\r\n    \"servicioALaMesa\": false,\r\n    \"tipoRestaurante\": \"Ampelgading\",\r\n    \"zonaDeFumadores\": true,\r\n    \"administrador\":\r\n        {\r\n        \t\"id\": 1,\r\n\t       \"nombre\": \"string\",\r\n\t       \"apellido\": \"string\",\r\n\t       \"username\": \"string\",\r\n\t       \"email\": \"string\",\r\n\t       \"contrasena\": \"string\",\r\n\t       \"phone\": 222\r\n        },\r\n        \"platos\": \r\n        [\r\n        \t{\r\n        \t\t\"id\":1,\r\n        \t\t\"precio\":2.0,\r\n        \t\t\"rutaimagen\":\"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n        \t\t\"descripcion\":\"comida rica\",\r\n        \t\t\"nombre\":\"cangua\"\r\n        \t}\r\n        ],\r\n        \"reservas\": []\r\n    \r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear restaurante 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bda91b7c-9dd3-447a-8505-eb3b6fe98429",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a2\",data.id);",
+							"tests[\"El restaurante se creo\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contrasena\": \"DavidLaLok\",\r\n    \"costoReserva\": 71.69,\r\n    \"descuentoCumpleanos\": false,\r\n    \"direccion\": \"32 Montana Terrace\",\r\n    \"horario\": \"2020-03-16T05:00:00Z[UTC]\",\r\n    \"imagen\": \"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n    \"musicaEnVivo\": true,\r\n    \"nombre\": \"Ozaki\",\r\n    \"petFriendly\": true,\r\n    \"precioPorPersona\": 4.74,\r\n    \"servicioALaMesa\": false,\r\n    \"tipoRestaurante\": \"Asiatica\",\r\n    \"zonaDeFumadores\": true,\r\n    \"administrador\":\r\n        {\r\n        \t\"id\": 1,\r\n\t       \"nombre\": \"string\",\r\n\t       \"apellido\": \"string\",\r\n\t       \"username\": \"string\",\r\n\t       \"email\": \"string\",\r\n\t       \"contrasena\": \"string\",\r\n\t       \"phone\": 222\r\n        },\r\n        \"platos\": \r\n        [\r\n        \t{\r\n        \t\t\"id\":1,\r\n        \t\t\"precio\":2.0,\r\n        \t\t\"rutaimagen\":\"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n        \t\t\"descripcion\":\"comida rica\",\r\n        \t\t\"nombre\":\"cangua\"\r\n        \t}\r\n        ],\r\n        \"reservas\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get restaurante 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2105537a-1d9c-407d-91eb-2d69f1675ab7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get restaurantes con elementos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5647fa79-24c5-4abf-ad90-39aace65e5f2",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Gell All\"] = responseCode.code === 200;",
+							"tests[\"restaurantes count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9b97190-0c04-4d18-b30d-230d1199b522",
+						"exec": [
+							"tests[\"No se deberia actualizar un restaurante con id que no existe\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No existe el restaurante con id 0\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contrasena\": \"qbB1mondegnengoennsdnflsndgklsfdngkldNA\",\r\n    \"costoReserva\": 71.69,\r\n    \"descuentoCumpleanos\": false,\r\n    \"direccion\": \"32 Montana Terrace\",\r\n    \"horario\": \"2020-03-16T05:00:00Z[UTC]\",\r\n    \"imagen\": \"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n    \"musicaEnVivo\": true,\r\n    \"nombre\": \"El David\",\r\n    \"petFriendly\": true,\r\n    \"precioPorPersona\": 4.74,\r\n    \"servicioALaMesa\": false,\r\n    \"tipoRestaurante\": \"Ampelgading\",\r\n    \"zonaDeFumadores\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15cac065-c50c-4618-92aa-a84a22d2448a",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"contrasena\": \"qbB1mondegnengoennsdnflsndgklsfdngkldNA\",\r\n        \"costoReserva\": 71.69,\r\n        \"descuentoCumpleanos\": false,\r\n        \"direccion\": \"32 Montana Terrace\",\r\n        \"horario\": \"2020-03-16T05:00:00Z[UTC]\",\r\n        \"id\": 1,\r\n        \"imagen\": \"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n        \"musicaEnVivo\": true,\r\n        \"nombre\": \"El David\",\r\n        \"petFriendly\": true,\r\n        \"precioPorPersona\": 4.74,\r\n        \"servicioALaMesa\": false,\r\n        \"tipoRestaurante\": \"Ampelgading\",\r\n        \"zonaDeFumadores\": true,\r\n        \"administrador\":\r\n        {\r\n        \t\"id\": 1,\r\n\t       \"nombre\": \"string\",\r\n\t       \"apellido\": \"string\",\r\n\t       \"username\": \"string\",\r\n\t       \"email\": \"string\",\r\n\t       \"contrasena\": \"string\",\r\n\t       \"phone\": 222\r\n        },\r\n        \"platos\": \r\n        [\r\n        \t{\r\n        \t\t\"id\":1,\r\n        \t\t\"precio\":2.0,\r\n        \t\t\"rutaimagen\":\"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n        \t\t\"descripcion\":\"comida rica\",\r\n        \t\t\"nombre\":\"cangua\"\r\n        \t}\r\n        ],\r\n        \"reservas\": []\r\n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete restaurante 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aca5c2f9-70f2-4b7f-ba00-06643c6d8976",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete restaurante 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e25485f-d272-4064-a86f-9e217380cfd7",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/{{new_id_a2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"{{new_id_a2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete restaurante inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3c09c73-bf2f-4120-8628-339f8e66d28a",
+						"exec": [
+							"tests[\"No se deberia actualizar un restaurante con id que no existe\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El restaurante que se quiere borrar no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
