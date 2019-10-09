@@ -129,7 +129,7 @@ public class PlatoPersistenceTest {
     public void findPlatoTest()
     {
         PlatoEntity plato = data.get(0); 
-        PlatoEntity entity = em.find(PlatoEntity.class, plato.getId()); 
+        PlatoEntity entity = platoPersistence.find(restaurante.getId(), plato.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(entity.getDescripcion(),plato.getDescripcion() );
         Assert.assertEquals(entity.getNombreComida(), plato.getNombreComida());

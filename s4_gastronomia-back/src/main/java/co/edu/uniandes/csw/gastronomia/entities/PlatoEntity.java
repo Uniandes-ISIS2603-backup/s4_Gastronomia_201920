@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.gastronomia.entities;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Estudiante
@@ -20,8 +22,14 @@ public class PlatoEntity extends BaseEntity {
     
     private String nombreComida; 
     
-    @ManyToOne
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private RestauranteEntity restaurante;
+    
+    public PlatoEntity()
+    {
+        super();
+    }
     
     /**
      * @return the rutaImagen

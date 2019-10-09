@@ -33,19 +33,20 @@ public class PlatoPersistence {
      */
     public PlatoEntity find(Long restauranteId, Long platoId)
     {
-        TypedQuery<PlatoEntity> q = em.createQuery("select p from PlatoEntity p where (p.restaurante.id = :restauranteid) and (p.id = :platoId)", PlatoEntity.class);
-        q.setParameter("restauranteid", restauranteId);
-        q.setParameter("platoId", platoId);
-        List<PlatoEntity> results = q.getResultList();
-        PlatoEntity plato = null;
-        if (results == null) {
-            plato = null;
-        } else if (results.isEmpty()) {
-            plato = null;
-        } else if (results.size() >= 1) {
-            plato = results.get(0);
-        }
-        return plato;
+//        TypedQuery<PlatoEntity> q = em.createQuery("select p from PlatoEntity p where (p.restaurante.id = :restauranteid) and (p.id = :platoId)", PlatoEntity.class);
+//        q.setParameter("restauranteid", restauranteId);
+//        q.setParameter("platoId", platoId);
+//        List<PlatoEntity> results = q.getResultList();
+//        PlatoEntity plato = null;
+//        if (results == null) {
+//            plato = null;
+//        } else if (results.isEmpty()) {
+//            plato = null;
+//        } else if (results.size() >= 1) {
+//            plato = results.get(0);
+//        }
+//        return plato;
+        return em.find(PlatoEntity.class, platoId);
     }
     /**
      * Crea un plato en la base de datos
