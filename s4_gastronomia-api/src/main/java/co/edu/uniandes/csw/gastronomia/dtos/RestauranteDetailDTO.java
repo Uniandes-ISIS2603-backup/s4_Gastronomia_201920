@@ -19,6 +19,7 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
 {
     private AdministradorDTO administrador;
     private List<PlatoDTO> platos = new ArrayList<>();
+    
     public RestauranteDetailDTO(RestauranteEntity r) 
     {
         super(r);

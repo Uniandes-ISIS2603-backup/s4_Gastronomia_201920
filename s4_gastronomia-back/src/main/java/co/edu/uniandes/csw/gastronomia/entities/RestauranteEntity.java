@@ -87,9 +87,9 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     @OneToMany
     private List<PlatoEntity> platos ;
     
-//    @PodamExclude
-//    @OneToMany
-//    private List<ReservaEntity> reservas;
+    @PodamExclude
+    @OneToMany
+    private List<ReservaEntity> reservas;
 
     public RestauranteEntity()
     {
@@ -115,6 +115,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     }
 
     public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
+        super();
         this.imagen = imagen;
         this.nombre = nombre;
         this.contrasena = contrasena;
@@ -130,7 +131,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.horario = horario;
         this.administrador = administrador;
         this.platos = platos;
-//        this.reservas = reservas;
+        this.reservas = reservas;
     }
 
     public AdministradorEntity getAdministrador() {
@@ -148,14 +149,14 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     public void setPlatos(List<PlatoEntity> platos) {
         this.platos = platos;
     }
-//
-//    public List<ReservaEntity> getReservas() {
-//        return reservas;
-//    }
-//
-//    public void setReservas(List<ReservaEntity> reservas) {
-//        this.reservas = reservas;
-//    }
+
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
         
     public String getImagen() {
         return imagen;
@@ -260,8 +261,8 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     public void setHorario(Date horario) {
         this.horario = horario;
     } 
-    
-    public boolean equals(RestauranteEntity other)
+    @Override
+    public boolean equals(Object other)
     {
         return super.equals(other);
     }
