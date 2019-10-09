@@ -135,7 +135,7 @@ public class FacturaLogicTest
         Assert.assertEquals(newEntity.getValorCompleto(), entity.getValorCompleto());
         Assert.assertEquals(newEntity.getValor(), entity.getValor());
         Assert.assertEquals(newEntity.getSePago(), entity.getSePago());
-        
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
     }
 
     /**
@@ -219,6 +219,7 @@ public class FacturaLogicTest
         Assert.assertEquals(entity.getValorCompleto(), resultEntity.getValorCompleto());
         Assert.assertEquals(entity.getValor(), resultEntity.getValor());
         Assert.assertEquals(entity.getSePago(), resultEntity.getSePago());
+        Assert.assertEquals(entity.getFecha(), resultEntity.getFecha());
         
     }
 
@@ -240,6 +241,7 @@ public class FacturaLogicTest
         Assert.assertEquals(pojoEntity.getValorCompleto(), resp.getValorCompleto());
         Assert.assertEquals(pojoEntity.getValor(), resp.getValor());
         Assert.assertEquals(pojoEntity.getSePago(), resp.getSePago());
+        Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
 
     }
 

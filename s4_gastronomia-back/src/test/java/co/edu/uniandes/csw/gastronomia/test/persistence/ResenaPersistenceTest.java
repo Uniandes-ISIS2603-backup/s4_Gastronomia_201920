@@ -28,7 +28,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author David Martinez
  */
 @RunWith(Arquillian.class)
-public class resenaPersistenceTest {
+public class ResenaPersistenceTest {
       @Inject
     private ResenaPersistence resenaPersistence;
 
@@ -162,4 +162,56 @@ public class resenaPersistenceTest {
         ResenaEntity deleted = em.find(ResenaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+    /**
+     * Prueba el metodo getTexto de la clase ResenaEntity.
+     */
+     @Test
+     public void getCalificacionTest()
+     {
+           ResenaEntity entity = data.get(0);
+       int  entityint = entity.getCalificacion();
+        Assert.assertNotNull(entityint);
+        Assert.assertEquals(entityint, entity.getCalificacion());
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase ResenaEntity
+      */
+     @Test
+     public void setCalificacionTest()
+     {
+        ResenaEntity entity=data.get(0);
+        int  newIntreated= 12345;
+        entity.setCalificacion(newIntreated);
+        Assert.assertNotNull(entity.getCalificacion());
+        Assert.assertEquals(entity.getCalificacion(), newIntreated);
+     }
+    /**
+     * Prueba el metodo getTexto de la clase ResenaEntity.
+     */
+     @Test
+     public void getComentarioTest()
+     {
+           ResenaEntity entity = data.get(0);
+        String  entityString = entity.getComentario();
+        Assert.assertNotNull(entityString);
+        Assert.assertEquals(entity.getComentario(), entityString);
+        
+     }
+     
+     /**
+      * Preuba el metodo setTexto de la clase ResenaEntity
+      */
+     @Test
+     public void setComentarioTest()
+     {
+        ResenaEntity entity=data.get(0);
+        
+        String  newStringCreated= "Aa1";
+        entity.setComentario(newStringCreated);
+        Assert.assertNotNull(entity.getComentario());
+        Assert.assertEquals(entity.getComentario(), newStringCreated);
+     }
+     
 }
