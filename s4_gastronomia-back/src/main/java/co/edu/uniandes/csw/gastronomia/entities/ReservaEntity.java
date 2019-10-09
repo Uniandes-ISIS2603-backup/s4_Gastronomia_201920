@@ -5,13 +5,14 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ReservaEntity extends BaseEntity{
     private String motivo;
     
     @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
     
     private int numPersonas;
@@ -32,22 +34,22 @@ public class ReservaEntity extends BaseEntity{
     private boolean cancelada;
     
     private String numeroContacto;
+//    
+//    @PodamExclude
+//    @ManyToOne
+//    private ClienteEntity cliente;
     
-    @PodamExclude
-    @ManyToOne
-    private ClienteEntity cliente;
+//    @PodamExclude
+//    @ManyToOne
+//    private RestauranteEntity restaurante;
     
-    @PodamExclude
-    @ManyToOne
-    private RestauranteEntity restaurante;
+    //@PodamExclude
+    //@OneToOne
+    //private FacturaEntity factura;
     
-    @PodamExclude
-    @OneToOne
-    private FacturaEntity factura;
-    
-    @PodamExclude
-    @OneToOne
-    private ResenaEntity resena;
+    //@PodamExclude
+    //@OneToOne
+    //private ResenaEntity resena;
 
     public ReservaEntity() {
     }
@@ -93,34 +95,27 @@ public class ReservaEntity extends BaseEntity{
     public String getNumeroContacto() {
         return numeroContacto;
     }
-    
-     /**
-     * @return the cliente
-     */
-    public ClienteEntity getCliente() {
-        return cliente;
-    }
 
-    /**
-     * @return the restaurante
-     */
-    public RestauranteEntity getRestaurante() {
-        return restaurante;
-    }
-
-    /**
-     * @return the factura
-     */
-    public FacturaEntity getFactura() {
-        return factura;
-    }
-
-    /**
-     * @return the resena
-     */
-    public ResenaEntity getResena() {
-        return resena;
-    }
+//    /**
+//     * @return the restaurante
+//     */
+//    public RestauranteEntity getRestaurante() {
+//        return restaurante;
+//    }
+//
+//    /**
+//     * @return the factura
+//     */
+//    public FacturaEntity getFactura() {
+//        return factura;
+//    }
+//
+//    /**
+//     * @return the resena
+//     */
+//    public ResenaEntity getResena() {
+//        return resena;
+//    }
 
     /**
      * @param motivo the motivo to set
@@ -163,34 +158,27 @@ public class ReservaEntity extends BaseEntity{
     public void setNumeroContacto(String numeroContacto) {
         this.numeroContacto = numeroContacto;
     }
-    
-    /**
-     * @param cliente the cliente to set
-     */
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
-    }
 
-    /**
-     * @param restaurante the restaurante to set
-     */
-    public void setRestaurante(RestauranteEntity restaurante) {
-        this.restaurante = restaurante;
-    }
-
-    /**
-     * @param factura the factura to set
-     */
-    public void setFactura(FacturaEntity factura) {
-        this.factura = factura;
-    }
-
-    /**
-     * @param resena the resena to set
-     */
-    public void setResena(ResenaEntity resena) {
-        this.resena = resena;
-    }
+//    /**
+//     * @param restaurante the restaurante to set
+//     */
+//    public void setRestaurante(RestauranteEntity restaurante) {
+//        this.restaurante = restaurante;
+//    }
+//
+//    /**
+//     * @param factura the factura to set
+//     */
+//    public void setFactura(FacturaEntity factura) {
+//        this.factura = factura;
+//    }
+//
+//    /**
+//     * @param resena the resena to set
+//     */
+//    public void setResena(ResenaEntity resena) {
+//        this.resena = resena;
+//    }
     
    @Override
     public boolean equals(Object obj) {

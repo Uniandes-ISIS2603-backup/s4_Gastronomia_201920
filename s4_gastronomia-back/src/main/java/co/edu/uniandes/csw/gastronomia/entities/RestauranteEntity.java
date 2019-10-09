@@ -88,7 +88,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     private List<PlatoEntity> platos ;
     
 //    @PodamExclude
-//    @OneToMany
+//    @OneToMany(mappedBy = "restaurante")
 //    private List<ReservaEntity> reservas;
 
     public RestauranteEntity()
