@@ -37,6 +37,7 @@ import javax.ws.rs.WebApplicationException;
 public class AdministradorResource
 {
    private static final Logger LOGGER = Logger.getLogger(AdministradorResource.class.getName());
+   private static final String NE = " no existe.";
    
    @Inject
    private AdministradorLogic administradorLogic;
@@ -63,7 +64,7 @@ public class AdministradorResource
          LOGGER.log(Level.INFO, "administrador administradorId: input: {0}", administradorId);
         if( administradorLogic.getAdministrador(administradorId) == null)
         {
-             throw new WebApplicationException("El recurso /administrador/" + administradorId + " no existe.", 404);
+             throw new WebApplicationException("El recurso /administrador/" + administradorId + NE , 404);
         }
          administradorLogic.deleteAdministrador(administradorId);
         LOGGER.log(Level.INFO, "AdministradorResource deleteAdmin: output: void");
@@ -80,7 +81,7 @@ public class AdministradorResource
      AdministradorEntity r = administradorLogic.getAdministrador(id);
         if(r==null)
         {
-           throw new WebApplicationException("El recurso /administrador/" + id + " no existe.", 404); 
+           throw new WebApplicationException("El recurso /administrador/" + id + NE, 404); 
         }
         AdministradorDetailDTO admin2 = new AdministradorDetailDTO(r);
         return admin2;
@@ -89,8 +90,8 @@ public class AdministradorResource
     @GET
     public List<AdministradorDetailDTO> getAdministradores() throws BusinessLogicException
     {
-      List<AdministradorDetailDTO> admin = entity2DTO(administradorLogic.getAdministradores()  );
-        return admin;
+      // List<AdministradorDetailDTO> admin = entity2DTO(administradorLogic.getAdministradores()  );
+        return entity2DTO(administradorLogic.getAdministradores()  );
     }
     
     
@@ -104,10 +105,10 @@ public class AdministradorResource
       admin.setId(id);
       if( administradorLogic.getAdministrador(id) == null)
       {
-          throw new WebApplicationException("El recurso /administrador/" + id + " no existe.", 404);
+          throw new WebApplicationException("El recurso /administrador/" + id + NE, 404);
       }
-      AdministradorDetailDTO nuevoADMIN = new AdministradorDetailDTO(administradorLogic.updateAdministrador(id, admin.toEntity()));
-      return nuevoADMIN;
+      return new AdministradorDetailDTO(administradorLogic.updateAdministrador(id, admin.toEntity()));
+     
     }
     //--------------------------------------------------------------------------
     //private methods
