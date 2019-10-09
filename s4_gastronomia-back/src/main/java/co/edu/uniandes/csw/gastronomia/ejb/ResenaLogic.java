@@ -38,7 +38,7 @@ public class ResenaLogic {
         if (r.getCalificacion()==0 || r.getCalificacion()>5 || r.getCalificacion()<0) {
             throw new BusinessLogicException("La calificacion debe ser un numero del 1 al 5");
         }
-        if (r.getComentario().equals("")| r.getComentario().equals(null)) {
+        if (r.getComentario().equals("")|| r.getComentario()== null) {
              throw new BusinessLogicException("El comentario de la resenia no puede ser vacio");
         }
     
@@ -88,7 +88,7 @@ public class ResenaLogic {
          if (resenaEntity.getCalificacion()==0 || resenaEntity.getCalificacion()>5 || resenaEntity.getCalificacion()<0) {
             throw new BusinessLogicException("La calificacion debe ser un numero del 1 al 5");
         }
-        if (resenaEntity.getComentario().equals("") || resenaEntity.getComentario().equals(null)) {
+        if (resenaEntity.getComentario().equals("") || resenaEntity.getComentario()==null) {
              throw new BusinessLogicException("El comentario de la resenia no puede ser vacio");
         }
         ResenaEntity newfoodBlogEntity = persistence.update(resenaEntity);

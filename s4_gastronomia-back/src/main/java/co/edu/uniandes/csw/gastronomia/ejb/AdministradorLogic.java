@@ -24,6 +24,7 @@ public class AdministradorLogic {
     
     private static final String UPDATE = " a actualizar esta en null o vacio";
     private static final String CREATE = " a crear  esta en null o vacio";
+    private static final String NOMBRE = " El nombre ";
     
     /**
      * Se encarga de crear un Administrador en la base de datos.
@@ -47,11 +48,11 @@ public class AdministradorLogic {
         }
         else if(administradorEntity.getNombre() == null)
         {
-             throw new BusinessLogicException("El nombre" +CREATE );
+             throw new BusinessLogicException(NOMBRE +CREATE );
         }
         else if(administradorEntity.getUsername() == null)
         {
-             throw new BusinessLogicException("El nombre" + CREATE);
+             throw new BusinessLogicException(NOMBRE + CREATE);
         }
         
         else if ( persistence.findByUserName(administradorEntity.getUsername()) != null)
@@ -69,8 +70,8 @@ public class AdministradorLogic {
      */
     public List<AdministradorEntity> getAdministradores()
     {
-        List<AdministradorEntity> administradores = persistence.findAll();
-        return administradores;
+       // List<AdministradorEntity> administradores = persistence.findAll();
+        return  persistence.findAll();
     } 
     
     /**
@@ -91,7 +92,7 @@ public class AdministradorLogic {
      * id del administrador a actualizar
      * @return Instancia de AdministradorEntity con los datos actualizados
      */
-    public AdministradorEntity updateAdministrador(Long administradorId , AdministradorEntity administradorEntity) throws BusinessLogicException
+    public AdministradorEntity updateAdministrador( Long administradorId , AdministradorEntity administradorEntity) throws BusinessLogicException
     {
         if(administradorEntity.getApellido() == null )
         {
@@ -107,7 +108,7 @@ public class AdministradorLogic {
         }
         else if(administradorEntity.getNombre() == null )
         {
-             throw new BusinessLogicException("El nombre" + UPDATE);
+             throw new BusinessLogicException(NOMBRE + UPDATE);
         }
         
         else if(administradorEntity.getUsername() == null )

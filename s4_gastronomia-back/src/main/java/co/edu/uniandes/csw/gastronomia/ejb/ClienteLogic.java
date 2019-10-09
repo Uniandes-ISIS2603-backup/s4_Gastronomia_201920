@@ -36,24 +36,7 @@ public class ClienteLogic {
      */
     public ClienteEntity createCliente (ClienteEntity clienteEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
-        if (clienteEntity.getNombre() == null) {
-           throw new BusinessLogicException("El nombre del cliente es inválido"); 
-        }
-        if(clienteEntity.getApellido() == null) {
-            throw new BusinessLogicException("El apellido del cliente es inválido"); 
-        }
-        if(clienteEntity.getUsername() == null) {
-            throw new BusinessLogicException("El username del cliente es inválido"); 
-        }
-        if(persistence.findByUsername(clienteEntity.getUsername()) != null){
-            throw new BusinessLogicException("El username ya existe");   
-        }
-        if(clienteEntity.getEmail() == null) {
-            throw new BusinessLogicException("El email del cliente es inválido"); 
-        }
-        if(persistence.findByEmail(clienteEntity.getEmail()) != null){
-            throw new BusinessLogicException("El email ya existe");   
-        } 
+        checkBusinessLogic(clienteEntity);
         clienteEntity = persistence.create(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
         return clienteEntity;
@@ -97,6 +80,25 @@ public class ClienteLogic {
      */
     public ClienteEntity updateCliente(Long clienteId, ClienteEntity clienteEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", clienteId);
+        checkBusinessLogic(clienteEntity);
+        ClienteEntity newEntity = persistence.update(clienteEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id = {0}", clienteEntity.getId());
+        return newEntity;
+    }
+
+    /**
+     * Eliminar un cliente por ID
+     *
+     * @param clienteId El ID del cliente a eliminar
+     * @throws BusinessLogicException si el cliente tiene autores asociados
+     */
+    public void deleteCliente(Long clienteId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id = {0}", clienteId);
+        persistence.delete(clienteId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el cliente con id = {0}", clienteId);
+    }  
+    
+    private void checkBusinessLogic(ClienteEntity clienteEntity) throws BusinessLogicException{
         if (clienteEntity.getNombre() == null) {
            throw new BusinessLogicException("El nombre del cliente es inválido"); 
         }
@@ -115,20 +117,5 @@ public class ClienteLogic {
         if(persistence.findByEmail(clienteEntity.getEmail()) != null){
             throw new BusinessLogicException("El email ya existe");   
         } 
-        ClienteEntity newEntity = persistence.update(clienteEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id = {0}", clienteEntity.getId());
-        return newEntity;
     }
-
-    /**
-     * Eliminar un cliente por ID
-     *
-     * @param clienteId El ID del cliente a eliminar
-     * @throws BusinessLogicException si el cliente tiene autores asociados
-     */
-    public void deleteCliente(Long clienteId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id = {0}", clienteId);
-        persistence.delete(clienteId);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el cliente con id = {0}", clienteId);
-    }  
 }

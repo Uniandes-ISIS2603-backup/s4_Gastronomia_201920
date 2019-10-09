@@ -207,6 +207,7 @@ public class AdministradorPersistenceTest
     {
         AdministradorEntity admin = data.get(0); 
         AdministradorEntity entity = em.find(AdministradorEntity.class, admin.getId());
+        
       Assert.assertTrue( entity.equals(entity));
       
     }
