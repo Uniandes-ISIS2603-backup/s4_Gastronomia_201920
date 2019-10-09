@@ -21,24 +21,3 @@ insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleano
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (18, 'fHhe61pq', 69.08, 0, '7 Talmadge Way', '04/16/2020', 'http://dummyimage.com/218x226.jpg/cc0000/ffffff', 0, 'Flowdesk', 0, 0, 1, 73.64, 'Kurortnyy');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (19, 'ozeJDFnB2Hp', 52.48, 0, '04 Lukken Court', '06/14/2020', 'http://dummyimage.com/126x130.bmp/dddddd/000000', 0, 'Aerified', 0, 1, 0, 62.52, 'Babica');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (20, 'j7hblN3Q11n', 97.08, 0, '7702 Northridge Court', '04/08/2020', 'http://dummyimage.com/170x172.bmp/dddddd/000000', 0, 'Solarbreeze', 0, 1, 1, 14.29, 'Saumur');
-
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Elcott', 'UrCHGL', 'welcott0@e-recht24.de', '5971140111', 'Willie', 'welcott0');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Dalrymple', 'h0OmzXoZJuH', 'cdalrymple1@huffingtonpost.com', '3164194166', 'Crissie', 'cdalrymple1');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Downe', 'E8VP7WYQWM', 'cdowne2@ehow.com', '7488187180', 'Celka', 'cdowne2');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Borgnol', 'PkY3lepPW', 'sborgnol3@samsung.com', '3202331218', 'Sofia', 'sborgnol3');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Mushet', 'vg79rj0', 'hmushet4@aol.com', '4738874021', 'Helen', 'hmushet4');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Giblin', '2eS3J8tDw', 'cgiblin5@jiathis.com', '4312974646', 'Culver', 'cgiblin5');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Folbige', 'T0XA5OS18', 'jfolbige6@dion.ne.jp', '4782834982', 'Janos', 'jfolbige6');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Mulder', '88TJ7Zl', 'rmulder7@jalbum.net', '1354952189', 'Roddie', 'rmulder7');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Bremond', '96izPhloDtI0', 'lbremond8@goodreads.com', '1297911481', 'Lucky', 'lbremond8');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Barribal', 'WZa6iZsUGY', 'rbarribal9@github.com', '9297248701', 'Raul', 'rbarribal9');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Szymanowicz', '754iZKEO0w1', 'gszymanowicza@ucla.edu', '5235034996', 'Gale', 'gszymanowicza');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Cochrane', 'cAraV4MnOX9Q', 'lcochraneb@springer.com', '3765229609', 'Liva', 'lcochraneb');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Ciccerale', 'PdHdPhf5J', 'scicceralec@ucoz.ru', '1475124288', 'Shaughn', 'scicceralec');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Pavluk', 'VkO6EZejeA97', 'ppavlukd@mit.edu', '4018401600', 'Panchito', 'ppavlukd');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Glave', 'EODjQr', 'mglavee@irs.gov', '4447800949', 'Martina', 'mglavee');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Coveley', 'NnVvPFpX', 'ccoveleyf@fema.gov', '8042186855', 'Cymbre', 'ccoveleyf');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Casterton', 'aT6jQ2ubby', 'fcastertong@blogger.com', '4429038802', 'Florian', 'fcastertong');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Riddle', 'zyO4OZo', 'ariddleh@unblog.fr', '5741952051', 'Annamarie', 'ariddleh');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Tayler', 'ziyBUwT', 'gtayleri@cafepress.com', '9005481085', 'Guinna', 'gtayleri');
-insert into AdministradorEntity (apellido, contrasena, email, phone, nombre, username) values ('Lawford', '75dpgKp', 'jlawfordj@squidoo.com', '4317430973', 'Jennica', 'jlawfordj');
