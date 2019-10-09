@@ -85,9 +85,7 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
             {
                 restaurantes.add(new RestauranteDTO(entityrestaurante));
             }
-            {
-                
-            }
+            
         }
     }
     

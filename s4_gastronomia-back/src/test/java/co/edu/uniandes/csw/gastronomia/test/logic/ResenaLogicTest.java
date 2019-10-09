@@ -124,6 +124,8 @@ public class ResenaLogicTest
              fb2.setId(fb.getId());
 
              rta = resenaLogic.updateResena(rta.getId(), fb2);
+             Assert.assertTrue(rta.getCalificacion()>0);
+             Assert.assertTrue(rta.getCalificacion()<5);
              Assert.assertEquals(fb2.getCalificacion(), rta.getCalificacion());
              Assert.assertEquals(fb2.getComentario(), rta.getComentario());   
         }
