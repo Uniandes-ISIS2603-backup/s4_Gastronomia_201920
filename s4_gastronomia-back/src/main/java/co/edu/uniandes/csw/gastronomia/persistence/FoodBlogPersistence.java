@@ -74,7 +74,7 @@ public class FoodBlogPersistence {
       logger.log(Level.INFO, "Borrando el foodBlog con id={0}", foodBlogsId);
         
         FoodBlogEntity foodBlogEntity = em.find(FoodBlogEntity.class, foodBlogsId);
-        FoodBlogEntity fb=find(foodBlogsId);
+        
         em.remove(foodBlogEntity);
         
         
