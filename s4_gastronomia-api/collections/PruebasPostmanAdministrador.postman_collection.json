@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "b1d7df8c-f1c9-42e8-8e80-c8f00c387a74",
+		"name": "PruebasPostmanAdministrador",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un administrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75dcd3e7-cbc5-4ba1-9b5d-515542c0e9df",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"nombre\": \"Angela Maria\",\n        \"apellido\": \"Suarez Parra\",\n        \"contrasena\": \"pepitoPerez\",\n        \"email\": \"amsuarezp@gmail.com\",\n        \"phone\": \"3125821890\",\n        \"username\": \"amsuarezp18\"\n        \n        \n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un administrador 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39439c71-9373-4c1c-9e2d-7401f218e640",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a2\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"nombre\": \"Laura Sofia\",\n        \"apellido\": \"Becerra Villegas\",\n        \"contrasena\": \"cookie\", \n        \"email\": \"lsbecerra@gmail.com\",\n        \"phone\": \"3102792380\",\n        \"username\": \"lsbecerra06\"\n        \n        \n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los administradores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92ac5bcd-51e8-4129-81ae-6d1b4f82b1c1",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Gell All\"] = responseCode.code === 200;",
+							"tests[\"Administrador count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un administrador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un administrador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8fbd0fc2-b432-4451-95cd-5c16a5bd0aa1",
+						"exec": [
+							"tests[\"No se deberia obtener un autor con un id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /administrador/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un administrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3bbaf5c8-e6d3-4dcb-a592-5692447c8922",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"nombre\": \"Angela Maria\",\n        \"apellido\": \"Suarez Perez\",\n        \"contrasena\": \"pepitoPerez\",\n        \"email\": \"amsuarezp@gmail.com\",\n        \"phone\": \"3125821890\",\n        \"username\": \"amsuarezp18\"\n        \n        \n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un administrador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76dca854-ae69-4419-9da6-c96d34bcee58",
+						"exec": [
+							"tests[\"No se deberia actualizar un autor con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /administrador/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"nombre\": \"Ana Maria\",\n        \"apellido\": \"Perez\",\n        \"contrasena\": \"pepitoPerez\",\n        \"email\": \"amsuap@gmail.com\",\n        \"phone\": \"3125821890\",\n        \"username\": \"amsuarezp18\"\n        \n        \n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un administrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f65d20a-9f68-4e67-91a4-6a5c37e70588",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un administrador 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77272ec6-0b35-4765-9573-04b3c033c6a9",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/{{new_id_a2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"{{new_id_a2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un administrador que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "087f9851-090f-43ef-9447-5157cb330bdd",
+						"exec": [
+							"tests[\"No se deberia borrar un autor con un id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /administrador/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/administrador/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"administrador",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
