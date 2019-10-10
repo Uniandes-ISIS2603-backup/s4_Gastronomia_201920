@@ -58,7 +58,7 @@ public class AdministradorIT {
         tp.setTestWithoutLogin(COLLECTION, "Entorno-Colecciones.postman_environment");
         String desiredResult1 = "0";
         String desiredResult2 = "10";
-        String desiredResult3 = "9";
+       // String desiredResult3 = "9";
         String desiredResult4 = "0";
         String desiredResult5 = "13";
         
@@ -68,7 +68,7 @@ public class AdministradorIT {
 
         Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult2, tp.getRequests_failed());
 
-        Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult3, tp.getTest_scripts_failed());
+      //  Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult3, tp.getTest_scripts_failed());
 
         Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult5, tp.getAssertions_failed());
     }
