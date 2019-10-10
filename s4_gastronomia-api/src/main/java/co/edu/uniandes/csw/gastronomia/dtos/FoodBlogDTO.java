@@ -70,7 +70,7 @@ public FoodBlogDTO()
  }
  public Long getId()
     {
-        return this.getId();
+        return this.id;
     }
     public void setId(Long pId)
     {

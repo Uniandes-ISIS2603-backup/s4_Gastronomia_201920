@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDetailDTO;
+import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.FoodBlogLogic;
 import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
@@ -51,7 +51,9 @@ public class FoodBlogResource
      public FoodBlogDTO createFoogBlog(FoodBlogDTO fb) throws BusinessLogicException
      {
          LOGGER.log(Level.INFO, "FoodBlogResource createFoogBlog: input: {0}", fb);
+         
         FoodBlogDTO fbDTO= new FoodBlogDTO(logic.createFoodBlog(fb.toEntity()));     
+        
         LOGGER.log(Level.INFO, "FoodBlogResource createFoodBlog: output: {0}", fbDTO);
         return fbDTO;
      }
@@ -65,6 +67,10 @@ public class FoodBlogResource
     public void deleteFoodBlog(@PathParam("foodBlogsId") Long foodBlogsId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "FoodBlogResource deleteFoodBlog: input: {0}", foodBlogsId);
+        if (logic.getFoodBlog(foodBlogsId)==null) 
+        {
+            throw new WebApplicationException("El recurso de foodblog no existe, id de la peticion:"+foodBlogsId,404);
+        }
         logic.deleteFoodBlog(foodBlogsId);
         LOGGER.log(Level.INFO, "FoodBlogResource createFoodBlog: output: void");
     }
@@ -79,14 +85,14 @@ public class FoodBlogResource
      */
     @GET
     @Path("{foodBlogsId: \\d+}")
-    public FoodBlogDetailDTO getFoodBlog(@PathParam("foodBlogsId") Long id) throws BusinessLogicException
+    public FoodBlogDTO getFoodBlog(@PathParam("foodBlogsId") Long id) throws BusinessLogicException
     {
         FoodBlogEntity fb = logic.getFoodBlog(id);
         if(fb==null)
         {
            throw new WebApplicationException("El food blog con id/" + id + " no existe.", 404); 
         }
-        FoodBlogDetailDTO fbN = new FoodBlogDetailDTO(fb);
+        FoodBlogDTO fbN = new FoodBlogDTO(fb);
         return fbN;
     }
     /**
@@ -95,9 +101,9 @@ public class FoodBlogResource
      * @throws BusinessLogicException 
      */
     @GET
-    public List<FoodBlogDetailDTO> getFoodBlogs() throws BusinessLogicException
+    public List<FoodBlogDTO> getFoodBlogs() throws BusinessLogicException
     {
-        List<FoodBlogDetailDTO> fbs = entity2DTO(logic.getFoodBlogs());
+        List<FoodBlogDTO> fbs = entity2DTO(logic.getFoodBlogs());
         return fbs;
     }
     
@@ -114,14 +120,14 @@ public class FoodBlogResource
      */
     @PUT
     @Path("{foodBlogsId: \\d+}")
-    public FoodBlogDetailDTO updateFoodBlog(@PathParam("foodBlogsId") Long id, FoodBlogDetailDTO fb) throws BusinessLogicException
+    public FoodBlogDTO updateFoodBlog(@PathParam("foodBlogsId") Long id, FoodBlogDTO fb) throws BusinessLogicException
     {
-        fb.setId(id);
+        fb.setId(id);   
         if(logic.getFoodBlog(id)==null)
         {
             throw new WebApplicationException("El foodblog con el id:" + id + " no existe.", 404);
         }
-        FoodBlogDetailDTO fBD = new FoodBlogDetailDTO(logic.updateFoodBlog(id,fb.toEntity()));
+        FoodBlogDTO fBD = new FoodBlogDTO(logic.updateFoodBlog(id,fb.toEntity()));
         return fBD;
     }
     //--------------------------------------------------------------------------
@@ -132,12 +138,12 @@ public class FoodBlogResource
      * @param l
      * @return 
      */
-    private List<FoodBlogDetailDTO> entity2DTO(List<FoodBlogEntity> l)
+    private List<FoodBlogDTO> entity2DTO(List<FoodBlogEntity> l)
     {
-        List<FoodBlogDetailDTO> ll = new ArrayList<>();
+        List<FoodBlogDTO> ll = new ArrayList<>();
         for(FoodBlogEntity x : l)
         {
-            ll.add(new FoodBlogDetailDTO(x));
+            ll.add(new FoodBlogDTO(x));
         }
         return ll;
     }
