@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.ResenaDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.ResenaDetailDTO;
+import co.edu.uniandes.csw.gastronomia.dtos.ResenaDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.ResenaLogic;
 import co.edu.uniandes.csw.gastronomia.entities.ResenaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
@@ -60,7 +60,7 @@ public class ResenaResource {
       */
       @DELETE
     @Path("{resenasId: \\d+}")
-    public void deleteResena(@PathParam("resenaId") Long resenaId) throws BusinessLogicException
+    public void deleteResena(@PathParam("resenasId") Long resenaId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ResenaResource deleteResena: input: {0}", resenaId);
         logic.deleteResena(resenaId);
@@ -74,14 +74,14 @@ public class ResenaResource {
      */
     @GET
     @Path("{resenasId: \\d+}")
-    public ResenaDetailDTO getResena(@PathParam("restaurantesId") Long id) throws BusinessLogicException
+    public ResenaDTO getResena(@PathParam("resenasId") Long id) throws BusinessLogicException
     {
         ResenaEntity re = logic.getResena(id);
         if(re==null)
         {
            throw new WebApplicationException("El food blog con id/" + id + " no existe.", 404); 
         }
-        ResenaDetailDTO reN = new ResenaDetailDTO(re);
+        ResenaDTO reN = new ResenaDTO(re);
         return reN;
     }
     /**
@@ -90,9 +90,9 @@ public class ResenaResource {
      * @throws BusinessLogicException 
      */
      @GET
-    public List<ResenaDetailDTO> getResenas() throws BusinessLogicException
+    public List<ResenaDTO> getResenas() throws BusinessLogicException
     {
-        List<ResenaDetailDTO> res = entity2DTO(logic.getResenas());
+        List<ResenaDTO> res = entity2DTO(logic.getResenas());
         return res;
     }
     /**
@@ -104,14 +104,14 @@ public class ResenaResource {
      */
      @PUT
     @Path("{resenasId: \\d+}")
-    public ResenaDetailDTO updateResena(@PathParam("resenasId") Long id, ResenaDetailDTO re) throws BusinessLogicException
+    public ResenaDTO updateResena(@PathParam("resenasId") Long id, ResenaDTO re) throws BusinessLogicException
     {
         re.setId(id);
         if(logic.getResena(id)==null)
         {
-            throw new WebApplicationException("El resena con el id:" + id + " no existe.", 404);
+            throw new WebApplicationException("La resena con el id:" + id , 404);
         }
-        ResenaDetailDTO reD = new ResenaDetailDTO(logic.updateResena(id,re.toEntity()));
+        ResenaDTO reD = new ResenaDTO(logic.updateResena(id,re.toEntity()));
         return reD;
     }
     
@@ -120,12 +120,12 @@ public class ResenaResource {
      * @param l
      * @return 
      */
-     private List<ResenaDetailDTO> entity2DTO(List<ResenaEntity> l)
+     private List<ResenaDTO> entity2DTO(List<ResenaEntity> l)
     {
-        List<ResenaDetailDTO> ll = new ArrayList<>();
+        List<ResenaDTO> ll = new ArrayList<>();
         for(ResenaEntity x : l)
         {
-            ll.add(new ResenaDetailDTO(x));
+            ll.add(new ResenaDTO(x));
         }
         return ll;
     }

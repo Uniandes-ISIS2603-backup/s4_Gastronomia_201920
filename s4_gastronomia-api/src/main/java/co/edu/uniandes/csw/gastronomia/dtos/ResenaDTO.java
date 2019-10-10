@@ -28,9 +28,12 @@ public class ResenaDTO implements Serializable {
     
     public ResenaDTO(ResenaEntity r)
     {
-        this.id=r.getId();
-        this.comentario=r.getComentario();
-        this.calificacion=r.getCalificacion();
+        if(r!= null)
+        {
+            this.id=r.getId();
+            this.comentario=r.getComentario();
+            this.calificacion=r.getCalificacion();
+        }
     }
     
     public ResenaEntity toEntity()
@@ -44,7 +47,7 @@ public class ResenaDTO implements Serializable {
     
     public Long getId()
     {
-        return this.getId();
+        return this.id;
     }
     public void setId(Long pId)
     {

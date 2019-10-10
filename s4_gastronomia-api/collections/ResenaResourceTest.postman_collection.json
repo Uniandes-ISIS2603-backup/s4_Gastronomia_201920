@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "cb98e8f2-4ab1-4639-8757-a21c41a6c71f",
+		"name": "ResenaResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear reseña",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75d28259-02a8-4d3f-acb9-b2f531447a93",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a1\",data.id);",
+							"tests[\"El restaurante se creo\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"calificacion\":4,\n\t\"comentario\":\"la versh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear reseña 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f391f19-4dac-4b99-96fe-65fdfffdd913",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a2\",data.id);",
+							"tests[\"El restaurante se creo\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"calificacion\":1,\n\t\"comentario\":\"F\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get reseñas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe1b5873-3108-4e13-8d1c-58fff5c32538",
+						"exec": [
+							"tests[\"No genera error en el Gell All\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get reseña inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f893964-8a70-4a90-af96-28a4411e6106",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get reseña 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "539dbc6b-6e79-4db4-a941-b60f06b92631",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena/{{new_id_a1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena",
+						"{{new_id_a1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get reseña 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f2bb412-8b0e-47b1-b89d-5ecd494d0d46",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena/{{new_id_a2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena",
+						"{{new_id_a2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrar reseña 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2227fa32-5efe-4e52-a658-3aeafcd86586",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena/{{new_id_a1}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena",
+						"{{new_id_a1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar reseña 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "390013a6-f5ab-41d2-a801-113d0fa64894",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena/{{new_id_a2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena",
+						"{{new_id_a2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar reseña no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c64d25a-5e4e-418a-8f41-e8b5ced50233",
+						"exec": [
+							"tests[\"No se deberia actualizar un restaurante con id que no existe\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/resena/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"resena",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
