@@ -56,7 +56,7 @@ public class AdministradorIT {
     public void postman() throws IOException {
         PostmanTestBuilder tp = new PostmanTestBuilder();
         tp.setTestWithoutLogin(COLLECTION, "Entorno-Colecciones.postman_environment");
-        String desiredResult1 = "1 |";
+        String desiredResult1 = "0";
         String desiredResult2 = "10 |";
         String desiredResult3 = "9 |";
         String desiredResult4 = "0 |";
