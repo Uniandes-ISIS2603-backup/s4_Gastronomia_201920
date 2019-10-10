@@ -23,12 +23,12 @@ private String texto;
 /**
  * Numero de me gustas que tiene el blog del usuario
  */
-private int numeroMeGusta;
+private Integer numeroMeGusta;
 
 /**
  * Numero de no me gusta que tiene el blog del ususario
  */
-private int numeroNoMegusta;
+private Integer numeroNoMegusta;
 /**
  * Ruta de imagen de la foto que tiene el usuario en su blog
  */
@@ -37,29 +37,35 @@ private String archivoMultimedia;
  * COmentarios del blog
  */
 private String comentarios;
- public FoodBlogDTO(FoodBlogEntity fb)
- {
-     this.id=fb.getId();
-     this.texto=fb.getTexto();
-     this.numeroMeGusta=fb.getNumeroMeGusta();
-     this.numeroNoMegusta=fb.getNumeroNoMegusta();
-     this.comentarios=fb.getComentarios();
-     this.archivoMultimedia=fb.getArchivoMultimedia();
-      }
- 
- public FoodBlogDTO()
+
+//private ClienteDTO clienteDto;
+public FoodBlogDTO()
  {
      //
  }
+ public FoodBlogDTO(FoodBlogEntity fb)
+ {
+     if(fb!=null)
+     {
+         this.id=fb.getId();
+     this.texto=fb.getTexto();
+     this.numeroMeGusta=fb.getNumeroMeGusta();
+     this.numeroNoMegusta=fb.getNumeroNoMegusta();
+     this.archivoMultimedia=fb.getArchivoMultimedia();
+     this.comentarios=fb.getComentarios();
+     }
+ }
+ 
+ 
  public FoodBlogEntity toEntity()
  {
      FoodBlogEntity fb=new FoodBlogEntity();
      fb.setId(this.getId());
      fb.setTexto(this.getTexto());
-     fb.setComentarios(this.getComentarios());
      fb.setNumeroMeGusta(this.getNumeroMeGusta());
      fb.setNumeroNoMegusta(this.getNumeroNoMegusta());
      fb.setArchivoMultimedia(this.getArchivoMultimedia());
+     fb.setComentarios(this.getComentarios());
      return fb;
  }
  public Long getId()
@@ -87,28 +93,28 @@ private String comentarios;
     /**
      * @return the numeroMeGusta
      */
-    public int getNumeroMeGusta() {
+    public Integer getNumeroMeGusta() {
         return numeroMeGusta;
     }
 
     /**
      * @param numeroMeGusta the numeroMeGusta to set
      */
-    public void setNumeroMeGusta(int numeroMeGusta) {
+    public void setNumeroMeGusta(Integer numeroMeGusta) {
         this.numeroMeGusta = numeroMeGusta;
     }
 
     /**
      * @return the numeroNoMegusta
      */
-    public int getNumeroNoMegusta() {
+    public Integer getNumeroNoMegusta() {
         return numeroNoMegusta;
     }
 
     /**
      * @param numeroNoMegusta the numeroNoMegusta to set
      */
-    public void setNumeroNoMegusta(int numeroNoMegusta) {
+    public void setNumeroNoMegusta(Integer numeroNoMegusta) {
         this.numeroNoMegusta = numeroNoMegusta;
     }
 

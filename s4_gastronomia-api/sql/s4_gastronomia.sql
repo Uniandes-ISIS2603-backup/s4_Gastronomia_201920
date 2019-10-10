@@ -2,7 +2,11 @@ delete from RESTAURANTEENTITY_PLATOENTITY;
 delete from RESTAURANTEENTITY_RESERVAENTITY;
 delete from RestauranteEntity;
 delete from AdministradorEntity;
+delete from FoodBlogEntity;
+delete from ResenaEntity;
 
+
+insert into FoodBlogEntity (id,texto,numeroMeGusta,numeroNoMegusta,archivoMultimedia,comentarios) values  (1,'nicolos and son',20,10,'src/main/png','comentario');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (1, 'qbB1NA', 71.69, 0, '32 Montana Terrace', '03/16/2020', 'http://dummyimage.com/119x170.jpg/ff4444/ffffff', 1, 'Zamit', 1, 0, 1, 4.74, 'Ampelgading');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (2, 'iVEmtfbVyL', 19.69, 1, '717 Dapin Hill', '06/01/2020', 'http://dummyimage.com/204x238.jpg/dddddd/000000', 1, 'Job', 0, 0, 0, 6.7, 'Riebiņi');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (3, 'slw6LAo', 3.56, 0, '5674 Schlimgen Drive', '10/10/2019', 'http://dummyimage.com/111x245.png/cc0000/ffffff', 1, 'Tempsoft', 0, 0, 1, 84.9, 'La Paloma');
@@ -23,3 +27,6 @@ insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleano
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (18, 'fHhe61pq', 69.08, 0, '7 Talmadge Way', '04/16/2020', 'http://dummyimage.com/218x226.jpg/cc0000/ffffff', 0, 'Flowdesk', 0, 0, 1, 73.64, 'Kurortnyy');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (19, 'ozeJDFnB2Hp', 52.48, 0, '04 Lukken Court', '06/14/2020', 'http://dummyimage.com/126x130.bmp/dddddd/000000', 0, 'Aerified', 0, 1, 0, 62.52, 'Babica');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (20, 'j7hblN3Q11n', 97.08, 0, '7702 Northridge Court', '04/08/2020', 'http://dummyimage.com/170x172.bmp/dddddd/000000', 0, 'Solarbreeze', 0, 1, 1, 14.29, 'Saumur');
+
+
+insert into foodblogentity (id,archivomultimedia,comentarios,numeromegusta,numeronomegusta,texto) values(0,'prueba','prueba',1,1,'prueba')

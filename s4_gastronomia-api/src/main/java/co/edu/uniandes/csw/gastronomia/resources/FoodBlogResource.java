@@ -62,7 +62,7 @@ public class FoodBlogResource
       */
       @DELETE
     @Path("{foodBlogsId: \\d+}")
-    public void deleteFoodBlog(@PathParam("foodBlogId") Long foodBlogsId) throws BusinessLogicException
+    public void deleteFoodBlog(@PathParam("foodBlogsId") Long foodBlogsId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "FoodBlogResource deleteFoodBlog: input: {0}", foodBlogsId);
         logic.deleteFoodBlog(foodBlogsId);
@@ -79,7 +79,7 @@ public class FoodBlogResource
      */
     @GET
     @Path("{foodBlogsId: \\d+}")
-    public FoodBlogDetailDTO getFoodBlog(@PathParam("restaurantesId") Long id) throws BusinessLogicException
+    public FoodBlogDetailDTO getFoodBlog(@PathParam("foodBlogsId") Long id) throws BusinessLogicException
     {
         FoodBlogEntity fb = logic.getFoodBlog(id);
         if(fb==null)
