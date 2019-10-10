@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -143,7 +143,7 @@ public class TarjetaDeCreditoLogicTest {
     {
         
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
-        tarjeta.setNumero(44444);
+        tarjeta.setNumero(new Long(44444));
         TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
     }
     /**
@@ -236,7 +236,7 @@ public class TarjetaDeCreditoLogicTest {
         TarjetaDeCreditoEntity entity = data.get(0);
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
         tarjeta.setId(entity.getId());
-        tarjeta.setNumero(44444);
+        tarjeta.setNumero(new Long(44444));
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
     /**

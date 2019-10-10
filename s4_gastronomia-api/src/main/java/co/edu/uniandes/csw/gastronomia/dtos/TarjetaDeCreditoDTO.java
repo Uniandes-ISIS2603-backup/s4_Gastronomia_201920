@@ -17,12 +17,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class TarjetaDeCreditoDTO implements Serializable {
     
+    private long id;
     private long numero; 
     private int cvv; 
     private Date fechaVencimiento; 
     
     public TarjetaDeCreditoDTO(TarjetaDeCreditoEntity tarjeta)
     {
+        id = tarjeta.getId();
         numero = tarjeta.getNumero(); 
         cvv = tarjeta.getCvv(); 
         fechaVencimiento = tarjeta.getFechaDeVencimiento(); 
@@ -30,6 +32,7 @@ public class TarjetaDeCreditoDTO implements Serializable {
     public TarjetaDeCreditoEntity toEntity()
     {
         TarjetaDeCreditoEntity retorno = new TarjetaDeCreditoEntity(); 
+        retorno.setId(id);
         retorno.setCvv(cvv);
         retorno.setFechaDeVencimiento(fechaVencimiento);
         retorno.setNumero(numero);
@@ -81,5 +84,19 @@ public class TarjetaDeCreditoDTO implements Serializable {
     public String toString()
     {
           return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 }
