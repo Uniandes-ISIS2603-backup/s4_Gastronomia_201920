@@ -3,10 +3,15 @@ delete from RESTAURANTEENTITY_RESERVAENTITY;
 delete from PlatoEntity;
 delete from RestauranteEntity;
 delete from AdministradorEntity;
+<<<<<<< HEAD
 delete from FoodBlogEntity;
 delete from ResenaEntity;
 
 
+=======
+delete from TipoComidaEntity;
+delete from FacturaEntity;
+>>>>>>> af.benitez
 
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (1, 'qbB1NA', 71.69, 0, '32 Montana Terrace', '03/16/2020', 'http://dummyimage.com/119x170.jpg/ff4444/ffffff', 1, 'Zamit', 1, 0, 1, 4.74, 'Ampelgading');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (2, 'iVEmtfbVyL', 19.69, 1, '717 Dapin Hill', '06/01/2020', 'http://dummyimage.com/204x238.jpg/dddddd/000000', 1, 'Job', 0, 0, 0, 6.7, 'Riebiņi');

@@ -16,6 +16,12 @@ public class TipoComidaEntity extends BaseEntity
 {
     private String nombre;
 
+    
+    public TipoComidaEntity()
+    {
+        //Constructor vacio para evitar falla.
+    }
+    
     /**
      * @return the nombre
      */

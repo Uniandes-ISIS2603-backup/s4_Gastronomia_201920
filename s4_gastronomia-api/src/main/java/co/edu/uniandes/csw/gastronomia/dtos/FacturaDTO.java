@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.adapters.DateAdapter;
 import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -21,6 +23,7 @@ public class FacturaDTO implements Serializable
     
    private int valor;
 
+   @XmlJavaTypeAdapter(DateAdapter.class)
    private Date fecha;
         
    private boolean sePago;
@@ -38,8 +41,10 @@ public class FacturaDTO implements Serializable
      *
      * @param fEntity La entidad de factura
      */
-    public FacturaDTO(FacturaEntity fEntity) {
-        if (fEntity != null) {
+    public FacturaDTO(FacturaEntity fEntity) 
+    {
+        if (fEntity != null)
+        {
             this.id = fEntity.getId();
             this.valorCompleto = fEntity.getValorCompleto();
             this.valor = fEntity.getValor();
@@ -57,10 +62,11 @@ public class FacturaDTO implements Serializable
     public FacturaEntity toEntity() {
         FacturaEntity facturaEntity = new FacturaEntity();
         facturaEntity.setId(this.id);
-        facturaEntity.setValor(this.valorCompleto);
         facturaEntity.setValor(this.valor);
+        facturaEntity.setValorCompleto(this.valorCompleto);
         facturaEntity.setSePago(this.sePago);
         facturaEntity.setFecha(this.fecha);
+        
        
         return facturaEntity;
     }
@@ -119,7 +125,8 @@ public class FacturaDTO implements Serializable
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
+    
+   
     /**
      * @return the sePago
      */
