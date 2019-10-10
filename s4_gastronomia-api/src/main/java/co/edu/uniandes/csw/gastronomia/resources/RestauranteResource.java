@@ -77,106 +77,29 @@ public class RestauranteResource
         RestauranteDetailDTO rr = new RestauranteDetailDTO(r);
         return rr;
     }
-//    
-//    @GET
-//    public List<RestauranteDetailDTO> getRestaurantes() throws BusinessLogicException
-//    {
-//        List<RestauranteDetailDTO> r = entity2DTO(logic.getRestaurantes());
-//        return r;
-//    }
     
     @GET
-    public List<RestauranteDetailDTO> getRestaurantes2(@QueryParam("contrasena") String contrasena, @QueryParam("nombre") String nombre, @QueryParam("precioPorPersonaMax") Double precioPorPersonaMax,@QueryParam("precioPorPersonaMin") Double precioPorPersonaMin,@QueryParam("precioPorReservaMax") Double precioPorReservaMax,@QueryParam("precioPorReservaMin") Double precioPorReservaMin, @QueryParam("cumpleanos") Boolean cumpleanos,@QueryParam("petFriendly") Boolean pet,@QueryParam("musicaEnVivo") Boolean musica, @QueryParam("servicioALaMesa") Boolean sam, @QueryParam("zonaFumadores") Boolean fumadores,@QueryParam("direccion") String dir) throws BusinessLogicException
+    public List<RestauranteDetailDTO> getRestaurantes() throws BusinessLogicException
     {
-        List<RestauranteDetailDTO> t = entity2DTO(logic.getRestaurantes());
-        if(nombre!=null && contrasena!=null)
-        {
-            t.clear();
-            t.add(new RestauranteDetailDTO(logic.getRestauranteContrasenaNombre(nombre, contrasena)));
-        }
-        else
-        {
-            List<RestauranteDetailDTO> x = new ArrayList<RestauranteDetailDTO>();
-            if(nombre!=null)
-            {
-                x=entity2DTO(logic.getRestauranteNombre(nombre));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-            if(precioPorPersonaMax!=null && precioPorPersonaMin!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesPrecioPromedioRango(precioPorReservaMax, precioPorReservaMin));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-            if(precioPorReservaMax!=null && precioPorReservaMin!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesPrecioReservaRango(precioPorReservaMax, precioPorReservaMin));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-            if(cumpleanos!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesDescuentoCumpleanos(new Boolean(cumpleanos)));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-            if(pet!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesPetFriendly(new Boolean(pet)));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-            if(musica!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesMusicaEnVivo(new Boolean(musica)));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-            if(sam!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesServicioALaMesa(new Boolean(sam)));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-//            if(fumadores!=null)
+        List<RestauranteDetailDTO> r = entity2DTO(logic.getRestaurantes());
+        return r;
+    }
+    
+//    @GET
+//    public List<RestauranteDetailDTO> getRestaurantes2(@QueryParam("contrasena") String contrasena, @QueryParam("nombre") String nombre, @QueryParam("precioPorPersonaMax") Double precioPorPersonaMax,@QueryParam("precioPorPersonaMin") Double precioPorPersonaMin,@QueryParam("precioPorReservaMax") Double precioPorReservaMax,@QueryParam("precioPorReservaMin") Double precioPorReservaMin, @QueryParam("cumpleanos") Boolean cumpleanos,@QueryParam("petFriendly") Boolean pet,@QueryParam("musicaEnVivo") Boolean musica, @QueryParam("servicioALaMesa") Boolean sam, @QueryParam("zonaFumadores") Boolean fumadores,@QueryParam("direccion") String dir) throws BusinessLogicException
+//    {
+//        List<RestauranteDetailDTO> t = entity2DTO(logic.getRestaurantes());
+//        if(nombre!=null && contrasena!=null)
+//        {
+//            t.clear();
+//            t.add(new RestauranteDetailDTO(logic.getRestauranteContrasenaNombre(nombre, contrasena)));
+//        }
+//        else
+//        {
+//            List<RestauranteDetailDTO> x = new ArrayList<RestauranteDetailDTO>();
+//            if(nombre!=null)
 //            {
-//                x=entity2DTO(logic.getRestaurante(fumadores));
+//                x=entity2DTO(logic.getRestauranteNombre(nombre));
 //                for(RestauranteDetailDTO r : t)
 //                {
 //                    if(!x.contains(r))
@@ -185,20 +108,97 @@ public class RestauranteResource
 //                    }
 //                }
 //            }
-            if(dir!=null)
-            {
-                x=entity2DTO(logic.getRestaurantesDireccion(dir));
-                for(RestauranteDetailDTO r : t)
-                {
-                    if(!x.contains(r))
-                    {
-                        t.remove(r);
-                    }
-                }
-            }
-        }
-        return t;
-    }
+//            if(precioPorPersonaMax!=null && precioPorPersonaMin!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesPrecioPromedioRango(precioPorReservaMax, precioPorReservaMin));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+//            if(precioPorReservaMax!=null && precioPorReservaMin!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesPrecioReservaRango(precioPorReservaMax, precioPorReservaMin));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+//            if(cumpleanos!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesDescuentoCumpleanos(new Boolean(cumpleanos)));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+//            if(pet!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesPetFriendly(new Boolean(pet)));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+//            if(musica!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesMusicaEnVivo(new Boolean(musica)));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+//            if(sam!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesServicioALaMesa(new Boolean(sam)));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+////            if(fumadores!=null)
+////            {
+////                x=entity2DTO(logic.getRestaurante(fumadores));
+////                for(RestauranteDetailDTO r : t)
+////                {
+////                    if(!x.contains(r))
+////                    {
+////                        t.remove(r);
+////                    }
+////                }
+////            }
+//            if(dir!=null)
+//            {
+//                x=entity2DTO(logic.getRestaurantesDireccion(dir));
+//                for(RestauranteDetailDTO r : t)
+//                {
+//                    if(!x.contains(r))
+//                    {
+//                        t.remove(r);
+//                    }
+//                }
+//            }
+//        }
+//        return t;
+//    }
     
     
     //--------------------------------------------------------------------------
@@ -215,6 +215,14 @@ public class RestauranteResource
         }
         RestauranteDetailDTO rr = new RestauranteDetailDTO(logic.updateRestaurante(r.toEntity(), id));
         return rr;
+    }
+     @Path("{restaurantesId: \\d+}/platos")
+    public Class<PlatoResource> getReviewResource(@PathParam("restaurantesId") Long id) throws BusinessLogicException
+    {
+        if (logic.getRestaurante(id) == null) {
+            throw new WebApplicationException("El recurso /restaurantes/" + id + "/reviews no existe.", 404);
+        }
+        return PlatoResource.class;
     }
     //--------------------------------------------------------------------------
     //private methods
