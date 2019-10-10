@@ -200,7 +200,7 @@ public class FoodBlogPersistenceTest {
      public void getNumeroMeGustaTest()
      {
            FoodBlogEntity entity = data.get(0);
-       int  entityint = entity.getNumeroMeGusta();
+       Integer  entityint = entity.getNumeroMeGusta();
         Assert.assertNotNull(entityint);
         Assert.assertEquals(entityint, entity.getNumeroMeGusta());
      }
@@ -212,7 +212,7 @@ public class FoodBlogPersistenceTest {
      public void setNumeroMeGustaTest()
      {
         FoodBlogEntity entity=data.get(0);
-        int  newIntreated= 12345;
+        Integer  newIntreated= 12345;
         entity.setNumeroMeGusta(newIntreated);
         Assert.assertNotNull(entity.getNumeroMeGusta());
         Assert.assertEquals(entity.getNumeroMeGusta(), newIntreated);
@@ -226,7 +226,7 @@ public class FoodBlogPersistenceTest {
      public void getNumeroNoMeGustaTest()
      {
            FoodBlogEntity entity = data.get(0);
-        int  entityint = entity.getNumeroNoMegusta();
+        Integer  entityint = entity.getNumeroNoMegusta();
         Assert.assertNotNull(entityint);
         Assert.assertEquals(entityint, entity.getNumeroNoMegusta());
      }
@@ -238,7 +238,7 @@ public class FoodBlogPersistenceTest {
      public void setNumeroNoMeGustaTest()
      {
         FoodBlogEntity entity=data.get(0);
-        int  newIntreated= 12345;
+        Integer  newIntreated= 12345;
         entity.setNumeroNoMegusta(newIntreated);
         Assert.assertNotNull(entity.getNumeroNoMegusta());
         Assert.assertEquals(entity.getNumeroNoMegusta(), newIntreated);
