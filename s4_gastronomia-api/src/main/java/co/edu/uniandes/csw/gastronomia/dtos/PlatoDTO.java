@@ -6,9 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.dtos;
 
 import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
-import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import java.io.Serializable;
-import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

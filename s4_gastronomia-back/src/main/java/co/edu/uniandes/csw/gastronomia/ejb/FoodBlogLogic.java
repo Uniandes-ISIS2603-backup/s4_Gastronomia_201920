@@ -39,7 +39,7 @@ public class FoodBlogLogic {
        fb.setNumeroNoMegusta(0);
        fb.setTexto("");
        fb.setComentarios("");
-      fb.setArchivoMultimedia("");
+       fb.setArchivoMultimedia("");
           FoodBlogEntity neFoodBlogentity  = persistence.create(fb);
         LOGGER.log(Level.INFO, "Termina la creacion de foodblogs");
         return neFoodBlogentity;
@@ -81,6 +81,7 @@ public class FoodBlogLogic {
      */
     public FoodBlogEntity updateFoodBlog(Long fbId, FoodBlogEntity fbEntity) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el foodblog con id = {0}", fbId);
+       
         if (fbEntity==null) {
             throw new BusinessLogicException("el food blog que se quiere actualizar es nulo");
         }

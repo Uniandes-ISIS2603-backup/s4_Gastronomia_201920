@@ -38,15 +38,25 @@ public class FacturaLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la factura");
         
-        if (facturaEntity.getValor()== 0 || facturaEntity.getValorCompleto() == 0) 
-        {
-            throw new BusinessLogicException("La factura no tiene valor");
-        }
+        
         if (persistence.find(facturaEntity.getId()) != null) 
         {
             throw new BusinessLogicException("La factura ya existe");
         }
-      
+        if(facturaEntity.getValor() < 0)
+        {
+             throw new BusinessLogicException("El valor de la factura es menor a 0");
+        }
+        
+        if(facturaEntity.getValorCompleto() < 0)
+        {
+            throw new BusinessLogicException("El valor completo de la factura es menor a 0");
+        }
+        if(facturaEntity.getValor() > facturaEntity.getValorCompleto())
+        {
+            throw new BusinessLogicException("El valor completo es menor al valor");
+        }
+ 
         persistence.create(facturaEntity);
         
         LOGGER.log(Level.INFO, "Termina proceso de creación de la factura");

@@ -75,7 +75,8 @@ public class PlatoResource {
     @Path("{platosId: \\d+}")
     public PlatoDTO updatePlato(@PathParam("restaurantesId") Long restaurantesId, @PathParam("platosId") Long platosId, PlatoDTO plato )throws BusinessLogicException
     {
-        if(platosId.equals(plato.getId()))
+        plato.setId(platosId);
+        if(!platosId.equals(plato.getId()))
         {
             throw new BusinessLogicException("Los ids del plato no coinciden");
         }
