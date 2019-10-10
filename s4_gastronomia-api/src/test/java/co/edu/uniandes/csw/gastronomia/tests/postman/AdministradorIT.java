@@ -57,10 +57,10 @@ public class AdministradorIT {
         PostmanTestBuilder tp = new PostmanTestBuilder();
         tp.setTestWithoutLogin(COLLECTION, "Entorno-Colecciones.postman_environment");
         String desiredResult1 = "0";
-        String desiredResult2 = "10 |";
-        String desiredResult3 = "9 |";
-        String desiredResult4 = "0 |";
-        String desiredResult5 = "13 |";
+        String desiredResult2 = "10";
+        String desiredResult3 = "9";
+        String desiredResult4 = "0";
+        String desiredResult5 = "13";
         
         //int desiredResult = 0;
         System.out.println(tp.getIterations_failed());
