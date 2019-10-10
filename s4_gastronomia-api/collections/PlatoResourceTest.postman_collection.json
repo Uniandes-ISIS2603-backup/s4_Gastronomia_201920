@@ -119,7 +119,7 @@
 						"id": "0fcbb3b2-00f4-4234-a7f3-5ba25d584b9a",
 						"exec": [
 							"tests[\"No se puede asociar un plato a un restaurante que no existe.\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /restaurantes/0/platos no existe\");"
+							""
 						],
 						"type": "text/javascript"
 					}
