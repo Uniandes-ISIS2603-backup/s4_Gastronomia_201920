@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\":\"arabe\"\n}",
+					"raw": "{\n\t\n\t\"id\":1,\n\t\"nombre\":\"arabe\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,7 +116,7 @@
 						"id": "b3ef446a-f1e6-4e79-8c40-2335357b6c25",
 						"exec": [
 							"tests[\"No crea el tipoComida ya existente.\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"El tipo comida ya existe\");"
+							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"El tipo de comida ya existe\");"
 						],
 						"type": "text/javascript"
 					}
@@ -134,7 +134,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\":1,\n\t\"nombre\":\"arabe\"\n}",
+					"raw": "{\n\t\"nombre\":\"arabe\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

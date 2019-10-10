@@ -13,6 +13,8 @@
 					"script": {
 						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f2\", data.id);",
 							"tests[\"No genera error en el post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -256,56 +258,6 @@
 			"response": []
 		},
 		{
-			"name": "crear Factura Erronea ya existente.",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
-						"exec": [
-							"tests[\"No crea factura ya existente.\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"La factura ya existe\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":1,\n\t\"valorCompleto\": -1200,\n\t\"valor\": 2000,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s4_gastronomia-api",
-						"api",
-						"facturas"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Obtener una factura",
 			"event": [
 				{
@@ -343,7 +295,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/1",
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/{{new_id_f2}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -353,7 +305,7 @@
 						"s4_gastronomia-api",
 						"api",
 						"facturas",
-						"1"
+						"{{new_id_f2}}"
 					]
 				}
 			},
