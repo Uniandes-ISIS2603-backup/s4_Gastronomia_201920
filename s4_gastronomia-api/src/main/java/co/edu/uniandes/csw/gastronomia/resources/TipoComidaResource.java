@@ -8,8 +8,11 @@ package co.edu.uniandes.csw.gastronomia.resources;
 import co.edu.uniandes.csw.gastronomia.dtos.TipoComidaDTO;
 import co.edu.uniandes.csw.gastronomia.dtos.TipoComidaDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.TipoComidaLogic;
+import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -55,7 +59,10 @@ public class TipoComidaResource
     @POST
     public TipoComidaDTO createTipo(TipoComidaDTO tipo) throws BusinessLogicException 
     {
-        return tipo;
+        LOGGER.log(Level.INFO, "TipoComidaResource createTipo: input: {0}", tipo);
+        TipoComidaDTO nuevaTipoDTO = new TipoComidaDTO(tipoComidaLogic.createTipoComida(tipo.toEntity()));
+        LOGGER.log(Level.INFO, "TipoComidaResource createTipo: output: {0}", nuevaTipoDTO);
+        return nuevaTipoDTO;
     }
     
      /**
@@ -67,7 +74,10 @@ public class TipoComidaResource
     @GET
     public List<TipoComidaDTO> getTipos() 
     {
-        return null;
+        LOGGER.info("TipoComidaResource getTipos: input: void");
+        List<TipoComidaDTO> listaTipos = new ArrayList<TipoComidaDTO>();
+        LOGGER.log(Level.INFO, "TipoComidaResource getTipos: output: {0}", listaTipos);
+        return listaTipos;
     }
 
     /**
@@ -83,7 +93,15 @@ public class TipoComidaResource
     @Path("{tipoId: \\d+}")
     public TipoComidaDTO getTipo(@PathParam("tipoId") Long tipoId)
     {
-        return null;
+        LOGGER.log(Level.INFO, "TipoComidaResource getTipo: input: {0}", tipoId);
+        TipoComidaEntity tipoComidaEntity = tipoComidaLogic.getTipoComida(tipoId);
+        if (tipoComidaEntity == null) 
+        {
+            throw new WebApplicationException("El recurso /tipoComida/" + tipoId + " no existe.", 404);
+        }
+        TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaEntity);
+        LOGGER.log(Level.INFO, "TipoComidaResource getTipo: output: {0}", tipoComidaDTO);
+        return tipoComidaDTO;
     }
 
     /**
@@ -104,7 +122,15 @@ public class TipoComidaResource
     @Path("{tipoId: \\d+}")
     public TipoComidaDTO updateTipoComida(@PathParam("tipoId") Long tipoId, TipoComidaDTO tipo) throws BusinessLogicException 
     {
-        return null;
+         LOGGER.log(Level.INFO, "TipoComidaResource updateTipoComida: input: id: {0} , book: {1}", new Object[]{tipoId, tipo});
+        tipo.setId(tipoId);
+        if (tipoComidaLogic.getTipoComida(tipoId) == null) 
+        {
+            throw new WebApplicationException("El recurso /tipoComida/" + tipoId + " no existe.", 404);
+        }
+        TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaLogic.updateTipoComida(tipoId, tipo.toEntity()));
+        LOGGER.log(Level.INFO, "TipoComidaResource updateTipoComida: output: {0}", tipoComidaDTO);
+        return tipoComidaDTO;
     }
 
     /**

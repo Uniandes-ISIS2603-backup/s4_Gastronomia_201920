@@ -7,7 +7,9 @@ package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.FacturaDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.FacturaLogic;
+import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -72,7 +75,11 @@ public class FacturaResource
     @GET
     public List<FacturaDTO> getFacturas() 
     {
-        return null;
+        LOGGER.info("FacturaResource getFacturas: input: void");
+        List<FacturaDTO> listaFacturas = new ArrayList<FacturaDTO>();
+        LOGGER.log(Level.INFO, "FacturaResource getFacturas: output: {0}", listaFacturas);
+        return listaFacturas;
+
     }
 
     /**
@@ -88,7 +95,15 @@ public class FacturaResource
     @Path("{facturaId: \\d+}")
     public FacturaDTO getFactura(@PathParam("facturaId") Long facturaId)
     {
-        return null;
+        LOGGER.log(Level.INFO, "FacturaResource getFactura: input: {0}", facturaId);
+        FacturaEntity facturaEntity = facturaLogic.getFactura(facturaId);
+        if (facturaEntity == null) 
+        {
+            throw new WebApplicationException("El recurso /factura/" + facturaId + " no existe.", 404);
+        }
+        FacturaDTO facturaDTO = new FacturaDTO(facturaEntity);
+        LOGGER.log(Level.INFO, "FacturaResource getFactura: output: {0}", facturaDTO);
+        return facturaDTO;
     }
 
     /**
@@ -107,9 +122,17 @@ public class FacturaResource
      */
     @PUT
     @Path("{facturaId: \\d+}")
-    public FacturaDTO updateFactura(@PathParam("facturaId") Long facturaId, FacturaDTO factrua) throws BusinessLogicException 
+    public FacturaDTO updateFactura(@PathParam("facturaId") Long facturaId, FacturaDTO factura) throws BusinessLogicException 
     {
-        return null;
+        LOGGER.log(Level.INFO, "FacturaResource updateFactura: input: id: {0} , book: {1}", new Object[]{facturaId, factura});
+        factura.setId(facturaId);
+        if (facturaLogic.getFactura(facturaId) == null) 
+        {
+            throw new WebApplicationException("El recurso /factura/" + facturaId + " no existe.", 404);
+        }
+        FacturaDTO facturaDTO = new FacturaDTO(facturaLogic.updateFactura(facturaId, factura.toEntity()));
+        LOGGER.log(Level.INFO, "FacturaResource updateFactura: output: {0}", facturaDTO);
+        return facturaDTO;
     }
 
     /**
@@ -124,9 +147,16 @@ public class FacturaResource
      */
     @DELETE
     @Path("{facturaId: \\d+}")
-    public void deleteBook(@PathParam("facturaId") Long facturaId) throws BusinessLogicException
+    public void deleteFactura(@PathParam("facturaId") Long facturaId) throws BusinessLogicException
     {
-        
+        LOGGER.log(Level.INFO, "FacturaResource deleteFactura: input: {0}", facturaId);
+        FacturaEntity entity = facturaLogic.getFactura(facturaId);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /books/" + facturaId + " no existe.", 404);
+        }
+        facturaLogic.deleteFactura(facturaId);
+        LOGGER.info("FacturaResource deleteFactura: output: void");
     }
 
 
