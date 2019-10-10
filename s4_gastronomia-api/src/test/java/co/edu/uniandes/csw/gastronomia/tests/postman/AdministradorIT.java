@@ -54,9 +54,8 @@ public class AdministradorIT {
     @Test
     @RunAsClient
     public void postman() throws IOException {
-        
         PostmanTestBuilder tp = new PostmanTestBuilder();
-        tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
+        tp.setTestWithoutLogin(COLLECTION, "Entorno-Colecciones.postman_environment");
         String desiredResult = "0";
         //int desiredResult = 0;
         System.out.println(tp.getIterations_failed());
