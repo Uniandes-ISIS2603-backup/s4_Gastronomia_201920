@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.gastronomia.test.persistence;
 
 import co.edu.uniandes.csw.gastronomia.persistence.PlatoPersistence;
 import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
+import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import javax.inject.Inject;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.junit.Arquillian;
@@ -41,6 +42,8 @@ public class PlatoPersistenceTest {
     
     private List<PlatoEntity> data = new ArrayList<PlatoEntity>();
     
+    private RestauranteEntity restaurante;
+    
     @Deployment
     public static JavaArchive createDeployment() 
     {
@@ -61,10 +64,13 @@ public class PlatoPersistenceTest {
         utx.begin();
         em.joinTransaction();
         em.createQuery("delete from PlatoEntity").executeUpdate();
+        em.createQuery("delete from RestauranteEntity").executeUpdate();
         PodamFactory factory = new PodamFactoryImpl();
+        restaurante = factory.manufacturePojo(RestauranteEntity.class);
           for(int i = 0; i < 3; i++)
           {
             PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
+            plato.setRestaurante(restaurante);
             em.persist(plato); 
             data.add(plato);
           }
@@ -123,7 +129,7 @@ public class PlatoPersistenceTest {
     public void findPlatoTest()
     {
         PlatoEntity plato = data.get(0); 
-        PlatoEntity entity = em.find(PlatoEntity.class, plato.getId()); 
+        PlatoEntity entity = platoPersistence.find(restaurante.getId(), plato.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(entity.getDescripcion(),plato.getDescripcion() );
         Assert.assertEquals(entity.getNombreComida(), plato.getNombreComida());
@@ -131,27 +137,7 @@ public class PlatoPersistenceTest {
         Assert.assertEquals(entity.getRutaImagen(), plato.getRutaImagen());
         
     }
-    /**
-     * Prueba para encontrar todos los platos de la base de datos
-     */
-    @Test
-    public void findAllPlatoEntityTest()
-    {
-        List<PlatoEntity> lista = platoPersistence.findAll(); 
-        Assert.assertEquals(data.size(), lista.size());
-        for(PlatoEntity e: lista)
-        {
-            boolean found = false; 
-            for(PlatoEntity f: data)
-            {
-                if(e.getId().equals(f.getId()))
-                {
-                    found = true; 
-                }
-            }
-            Assert.assertTrue(found);
-        }
-    }
+    
     /**
      * 
      * Prueba para probar la eliminacion de un plato de la base de datos

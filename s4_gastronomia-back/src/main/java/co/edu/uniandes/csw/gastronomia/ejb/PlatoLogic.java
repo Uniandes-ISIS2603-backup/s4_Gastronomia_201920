@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.gastronomia.ejb;
 
 import co.edu.uniandes.csw.gastronomia.entities.PlatoEntity;
+import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.PlatoPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.RestaurantePersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,14 +21,19 @@ import javax.inject.Inject;
 public class PlatoLogic {
     @Inject
     private PlatoPersistence persistence;
+    @Inject
+    private RestaurantePersistence restaurantePersistence;
     /**
      * Crea un plato y verifica las reglas de negocio
+     * @param restauranteId
      * @param plato. Plato que se quiere crear. 
      * @return Retorna el plato creado
      * @throws BusinessLogicException Si se rompe alguna regla de negocio.
      */
-    public PlatoEntity createPlato(PlatoEntity plato)throws BusinessLogicException
+    public PlatoEntity createPlato(Long restauranteId, PlatoEntity plato)throws BusinessLogicException
     {
+        RestauranteEntity restaurante = restaurantePersistence.find(restauranteId);
+        plato.setRestaurante(restaurante);
         if(plato.getPrecio() < 0)
         {
             throw new BusinessLogicException("El precio del plato es  negativo");
@@ -39,7 +46,7 @@ public class PlatoLogic {
         {
             throw new BusinessLogicException("El plato no tiene una descripcion");
         }
-        else if(persistence.find(plato.getId()) != null)
+        else if(persistence.find( restauranteId, plato.getId()) != null)
         {
             throw new BusinessLogicException("El plato ya existe");
         }
@@ -48,13 +55,15 @@ public class PlatoLogic {
     }
     /**
      * Metodo para actualizar un plato 
-     * @param platoId. Id del plato que se quiere actualizar
+     * @param restauranteId
      * @param plato. Plato con la informacion a actualizar
      * @return plato con la informacion actualizada
      * @throws BusinessLogicException 
      */
-    public PlatoEntity updatePlato(Long platoId, PlatoEntity plato  )throws BusinessLogicException
+    public PlatoEntity updatePlato(Long restauranteId, PlatoEntity plato  )throws BusinessLogicException
     {
+        RestauranteEntity restaurante = restaurantePersistence.find(restauranteId); 
+        plato.setRestaurante(restaurante);
          if(plato.getPrecio() < 0)
         {
             throw new BusinessLogicException("El precio del plato es  negativo");
@@ -71,31 +80,43 @@ public class PlatoLogic {
          
     }
     /**
-     * Metodo para eliminar un plato segun el id especificado
-     * @param tarjetaId 
+     * Metodo para eliminar un plato segun el id especificado 
+     * @param restauranteId
+     * @param platoId
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
      */
-    public void deletePlato(Long platoId)
+    public void deletePlato(Long restauranteId, Long platoId)throws BusinessLogicException
     {
+        PlatoEntity viejo = findPlato(restauranteId, platoId);
+        if(viejo == null)
+        {
+            throw new BusinessLogicException("El plato no está asociado al restaurante indicado");
+        }
         persistence.delete(platoId);
     }
     
     /**
      * Metodo para encontrar un plato segun el id indicado
+     * @param restauranteId
      * @param platoId. Id del plato que se quiere encontrar
      * @return Plato
      */
-    public PlatoEntity findPlato(Long platoId)
+    public PlatoEntity findPlato(Long restauranteId, Long platoId)
     {
-        return persistence.find(platoId); 
+        
+        return persistence.find(restauranteId, platoId); 
     }
     /**
-     * Metodo para encontrar todos los platos.
+     * Metodo para consultar todos los platos de un restaurante
+     * @param restauranteId
      * @return 
      */
-    public List<PlatoEntity> findAllPlato()
+    public List<PlatoEntity> getPlatos(Long restauranteId)
     {
-        return persistence.findAll(); 
+        RestauranteEntity restauranteEntity = restaurantePersistence.find(restauranteId);
+        return restauranteEntity.getPlatos();
     }
+
     
     
 }
