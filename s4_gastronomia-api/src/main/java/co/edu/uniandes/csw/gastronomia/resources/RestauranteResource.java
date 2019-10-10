@@ -216,6 +216,14 @@ public class RestauranteResource
         RestauranteDetailDTO rr = new RestauranteDetailDTO(logic.updateRestaurante(r.toEntity(), id));
         return rr;
     }
+     @Path("{restaurantesId: \\d+}/platos")
+    public Class<PlatoResource> getReviewResource(@PathParam("restaurantesId") Long id) throws BusinessLogicException
+    {
+        if (logic.getRestaurante(id) == null) {
+            throw new WebApplicationException("El recurso /restaurantes/" + id + "/platos no existe.", 404);
+        }
+        return PlatoResource.class;
+    }
     //--------------------------------------------------------------------------
     //private methods
     //--------------------------------------------------------------------------
