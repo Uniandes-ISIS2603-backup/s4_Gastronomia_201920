@@ -28,8 +28,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class CascaraIT { 
     private static final String COLLECTION = "Cascara-Tests.postman_collection";
-    private static final String COLLECTION2 = "PruebasPostmanAdministrador.postman_collection";
-
+   
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
