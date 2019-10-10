@@ -39,7 +39,7 @@ public class TarjetaDeCreditoResource {
     }
     
     @GET
-    @Path("{tarjetasId: \\d+")
+    @Path("{tarjetasId: \\d+}")
     public TarjetaDeCreditoDTO getTarjetaDeCredito( @PathParam("tarjetasId") Long tarjetasId) throws BusinessLogicException
     {
         TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(tarjetasId);
@@ -51,7 +51,7 @@ public class TarjetaDeCreditoResource {
         return tarjetaDeCreditoDTO;
     }
     @PUT
-    @Path("{tarjetasId: \\d+")
+    @Path("{tarjetasId: \\d+}")
     public TarjetaDeCreditoDTO updateTarjetaDeCredito(@PathParam("tarjetasId") Long tarjetasId, TarjetaDeCreditoDTO tarjeta )throws BusinessLogicException
     {
         if(tarjetasId.equals(tarjeta.getId()))

@@ -129,7 +129,7 @@ public class PlatoLogicTest {
     {
         PlatoEntity plato = factory.manufacturePojo(PlatoEntity.class);
         plato.setRestaurante(restaurante);
-        plato.setPrecio(-1);
+        plato.setPrecio(-1.0);
         PlatoEntity resultado = platoLogic.createPlato(restaurante.getId(),  plato);
     }
     /**
@@ -213,7 +213,7 @@ public class PlatoLogicTest {
     {
         PlatoEntity plato = data.get(0); 
         PlatoEntity entity = factory.manufacturePojo(PlatoEntity.class); 
-        entity.setPrecio(-1);
+        entity.setPrecio(-1.0);
         platoLogic.updatePlato(entity.getId(), entity);
     }
     

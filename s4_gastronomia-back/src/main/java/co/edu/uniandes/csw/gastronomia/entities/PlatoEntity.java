@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PlatoEntity extends BaseEntity {
     private String rutaImagen; 
     
-    private double precio; 
+    private Double precio; 
     
     private String descripcion; 
     
@@ -55,7 +55,7 @@ public class PlatoEntity extends BaseEntity {
     /**
      * @param precio the precio to set
      */
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
