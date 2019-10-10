@@ -1,0 +1,645 @@
+{
+	"info": {
+		"_postman_id": "af946abf-1431-4899-b5cb-6738d206c1ff",
+		"name": "FacturasResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear Factura.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": 1000,\n\t\"valor\": 800,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Factura 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\", data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": 1200,\n\t\"valor\": 900,\n\t\"sePago\": false,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Factura Erronea.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
+						"exec": [
+							"tests[\"No crea factura con un valor completo menor al valor.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"El valor completo es menor al valor\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": 1200,\n\t\"valor\": 2000,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Factura Erronea valor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
+						"exec": [
+							"tests[\"No crea factura con un valor negatvo.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"El valor de la factura es menor a 0\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": 1200,\n\t\"valor\": -1000,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Factura Erronea valor completo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
+						"exec": [
+							"tests[\"No crea factura con un valor completo negativo.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"El valor completo de la factura es menor a 0\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": -1200,\n\t\"valor\": 2000,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear Factura Erronea ya existente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "254b023b-461e-4a89-91cb-eb88882cc6cb",
+						"exec": [
+							"tests[\"No crea factura ya existente.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"La factura ya existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n\t\"valorCompleto\": -1200,\n\t\"valor\": 2000,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c741c4d0-b5e8-4984-9d5d-1bbe2889b2ca",
+						"exec": [
+							"",
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una factura no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c741c4d0-b5e8-4984-9d5d-1bbe2889b2ca",
+						"exec": [
+							"tests[\"Genera error\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El recurso /facturas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las facturas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c741c4d0-b5e8-4984-9d5d-1bbe2889b2ca",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el get facturas\"] = responseCode.code === 200;",
+							"tests[\"Mensaje correcto de error\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a897dff6-388e-42e9-ac28-2527ed849a4a",
+						"exec": [
+							"",
+							"tests[\"No genera error en el update\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": 3333,\n\t\"valor\": 2900,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una factura inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a897dff6-388e-42e9-ac28-2527ed849a4a",
+						"exec": [
+							"",
+							"tests[\"La factura no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /facturas/0 no existe.\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"valorCompleto\": 3333,\n\t\"valor\": 2900,\n\t\"sePago\": true,\n\t\"fecha\":\"2000-08-20T00:00:00-05:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca44f4c6-d021-42b6-b557-c6a2638dc827",
+						"exec": [
+							"tests[\"No genera error al eliminar\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una factura inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca44f4c6-d021-42b6-b557-c6a2638dc827",
+						"exec": [
+							"tests[\"La factura no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /facturas/0 no existe.\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/facturas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"facturas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -76,10 +76,9 @@ public class FacturaResource
     public List<FacturaDTO> getFacturas() 
     {
         LOGGER.info("FacturaResource getFacturas: input: void");
-        List<FacturaDTO> listaFacturas = new ArrayList<FacturaDTO>();
+        List<FacturaDTO> listaFacturas = listEntity2DTO(facturaLogic.getFacturas());
         LOGGER.log(Level.INFO, "FacturaResource getFacturas: output: {0}", listaFacturas);
         return listaFacturas;
-
     }
 
     /**
@@ -99,7 +98,7 @@ public class FacturaResource
         FacturaEntity facturaEntity = facturaLogic.getFactura(facturaId);
         if (facturaEntity == null) 
         {
-            throw new WebApplicationException("El recurso /factura/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(facturaEntity);
         LOGGER.log(Level.INFO, "FacturaResource getFactura: output: {0}", facturaDTO);
@@ -128,7 +127,7 @@ public class FacturaResource
         factura.setId(facturaId);
         if (facturaLogic.getFactura(facturaId) == null) 
         {
-            throw new WebApplicationException("El recurso /factura/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(facturaLogic.updateFactura(facturaId, factura.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource updateFactura: output: {0}", facturaDTO);
@@ -153,11 +152,28 @@ public class FacturaResource
         FacturaEntity entity = facturaLogic.getFactura(facturaId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /books/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
         }
         facturaLogic.deleteFactura(facturaId);
         LOGGER.info("FacturaResource deleteFactura: output: void");
     }
 
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos FacturaEntity a una lista de
+     * objetos FacturaDTO (json)
+     *
+     * @param entityList corresponde a la lista de facturas de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de libros en forma DTO (json)
+     */
+    private List<FacturaDTO> listEntity2DTO(List<FacturaEntity> entityList) {
+        List<FacturaDTO> list = new ArrayList<>();
+        for (FacturaEntity entity : entityList) {
+            list.add(new FacturaDTO(entity));
+        }
+        return list;
+    }
 
 }

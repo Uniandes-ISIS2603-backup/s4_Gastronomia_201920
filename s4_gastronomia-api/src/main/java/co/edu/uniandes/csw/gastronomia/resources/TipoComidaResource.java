@@ -75,7 +75,7 @@ public class TipoComidaResource
     public List<TipoComidaDTO> getTipos() 
     {
         LOGGER.info("TipoComidaResource getTipos: input: void");
-        List<TipoComidaDTO> listaTipos = new ArrayList<TipoComidaDTO>();
+        List<TipoComidaDTO> listaTipos = listEntity2DTO(tipoComidaLogic.getTipos());
         LOGGER.log(Level.INFO, "TipoComidaResource getTipos: output: {0}", listaTipos);
         return listaTipos;
     }
@@ -97,7 +97,7 @@ public class TipoComidaResource
         TipoComidaEntity tipoComidaEntity = tipoComidaLogic.getTipoComida(tipoId);
         if (tipoComidaEntity == null) 
         {
-            throw new WebApplicationException("El recurso /tipoComida/" + tipoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /tipoComidas/" + tipoId + " no existe.", 404);
         }
         TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaEntity);
         LOGGER.log(Level.INFO, "TipoComidaResource getTipo: output: {0}", tipoComidaDTO);
@@ -126,7 +126,7 @@ public class TipoComidaResource
         tipo.setId(tipoId);
         if (tipoComidaLogic.getTipoComida(tipoId) == null) 
         {
-            throw new WebApplicationException("El recurso /tipoComida/" + tipoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /tipoComidas/" + tipoId + " no existe.", 404);
         }
         TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaLogic.updateTipoComida(tipoId, tipo.toEntity()));
         LOGGER.log(Level.INFO, "TipoComidaResource updateTipoComida: output: {0}", tipoComidaDTO);
@@ -147,7 +147,32 @@ public class TipoComidaResource
     @Path("{tipoId: \\d+}")
     public void deleteTipoComida(@PathParam("tipoId") Long tipoId) throws BusinessLogicException
     {
-        
+        LOGGER.log(Level.INFO, "TipoComidaResource deleteTipoComida: input: {0}", tipoId);
+        TipoComidaEntity entity = tipoComidaLogic.getTipoComida(tipoId);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /tipoComidas/" + tipoId + " no existe.", 404);
+        }
+        tipoComidaLogic.deleteTipoComida(tipoId);
+        LOGGER.info("TipoComidaResource deleteTipoComida: output: void");
+    }
+
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos TipoComidaEntity a una lista de
+     * objetos TipoComidaEntity (json)
+     *
+     * @param entityList corresponde a la lista de tipoComida de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de libros en forma DTO (json)
+     */
+    private List<TipoComidaDTO> listEntity2DTO(List<TipoComidaEntity> entityList) {
+        List<TipoComidaDTO> list = new ArrayList<>();
+        for (TipoComidaEntity entity : entityList) {
+            list.add(new TipoComidaDTO(entity));
+        }
+        return list;
     }
 
 }
