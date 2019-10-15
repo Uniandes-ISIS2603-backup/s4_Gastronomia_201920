@@ -20,20 +20,35 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class FacturaEntity extends BaseEntity
 {
 
+    /**
+    * Valor completo de la factura.
+    */
     private int valorCompleto;
     
+    /**
+    * Valor del servicio prestado por el restaurante.
+    */
     private int valor;
-
+ 
+    /**
+    * Dia que se realizo la factura.
+    */
     @Temporal(TemporalType.DATE)
     private Date fecha;
         
+    /**
+    * Saber si se pago la factura.
+    */
     private boolean sePago;
 
-    
+    /**
+    * Constructor de la clase FacturaEntity.
+    */
     public FacturaEntity()
     {
         //Constructor vacio para evitar falla.
     }
+    
     /**
      * @return el valorCompleto
      */

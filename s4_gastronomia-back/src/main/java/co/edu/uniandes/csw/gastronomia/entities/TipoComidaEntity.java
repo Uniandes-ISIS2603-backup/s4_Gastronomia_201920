@@ -14,9 +14,15 @@ import javax.persistence.Entity;
 @Entity
 public class TipoComidaEntity extends BaseEntity 
 {
+ 
+    /**
+    * Nombre del tipo comida.
+    */
     private String nombre;
 
-    
+    /**
+    * Constructor de la clase TipoComidaEntity.
+    */
     public TipoComidaEntity()
     {
         //Constructor vacio para evitar falla.
