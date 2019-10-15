@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.adapters.DateAdapter;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -17,12 +19,19 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class TarjetaDeCreditoDTO implements Serializable {
     
-    private long numero; 
-    private int cvv; 
+    private Long id;
+    private Long numero; 
+    private Integer cvv; 
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaVencimiento; 
     
+    public TarjetaDeCreditoDTO()
+    {
+        
+    }
     public TarjetaDeCreditoDTO(TarjetaDeCreditoEntity tarjeta)
     {
+        id = tarjeta.getId();
         numero = tarjeta.getNumero(); 
         cvv = tarjeta.getCvv(); 
         fechaVencimiento = tarjeta.getFechaDeVencimiento(); 
@@ -30,6 +39,7 @@ public class TarjetaDeCreditoDTO implements Serializable {
     public TarjetaDeCreditoEntity toEntity()
     {
         TarjetaDeCreditoEntity retorno = new TarjetaDeCreditoEntity(); 
+        retorno.setId(id);
         retorno.setCvv(cvv);
         retorno.setFechaDeVencimiento(fechaVencimiento);
         retorno.setNumero(numero);
@@ -46,21 +56,21 @@ public class TarjetaDeCreditoDTO implements Serializable {
     /**
      * @param numero the numero to set
      */
-    public void setNumero(long numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 
     /**
      * @return the cvv
      */
-    public int getCvv() {
+    public Integer getCvv() {
         return cvv;
     }
 
     /**
      * @param cvv the cvv to set
      */
-    public void setCvv(int cvv) {
+    public void setCvv(Integer cvv) {
         this.cvv = cvv;
     }
 
@@ -76,6 +86,21 @@ public class TarjetaDeCreditoDTO implements Serializable {
      */
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
+    }
+    
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     @Override 
     public String toString()

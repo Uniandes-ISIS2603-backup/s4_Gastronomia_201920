@@ -34,9 +34,9 @@ public class ClienteEntity extends UsuarioEntity{
     
     private int puntos;
     
-//    @PodamExclude
-//    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
-//    private TarjetaDeCreditoEntity tarjetaCredito;
+    @PodamExclude
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private TarjetaDeCreditoEntity tarjetaCredito;
 //    
 //    @PodamExclude
 //    @OneToMany
@@ -78,13 +78,13 @@ public class ClienteEntity extends UsuarioEntity{
     public int getPuntos() {
         return puntos;
     }
-//
-//    /**
-//     * @return the tarjetaCredito
-//     */
-//    public TarjetaDeCreditoEntity getTarjetaCredito() {
-//        return tarjetaCredito;
-//    }
+
+    /**
+     * @return the tarjetaCredito
+     */
+    public TarjetaDeCreditoEntity getTarjetaCredito() {
+        return tarjetaCredito;
+  }
 //
 //    /**
 //     * @return the foodBlogs
@@ -134,13 +134,13 @@ public class ClienteEntity extends UsuarioEntity{
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-//
-//    /**
-//     * @param tarjetaCredito the tarjetaCredito to set
-//     */
-//    public void setTarjetaCredito(TarjetaDeCreditoEntity tarjetaCredito) {
-//        this.tarjetaCredito = tarjetaCredito;
-//    }
+
+    /**
+     * @param tarjetaCredito the tarjetaCredito to set
+     */
+    public void setTarjetaCredito(TarjetaDeCreditoEntity tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+}
 //
 //    /**
 //     * @param foodBlogs the foodBlogs to set

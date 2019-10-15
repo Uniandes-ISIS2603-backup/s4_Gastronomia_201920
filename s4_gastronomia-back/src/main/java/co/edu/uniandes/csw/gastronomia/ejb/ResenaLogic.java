@@ -20,7 +20,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ResenaLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(ResenaLogic.class.getName());
     /**
      * Conecta la capade logica con la de persistencia para que haya una conexion a  la basae de datos 
@@ -41,8 +41,8 @@ public class ResenaLogic {
         if (r.getComentario().equals("")|| r.getComentario()== null) {
              throw new BusinessLogicException("El comentario de la resenia no puede ser vacio");
         }
-    
-        
+
+
         ResenaEntity neResenaentity  = persistence.create(r);
         LOGGER.log(Level.INFO, "Termina la creacion de resenas");
         return neResenaentity;
@@ -74,7 +74,7 @@ public class ResenaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar el resena con id = {0}", resenaId);
         return resenaEntity;
     }
-    
+
     /**
      * Actualiza la información de una instancia de resena.
      *
@@ -85,17 +85,27 @@ public class ResenaLogic {
     public ResenaEntity updateResena(Long resenaId, ResenaEntity resenaEntity) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el resena con id = {0}", resenaId);
-         if (resenaEntity.getCalificacion()==0 || resenaEntity.getCalificacion()>5 || resenaEntity.getCalificacion()<0) {
+        ResenaEntity res= persistence.find(resenaId);
+        if (res==null) {
+              throw new BusinessLogicException("No existe el id que se esta pasando por parametro");
+        }
+        if (resenaEntity==null) {
+            throw new BusinessLogicException("La resena que porla cual se quiere actualizar es nula");
+        }
+        if (true) {
+            
+        }
+        else if (resenaEntity.getCalificacion()==0 || resenaEntity.getCalificacion()>5 || resenaEntity.getCalificacion()<0) {
             throw new BusinessLogicException("La calificacion debe ser un numero del 1 al 5");
         }
-        if (resenaEntity.getComentario().equals("") || resenaEntity.getComentario()==null) {
+        else  if (resenaEntity.getComentario().equals("") || resenaEntity.getComentario()==null) {
              throw new BusinessLogicException("El comentario de la resenia no puede ser vacio");
         }
         ResenaEntity newfoodBlogEntity = persistence.update(resenaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el resena con id = {0}", resenaId);
         return newfoodBlogEntity;
     }
-   
+
     /**
      * Elimina una instancia de resena de la base de datos.
      *
@@ -109,9 +119,9 @@ public class ResenaLogic {
          if (resena==null) {
             throw new BusinessLogicException("EL id buscado es nulo");
         }
-         
+
          persistence.delete(resenaId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la resena con id = {0}", resenaId);
     }
-    
+
 }

@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.gastronomia.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,12 +25,12 @@ private String texto;
 /**
  * Numero de me gustas que tiene el blog del usuario
  */
-private int numeroMeGusta;
+private Integer numeroMeGusta;
 
 /**
  * Numero de no me gusta que tiene el blog del ususario
  */
-private int numeroNoMegusta;
+private Integer numeroNoMegusta;
 /**
  * Ruta de imagen de la foto que tiene el usuario en su blog
  */
@@ -37,6 +39,10 @@ private String archivoMultimedia;
  * COmentarios del blog
  */
 private String comentarios;
+
+ //@PodamExclude
+// @ManyToOne
+ //private ClienteEntity cliente;
 //-------------------------------------------------------
 //metodos Get Set
 //-------------------------------------------------------
@@ -57,28 +63,28 @@ private String comentarios;
     /**
      * @return the numeroMeGusta
      */
-    public int getNumeroMeGusta() {
+    public Integer getNumeroMeGusta() {
         return numeroMeGusta;
     }
 
     /**
      * @param numeroMeGusta the numeroMeGusta to set
      */
-    public void setNumeroMeGusta(int numeroMeGusta) {
+    public void setNumeroMeGusta(Integer numeroMeGusta) {
         this.numeroMeGusta = numeroMeGusta;
     }
 
     /**
      * @return the numeroNoMegusta
      */
-    public int getNumeroNoMegusta() {
+    public Integer getNumeroNoMegusta() {
         return numeroNoMegusta;
     }
 
     /**
      * @param numeroNoMegusta the numeroNoMegusta to set
      */
-    public void setNumeroNoMegusta(int numeroNoMegusta) {
+    public void setNumeroNoMegusta(Integer numeroNoMegusta) {
         this.numeroNoMegusta = numeroNoMegusta;
     }
 
@@ -130,6 +136,20 @@ private String comentarios;
        }
        return super.hashCode();
    }
+
+    /**
+     * @return the cliente
+     */
+    //public ClienteEntity getCliente() {
+   //     return cliente;
+   // }
+
+    /**
+     * @param cliente the cliente to set
+     */
+   // public void setCliente(ClienteEntity cliente) {
+    //    this.cliente = cliente;
+   // }
    
     
     

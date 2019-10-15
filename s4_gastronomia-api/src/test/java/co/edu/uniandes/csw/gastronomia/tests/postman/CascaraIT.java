@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.gastronomia.tests.postman;
-import co.edu.uniandes.csw.gastronomia.dtos.AdministradorDTO;
+
 import co.edu.uniandes.csw.gastronomia.dtos.CascaraDTO;
 import co.edu.uniandes.csw.gastronomia.mappers.BusinessLogicExceptionMapper;
-import co.edu.uniandes.csw.gastronomia.resources.AdministradorResource;
 import co.edu.uniandes.csw.gastronomia.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
 import java.io.File;
@@ -24,12 +23,12 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Angela Suarez
+ * @author Estudiante
  */
 @RunWith(Arquillian.class)
-public class AdministradorIT {
-
-    private static final String COLLECTION = "PruebasPostmanAdministrador.postman_collection";
+public class CascaraIT { 
+    private static final String COLLECTION = "Cascara-Tests.postman_collection";
+   
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
@@ -56,17 +55,17 @@ public class AdministradorIT {
     public void postman() throws IOException {
         PostmanTestBuilder tp = new PostmanTestBuilder();
         tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
-        String desiredResult = "0";
-       
         
-        System.out.println(tp.getIterations_failed());
-       Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
+        String desiredResult = "0";
+        
+        
+        Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
+       
+        Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult, tp.getRequests_failed());
 
-       Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult, tp.getRequests_failed());
+        
+        Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult, tp.getTest_scripts_failed());
 
-      Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult, tp.getTest_scripts_failed());
-
-      Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult, tp.getAssertions_failed());
+        Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult, tp.getAssertions_failed());
     }
 }
-
