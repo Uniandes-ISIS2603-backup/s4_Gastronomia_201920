@@ -3,17 +3,17 @@
   <persistence-unit name="gastronomiaPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
-    <class>co.edu.uniandes.csw.gastronimia.entities.AdministradorEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.ClienteEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.FacturaEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.FoodBlogEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.PlatoEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.ResenaEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.ReservaEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.RestauranteEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.TarjetaDeCreditoEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.TipoComidaEntity</class>
-    <class>co.edu.uniandes.csw.gastronimia.entities.UsuarioEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.AdministradorEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.ClienteEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.FacturaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.PlatoEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.ResenaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.ReservaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.UsuarioEntity</class>
     
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
  <shared-cache-mode>NONE</shared-cache-mode>
