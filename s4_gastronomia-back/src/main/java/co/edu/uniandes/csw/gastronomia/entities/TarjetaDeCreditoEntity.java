@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamLongValue;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**

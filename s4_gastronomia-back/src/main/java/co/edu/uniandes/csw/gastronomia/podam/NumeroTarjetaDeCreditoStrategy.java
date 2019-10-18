@@ -10,6 +10,7 @@ package co.edu.uniandes.csw.gastronomia.podam;
  * @author je.canizarez
  */
 import java.security.SecureRandom;
+import org.apache.commons.lang3.RandomStringUtils;
 import uk.co.jemos.podam.common.AttributeStrategy;
 public class NumeroTarjetaDeCreditoStrategy implements AttributeStrategy<Long> {
     
@@ -20,15 +21,14 @@ public class NumeroTarjetaDeCreditoStrategy implements AttributeStrategy<Long> {
        int retorno = rand.nextInt(3); 
        if(retorno % 2 == 0)
        {
-       String  visaString = "4" + (Math.abs(rand.nextLong())+"").substring(0, 15);
-       long visaNum = Math.abs(Long.parseLong(visaString));
-       return visaNum;
+       
+       String  visaString = "4" + RandomStringUtils.randomNumeric(15);
+       return Long.parseLong(visaString);
        }
        else
        {
-       String mastercardString = "5"  + (Math.abs(rand.nextLong())+"").substring(0,15);
-       long mastercard = Math.abs(Long.parseLong(mastercardString));
-       return mastercard;
+       String mastercardString = "5"  + RandomStringUtils.randomNumeric(15);
+       return Long.parseLong(mastercardString);
        }
     }
 }

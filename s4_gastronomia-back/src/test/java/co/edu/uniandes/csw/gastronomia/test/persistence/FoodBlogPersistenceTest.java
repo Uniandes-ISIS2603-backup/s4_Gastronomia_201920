@@ -17,11 +17,11 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
+import org.junit.Assert;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
@@ -201,8 +201,10 @@ public class FoodBlogPersistenceTest {
      {
            FoodBlogEntity entity = data.get(0);
        Integer  entityint = entity.getNumeroMeGusta();
+       
         Assert.assertNotNull(entityint);
         Assert.assertEquals(entityint, entity.getNumeroMeGusta());
+        
      }
      
      /**

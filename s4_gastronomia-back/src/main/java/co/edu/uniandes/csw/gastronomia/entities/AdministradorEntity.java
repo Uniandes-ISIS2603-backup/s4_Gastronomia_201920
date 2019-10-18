@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.gastronomia.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;

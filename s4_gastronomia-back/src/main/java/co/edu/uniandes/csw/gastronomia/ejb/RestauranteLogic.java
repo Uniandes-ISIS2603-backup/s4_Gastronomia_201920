@@ -21,6 +21,10 @@ import javax.inject.Inject;
 @Stateless
 public class RestauranteLogic 
 {
+    
+    private static final String R = "El restaurante";
+    private static final String B = "Bad password sheme";
+    private static final String BOO = "El booleano de ";
     private static final Logger LOGGER = Logger.getLogger(RestauranteLogic.class.getName());
 
     @Inject
@@ -31,43 +35,43 @@ public class RestauranteLogic
         LOGGER.log(Level.INFO,"Se está creando el restaurante con id={0}",r.getId());
         if(persistence.find(r.getId())!=null)
         {
-            throw new BusinessLogicException("El restaurante ya existe");
+            throw new BusinessLogicException(R + " ya existe");
         }
         if(r.getNombre()==null)
         {
-            throw new BusinessLogicException("El restaurante no tiene nombre");
+            throw new BusinessLogicException( R + " no tiene nombre");
         }
         if(r.getNombre().isEmpty())
         {
-            throw new BusinessLogicException("El restaurante no tiene nombre");
+            throw new BusinessLogicException(R + " no tiene nombre");
         }
         if(r.getContrasena()==null )
         {
-            throw new BusinessLogicException("Bad password sheme ");
+            throw new BusinessLogicException(B);
         }
         if(r.getContrasena().isEmpty() )
         {
-           throw new BusinessLogicException("Bad password sheme "); 
+           throw new BusinessLogicException(B); 
         }
         if( r.getContrasena().length() < 8)
         {
-            throw new BusinessLogicException("Bad password sheme "); 
+            throw new BusinessLogicException(B); 
         }
         if(r.getZonaDeFumadores()==null)
         {
-            throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
+            throw new BusinessLogicException(BOO + " zona de fuamadores no puede ser nulo");
         }
         if(r.getDescuentaoCumpleanos()==null)
         {
-            throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
+            throw new BusinessLogicException(BOO + " descuentos de cumpleaños no puede ser nulo");
         }
         if(r.getPetFriendly()==null)
         {
-            throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
+            throw new BusinessLogicException(BOO + " pet friendly no puede ser nulo");
         }
         if(r.getServicioALaMesa()==null)
         {
-            throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
+            throw new BusinessLogicException(BOO + " servicio a la mesa no puede ser nulo");
         }
         if(r.getImagen()==null )
         {
@@ -107,7 +111,7 @@ public class RestauranteLogic
         }
         if(r.getMusicaEnVivo()==null)
         {
-            throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
+            throw new BusinessLogicException(BOO + " musica en vivo no puede ser nulo");
         }
         if(r.getPrecioPorPersona() == null)
         {
