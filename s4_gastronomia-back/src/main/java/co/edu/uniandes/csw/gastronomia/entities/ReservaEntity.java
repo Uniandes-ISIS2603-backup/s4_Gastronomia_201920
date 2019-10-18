@@ -50,6 +50,8 @@ public class ReservaEntity extends BaseEntity{
     //@PodamExclude
     //@OneToOne
     //private ResenaEntity resena;
+    
+    
 
     public ReservaEntity() {
     }
