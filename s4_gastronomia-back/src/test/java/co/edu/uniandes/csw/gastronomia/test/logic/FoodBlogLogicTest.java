@@ -10,9 +10,7 @@
         import co.edu.uniandes.csw.gastronomia.ejb.FoodBlogLogic;
         import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
         import java.util.ArrayList;
-        import java.util.HashSet;
         import java.util.List;
-        import java.util.Set;
         import javax.inject.Inject;
         import javax.persistence.EntityManager;
         import javax.persistence.PersistenceContext;
@@ -22,7 +20,6 @@
         import org.jboss.shrinkwrap.api.ShrinkWrap;
         import org.jboss.shrinkwrap.api.spec.JavaArchive;
         import org.junit.Assert;
-        import org.junit.Before;
         import org.junit.Test;
         import org.junit.runner.RunWith;
         import uk.co.jemos.podam.api.PodamFactory;
@@ -112,7 +109,7 @@
         Assert.assertEquals(updated.getTexto(), rta.getTexto());
         
             try {
-                    foodblogLogic.updatefoodBlog(updated.getId(), updated);
+                    foodblogLogic.updateFoodBlog(updated.getId(), updated);
             } catch (BusinessLogicException e) {
                 Assert.fail();
             }
@@ -143,7 +140,7 @@
             
             Long idFB=fb.getId();
             
-            FoodBlogEntity rta= foodblogLogic.getfoodBlog(idFB);
+            FoodBlogEntity rta= foodblogLogic.getFoodBlog(idFB);
             Assert.assertEquals(rta, fb);   
 
         }
@@ -157,7 +154,7 @@
             foodblogLogic.createFoodBlog(fb1);
             foodblogLogic.createFoodBlog(fb2);
             foodblogLogic.createFoodBlog(fb3);
-            List<FoodBlogEntity> foodBlogs=foodblogLogic.getFoodblogs();
+            List<FoodBlogEntity> foodBlogs=foodblogLogic.getFoodBlogs();
            
             Assert.assertEquals(foodBlogs.contains(fb1), true);
             Assert.assertEquals(foodBlogs.contains(fb2), true);

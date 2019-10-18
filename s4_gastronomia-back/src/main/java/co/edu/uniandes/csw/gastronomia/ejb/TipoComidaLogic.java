@@ -42,9 +42,12 @@ public class TipoComidaLogic
         {
             throw new BusinessLogicException("El tipo comida no tiene nombre");
         }
-        if (persistence.find(tipoComidaEntity.getId()) != null) 
-        {
-            throw new BusinessLogicException("El tipo comida ya existe");
+        
+        for (TipoComidaEntity tipoComidaEntity1 : persistence.findAll()) {
+            if(tipoComidaEntity.getNombre().equals(tipoComidaEntity1.getNombre()))
+            {
+                throw new BusinessLogicException("El tipo de comida ya existe");
+            }
         }
         
         persistence.create(tipoComidaEntity);

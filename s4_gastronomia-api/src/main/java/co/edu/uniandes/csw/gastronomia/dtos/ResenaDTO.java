@@ -15,9 +15,11 @@ import java.io.Serializable;
 public class ResenaDTO implements Serializable {
     private Long id;
     
-    private int calificacion;
+    private Integer calificacion;
     
     private String comentario;
+    
+    //private ReservaDTO reservaDto;
     
     public ResenaDTO()
     {
@@ -26,9 +28,12 @@ public class ResenaDTO implements Serializable {
     
     public ResenaDTO(ResenaEntity r)
     {
-        this.id=r.getId();
-        this.comentario=r.getComentario();
-        this.calificacion=r.getCalificacion();
+        if(r!= null)
+        {
+            this.id=r.getId();
+            this.comentario=r.getComentario();
+            this.calificacion=r.getCalificacion();
+        }
     }
     
     public ResenaEntity toEntity()
@@ -42,19 +47,19 @@ public class ResenaDTO implements Serializable {
     
     public Long getId()
     {
-        return this.getId();
+        return this.id;
     }
     public void setId(Long pId)
     {
         this.id=pId;
     }
     
-    private int getCalificacion()
+    private Integer getCalificacion()
     {
         return this.calificacion;
     }
     
-    public void setCalificacion(int pCalificacion)
+    public void setCalificacion(Integer pCalificacion)
     {
         this.calificacion=pCalificacion;
     }

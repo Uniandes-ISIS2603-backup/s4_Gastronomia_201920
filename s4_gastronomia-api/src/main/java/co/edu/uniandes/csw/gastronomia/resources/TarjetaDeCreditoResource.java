@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.gastronomia.dtos.TarjetaDeCreditoDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.TarjetaDeCreditoLogic;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,8 +26,10 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author je.canizarez
  */
+@Path("tarjetas")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class TarjetaDeCreditoResource {
     @Inject 
     private TarjetaDeCreditoLogic logic;
@@ -45,27 +48,12 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(tarjetasId);
         if(tarjeta == null)
         {
-            throw new WebApplicationException("El recurso  /platos/" + tarjetasId + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /tarjetas/" + tarjetasId + " no existe.", 404);
         }
         TarjetaDeCreditoDTO tarjetaDeCreditoDTO = new TarjetaDeCreditoDTO(tarjeta);
         return tarjetaDeCreditoDTO;
     }
-    @PUT
-    @Path("{tarjetasId: \\d+}")
-    public TarjetaDeCreditoDTO updateTarjetaDeCredito(@PathParam("tarjetasId") Long tarjetasId, TarjetaDeCreditoDTO tarjeta )throws BusinessLogicException
-    {
-        if(tarjetasId.equals(tarjeta.getId()))
-        {
-            throw new BusinessLogicException("Los ids del plato no coinciden");
-        }
-        TarjetaDeCreditoEntity entity = logic.findTarjetaDeCredito(tarjetasId);
-        if(entity == null)
-        {
-            throw new WebApplicationException("El recurso /platos/" + tarjetasId + " no existe.", 404);
-        }
-        TarjetaDeCreditoDTO tarjetaDTO = new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(tarjetasId, tarjeta.toEntity()));
-        return tarjetaDTO;
-    }
+    
     
     @DELETE
     @Path("{tarjetasId: \\d+}")
@@ -77,6 +65,23 @@ public class TarjetaDeCreditoResource {
             throw new WebApplicationException("El recurso  /tarjetas/" + tarjetasId + " no existe.", 404);
         }
         logic.deleteTarjetaDeCredito(tarjetasId);
+    }
+    @PUT
+    @Path("{tarjetasId: \\d+}")
+    public TarjetaDeCreditoDTO updateTarjetaDeCredito(@PathParam("tarjetasId") Long tarjetasId, TarjetaDeCreditoDTO tarjeta )throws BusinessLogicException
+    {
+        tarjeta.setId(tarjetasId);
+        if(!tarjetasId.equals(tarjeta.getId()))
+        {
+            throw new BusinessLogicException("Los ids del plato no coinciden");
+        }
+        TarjetaDeCreditoEntity entity = logic.findTarjetaDeCredito(tarjetasId);
+        if(entity == null)
+        {
+            throw new WebApplicationException("El recurso /tarjetas/" + tarjetasId + " no existe.", 404);
+        }
+        TarjetaDeCreditoDTO tarjetaDTO = new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(tarjetasId, tarjeta.toEntity()));
+        return tarjetaDTO;
     }
           
     
