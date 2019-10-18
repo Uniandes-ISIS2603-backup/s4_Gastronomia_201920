@@ -5,8 +5,12 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -20,10 +24,16 @@ public class FacturaEntity extends BaseEntity
     
     private int valor;
 
+    @Temporal(TemporalType.DATE)
     private Date fecha;
         
     private boolean sePago;
 
+    
+    public FacturaEntity()
+    {
+        //Constructor vacio para evitar falla.
+    }
     /**
      * @return el valorCompleto
      */
@@ -72,19 +82,8 @@ public class FacturaEntity extends BaseEntity
         this.sePago = sePago;
     }
     
-    /**
-     * @return the fecha
-     */
-    public Date getFecha() {
-        return fecha;
-    }
+   
 
-    /**
-     * @param fecha the fecha to set
-     */
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
     @Override
     public boolean equals(Object obj)
     {
@@ -106,6 +105,17 @@ public class FacturaEntity extends BaseEntity
         return super.hashCode();
     } 
 
-    
-  
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 }

@@ -3,9 +3,16 @@ delete from RESTAURANTEENTITY_RESERVAENTITY;
 delete from PlatoEntity;
 delete from RestauranteEntity;
 delete from AdministradorEntity;
+delete from TarjetaDeCreditoEntity;
+
+
 delete from FoodBlogEntity;
 delete from ResenaEntity;
 
+
+
+delete from TipoComidaEntity;
+delete from FacturaEntity;
 
 
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (1, 'qbB1NA', 71.69, 0, '32 Montana Terrace', '03/16/2020', 'http://dummyimage.com/119x170.jpg/ff4444/ffffff', 1, 'Zamit', 1, 0, 1, 4.74, 'Ampelgading');

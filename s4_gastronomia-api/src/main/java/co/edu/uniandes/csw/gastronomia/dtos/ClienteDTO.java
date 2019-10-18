@@ -36,6 +36,7 @@ public class ClienteDTO implements Serializable
     private int puntos;
     
     //private TarjetaDeCreditoDTO tarjetaCredito;
+    
 
     public ClienteDTO() {
     }
@@ -178,6 +179,7 @@ public class ClienteDTO implements Serializable
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
     public ClienteEntity toEntity()
     {
         ClienteEntity clienteEntity=new ClienteEntity();
@@ -192,4 +194,21 @@ public class ClienteDTO implements Serializable
         clienteEntity.setPuntos(this.puntos);
                 return clienteEntity;
     }
+
+
+    /**
+     * @return the tarjetaCredito
+     */
+    //public TarjetaDeCreditoDTO getTarjetaCredito() {
+      //  return tarjetaCredito;
+    //}
+
+    /**
+     * @param tarjetaCredito the tarjetaCredito to set
+     */
+    //public void setTarjetaCredito(TarjetaDeCreditoDTO tarjetaCredito) {
+      //  this.tarjetaCredito = tarjetaCredito;
+    //}
+    
+
 }

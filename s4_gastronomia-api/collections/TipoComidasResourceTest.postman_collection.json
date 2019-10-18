@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "e7969404-96c5-42e1-aebe-44bc124988d6",
+		"name": "TipoComidasResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear TipoComida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d050007-65dc-4965-b970-df3ccecc9d5a",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\" ,data.id);",
+							"tests[\"No generea error al crear\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"id\":1,\n\t\"nombre\":\"arabe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear TipoComida vacia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3ef446a-f1e6-4e79-8c40-2335357b6c25",
+						"exec": [
+							"tests[\"No crea el tipoComida vacio.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El tipo comida no tiene nombre\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear TipoComida ya existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3ef446a-f1e6-4e79-8c40-2335357b6c25",
+						"exec": [
+							"tests[\"No crea el tipoComida ya existente.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has (\"El tipo de comida ya existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"arabe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un tipo comida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0b2ee43-ee16-4524-acd3-87e72a192f77",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas los tipo comida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0b2ee43-ee16-4524-acd3-87e72a192f77",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el get tipos\"] = responseCode.code === 200;",
+							"tests[\"Mensaje correcto de error\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un tipo no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0b2ee43-ee16-4524-acd3-87e72a192f77",
+						"exec": [
+							"tests[\"Genera error\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El recurso /tipoComidas/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tipo comida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b6f1291-6f66-44a7-a513-0f6c8eee6008",
+						"exec": [
+							"tests[\"No genera error en el update\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\" : \"turca\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tipo comida inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b6f1291-6f66-44a7-a513-0f6c8eee6008",
+						"exec": [
+							"",
+							"tests[\"El tipo comida no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tipoComidas/0 no existe.\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\" : \"turca\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un tipo comida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8308ba0b-5d0a-4606-8e74-9c6b9febc5f9",
+						"exec": [
+							"tests[\"No genera error al eliminar\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un tipo comida inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8308ba0b-5d0a-4606-8e74-9c6b9febc5f9",
+						"exec": [
+							"tests[\"El tipo comida no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tipoComidas/0 no existe.\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tipoComidas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

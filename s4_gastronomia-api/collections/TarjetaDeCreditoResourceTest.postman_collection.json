@@ -1,0 +1,789 @@
+{
+	"info": {
+		"_postman_id": "71371a8a-2e56-4423-b86b-c98c88144c49",
+		"name": "TarjetaDeCreditoResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cc370cf-31a1-461a-88ce-eb26bcf300af",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 4444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una tarjeta cvv negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af3f4c9f-0b3d-430f-a63e-46621aad107b",
+						"exec": [
+							"tests[\"Cvv negativo\"] = responseCode.code === 412;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": -11,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 4444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarjeta Cvv no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23d2c469-dcf6-4288-9f65-33e9670fcd9d",
+						"exec": [
+							"tests[\"Cvv no valido\"] = responseCode.code === 412;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 11,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 4444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarjeta numero negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac045efa-53eb-42c3-9511-b767e4903ab3",
+						"exec": [
+							"tests[\"numero negativo\"] = responseCode.code === 412;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": -444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarjeta numero no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fda6b9ba-9bcc-4f01-9ea0-35ca2de8055f",
+						"exec": [
+							"tests[\"numero no valido\"] = responseCode.code === 412;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 4444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarjeta Banco no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e844c93-0146-4d36-98a0-0e74ccc41a27",
+						"exec": [
+							"tests[\"Banco no valido\"] = responseCode.code === 412;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 2444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarjeta fecha nula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1ab83c1-989c-49af-ac4e-0ece978f56d4",
+						"exec": [
+							"tests[\"fecha nula\"] = responseCode.code === 412;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"numero\": 4444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b7b0c1b-3be5-4488-97fa-cf3989987fb6",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3bd602a-3ecd-4f2d-bc56-d470c15c6262",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cvv\": 121,\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\n    \"numero\": 4444444444444443\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tarjeta con cvv negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69fdf27c-c364-465d-a947-61be2ee64a19",
+						"exec": [
+							"tests[\"No se puede crear un plato con precio negativo.\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cvv\": -21,\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\n    \"numero\": 4444444444444443\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tarjeta Cvv no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2368321b-9c21-4ce8-98ba-fe4d95cd803f",
+						"exec": [
+							"tests[\"No se puede crear un plato con precio negativo.\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cvv\": 1121,\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\n    \"numero\": 4444444444444443\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tarjeta numero negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7677f64-2875-4d97-8c84-75e270c2ac6b",
+						"exec": [
+							"tests[\"No se puede crear un plato con precio negativo.\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cvv\": 121,\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\n    \"numero\": -444444444444443\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tarjeta numero no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7df68b91-a78c-46b1-8534-71f299670091",
+						"exec": [
+							"tests[\"No se puede crear un plato con precio negativo.\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cvv\": 121,\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\n    \"numero\": 41444444444444443\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tarjeta banco no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5174aea0-0888-4552-9d5d-8851805f1d9b",
+						"exec": [
+							"tests[\"No se puede crear un plato con precio negativo.\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 2444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar tarjeta fecha nula",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d170c097-1e94-4d21-9ed8-1499d33b244a",
+						"exec": [
+							"tests[\"No se puede crear un plato con precio negativo.\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cvv\": 111,\r\n    \"numero\": 4444444444444444\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d6edc39-6ed9-4886-a8d4-1995daa17d67",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"tarjetas",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
