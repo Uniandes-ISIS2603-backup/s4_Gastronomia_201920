@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.gastronomia.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,6 +26,10 @@ public class ResenaEntity extends BaseEntity implements Serializable {
      */
     private String comentario;
 
+    
+  //  @PodamExclude 
+   // @OneToOne
+   // private ReservaEntity reserva;
     /**
      * @return the calificacion
      */
@@ -72,6 +78,20 @@ public class ResenaEntity extends BaseEntity implements Serializable {
        }
        return super.hashCode();
    }
+
+    /**
+     * @return the reserva
+     */
+    //public ReservaEntity getReserva() {
+    //    return reserva;
+   // }
+
+    /**
+     * @param reserva the reserva to set
+     */
+    //public void setReserva(ReservaEntity reserva) {
+    //    this.reserva = reserva;
+   // }
    
     
     

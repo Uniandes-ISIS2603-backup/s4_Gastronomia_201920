@@ -21,14 +21,14 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class TarjetaDeCreditoEntity extends BaseEntity{
     @PodamStrategyValue(NumeroTarjetaDeCreditoStrategy.class)
-    private long numero; 
+    private Long numero; 
     
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaDeVencimiento; 
     
     @PodamIntValue(minValue = 100, maxValue = 999)
-    private int cvv; 
+    private Integer cvv; 
     /**
      * @return the numero
      */
@@ -39,7 +39,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @param numero the numero to set
      */
-    public void setNumero(long numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
 
@@ -67,7 +67,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @param cvv the cvv to set
      */
-    public void setCvv(int cvv) {
+    public void setCvv(Integer cvv) {
         this.cvv = cvv;
     }
 

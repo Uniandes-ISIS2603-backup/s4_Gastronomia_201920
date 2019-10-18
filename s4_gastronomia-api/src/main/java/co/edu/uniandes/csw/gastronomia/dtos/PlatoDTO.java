@@ -16,16 +16,19 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class PlatoDTO implements Serializable {
     
+    private Long id;
     private Double precio; 
     private String rutaImagen;
     private String descripcion; 
     private String nombre;
+
     
     public PlatoDTO(){
         
     }
     public PlatoDTO(PlatoEntity plato)
     {
+        id = plato.getId();
         precio = plato.getPrecio(); 
         rutaImagen  = plato.getRutaImagen();
         descripcion = plato.getDescripcion(); 
@@ -34,6 +37,7 @@ public class PlatoDTO implements Serializable {
     public PlatoEntity toEntity()
     {
      PlatoEntity retorno = new PlatoEntity(); 
+     retorno.setId(id);
      retorno.setDescripcion(descripcion);
      retorno.setNombreComida(nombre);
      retorno.setPrecio(precio);
@@ -96,10 +100,25 @@ public class PlatoDTO implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     @Override
     public String toString()
     {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
     

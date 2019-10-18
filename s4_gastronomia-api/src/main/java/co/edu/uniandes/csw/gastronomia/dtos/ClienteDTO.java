@@ -21,6 +21,7 @@ public class ClienteDTO implements Serializable{
     private int puntos;
     
     //private TarjetaDeCreditoDTO tarjetaCredito;
+    
 
     public ClienteDTO() {
     }
@@ -66,5 +67,19 @@ public class ClienteDTO implements Serializable{
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
+    /**
+     * @return the tarjetaCredito
+     */
+    //public TarjetaDeCreditoDTO getTarjetaCredito() {
+      //  return tarjetaCredito;
+    //}
+
+    /**
+     * @param tarjetaCredito the tarjetaCredito to set
+     */
+    //public void setTarjetaCredito(TarjetaDeCreditoDTO tarjetaCredito) {
+      //  this.tarjetaCredito = tarjetaCredito;
+    //}
     
 }

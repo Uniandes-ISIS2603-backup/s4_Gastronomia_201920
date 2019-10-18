@@ -220,7 +220,7 @@ public class RestauranteResource
     public Class<PlatoResource> getReviewResource(@PathParam("restaurantesId") Long id) throws BusinessLogicException
     {
         if (logic.getRestaurante(id) == null) {
-            throw new WebApplicationException("El recurso /restaurantes/" + id + "/reviews no existe.", 404);
+            throw new WebApplicationException("El recurso /restaurantes/" + id + "/platos no existe.", 404);
         }
         return PlatoResource.class;
     }
