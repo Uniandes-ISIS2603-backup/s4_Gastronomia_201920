@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.gastronomia.ejb;
+import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.gastronomia.persistence.ClientePersistence;
 import co.edu.uniandes.csw.gastronomia.persistence.TarjetaDeCreditoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,15 +27,21 @@ public class TarjetaDeCreditoLogic {
     
     @Inject
     TarjetaDeCreditoPersistence persistence; 
+    
+    @Inject
+    private ClientePersistence clientePersistence;
     /**
      * Metodo para crear una tarjeta de credito
      * @param tarjeta tarjeta que se quiere crear
      * @return retorna el id de la tarjeta creada
      * @throws BusinessLogicException 
      */
-    public TarjetaDeCreditoEntity createTarjetaDeCredito(TarjetaDeCreditoEntity tarjeta)throws BusinessLogicException
+    public TarjetaDeCreditoEntity createTarjetaDeCredito(Long clienteId,TarjetaDeCreditoEntity tarjeta)throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creación de tarjeta");
+        ClienteEntity cliente = clientePersistence.find(clienteId);
+        tarjeta.setCliente(cliente);
+        
         if(tarjeta.getCvv() < 0)
         {
             throw new BusinessLogicException("El cvv no es negativo");
@@ -68,9 +76,11 @@ public class TarjetaDeCreditoLogic {
      * @return Retorna la tarjeta actualizada.
      * @throws BusinessLogicException 
      */
-    public TarjetaDeCreditoEntity updatetarjetaDeCredito(Long tarjetaId, TarjetaDeCreditoEntity tarjetaEntity) throws BusinessLogicException
+    public TarjetaDeCreditoEntity updatetarjetaDeCredito(Long clienteId, TarjetaDeCreditoEntity tarjetaEntity) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar tarjeta con id = {0}", tarjetaId);
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar tarjeta con id = {0}", tarjetaEntity.getId());
+        ClienteEntity cliente = clientePersistence.find(clienteId);
+        tarjetaEntity.setCliente(cliente);
          if(tarjetaEntity.getCvv() < 0)
         {
             throw new BusinessLogicException("El cvv no es negativo");
@@ -95,38 +105,46 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("La tarjeta no es visa ni mastercard");
         }
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar tarjeta con id = {0}", tarjetaId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar tarjeta con id = {0}", tarjetaEntity.getId());
         return persistence.update(tarjetaEntity);
     }
     /**
      * Metodo para eliminar una tarjeta de credito
      * @param tarjetaId 
      */
-    public void deleteTarjetaDeCredito(Long tarjetaId)
+    public void deleteTarjetaDeCredito(Long clienteId, Long tarjetaId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar tarjeta con id = {0}", tarjetaId);
+        TarjetaDeCreditoEntity vieja = findTarjetaDeCredito(clienteId, tarjetaId);
+        if(vieja == null)
+        {
+            throw new BusinessLogicException("La tarjeta no esta asociada al cliente indicado");
+        }
         persistence.delete(tarjetaId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar tarjeta con id = {0}", tarjetaId);
     }
-    /**
-     * Metodo para obtener todas las tarjetas de credtio
-     * @return 
-     */
-    public List<TarjetaDeCreditoEntity> findAllTarjetas()
-    {
-        
-        return persistence.findAll();
-        
-    }
+
     /**
      * Metodo para consultar una tarjeta de credito segun el id dado.
      * @param tarjetaId. Id de la tarjeta que se quiere consultar
      * @return Tarjeta con el id indicado. Null en caso de que no exista ninguna tarjeta.
      */
-    public TarjetaDeCreditoEntity findTarjetaDeCredito(Long tarjetaId)
+    public TarjetaDeCreditoEntity findTarjetaDeCredito(Long clienteId, Long tarjetaId)
     {   
-        return persistence.find(tarjetaId);
+        return persistence.find(clienteId,tarjetaId);
     }
+    
+     /**
+     * Metodo para consultar todos las tarjetas de un cliente.
+     * @param clienteId
+     * @return 
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetas(Long clienteId)
+    {
+        ClienteEntity clienteEntity = clientePersistence.find(clienteId);
+        return clienteEntity.getTarjetas();
+    }
+
        
     
     

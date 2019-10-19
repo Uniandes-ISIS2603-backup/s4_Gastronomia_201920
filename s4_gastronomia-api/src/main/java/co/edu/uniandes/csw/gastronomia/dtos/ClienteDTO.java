@@ -34,10 +34,7 @@ public class ClienteDTO implements Serializable
     private String numeroContacto;
     
     private int puntos;
-    
-    //private TarjetaDeCreditoDTO tarjetaCredito;
-    
-
+   
     public ClienteDTO() {
     }
     public ClienteDTO(ClienteEntity clienteEntity)
@@ -195,20 +192,5 @@ public class ClienteDTO implements Serializable
                 return clienteEntity;
     }
 
-
-    /**
-     * @return the tarjetaCredito
-     */
-    //public TarjetaDeCreditoDTO getTarjetaCredito() {
-      //  return tarjetaCredito;
-    //}
-
-    /**
-     * @param tarjetaCredito the tarjetaCredito to set
-     */
-    //public void setTarjetaCredito(TarjetaDeCreditoDTO tarjetaCredito) {
-      //  this.tarjetaCredito = tarjetaCredito;
-    //}
-    
 
 }

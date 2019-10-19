@@ -34,13 +34,14 @@ public class ClienteEntity extends UsuarioEntity{
     
     private int puntos;
     
+     
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private TarjetaDeCreditoEntity tarjetaCredito;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<TarjetaDeCreditoEntity> tarjetas ;
 //    
     @PodamExclude
     @OneToMany
-   private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
+    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
 //    
 //    @PodamExclude
 //    @ManyToMany
@@ -79,12 +80,7 @@ public class ClienteEntity extends UsuarioEntity{
         return puntos;
     }
 
-    /**
-     * @return the tarjetaCredito
-     */
-    public TarjetaDeCreditoEntity getTarjetaCredito() {
-        return tarjetaCredito;
-  }
+ 
 //
     /**
      * @return the foodBlogs
@@ -135,12 +131,7 @@ public class ClienteEntity extends UsuarioEntity{
         this.puntos = puntos;
     }
 
-    /**
-     * @param tarjetaCredito the tarjetaCredito to set
-     */
-    public void setTarjetaCredito(TarjetaDeCreditoEntity tarjetaCredito) {
-        this.tarjetaCredito = tarjetaCredito;
-}
+
 //
    
 
@@ -188,5 +179,19 @@ public class ClienteEntity extends UsuarioEntity{
             return this.getUsername().hashCode();
         }
         return super.hashCode();
+    }
+
+    /**
+     * @return the tarjetas
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetas() {
+        return tarjetas;
+    }
+
+    /**
+     * @param tarjetas the tarjetas to set
+     */
+    public void setTarjetas(List<TarjetaDeCreditoEntity> tarjetas) {
+        this.tarjetas = tarjetas;
     }
 }

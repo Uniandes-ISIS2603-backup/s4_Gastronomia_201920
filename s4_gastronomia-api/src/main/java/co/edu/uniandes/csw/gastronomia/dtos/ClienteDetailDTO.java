@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.gastronomia.dtos;
 
 import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
+import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     //private List<FacturaDTO> facturas = new ArrayList<FacturaDTO>();
     
     private List<ReservaDTO> reservas = new ArrayList<ReservaDTO>();
+    
+    private List<TarjetaDeCreditoDTO> tarjetas = new ArrayList<TarjetaDeCreditoDTO>();
 
     public ClienteDetailDTO() 
     {
@@ -42,6 +45,12 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
                 
             }
         }
+        List<TarjetaDeCreditoEntity> listaTarjetas = cliente.getTarjetas();
+        for(TarjetaDeCreditoEntity e: listaTarjetas)
+        {
+            tarjetas.add(new TarjetaDeCreditoDTO(e));
+        }
+
     }
     public ClienteEntity toEntity()
     {
@@ -53,8 +62,15 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             {
             foodBlogentity.add(fbDTO.toEntity());
             }
+            cliente.setFoodBlogs(foodBlogentity);
         
         }
+        List<TarjetaDeCreditoEntity> lista = new ArrayList<TarjetaDeCreditoEntity>();
+        for(TarjetaDeCreditoDTO e: getTarjetas())
+        {
+            lista.add(e.toEntity());
+        }
+        cliente.setTarjetas(lista);
         return cliente;
     }
     /**
@@ -84,5 +100,19 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     public void setReservas(List<ReservaDTO> reservas) {
         this.reservas = reservas;
     } 
+
+    /**
+     * @return the tarjetas
+     */
+    public List<TarjetaDeCreditoDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    /**
+     * @param tarjetas the tarjetas to set
+     */
+    public void setTarjetas(List<TarjetaDeCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
     
 }
