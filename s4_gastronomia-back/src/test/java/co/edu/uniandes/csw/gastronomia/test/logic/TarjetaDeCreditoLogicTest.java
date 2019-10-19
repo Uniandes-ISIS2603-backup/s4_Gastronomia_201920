@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.test.logic;
 import co.edu.uniandes.csw.gastronomia.ejb.TarjetaDeCreditoLogic;
+import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.TarjetaDeCreditoPersistence;
@@ -44,6 +45,8 @@ public class TarjetaDeCreditoLogicTest {
     @Inject
     private UserTransaction utx;
     
+    private ClienteEntity cliente;
+    
     private List<TarjetaDeCreditoEntity> data = new ArrayList<TarjetaDeCreditoEntity>();
     
     SecureRandom random = new SecureRandom();
@@ -74,10 +77,14 @@ public class TarjetaDeCreditoLogicTest {
         utx.begin();
         em.joinTransaction();
         em.createQuery("delete from TarjetaDeCreditoEntity").executeUpdate();
-        PodamFactory factory = new PodamFactoryImpl();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+        
+        cliente = factory.manufacturePojo(ClienteEntity.class);
+        em.persist(cliente);
           for(int i = 0; i < 3; i++)
           {
             TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+            tarjeta.setCliente(cliente);
             em.persist(tarjeta); 
             data.add(tarjeta);
           }
@@ -102,8 +109,9 @@ public class TarjetaDeCreditoLogicTest {
     @Test
     public void createTarjetaDeCredito() throws BusinessLogicException
     {
-        TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
+        TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+        tarjeta.setCliente(cliente);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(cliente.getId(),tarjeta);
         Assert.assertNotNull(resultado);
         TarjetaDeCreditoEntity entidad = em.find(TarjetaDeCreditoEntity.class, resultado.getId());
         Assert.assertEquals(entidad.getCvv(), resultado.getCvv());
@@ -119,8 +127,9 @@ public class TarjetaDeCreditoLogicTest {
     {
         
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
+        tarjeta.setCliente(cliente);
         tarjeta.setCvv(-11);
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(cliente.getId(),tarjeta);
     }
     /**
      * Test para crear una tarjeta con un Cvv que no es de 3 digitos.
@@ -131,8 +140,9 @@ public class TarjetaDeCreditoLogicTest {
     {
         
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
+        tarjeta.setCliente(cliente);
         tarjeta.setCvv(4444);
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(cliente.getId(),tarjeta);
     }
     /**
      * Test para crear una tarjeta con un numero que no es de 16 digitos.
@@ -143,8 +153,9 @@ public class TarjetaDeCreditoLogicTest {
     {
         
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
+        tarjeta.setCliente(cliente);
         tarjeta.setNumero(new Long(44444));
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(cliente.getId(),tarjeta);
     }
     /**
      * Test para crear una tarjeta con un numero negativo
@@ -155,8 +166,9 @@ public class TarjetaDeCreditoLogicTest {
     {
         
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
+        tarjeta.setCliente(cliente);
         tarjeta.setNumero(Long.parseLong("-44444444444444"));
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(cliente.getId(),tarjeta);
     }
     /**
      * Test para crear una tarjeta con un banco no soportado. 
@@ -167,8 +179,9 @@ public class TarjetaDeCreditoLogicTest {
     {
         
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class); 
+        tarjeta.setCliente(cliente);
         tarjeta.setNumero(Long.parseLong("111111111111111"));
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(tarjeta);
+        TarjetaDeCreditoEntity resultado = tarjetaLogic.createTarjetaDeCredito(cliente.getId(), tarjeta);
     }
     /**
      * Test para actualizar una tarjeta de credito
@@ -271,34 +284,28 @@ public class TarjetaDeCreditoLogicTest {
     @Test
     public void findTarjetaTest()
     {
-        TarjetaDeCreditoEntity entity = data.get(0);
-        TarjetaDeCreditoEntity resultado = tarjetaLogic.findTarjetaDeCredito(entity.getId());
+       TarjetaDeCreditoEntity entity = data.get(0);
+       TarjetaDeCreditoEntity resultado = tarjetaLogic.findTarjetaDeCredito(cliente.getId(), entity.getId());
        Assert.assertNotNull(resultado);
        Assert.assertEquals(resultado.getNumero(), entity.getNumero());
-        Assert.assertEquals(resultado.getCvv(), entity.getCvv());
-        Assert.assertEquals(resultado.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+       Assert.assertEquals(resultado.getCvv(), entity.getCvv());
+       Assert.assertEquals(resultado.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
     }
-    /**
-     * Test para encontrar todas las tarjetas. 
-     */
-    @Test
-    public void findAllTarjetasTest()
+    
+    
+     /**
+      * Test para eliminar una tarjeta que no esta asociada a un cliente
+      * @throws BusinessLogicException 
+      */
+     @Test(expected = BusinessLogicException.class )
+    public void deleteTarjetaDeCreditoTestClienteInexistente() throws BusinessLogicException
     {
-        List<TarjetaDeCreditoEntity> lista = tarjetaLogic.findAllTarjetas();
-        Assert.assertEquals(data.size(), lista.size());
-        for(TarjetaDeCreditoEntity e: lista)
-        {
-            boolean found = false; 
-            for(TarjetaDeCreditoEntity f: data)
-            {
-                if(e.getId().equals(f.getId()))
-                {
-                    found = true; 
-                }
-            }
-            Assert.assertTrue(found);
-        }
+        TarjetaDeCreditoEntity tarjeta = data.get(0);
+        ClienteEntity nuevo = factory.manufacturePojo(ClienteEntity.class);
+        tarjetaLogic.deleteTarjetaDeCredito( nuevo.getId(), tarjeta.getId());
+    
     }
+    
     /**
      * Test para borrar una tarjeta decredito
      * @throws BusinessLogicException
@@ -307,15 +314,17 @@ public class TarjetaDeCreditoLogicTest {
     public void deleteTarjetaDeCreditoTest()throws BusinessLogicException
     {
       
-      TarjetaDeCreditoEntity tarjetaNueva = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
-      
-      TarjetaDeCreditoEntity result = tarjetaLogic.createTarjetaDeCredito(tarjetaNueva);
+      TarjetaDeCreditoEntity tarjeta = data.get(0);
 
-      tarjetaLogic.deleteTarjetaDeCredito(tarjetaNueva.getId());
+      tarjetaLogic.deleteTarjetaDeCredito( cliente.getId(), tarjeta.getId());
       
-      TarjetaDeCreditoEntity borrada = em.find(TarjetaDeCreditoEntity.class,result.getId()); 
+      TarjetaDeCreditoEntity borrada = em.find(TarjetaDeCreditoEntity.class,tarjeta.getId()); 
       Assert.assertNull(borrada);
     }
+   
+            
+                
+            
    
     
 }

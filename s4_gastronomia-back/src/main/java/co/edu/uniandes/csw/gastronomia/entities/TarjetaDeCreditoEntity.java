@@ -8,9 +8,12 @@ package co.edu.uniandes.csw.gastronomia.entities;
 import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import co.edu.uniandes.csw.gastronomia.podam.NumeroTarjetaDeCreditoStrategy;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamIntValue;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
@@ -29,6 +32,10 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     
     @PodamIntValue(minValue = 100, maxValue = 999)
     private Integer cvv; 
+    
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;
     /**
      * @return the numero
      */
@@ -86,5 +93,19 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     public int hashCode()
     {
         return super.hashCode();
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 }
