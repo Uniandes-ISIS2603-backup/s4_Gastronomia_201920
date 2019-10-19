@@ -5,17 +5,20 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
+import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Cristina Isabel González Osorio
+ * @author Cristina Isabel González Osorio,David Martinez
  */
-public class ClienteDetailDTO extends ClienteDTO{
+public class ClienteDetailDTO extends ClienteDTO implements Serializable
+{
     
-    //private List<FoodBlogDTO> foodBlogs = new ArrayList<FoodBlogDTO>();
+    private List<FoodBlogDTO> foodBlogs = new ArrayList<FoodBlogDTO>();
     
     //private List<TipoComidaDTO> preferencias = new ArrayList<TipoComidaDTO>();
     
@@ -23,8 +26,50 @@ public class ClienteDetailDTO extends ClienteDTO{
     
     private List<ReservaDTO> reservas = new ArrayList<ReservaDTO>();
 
-    public ClienteDetailDTO() {
+    public ClienteDetailDTO() 
+    {
+        super();
     }
+    
+    public ClienteDetailDTO(ClienteEntity  cliente)
+    {
+        super(cliente);
+        if (cliente!=null) 
+        {
+            foodBlogs=new ArrayList<>();
+            for (FoodBlogEntity foodBlogEntity: cliente.getFoodBlogs()) {
+              foodBlogs.add(new FoodBlogDTO(foodBlogEntity));
+                
+            }
+        }
+    }
+    public ClienteEntity toEntity()
+    {
+        ClienteEntity cliente= super.toEntity();
+        if (foodBlogs!=null)
+        {
+        List<FoodBlogEntity> foodBlogentity=new ArrayList<>();
+            for (FoodBlogDTO fbDTO : foodBlogs)
+            {
+            foodBlogentity.add(fbDTO.toEntity());
+            }
+        
+        }
+        return cliente;
+    }
+    /**
+     * 
+     * @return  los foodblogs
+     */
+        public List<FoodBlogDTO> getfoodBlogs()
+        {
+            return foodBlogs;
+        }
+
+        public void setFoodBlogs(List<FoodBlogDTO> pFoodBlogs)
+        {
+            this.foodBlogs=pFoodBlogs;
+        }
 
     /**
      * @return the reservas

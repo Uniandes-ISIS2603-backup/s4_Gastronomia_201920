@@ -40,9 +40,9 @@ private String archivoMultimedia;
  */
 private String comentarios;
 
- //@PodamExclude
-// @ManyToOne
- //private ClienteEntity cliente;
+ @PodamExclude
+ @ManyToOne
+ private ClienteEntity cliente;
 //-------------------------------------------------------
 //metodos Get Set
 //-------------------------------------------------------

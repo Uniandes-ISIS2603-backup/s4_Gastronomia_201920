@@ -38,9 +38,9 @@ public class ClienteEntity extends UsuarioEntity{
     @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private TarjetaDeCreditoEntity tarjetaCredito;
 //    
-//    @PodamExclude
-//    @OneToMany
-//    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
+    @PodamExclude
+    @OneToMany
+   private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
 //    
 //    @PodamExclude
 //    @ManyToMany
@@ -86,12 +86,12 @@ public class ClienteEntity extends UsuarioEntity{
         return tarjetaCredito;
   }
 //
-//    /**
-//     * @return the foodBlogs
-//     */
-//    public List<FoodBlogEntity> getFoodBlogs() {
-//        return foodBlogs;
-//    }
+    /**
+     * @return the foodBlogs
+     */
+    public List<FoodBlogEntity> getFoodBlogs() {
+        return foodBlogs;
+    }
 //
 //    /**
 //     * @return the preferencias
@@ -142,12 +142,7 @@ public class ClienteEntity extends UsuarioEntity{
         this.tarjetaCredito = tarjetaCredito;
 }
 //
-//    /**
-//     * @param foodBlogs the foodBlogs to set
-//     */
-//    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs) {
-//        this.foodBlogs = foodBlogs;
-//    }
+   
 
 //    /**
 //     * @param preferencias the preferencias to set
@@ -169,7 +164,13 @@ public class ClienteEntity extends UsuarioEntity{
 //    public void setReservas(List<ReservaEntity> reservas) {
 //        this.reservas = reservas;
 //    }
-    
+     /**
+     * @param foodBlogs the foodBlogs to set
+     */
+    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs)
+    {
+        this.foodBlogs = foodBlogs;
+    }
     @Override
     public boolean equals(Object obj) {
         if (! super.equals(obj)) {
