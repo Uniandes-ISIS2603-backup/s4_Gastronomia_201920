@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.adapters.DateAdapter;
 import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -29,6 +31,7 @@ public class ClienteDTO implements Serializable
     
     private String contrasena;
     
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date cumpleanos;
     
     private String numeroContacto;
