@@ -13,11 +13,13 @@ import java.io.Serializable;
  * @author Estudiante
  */
 public class FoodBlogDTO implements Serializable  
- {
-    private Long id;
-     /**
-     * Representa el texto descriptivo del blog del usuario
-     */
+{
+    
+private Long id;
+    
+/**
+* Representa el texto descriptivo del blog del usuario
+*/
 private String texto;    
 
 /**
@@ -40,11 +42,12 @@ private String comentarios;
 
 //private ClienteDTO clienteDto;
 public FoodBlogDTO()
- {
-     //
- }
- public FoodBlogDTO(FoodBlogEntity fb)
- {
+{
+  //
+}
+ 
+    public FoodBlogDTO(FoodBlogEntity fb)
+    {
      if(fb!=null)
      {
          this.id=fb.getId();
@@ -54,7 +57,7 @@ public FoodBlogDTO()
      this.archivoMultimedia=fb.getArchivoMultimedia();
      this.comentarios=fb.getComentarios();
      }
- }
+    }
  
  
  public FoodBlogEntity toEntity()

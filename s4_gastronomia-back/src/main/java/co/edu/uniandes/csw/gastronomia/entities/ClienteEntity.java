@@ -34,25 +34,26 @@ public class ClienteEntity extends UsuarioEntity{
     
     private int puntos;
     
+     
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private TarjetaDeCreditoEntity tarjetaCredito;
-//    
-//    @PodamExclude
-//    @OneToMany
-//    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
-//    
-//    @PodamExclude
-//    @ManyToMany
-//    private List<TipoComidaEntity> preferencias = new ArrayList<TipoComidaEntity>();
-//    
-//    @PodamExclude
-//    @OneToMany
-//    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
-//    
-//    @PodamExclude
-//    @OneToMany
-//    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<TarjetaDeCreditoEntity> tarjetas ;
+    
+    @PodamExclude
+    @OneToMany
+    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
+    
+    @PodamExclude
+    @OneToMany
+    private List<TipoComidaEntity> preferencias = new ArrayList<TipoComidaEntity>();
+    
+    @PodamExclude
+    @OneToMany
+    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
+    
+    @PodamExclude
+    @OneToMany
+    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 
     public ClienteEntity() {
         super();
@@ -79,40 +80,35 @@ public class ClienteEntity extends UsuarioEntity{
         return puntos;
     }
 
+ 
+
     /**
-     * @return the tarjetaCredito
+     * @return the foodBlogs
      */
-    public TarjetaDeCreditoEntity getTarjetaCredito() {
-        return tarjetaCredito;
-  }
-//
-//    /**
-//     * @return the foodBlogs
-//     */
-//    public List<FoodBlogEntity> getFoodBlogs() {
-//        return foodBlogs;
-//    }
-//
-//    /**
-//     * @return the preferencias
-//     */
-//    public List<TipoComidaEntity> getPreferencias() {
-//        return preferencias;
-//    }
-//
-//    /**
-//     * @return the facturas
-//     */
-//    public List<FacturaEntity> getFacturas() {
-//        return facturas;
-//    }
-//
-//    /**
-//     * @return the reservas
-//     */
-//    public List<ReservaEntity> getReservas() {
-//        return reservas;
-//    }
+    public List<FoodBlogEntity> getFoodBlogs() {
+        return foodBlogs;
+    }
+
+    /**
+     * @return the preferencias
+     */
+    public List<TipoComidaEntity> getPreferencias() {
+        return preferencias;
+    }
+
+    /**
+     * @return the facturas
+     */
+    public List<FacturaEntity> getFacturas() {
+        return facturas;
+    }
+
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
 
     /**
      * @param cumpleanos the cumpleanos to set
@@ -135,41 +131,39 @@ public class ClienteEntity extends UsuarioEntity{
         this.puntos = puntos;
     }
 
-    /**
-     * @param tarjetaCredito the tarjetaCredito to set
-     */
-    public void setTarjetaCredito(TarjetaDeCreditoEntity tarjetaCredito) {
-        this.tarjetaCredito = tarjetaCredito;
-}
-//
-//    /**
-//     * @param foodBlogs the foodBlogs to set
-//     */
-//    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs) {
-//        this.foodBlogs = foodBlogs;
-//    }
 
-//    /**
-//     * @param preferencias the preferencias to set
-//     */
-//    public void setPreferencias(List<TipoComidaEntity> preferencias) {
-//        this.preferencias = preferencias;
-//    }
 //
-//    /**
-//     * @param facturas the facturas to set
-//     */
-//    public void setFacturas(List<FacturaEntity> facturas) {
-//        this.facturas = facturas;
-//    }
-//
-//    /**
-//     * @param reservas the reservas to set
-//     */
-//    public void setReservas(List<ReservaEntity> reservas) {
-//        this.reservas = reservas;
-//    }
+   
+
+    /**
+     * @param preferencias the preferencias to set
+     */
+    public void setPreferencias(List<TipoComidaEntity> preferencias) {
+        this.preferencias = preferencias;
+    }
+
+    /**
+     * @param facturas the facturas to set
+     */
+    public void setFacturas(List<FacturaEntity> facturas) {
+        this.facturas = facturas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
     
+    
+     /**
+     * @param foodBlogs the foodBlogs to set
+     */
+    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs)
+    {
+        this.foodBlogs = foodBlogs;
+    }
     @Override
     public boolean equals(Object obj) {
         if (! super.equals(obj)) {
@@ -187,5 +181,19 @@ public class ClienteEntity extends UsuarioEntity{
             return this.getUsername().hashCode();
         }
         return super.hashCode();
+    }
+
+    /**
+     * @return the tarjetas
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetas() {
+        return tarjetas;
+    }
+
+    /**
+     * @param tarjetas the tarjetas to set
+     */
+    public void setTarjetas(List<TarjetaDeCreditoEntity> tarjetas) {
+        this.tarjetas = tarjetas;
     }
 }

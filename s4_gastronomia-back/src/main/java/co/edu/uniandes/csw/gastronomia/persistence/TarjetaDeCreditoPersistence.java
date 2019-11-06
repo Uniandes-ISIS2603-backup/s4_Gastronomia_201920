@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -25,12 +26,25 @@ public class TarjetaDeCreditoPersistence {
     /**
      * Metodo que busca una tarjeta de credito asociada con el id dado
      * @param tarjetaId. Id de la tarjeta que se quiere buscar.
+     * @param clienteId. Id del cliente. 
      * @return Retorna la tarjeta de credito asociado al Id. En caso de que no 
      * exista se retorna null
      */
-    public TarjetaDeCreditoEntity find(Long tarjetaId)
+    public TarjetaDeCreditoEntity find(Long clienteId,Long tarjetaId)
     {
-        return em.find(TarjetaDeCreditoEntity.class, tarjetaId);
+       TypedQuery<TarjetaDeCreditoEntity> q = em.createQuery("select p from TarjetaDeCreditoEntity p where (p.cliente.id = :clienteid) and (p.id = :tarjetaId)", TarjetaDeCreditoEntity.class);
+        q.setParameter("clienteid", clienteId);
+        q.setParameter("tarjetaId", tarjetaId);
+        List<TarjetaDeCreditoEntity> results = q.getResultList();
+        TarjetaDeCreditoEntity tarjeta = null;
+        if (results == null) {
+            tarjeta = null;
+        } else if (results.isEmpty()) {
+            tarjeta = null;
+        } else if (results.size() >= 1) {
+            tarjeta = results.get(0);
+        }
+        return tarjeta;
     }
     /**
      * Crea una tarjeta de credito
@@ -60,14 +74,6 @@ public class TarjetaDeCreditoPersistence {
         TarjetaDeCreditoEntity tarjeta = em.find(TarjetaDeCreditoEntity.class,tarjetaId);
         em.remove(tarjeta); 
     }
-    /**
-     * Encuentra todas las tarjetas de credito existentes en la base de datos
-     * @return. Retorna una lista con todas las tarjetas de credito existentes. 
-     */
-    public List<TarjetaDeCreditoEntity> findAll()
-    {
-        Query q = em.createQuery("select u from TarjetaDeCreditoEntity u"); 
-        return q.getResultList();
-    }
+  
     
 }
