@@ -88,7 +88,8 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     {
       return super.equals(o);
     }
-     @Override
+    
+    @Override
     @Deprecated
     public int hashCode()
     {

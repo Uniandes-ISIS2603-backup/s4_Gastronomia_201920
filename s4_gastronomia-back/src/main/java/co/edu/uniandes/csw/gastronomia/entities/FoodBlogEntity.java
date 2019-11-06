@@ -140,16 +140,16 @@ private String comentarios;
     /**
      * @return the cliente
      */
-    //public ClienteEntity getCliente() {
-   //     return cliente;
-   // }
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
 
     /**
      * @param cliente the cliente to set
      */
-   // public void setCliente(ClienteEntity cliente) {
-    //    this.cliente = cliente;
-   // }
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
    
     
     

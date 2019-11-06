@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.gastronomia.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,6 +23,12 @@ public class TipoComidaEntity extends BaseEntity
     */
     private String nombre;
 
+    
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;
+    
+    
     /**
     * Constructor de la clase TipoComidaEntity.
     */
@@ -64,4 +73,18 @@ public class TipoComidaEntity extends BaseEntity
         }
         return super.hashCode();
     } 
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
 }

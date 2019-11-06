@@ -7,9 +7,12 @@ package co.edu.uniandes.csw.gastronomia.entities;
 
 import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
@@ -40,6 +43,10 @@ public class FacturaEntity extends BaseEntity
     * Saber si se pago la factura.
     */
     private boolean sePago;
+    
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;
 
     /**
     * Constructor de la clase FacturaEntity.
@@ -132,5 +139,19 @@ public class FacturaEntity extends BaseEntity
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 }
