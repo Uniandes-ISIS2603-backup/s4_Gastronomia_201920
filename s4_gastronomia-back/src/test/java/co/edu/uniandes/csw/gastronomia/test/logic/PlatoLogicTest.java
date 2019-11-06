@@ -73,7 +73,8 @@ public class PlatoLogicTest {
         utx.begin();
         em.joinTransaction();
         em.createQuery("delete from PlatoEntity").executeUpdate();
-        PodamFactory factory = new PodamFactoryImpl();
+        em.createQuery("delete from RestauranteEntity").executeUpdate();
+
         
         restaurante = factory.manufacturePojo(RestauranteEntity.class);
         em.persist(restaurante);
@@ -232,6 +233,36 @@ public class PlatoLogicTest {
         Assert.assertEquals(entity.getRutaImagen(),resultado.getRutaImagen());
         Assert.assertEquals(entity.getId(),resultado.getId());
     }
+    
+    /**
+     * Test para crear un plato a un restaurante inexistente
+     * @throws BusinessLogicException 
+     */
+    @Test(expected = BusinessLogicException.class )
+    public void deleteTarjetaDeCreditoTestClienteInexistente() throws BusinessLogicException
+    {
+        PlatoEntity tarjeta = data.get(0);
+        RestauranteEntity nuevo = factory.manufacturePojo(RestauranteEntity.class);
+        platoLogic.deletePlato(nuevo.getId(), tarjeta.getId());
+    
+    }
+    /**
+     * Test para borrar un plato
+     * @throws BusinessLogicException
+     */
+    @Test
+    public void deleteTarjetaDeCreditoTest()throws BusinessLogicException
+    {
+      
+      PlatoEntity plato = data.get(0);
+
+      platoLogic.deletePlato(restaurante.getId(), plato.getId());
+      
+      PlatoEntity borrada = em.find(PlatoEntity.class,plato.getId()); 
+      Assert.assertNull(borrada);
+    }
+    
+    
   
  
     

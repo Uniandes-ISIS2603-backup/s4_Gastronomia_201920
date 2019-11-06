@@ -34,13 +34,14 @@ public class ClienteEntity extends UsuarioEntity{
     
     private int puntos;
     
+     
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private TarjetaDeCreditoEntity tarjetaCredito;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<TarjetaDeCreditoEntity> tarjetas ;
 //    
-//    @PodamExclude
-//    @OneToMany
-//    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
+    @PodamExclude
+    @OneToMany
+    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
 //    
 //    @PodamExclude
 //    @ManyToMany
@@ -79,19 +80,14 @@ public class ClienteEntity extends UsuarioEntity{
         return puntos;
     }
 
-    /**
-     * @return the tarjetaCredito
-     */
-    public TarjetaDeCreditoEntity getTarjetaCredito() {
-        return tarjetaCredito;
-  }
+ 
 //
-//    /**
-//     * @return the foodBlogs
-//     */
-//    public List<FoodBlogEntity> getFoodBlogs() {
-//        return foodBlogs;
-//    }
+    /**
+     * @return the foodBlogs
+     */
+    public List<FoodBlogEntity> getFoodBlogs() {
+        return foodBlogs;
+    }
 //
 //    /**
 //     * @return the preferencias
@@ -135,19 +131,9 @@ public class ClienteEntity extends UsuarioEntity{
         this.puntos = puntos;
     }
 
-    /**
-     * @param tarjetaCredito the tarjetaCredito to set
-     */
-    public void setTarjetaCredito(TarjetaDeCreditoEntity tarjetaCredito) {
-        this.tarjetaCredito = tarjetaCredito;
-}
+
 //
-//    /**
-//     * @param foodBlogs the foodBlogs to set
-//     */
-//    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs) {
-//        this.foodBlogs = foodBlogs;
-//    }
+   
 
 //    /**
 //     * @param preferencias the preferencias to set
@@ -169,7 +155,13 @@ public class ClienteEntity extends UsuarioEntity{
 //    public void setReservas(List<ReservaEntity> reservas) {
 //        this.reservas = reservas;
 //    }
-    
+     /**
+     * @param foodBlogs the foodBlogs to set
+     */
+    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs)
+    {
+        this.foodBlogs = foodBlogs;
+    }
     @Override
     public boolean equals(Object obj) {
         if (! super.equals(obj)) {
@@ -187,5 +179,19 @@ public class ClienteEntity extends UsuarioEntity{
             return this.getUsername().hashCode();
         }
         return super.hashCode();
+    }
+
+    /**
+     * @return the tarjetas
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetas() {
+        return tarjetas;
+    }
+
+    /**
+     * @param tarjetas the tarjetas to set
+     */
+    public void setTarjetas(List<TarjetaDeCreditoEntity> tarjetas) {
+        this.tarjetas = tarjetas;
     }
 }

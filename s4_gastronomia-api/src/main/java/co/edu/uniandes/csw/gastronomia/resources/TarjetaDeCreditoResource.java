@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.gastronomia.dtos.TarjetaDeCreditoDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.TarjetaDeCreditoLogic;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -26,7 +28,6 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author je.canizarez
  */
-@Path("tarjetas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -35,17 +36,17 @@ public class TarjetaDeCreditoResource {
     private TarjetaDeCreditoLogic logic;
     
     @POST
-    public TarjetaDeCreditoDTO createTarjetaDeCredito( TarjetaDeCreditoDTO tarjeta)throws BusinessLogicException
+    public TarjetaDeCreditoDTO createTarjetaDeCredito(@PathParam("clienteId")Long clienteId, TarjetaDeCreditoDTO tarjeta)throws BusinessLogicException
     {
-        TarjetaDeCreditoDTO platoDTO = new TarjetaDeCreditoDTO(logic.createTarjetaDeCredito(tarjeta.toEntity()));
+        TarjetaDeCreditoDTO platoDTO = new TarjetaDeCreditoDTO(logic.createTarjetaDeCredito(clienteId, tarjeta.toEntity()));
         return platoDTO;
     }
     
     @GET
     @Path("{tarjetasId: \\d+}")
-    public TarjetaDeCreditoDTO getTarjetaDeCredito( @PathParam("tarjetasId") Long tarjetasId) throws BusinessLogicException
+    public TarjetaDeCreditoDTO getTarjetaDeCredito(@PathParam("clienteId") Long clienteId,  @PathParam("tarjetasId") Long tarjetasId) throws BusinessLogicException
     {
-        TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(tarjetasId);
+        TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(clienteId, tarjetasId);
         if(tarjeta == null)
         {
             throw new WebApplicationException("El recurso  /tarjetas/" + tarjetasId + " no existe.", 404);
@@ -53,29 +54,34 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoDTO tarjetaDeCreditoDTO = new TarjetaDeCreditoDTO(tarjeta);
         return tarjetaDeCreditoDTO;
     }
-    
+    @GET
+    public List<TarjetaDeCreditoDTO> getTarjetas(@PathParam("clienteId") Long clienteId)
+    {
+        List<TarjetaDeCreditoDTO> listaDTOs = listEntity2DTO(logic.getTarjetas(clienteId));
+        return listaDTOs;
+    }
     
     @DELETE
     @Path("{tarjetasId: \\d+}")
-    public void deleteTarjetaDeCredito(@PathParam("tarjetasId") Long tarjetasId)throws BusinessLogicException
+    public void deleteTarjetaDeCredito(@PathParam("clienteId") Long clienteId, @PathParam("tarjetasId") Long tarjetasId)throws BusinessLogicException
     {
-        TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(tarjetasId);
+        TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(clienteId ,tarjetasId);
         if(tarjeta == null)
         {
             throw new WebApplicationException("El recurso  /tarjetas/" + tarjetasId + " no existe.", 404);
         }
-        logic.deleteTarjetaDeCredito(tarjetasId);
+        logic.deleteTarjetaDeCredito(clienteId, tarjetasId);
     }
     @PUT
     @Path("{tarjetasId: \\d+}")
-    public TarjetaDeCreditoDTO updateTarjetaDeCredito(@PathParam("tarjetasId") Long tarjetasId, TarjetaDeCreditoDTO tarjeta )throws BusinessLogicException
+    public TarjetaDeCreditoDTO updateTarjetaDeCredito(@PathParam("clienteId") Long clienteId, @PathParam("tarjetasId") Long tarjetasId, TarjetaDeCreditoDTO tarjeta )throws BusinessLogicException
     {
         tarjeta.setId(tarjetasId);
         if(!tarjetasId.equals(tarjeta.getId()))
         {
             throw new BusinessLogicException("Los ids del plato no coinciden");
         }
-        TarjetaDeCreditoEntity entity = logic.findTarjetaDeCredito(tarjetasId);
+        TarjetaDeCreditoEntity entity = logic.findTarjetaDeCredito(clienteId, tarjetasId);
         if(entity == null)
         {
             throw new WebApplicationException("El recurso /tarjetas/" + tarjetasId + " no existe.", 404);
@@ -83,7 +89,16 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoDTO tarjetaDTO = new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(tarjetasId, tarjeta.toEntity()));
         return tarjetaDTO;
     }
-          
+      
+  private List<TarjetaDeCreditoDTO> listEntity2DTO(List<TarjetaDeCreditoEntity> entityList)
+    {
+        List<TarjetaDeCreditoDTO> list = new ArrayList<TarjetaDeCreditoDTO>();
+        for(TarjetaDeCreditoEntity entity: entityList)
+        {
+            list.add(new TarjetaDeCreditoDTO(entity));
+        }
+        return list;
+    }    
     
     
     
