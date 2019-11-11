@@ -50,8 +50,8 @@ public class ReservaPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(ReservaEntity.class)
-                .addClass(ReservaPersistence.class)
+                .addPackage(ReservaEntity.class.getPackage())
+                .addPackage(ReservaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

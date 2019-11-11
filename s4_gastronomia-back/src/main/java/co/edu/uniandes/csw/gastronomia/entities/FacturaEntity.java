@@ -25,6 +25,7 @@ public class FacturaEntity extends BaseEntity
     private int valor;
 
     @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
         
     private boolean sePago;

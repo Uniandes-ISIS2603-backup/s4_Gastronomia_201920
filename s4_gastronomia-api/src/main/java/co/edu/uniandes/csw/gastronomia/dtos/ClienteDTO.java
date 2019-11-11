@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +14,18 @@ import java.util.Date;
  * @author Cristina Isabel González Osorio
  */
 public class ClienteDTO implements Serializable{
+    
+    private Long id;
+    
+    private String nombre;
+    
+    private String apellido;
+    
+    private String username;
+    
+    private String email;
+    
+    private String contrasena;
     
     private Date cumpleanos;
     
@@ -24,6 +37,19 @@ public class ClienteDTO implements Serializable{
     
 
     public ClienteDTO() {
+    }
+    
+    public ClienteDTO(ClienteEntity clienteEntity) {
+        if (clienteEntity != null) {
+            this.nombre = clienteEntity.getNombre();
+            this.apellido = clienteEntity.getApellido();
+            this.username = clienteEntity.getUsername();
+            this.email = clienteEntity.getEmail();
+            this.contrasena = clienteEntity.getContrasena();
+            this.cumpleanos = clienteEntity.getCumpleanos();
+            this.numeroContacto = clienteEntity.getNumeroContacto();
+            this.puntos = clienteEntity.getPuntos();
+        }  
     }
 
     /**
@@ -68,18 +94,19 @@ public class ClienteDTO implements Serializable{
         this.puntos = puntos;
     }
 
-    /**
-     * @return the tarjetaCredito
-     */
-    //public TarjetaDeCreditoDTO getTarjetaCredito() {
-      //  return tarjetaCredito;
-    //}
-
-    /**
-     * @param tarjetaCredito the tarjetaCredito to set
-     */
-    //public void setTarjetaCredito(TarjetaDeCreditoDTO tarjetaCredito) {
-      //  this.tarjetaCredito = tarjetaCredito;
-    //}
+    public ClienteEntity toEntity()
+    {
+        ClienteEntity clienteEntity = new ClienteEntity();
+        clienteEntity.setApellido(this.apellido);
+        clienteEntity.setContrasena(this.contrasena);
+        clienteEntity.setEmail(this.email);
+        clienteEntity.setId(this.id);
+        clienteEntity.setNombre(this.nombre);
+        clienteEntity.setUsername(this.username);
+        clienteEntity.setCumpleanos(this.cumpleanos);
+        clienteEntity.setNumeroContacto(this.numeroContacto);
+        clienteEntity.setPuntos(this.puntos);
+        return clienteEntity;
+    }
     
 }

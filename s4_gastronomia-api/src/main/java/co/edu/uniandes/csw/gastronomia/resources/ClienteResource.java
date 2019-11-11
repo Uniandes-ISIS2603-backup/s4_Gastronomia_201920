@@ -45,7 +45,7 @@ public class ClienteResource {
     @POST
     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteResource createCliente: input: {0}", cliente);
-        ClienteDTO nuevoClienteDTO = new ClienteDTO(); //vacío
+        ClienteDTO nuevoClienteDTO = new ClienteDTO(clienteLogic.createCliente(cliente.toEntity()));
         LOGGER.log(Level.INFO, "ClienteResource createCliente: output: {0}", nuevoClienteDTO);
         return nuevoClienteDTO;
     }
