@@ -17,20 +17,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 public class ClienteDTO implements Serializable
 {
-
-    
     private Long id;
-    
-    private String apellido;
     
     private String nombre;
     
+    private String apellido;
+
     private String username;
     
     private String email;
     
     private String contrasena;
-    
+
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date cumpleanos;
     
@@ -40,47 +38,26 @@ public class ClienteDTO implements Serializable
    
     public ClienteDTO() {
     }
-    public ClienteDTO(ClienteEntity clienteEntity)
-    {
-        if(clienteEntity!=null)
-        {
+    
+    public ClienteDTO(ClienteEntity clienteEntity) {
+        if (clienteEntity != null) {
             this.id = clienteEntity.getId();
-            this.apellido = clienteEntity.getApellido();
-            this.contrasena = clienteEntity.getContrasena();
-            this.email = clienteEntity.getEmail();
             this.nombre = clienteEntity.getNombre();
+            this.apellido = clienteEntity.getApellido();
             this.username = clienteEntity.getUsername();
-            this.cumpleanos=clienteEntity.getCumpleanos();
-            this.numeroContacto=clienteEntity.getNumeroContacto();
-            this.puntos=clienteEntity.getPuntos();
-        }
+            this.email = clienteEntity.getEmail();
+            this.contrasena = clienteEntity.getContrasena();
+            this.cumpleanos = clienteEntity.getCumpleanos();
+            this.numeroContacto = clienteEntity.getNumeroContacto();
+            this.puntos = clienteEntity.getPuntos();
+        }  
     }
-/**
+
+    /**
      * @return the id
      */
     public Long getId() {
         return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the apellido
-     */
-    public String getApellido() {
-        return apellido;
-    }
-
-    /**
-     * @param apellido the apellido to set
-     */
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     /**
@@ -91,10 +68,10 @@ public class ClienteDTO implements Serializable
     }
 
     /**
-     * @param nombre the nombre to set
+     * @return the apellido
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getApellido() {
+        return apellido;
     }
 
     /**
@@ -105,24 +82,10 @@ public class ClienteDTO implements Serializable
     }
 
     /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
      * @return the email
      */
     public String getEmail() {
         return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     /**
@@ -132,12 +95,6 @@ public class ClienteDTO implements Serializable
         return contrasena;
     }
 
-    /**
-     * @param contrasena the contrasena to set
-     */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
     /**
      * @return the cumpleanos
      */
@@ -157,6 +114,48 @@ public class ClienteDTO implements Serializable
      */
     public int getPuntos() {
         return puntos;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @param apellido the apellido to set
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     /**
@@ -182,18 +181,16 @@ public class ClienteDTO implements Serializable
 
     public ClienteEntity toEntity()
     {
-        ClienteEntity clienteEntity=new ClienteEntity();
-         clienteEntity.setApellido(this.apellido);
-        clienteEntity.setContrasena(this.contrasena);
-        clienteEntity.setEmail(this.email);
-        clienteEntity.setId(this.id);
-        clienteEntity.setNombre(this.nombre);
-        clienteEntity.setUsername(this.username);
-        clienteEntity.setCumpleanos(this.cumpleanos);
-        clienteEntity.setNumeroContacto(this.numeroContacto);
-        clienteEntity.setPuntos(this.puntos);
-                return clienteEntity;
+        ClienteEntity clienteEntity = new ClienteEntity();
+        clienteEntity.setApellido(this.getApellido());
+        clienteEntity.setContrasena(this.getContrasena());
+        clienteEntity.setEmail(this.getEmail());
+        clienteEntity.setId(this.getId());
+        clienteEntity.setNombre(this.getNombre());
+        clienteEntity.setUsername(this.getUsername());
+        clienteEntity.setCumpleanos(this.getCumpleanos());
+        clienteEntity.setNumeroContacto(this.getNumeroContacto());
+        clienteEntity.setPuntos(this.getPuntos());
+        return clienteEntity;
     }
-
-
 }

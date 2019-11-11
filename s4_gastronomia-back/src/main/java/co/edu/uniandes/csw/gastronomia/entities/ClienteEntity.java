@@ -33,11 +33,11 @@ public class ClienteEntity extends UsuarioEntity{
     private String numeroContacto;
     
     private int puntos;
-    
-     
+       
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<TarjetaDeCreditoEntity> tarjetas ;
+    private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<TarjetaDeCreditoEntity>();
+
     
     @PodamExclude
     @OneToMany
@@ -58,8 +58,8 @@ public class ClienteEntity extends UsuarioEntity{
     public ClienteEntity() {
         super();
     }
-    
-     /**
+
+    /**
      * @return the cumpleanos
      */
     public Date getCumpleanos() {
@@ -80,7 +80,12 @@ public class ClienteEntity extends UsuarioEntity{
         return puntos;
     }
 
- 
+    /**
+     * @return the tarjetas
+     */
+    public List<TarjetaDeCreditoEntity> getTarjetas() {
+        return tarjetas;
+    }
 
     /**
      * @return the foodBlogs
@@ -131,9 +136,19 @@ public class ClienteEntity extends UsuarioEntity{
         this.puntos = puntos;
     }
 
+    /**
+     * @param tarjetas the tarjetas to set
+     */
+    public void setTarjetas(List<TarjetaDeCreditoEntity> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
 
-//
-   
+    /**
+     * @param foodBlogs the foodBlogs to set
+     */
+    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs) {
+        this.foodBlogs = foodBlogs;
+    }
 
     /**
      * @param preferencias the preferencias to set
@@ -156,14 +171,6 @@ public class ClienteEntity extends UsuarioEntity{
         this.reservas = reservas;
     }
     
-    
-     /**
-     * @param foodBlogs the foodBlogs to set
-     */
-    public void setFoodBlogs(List<FoodBlogEntity> foodBlogs)
-    {
-        this.foodBlogs = foodBlogs;
-    }
     @Override
     public boolean equals(Object obj) {
         if (! super.equals(obj)) {
@@ -181,19 +188,5 @@ public class ClienteEntity extends UsuarioEntity{
             return this.getUsername().hashCode();
         }
         return super.hashCode();
-    }
-
-    /**
-     * @return the tarjetas
-     */
-    public List<TarjetaDeCreditoEntity> getTarjetas() {
-        return tarjetas;
-    }
-
-    /**
-     * @param tarjetas the tarjetas to set
-     */
-    public void setTarjetas(List<TarjetaDeCreditoEntity> tarjetas) {
-        this.tarjetas = tarjetas;
     }
 }

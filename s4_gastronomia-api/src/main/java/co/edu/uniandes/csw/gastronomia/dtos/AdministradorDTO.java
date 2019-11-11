@@ -18,13 +18,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "id": number,
- *      "nombre": string,
- *      "apellido": string,
- *      "username": string,
- *      "email": string,
- *      "contrasena": string,
- *      "phone": number
+ *        
  *   }
  * </pre> Por ejemplo un administrador se representa asi:<br>
  *

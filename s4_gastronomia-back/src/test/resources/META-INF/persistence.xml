@@ -2,7 +2,18 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="gastronomiaPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>co.edu.uniandes.csw.gastronomia.entities.AdministradorEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.ClienteEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.FacturaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.PlatoEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.ResenaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.ReservaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity</class>
+    <class>co.edu.uniandes.csw.gastronomia.entities.UsuarioEntity</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>

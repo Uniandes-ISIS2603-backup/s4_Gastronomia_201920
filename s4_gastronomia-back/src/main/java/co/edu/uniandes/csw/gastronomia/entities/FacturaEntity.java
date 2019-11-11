@@ -37,6 +37,7 @@ public class FacturaEntity extends BaseEntity
     * Dia que se realizo la factura.
     */
     @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
         
     /**

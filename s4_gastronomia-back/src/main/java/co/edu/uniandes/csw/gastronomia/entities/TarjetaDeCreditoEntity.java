@@ -109,4 +109,5 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
+
 }

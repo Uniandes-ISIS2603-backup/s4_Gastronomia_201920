@@ -89,7 +89,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     private List<PlatoEntity> platos ;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "restaurante", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ReservaEntity> reservas;
     
 
@@ -134,7 +134,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.horario = horario;
         this.administrador = administrador;
         this.platos = platos;
-        this.reservas=reservas;
+        this.reservas = reservas;
     }
 
     public List<ReservaEntity> getReservas() {

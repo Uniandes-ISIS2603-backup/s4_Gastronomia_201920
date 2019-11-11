@@ -37,6 +37,9 @@ public class ClienteLogic {
     public ClienteEntity createCliente (ClienteEntity clienteEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
         checkBusinessLogic(clienteEntity);
+        if(clienteEntity.getPuntos() != 0) {
+             throw new BusinessLogicException("El número de puntos del cliente debe ser 0"); 
+        }
         clienteEntity = persistence.create(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
         return clienteEntity;
@@ -81,6 +84,9 @@ public class ClienteLogic {
     public ClienteEntity updateCliente(Long clienteId, ClienteEntity clienteEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", clienteId);
         checkBusinessLogic(clienteEntity);
+        if(clienteEntity.getPuntos() < 0) {
+             throw new BusinessLogicException("El número de puntos del cliente debe ser mayor a 0"); 
+        }
         ClienteEntity newEntity = persistence.update(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el cliente con id = {0}", clienteEntity.getId());
         return newEntity;
@@ -99,23 +105,29 @@ public class ClienteLogic {
     }  
     
     private void checkBusinessLogic(ClienteEntity clienteEntity) throws BusinessLogicException{
-        if (clienteEntity.getNombre() == null) {
+        if (clienteEntity.getNombre() == null || clienteEntity.getNombre().isEmpty()) {
            throw new BusinessLogicException("El nombre del cliente es inválido"); 
         }
-        if(clienteEntity.getApellido() == null) {
+        if(clienteEntity.getApellido() == null || clienteEntity.getApellido().isEmpty()) {
             throw new BusinessLogicException("El apellido del cliente es inválido"); 
         }
-        if(clienteEntity.getUsername() == null) {
+        if(clienteEntity.getUsername() == null || clienteEntity.getUsername().isEmpty()) {
             throw new BusinessLogicException("El username del cliente es inválido"); 
         }
         if(persistence.findByUsername(clienteEntity.getUsername()) != null){
             throw new BusinessLogicException("El username ya existe");   
         }
-        if(clienteEntity.getEmail() == null) {
+        if(clienteEntity.getEmail() == null || clienteEntity.getEmail().isEmpty()) {
             throw new BusinessLogicException("El email del cliente es inválido"); 
         }
         if(persistence.findByEmail(clienteEntity.getEmail()) != null){
             throw new BusinessLogicException("El email ya existe");   
-        } 
+        }
+        if(clienteEntity.getContrasena() == null || clienteEntity.getContrasena().isEmpty()) {
+             throw new BusinessLogicException("La contraseña del cliente es inválido"); 
+        }
+        if(clienteEntity.getNumeroContacto() == null || clienteEntity.getNumeroContacto().isEmpty()) {
+             throw new BusinessLogicException("El número de contacto del cliente es inválido"); 
+        }
     }
 }

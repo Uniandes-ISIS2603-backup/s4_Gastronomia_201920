@@ -57,9 +57,9 @@ public class ClienteLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(ClienteEntity.class)
-                .addClass(ClienteLogic.class)
-                .addClass(ClientePersistence.class)
+                .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClienteLogic.class.getPackage())
+                .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -104,8 +104,13 @@ public class ClienteLogicTest {
         }
     }
     
+    /**
+     * Prueba para crear un Cliente
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
     @Test
-    public void createCliente() throws BusinessLogicException {
+    public void createClienteTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         ClienteEntity result = clienteLogic.createCliente(newEntity);
         Assert.assertNotNull(result);
@@ -120,11 +125,184 @@ public class ClienteLogicTest {
         Assert.assertEquals(newEntity.getPuntos(), entity.getPuntos());
     }
     
+    /**
+     * Prueba para crear un Cliente con nombre inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
     @Test (expected = BusinessLogicException.class)
-    public void createClienteNombreNull() throws BusinessLogicException{
+    public void createClienteTestNombreInvalido() throws BusinessLogicException{
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         newEntity.setNombre(null);
-        ClienteEntity result = clienteLogic.createCliente(newEntity);
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con nombre inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestNombreInvalido2() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setNombre("");
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con apellido inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestApellidoInvalido() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setApellido(null);
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con apellido inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestApellidoInvalido2() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setApellido("");
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con username inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestUsernameInvalido() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setUsername(null);
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con username inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestUsernameInvalido2() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setUsername("");
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con username existente.
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createClienteTestConUsernameExistente() throws BusinessLogicException {
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setUsername(data.get(0).getUsername());
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con email inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestEmailInvalido() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setEmail(null);
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con email inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestEmailInvalido2() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setEmail("");
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con email existente.
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createClienteTestConEmailExistente() throws BusinessLogicException {
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setEmail(data.get(0).getEmail());
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con contraseña inválida
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestContrasenaInvalida() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setContrasena(null);
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con contraseña inválida
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestContrasenaInvalida2() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setContrasena("");
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con número de contacto inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestNumeroContactoInvalido() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setNumeroContacto(null);
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con número de contacto inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestNumeroContactoInvalido2() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setNumeroContacto("");
+        clienteLogic.createCliente(newEntity);
+    }
+    
+    /**
+     * Prueba para crear un Cliente con número de puntos inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void createClienteTestPuntosInvalido() throws BusinessLogicException{
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setPuntos(10);
+        clienteLogic.createCliente(newEntity);
     }
     
     /**

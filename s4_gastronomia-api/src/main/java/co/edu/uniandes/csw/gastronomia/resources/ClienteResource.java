@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.ClienteDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.ClienteDTO;
 import co.edu.uniandes.csw.gastronomia.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.ClienteLogic;
 import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
@@ -45,7 +44,7 @@ public class ClienteResource {
     @POST
     public ClienteDTO createCliente(ClienteDTO cliente) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteResource createCliente: input: {0}", cliente);
-        ClienteDTO nuevoClienteDTO = new ClienteDTO(); //vacío
+        ClienteDTO nuevoClienteDTO = new ClienteDTO(clienteLogic.createCliente(cliente.toEntity()));
         LOGGER.log(Level.INFO, "ClienteResource createCliente: output: {0}", nuevoClienteDTO);
         return nuevoClienteDTO;
     }
@@ -53,20 +52,29 @@ public class ClienteResource {
     @GET
     public List<ClienteDetailDTO> getClientes() {
         LOGGER.info("ClienteResource getClientes: input: void");
-        List<ClienteDetailDTO> listaClientes = new ArrayList<ClienteDetailDTO>(); //vacío
+        List<ClienteDetailDTO> listaClientes = listEntity2DetailDTO(clienteLogic.getClientes());
         LOGGER.log(Level.INFO, "ClienteResource getClientes: output: {0}", listaClientes);
         return listaClientes;
     }
     
+    /**
+     * Busca el cliente con el id asociado recibido en la URL y lo devuelve.
+     *
+     * @param clientesId Identificador del cliente que se esta buscando. Este debe
+     * ser una cadena de dígitos.
+     * @return JSON {@link ClienteDetailDTO} - El cliente buscado
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el cliente.
+     */
     @GET
-    @Path("{clienteId: \\d+}")
-    public ClienteDTO getCliente(@PathParam("clienteId") Long clienteId) {
-        LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clienteId);
-        ClienteEntity clienteEntity = clienteLogic.getCliente(clienteId);
+    @Path("{clientesId: \\d+}")
+    public ClienteDetailDTO getCliente(@PathParam("clientesId") Long clientesId) {
+        LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clientesId);
+        ClienteEntity clienteEntity = clienteLogic.getCliente(clientesId);
         if (clienteEntity == null) {
-            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /clientes/" + clientesId + " no existe.", 404);
         }
-        ClienteDTO clienteDetailDTO = new ClienteDTO(); //vacío
+        ClienteDetailDTO clienteDetailDTO = new ClienteDetailDTO(clienteEntity);
         LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", clienteDetailDTO);
         return clienteDetailDTO;
     }
@@ -95,13 +103,32 @@ public class ClienteResource {
         clienteLogic.deleteCliente(clienteId);
         LOGGER.info("ClienteResource deleteCliente: output: void");
     }
-     @Path("{clienteId: \\d+}/tarjetas")
+    
+    @Path("{clienteId: \\d+}/tarjetas")
     public Class<TarjetaDeCreditoResource> getReviewResource(@PathParam("clienteId") Long id) throws BusinessLogicException
     {
         if (clienteLogic.getCliente(id) == null) {
             throw new WebApplicationException("El recurso /clientes/" + id + "/tarjetas no existe.", 404);
         }
         return TarjetaDeCreditoResource.class;
+    }
+    
+     /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos ClienteEntity a una lista de
+     * objetos ClienteDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de clientes de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de clientes en forma DTO (json)
+     */
+    private List<ClienteDetailDTO> listEntity2DetailDTO(List<ClienteEntity> entityList) {
+        List<ClienteDetailDTO> list = new ArrayList<>();
+        for (ClienteEntity entity : entityList) {
+            list.add(new ClienteDetailDTO(entity));
+        }
+        return list;
     }
     
     
