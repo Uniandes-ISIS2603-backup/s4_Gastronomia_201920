@@ -112,6 +112,7 @@ public class ClienteLogicTest {
     @Test
     public void createClienteTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        newEntity.setPuntos(0);
         ClienteEntity result = clienteLogic.createCliente(newEntity);
         Assert.assertNotNull(result);
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
