@@ -51,7 +51,7 @@ public class ReservaResource {
     @GET
     public List<ReservaDTO> getReservas() {
         LOGGER.info("ReservaResource getReservas: input: void");
-        List<ReservaDTO> listaReservas = new ArrayList<ReservaDTO>();
+        List<ReservaDTO> listaReservas = listEntity2DetailDTO(reservaLogic.getReservas());
         LOGGER.log(Level.INFO, "ReservaResource getReservas: output: {0}", listaReservas);
         return listaReservas;
     }
@@ -92,6 +92,24 @@ public class ReservaResource {
         }
         reservaLogic.deleteReserva(reservaId);
         LOGGER.info("ReservaResource deleteReserva: output: void");
+    }
+    
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos ReservaEntity a una lista de
+     * objetos ReservaDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de reservas de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de reservas en forma DTO (json)
+     */
+    private List<ReservaDTO> listEntity2DetailDTO(List<ReservaEntity> entityList) {
+        List<ReservaDTO> list = new ArrayList<>();
+        for (ReservaEntity entity : entityList) {
+            list.add(new ReservaDTO(entity));
+        }
+        return list;
     }
     
 }
