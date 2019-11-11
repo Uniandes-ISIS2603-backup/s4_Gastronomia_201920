@@ -33,17 +33,18 @@ public class ClienteEntity extends UsuarioEntity{
     private String numeroContacto;
     
     private int puntos;
-    
+       
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<TarjetaDeCreditoEntity>();
+
     
     @PodamExclude
     @OneToMany
     private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
     
     @PodamExclude
-    @ManyToMany
+    @OneToMany
     private List<TipoComidaEntity> preferencias = new ArrayList<TipoComidaEntity>();
     
     @PodamExclude
@@ -106,7 +107,14 @@ public class ClienteEntity extends UsuarioEntity{
     public List<FacturaEntity> getFacturas() {
         return facturas;
     }
-    
+
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
     /**
      * @param cumpleanos the cumpleanos to set
      */
@@ -154,6 +162,13 @@ public class ClienteEntity extends UsuarioEntity{
      */
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
     }
     
     @Override

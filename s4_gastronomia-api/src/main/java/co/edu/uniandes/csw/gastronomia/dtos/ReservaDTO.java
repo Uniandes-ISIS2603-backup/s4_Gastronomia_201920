@@ -27,11 +27,11 @@ public class ReservaDTO implements Serializable{
     
     private String numeroContacto;
     
-    //private RestauranteDTO restaurante;
+    private RestauranteDTO restaurante;
     
-    //private FacturaDTO factura;
+    private FacturaDTO factura;
 
-    //private ResenaDTO resena;
+    private ResenaDTO resena;
 
     public ReservaDTO() {
     }
@@ -140,6 +140,48 @@ public class ReservaDTO implements Serializable{
      */
     public void setNumeroContacto(String numeroContacto) {
         this.numeroContacto = numeroContacto;
+    }
+
+    /**
+     * @return the restaurante
+     */
+    public RestauranteDTO getRestaurante() {
+        return restaurante;
+    }
+
+    /**
+     * @param restaurante the restaurante to set
+     */
+    public void setRestaurante(RestauranteDTO restaurante) {
+        this.restaurante = restaurante;
+    }
+
+    /**
+     * @return the factura
+     */
+    public FacturaDTO getFactura() {
+        return factura;
+    }
+
+    /**
+     * @param factura the factura to set
+     */
+    public void setFactura(FacturaDTO factura) {
+        this.factura = factura;
+    }
+
+    /**
+     * @return the resena
+     */
+    public ResenaDTO getResena() {
+        return resena;
+    }
+
+    /**
+     * @param resena the resena to set
+     */
+    public void setResena(ResenaDTO resena) {
+        this.resena = resena;
     }
     
     

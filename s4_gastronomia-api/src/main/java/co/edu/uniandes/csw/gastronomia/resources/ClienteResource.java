@@ -95,5 +95,16 @@ public class ClienteResource {
         clienteLogic.deleteCliente(clienteId);
         LOGGER.info("ClienteResource deleteCliente: output: void");
     }
+     @Path("{clienteId: \\d+}/tarjetas")
+    public Class<TarjetaDeCreditoResource> getReviewResource(@PathParam("clienteId") Long id) throws BusinessLogicException
+    {
+        if (clienteLogic.getCliente(id) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + id + "/tarjetas no existe.", 404);
+        }
+        return TarjetaDeCreditoResource.class;
+    }
+    
+    
+    
     
 }
