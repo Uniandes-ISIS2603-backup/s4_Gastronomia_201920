@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.gastronomia.dtos;
 import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
 import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
+import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
 import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
 import java.io.Serializable;
@@ -20,16 +21,15 @@ import java.util.List;
  */
 public class ClienteDetailDTO extends ClienteDTO implements Serializable
 {
+    private List<TipoComidaDTO> preferencias;
     
-    private List<FoodBlogDTO> foodBlogs = new ArrayList<FoodBlogDTO>();
+    private List<TarjetaDeCreditoDTO> tarjetas;
     
-    private List<TipoComidaDTO> preferencias = new ArrayList<TipoComidaDTO>();
+    private List<ReservaDTO> reservas;
     
-    private List<FacturaDTO> facturas = new ArrayList<FacturaDTO>();
+    private List<FacturaDTO> facturas;
     
-    private List<ReservaDTO> reservas = new ArrayList<ReservaDTO>();
-    
-    private List<TarjetaDeCreditoDTO> tarjetas = new ArrayList<TarjetaDeCreditoDTO>();
+    private List<FoodBlogDTO> foodBlogs;
 
     public ClienteDetailDTO() 
     {
@@ -39,92 +39,103 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     public ClienteDetailDTO(ClienteEntity  cliente)
     {
         super(cliente);
-        if (cliente!=null) 
+        if (cliente != null) 
         {
-            foodBlogs=new ArrayList<>();
-            for (FoodBlogEntity foodBlogEntity: cliente.getFoodBlogs()) {
-              foodBlogs.add(new FoodBlogDTO(foodBlogEntity));
-                
+            if(cliente.getPreferencias() != null) {
+                preferencias  = new ArrayList<TipoComidaDTO>();
+                for(TipoComidaEntity tipoComidaEntity: cliente.getPreferencias()) {
+                    preferencias.add(new TipoComidaDTO(tipoComidaEntity));
+                }
             }
+            
+            if (cliente.getTarjetas() != null) {
+                tarjetas = new ArrayList<TarjetaDeCreditoDTO>();
+                for(TarjetaDeCreditoEntity tarjetaEntity: cliente.getTarjetas()) {
+                    tarjetas.add(new TarjetaDeCreditoDTO(tarjetaEntity));
+                }   
+            }
+            
+            if (cliente.getReservas() != null) {
+                reservas = new ArrayList<ReservaDTO>();
+                for(ReservaEntity reservaEntity: cliente.getReservas()) {
+                    reservas.add(new ReservaDTO(reservaEntity));
+                }
+            }
+            
+            if (cliente.getFacturas() != null) {
+                facturas = new ArrayList<FacturaDTO>();
+                for(FacturaEntity facturaEntity: cliente.getFacturas()) {
+                    facturas.add(new FacturaDTO(facturaEntity));
+                }
+            }
+            
+            if (cliente.getFoodBlogs() != null) {
+                foodBlogs = new ArrayList<FoodBlogDTO>();
+                for (FoodBlogEntity foodBlogEntity: cliente.getFoodBlogs()) {
+                    foodBlogs.add(new FoodBlogDTO(foodBlogEntity));   
+                }
+            }   
         }
-        List<TarjetaDeCreditoEntity> listaTarjetas = cliente.getTarjetas();
-        for(TarjetaDeCreditoEntity e: listaTarjetas)
-        {
-            tarjetas.add(new TarjetaDeCreditoDTO(e));
-        }
-
     }
+    
+    /**
+     * Transformar el DTO a una entidad
+     *
+     * @return La entidad que representa el cliente.
+     */
+    @Override
     public ClienteEntity toEntity()
     {
-        ClienteEntity cliente= super.toEntity();
-        if (foodBlogs!=null)
-        {
-        List<FoodBlogEntity> foodBlogentity=new ArrayList<>();
-            for (FoodBlogDTO fbDTO : foodBlogs)
-            {
-            foodBlogentity.add(fbDTO.toEntity());
+        ClienteEntity cliente = super.toEntity();
+        if (getPreferencias() != null) {
+            List<TipoComidaEntity> tiposEntity = new ArrayList<>();
+            for (TipoComidaDTO dtoTipoComida : getPreferencias()) {
+                tiposEntity.add(dtoTipoComida.toEntity());
             }
-            cliente.setFoodBlogs(foodBlogentity);
-        
+            cliente.setPreferencias(tiposEntity);
         }
-        List<TarjetaDeCreditoEntity> lista = new ArrayList<TarjetaDeCreditoEntity>();
-        for(TarjetaDeCreditoDTO e: getTarjetas())
-        {
-            lista.add(e.toEntity());
-        }
-        cliente.setTarjetas(lista);
         
-        if (facturas!=null)
-        {
-        List<FacturaEntity> facturasEntity =new ArrayList<FacturaEntity>();
-            for (FacturaDTO facturaDTO : facturas)
-            {
-            facturasEntity.add(facturaDTO.toEntity());
+        if(getTarjetas() != null) {
+            List<TarjetaDeCreditoEntity> tarjetasEntity = new ArrayList<>();
+            for (TarjetaDeCreditoDTO dtoTarjeta: getTarjetas()) {
+                tarjetasEntity.add(dtoTarjeta.toEntity());
+            }
+            cliente.setTarjetas(tarjetasEntity);
+        }
+        
+        if(getReservas() != null) {
+            List<ReservaEntity> reservasEntity = new ArrayList<>();
+            for (ReservaDTO dtoReserva : getReservas()) {
+                reservasEntity.add(dtoReserva.toEntity());
+            }
+            cliente.setReservas(reservasEntity);
+        }
+        
+        if (getFacturas() != null) {
+        List<FacturaEntity> facturasEntity =new ArrayList<>();
+            for (FacturaDTO dtoFactura : getFacturas()) {
+                facturasEntity.add(dtoFactura.toEntity());
             }
             cliente.setFacturas(facturasEntity);
         
         }
-          
-        if (preferencias!=null)
-        {
-        List<TipoComidaEntity> tipoComidaEntity=new ArrayList<>();
-            for (TipoComidaDTO tipoDTO : preferencias)
-            {
-            tipoComidaEntity.add(tipoDTO.toEntity());
-            }
-            cliente.setPreferencias(tipoComidaEntity);
         
+        if (getFoodBlogs()!= null) {
+            List<FoodBlogEntity> foodBlogsEntity = new ArrayList<>();
+            for (FoodBlogDTO dtoFoodBlog : getFoodBlogs()) {
+                foodBlogsEntity.add(dtoFoodBlog.toEntity());
+            }
+            cliente.setFoodBlogs(foodBlogsEntity);
         }
         return cliente;
     }
-    /**
-    * 
-    * @return  los foodblogs
-    */
-    public List<FoodBlogDTO> getfoodBlogs()
-    {
-       return foodBlogs;
-    }
 
-    public void setFoodBlogs(List<FoodBlogDTO> pFoodBlogs)
-    {
-       this.foodBlogs=pFoodBlogs;
-    }
-
-        
     /**
-     * @return the reservas
+     * @return the preferencias
      */
-    public List<ReservaDTO> getReservas() {
-        return reservas;
+    public List<TipoComidaDTO> getPreferencias() {
+        return preferencias;
     }
-
-    /**
-     * @param reservas the reservas to set
-     */
-    public void setReservas(List<ReservaDTO> reservas) {
-        this.reservas = reservas;
-    } 
 
     /**
      * @return the tarjetas
@@ -134,13 +145,13 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     }
 
     /**
-     * @param tarjetas the tarjetas to set
+     * @return the reservas
      */
-    public void setTarjetas(List<TarjetaDeCreditoDTO> tarjetas) {
-        this.tarjetas = tarjetas;
+    public List<ReservaDTO> getReservas() {
+        return reservas;
     }
-    
-      /**
+
+    /**
      * @return the facturas
      */
     public List<FacturaDTO> getFacturas() {
@@ -148,17 +159,10 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     }
 
     /**
-     * @param facturas the facturas to set
+     * @return the foodBlogs
      */
-    public void setFacturas(List<FacturaDTO> facturas) {
-        this.facturas = facturas;
-    } 
-    
-      /**
-     * @return the preferencias
-     */
-    public List<TipoComidaDTO> getPreferencias() {
-        return preferencias;
+    public List<FoodBlogDTO> getFoodBlogs() {
+        return foodBlogs;
     }
 
     /**
@@ -166,6 +170,33 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
      */
     public void setPreferencias(List<TipoComidaDTO> preferencias) {
         this.preferencias = preferencias;
-    } 
-    
+    }
+
+    /**
+     * @param tarjetas the tarjetas to set
+     */
+    public void setTarjetas(List<TarjetaDeCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(List<ReservaDTO> reservas) {
+        this.reservas = reservas;
+    }
+
+    /**
+     * @param facturas the facturas to set
+     */
+    public void setFacturas(List<FacturaDTO> facturas) {
+        this.facturas = facturas;
+    }
+
+    /**
+     * @param foodBlogs the foodBlogs to set
+     */
+    public void setFoodBlogs(List<FoodBlogDTO> foodBlogs) {
+        this.foodBlogs = foodBlogs;
+    }
 }

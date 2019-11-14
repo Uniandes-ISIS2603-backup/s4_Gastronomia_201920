@@ -73,7 +73,7 @@ public class ReservaResource {
     @Path("{reservaId: \\d+}")
     public ReservaDTO updateReserva(@PathParam("reservaId") Long reservaId, ReservaDTO reserva) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ReservaResource updateReserva: input: id: {0} , reserva: {1}", new Object[]{reservaId, reserva});
-        //reserva.setId(reservaId);
+        reserva.setId(reservaId);
         if (reservaLogic.getReserva(reservaId) == null) {
             throw new WebApplicationException("El recurso /reservas/" + reservaId + " no existe.", 404);
         }

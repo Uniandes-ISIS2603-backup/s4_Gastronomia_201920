@@ -30,15 +30,11 @@ public class ReservaEntity extends BaseEntity{
     
     private int numPersonas;
     
-    private String nombreCliente;
-    
     private boolean cancelada;
-    
-    private String numeroContacto;
   
-//    @PodamExclude
-//    @ManyToOne
-//    private ClienteEntity cliente;
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
     
     @PodamExclude
     @ManyToOne
@@ -79,24 +75,10 @@ public class ReservaEntity extends BaseEntity{
     }
 
     /**
-     * @return the nombreCliente
-     */
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    /**
      * @return the cancelada
      */
     public boolean isCancelada() {
         return cancelada;
-    }
-
-    /**
-     * @return the numeroContacto
-     */
-    public String getNumeroContacto() {
-        return numeroContacto;
     }
 
     /**
@@ -142,24 +124,10 @@ public class ReservaEntity extends BaseEntity{
     }
 
     /**
-     * @param nombreCliente the nombreCliente to set
-     */
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    /**
      * @param cancelada the cancelada to set
      */
     public void setCancelada(boolean cancelada) {
         this.cancelada = cancelada;
-    }
-
-    /**
-     * @param numeroContacto the numeroContacto to set
-     */
-    public void setNumeroContacto(String numeroContacto) {
-        this.numeroContacto = numeroContacto;
     }
 
     /**

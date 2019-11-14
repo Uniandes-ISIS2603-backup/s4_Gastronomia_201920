@@ -67,12 +67,12 @@ public class ClienteResource {
      * Error de lógica que se genera cuando no se encuentra el cliente.
      */
     @GET
-    @Path("{clientesId: \\d+}")
-    public ClienteDetailDTO getCliente(@PathParam("clientesId") Long clientesId) {
-        LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clientesId);
-        ClienteEntity clienteEntity = clienteLogic.getCliente(clientesId);
+    @Path("{clienteId: \\d+}")
+    public ClienteDetailDTO getCliente(@PathParam("clienteId") Long clienteId) {
+        LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clienteId);
+        ClienteEntity clienteEntity = clienteLogic.getCliente(clienteId);
         if (clienteEntity == null) {
-            throw new WebApplicationException("El recurso /clientes/" + clientesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
         }
         ClienteDetailDTO clienteDetailDTO = new ClienteDetailDTO(clienteEntity);
         LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", clienteDetailDTO);
@@ -83,11 +83,11 @@ public class ClienteResource {
     @Path("{clienteId: \\d+}")
     public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: id: {0} , cliente: {1}", new Object[]{clienteId, cliente});
-        //cliente.setId(clienteId);
+        cliente.setId(clienteId);
         if (clienteLogic.getCliente(clienteId) == null) {
             throw new WebApplicationException("El recurso /clientes/" + clienteId + " no existe.", 404);
         }
-        ClienteDTO clienteDTO = new ClienteDTO(); //vacío
+        ClienteDTO clienteDTO = new ClienteDTO(clienteLogic.updateCliente(clienteId, cliente.toEntity()));
         LOGGER.log(Level.INFO, "ClienteResource updateCliente: output: {0}", clienteDTO);
         return clienteDTO;
     }

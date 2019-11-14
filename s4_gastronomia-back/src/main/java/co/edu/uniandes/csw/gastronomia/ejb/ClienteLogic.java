@@ -37,6 +37,12 @@ public class ClienteLogic {
     public ClienteEntity createCliente (ClienteEntity clienteEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cliente");
         checkBusinessLogic(clienteEntity);
+        if(persistence.findByUsername(clienteEntity.getUsername()) != null){
+            throw new BusinessLogicException("El username ya existe");   
+        }
+        if(persistence.findByEmail(clienteEntity.getEmail()) != null){
+            throw new BusinessLogicException("El email ya existe");   
+        }
         if(clienteEntity.getPuntos() != 0) {
              throw new BusinessLogicException("El número de puntos del cliente debe ser 0"); 
         }
@@ -114,14 +120,8 @@ public class ClienteLogic {
         if(clienteEntity.getUsername() == null || clienteEntity.getUsername().isEmpty()) {
             throw new BusinessLogicException("El username del cliente es inválido"); 
         }
-        if(persistence.findByUsername(clienteEntity.getUsername()) != null){
-            throw new BusinessLogicException("El username ya existe");   
-        }
         if(clienteEntity.getEmail() == null || clienteEntity.getEmail().isEmpty()) {
             throw new BusinessLogicException("El email del cliente es inválido"); 
-        }
-        if(persistence.findByEmail(clienteEntity.getEmail()) != null){
-            throw new BusinessLogicException("El email ya existe");   
         }
         if(clienteEntity.getContrasena() == null || clienteEntity.getContrasena().isEmpty()) {
              throw new BusinessLogicException("La contraseña del cliente es inválido"); 

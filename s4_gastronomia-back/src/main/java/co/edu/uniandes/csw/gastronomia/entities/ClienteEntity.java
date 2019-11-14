@@ -11,9 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -38,21 +36,20 @@ public class ClienteEntity extends UsuarioEntity{
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<TarjetaDeCreditoEntity>();
 
-    
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
     private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
     private List<TipoComidaEntity> preferencias = new ArrayList<TipoComidaEntity>();
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
     private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
 
     public ClienteEntity() {

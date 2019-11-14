@@ -1,6 +1,7 @@
 delete from RESTAURANTEENTITY_PLATOENTITY;
 delete from RESTAURANTEENTITY_RESERVAENTITY;
 delete from ClienteEntity;
+delete from ReservaEntity;
 delete from PlatoEntity;
 delete from RestauranteEntity;
 delete from AdministradorEntity;

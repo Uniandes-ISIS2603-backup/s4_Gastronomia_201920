@@ -15,17 +15,15 @@ import java.util.Date;
  */
 public class ReservaDTO implements Serializable{
     
+    private Long id;
+    
     private String motivo;
     
     private Date fecha;
     
     private int numPersonas;
     
-    private String nombreCliente;
-    
     private boolean cancelada;
-    
-    private String numeroContacto;
     
     private RestauranteDTO restaurante;
     
@@ -38,12 +36,14 @@ public class ReservaDTO implements Serializable{
     
     public ReservaDTO(ReservaEntity reservaEntity) {
         if (reservaEntity != null) {
+            this.id = reservaEntity.getId();
             this.motivo = reservaEntity.getMotivo();
             this.fecha = reservaEntity.getFecha();
             this.numPersonas = reservaEntity.getNumPersonas();
-            this.nombreCliente = reservaEntity.getNombreCliente();
             this.cancelada = reservaEntity.isCancelada();
-            this.numeroContacto = reservaEntity.getNumeroContacto();
+            this.restaurante = new RestauranteDTO(reservaEntity.getRestaurante());
+            this.factura = new FacturaDTO(reservaEntity.getFactura());
+            this.resena = new ResenaDTO(reservaEntity.getResena());
         }
     }
     
@@ -52,10 +52,23 @@ public class ReservaDTO implements Serializable{
         reservaEntity.setMotivo(this.motivo);
         reservaEntity.setFecha(this.fecha);
         reservaEntity.setNumPersonas(this.numPersonas);
-        reservaEntity.setNombreCliente(this.nombreCliente);
-        reservaEntity.setCancelada(this.cancelada);
-        reservaEntity.setNumeroContacto(this.numeroContacto);
+        if (getRestaurante() != null) {
+            reservaEntity.setRestaurante(this.restaurante.toEntity());
+        }
+        if (getFactura() != null) {
+            reservaEntity.setFactura(this.factura.toEntity());
+        }
+        if(getResena() != null) {
+            reservaEntity.setResena(this.resena.toEntity());
+        }
         return reservaEntity;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
     }
 
     /**
@@ -80,13 +93,6 @@ public class ReservaDTO implements Serializable{
     }
 
     /**
-     * @return the nombreCliente
-     */
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    /**
      * @return the cancelada
      */
     public boolean isCancelada() {
@@ -94,10 +100,10 @@ public class ReservaDTO implements Serializable{
     }
 
     /**
-     * @return the numeroContacto
+     * @param id the id to set
      */
-    public String getNumeroContacto() {
-        return numeroContacto;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -122,24 +128,10 @@ public class ReservaDTO implements Serializable{
     }
 
     /**
-     * @param nombreCliente the nombreCliente to set
-     */
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    /**
      * @param cancelada the cancelada to set
      */
     public void setCancelada(boolean cancelada) {
         this.cancelada = cancelada;
-    }
-
-    /**
-     * @param numeroContacto the numeroContacto to set
-     */
-    public void setNumeroContacto(String numeroContacto) {
-        this.numeroContacto = numeroContacto;
     }
 
     /**
@@ -182,8 +174,5 @@ public class ReservaDTO implements Serializable{
      */
     public void setResena(ResenaDTO resena) {
         this.resena = resena;
-    }
-    
-    
-    
+    }  
 }

@@ -113,9 +113,7 @@ public class ReservaLogicTest {
         Assert.assertEquals(newEntity.getMotivo(), entity.getMotivo());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getNumPersonas(), entity.getNumPersonas());
-        Assert.assertEquals(newEntity.getNombreCliente(),  entity.getNombreCliente());
         Assert.assertEquals(newEntity.isCancelada(), entity.isCancelada());
-        Assert.assertEquals(newEntity.getNumeroContacto(), entity.getNumeroContacto()); 
     }
     
     @Test (expected = BusinessLogicException.class)
@@ -154,9 +152,7 @@ public class ReservaLogicTest {
         Assert.assertEquals(resultEntity.getMotivo(), entity.getMotivo());
         Assert.assertEquals(resultEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(resultEntity.getNumPersonas(), entity.getNumPersonas());
-        Assert.assertEquals(resultEntity.getNombreCliente(),  entity.getNombreCliente());
         Assert.assertEquals(resultEntity.isCancelada(), entity.isCancelada());
-        Assert.assertEquals(resultEntity.getNumeroContacto(), entity.getNumeroContacto()); 
     }
 
     /**
@@ -174,9 +170,7 @@ public class ReservaLogicTest {
         Assert.assertEquals(pojoEntity.getMotivo(), resp.getMotivo());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
         Assert.assertEquals(pojoEntity.getNumPersonas(), resp.getNumPersonas());
-        Assert.assertEquals(pojoEntity.getNombreCliente(),  resp.getNombreCliente());
         Assert.assertEquals(pojoEntity.isCancelada(), resp.isCancelada());
-        Assert.assertEquals(pojoEntity.getNumeroContacto(), resp.getNumeroContacto()); 
     }
     
     /**
