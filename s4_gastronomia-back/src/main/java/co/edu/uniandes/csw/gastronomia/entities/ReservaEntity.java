@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.gastronomia.entities;
 import co.edu.uniandes.csw.gastronomia.podam.DateStrategy;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -41,11 +42,11 @@ public class ReservaEntity extends BaseEntity{
     private RestauranteEntity restaurante;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "reserva", fetch=FetchType.LAZY)
     private FacturaEntity factura;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "reserva", fetch=FetchType.LAZY)
     private ResenaEntity resena;
     
     

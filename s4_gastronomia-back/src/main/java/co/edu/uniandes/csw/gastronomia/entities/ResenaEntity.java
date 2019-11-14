@@ -27,9 +27,9 @@ public class ResenaEntity extends BaseEntity implements Serializable {
     private String comentario;
 
     
-  //  @PodamExclude 
-   // @OneToOne
-   // private ReservaEntity reserva;
+   @PodamExclude 
+   @OneToOne
+   private ReservaEntity reserva;
     /**
      * @return the calificacion
      */
