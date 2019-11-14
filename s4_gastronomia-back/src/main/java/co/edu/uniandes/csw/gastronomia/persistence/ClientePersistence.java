@@ -57,7 +57,7 @@ public class ClientePersistence {
      * Si existe alguno devuelve el primero.
      */
     public ClienteEntity findByUsername(String username) {
-        LOGGER.log(Level.INFO, "Consultando clientes por username ", username);
+        LOGGER.log(Level.INFO, String.format("Consultando clientes por username %s", username));
         TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.username = :username", ClienteEntity.class);
         query = query.setParameter("username", username);
         List<ClienteEntity> sameUsername = query.getResultList();
@@ -69,7 +69,7 @@ public class ClientePersistence {
         } else {
             result = sameUsername.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por username ", username);
+        LOGGER.log(Level.INFO, String.format("Saliendo de consultar clientes por username %s", username));
         return result;
     }
     
@@ -81,7 +81,7 @@ public class ClientePersistence {
      * Si existe alguno devuelve el primero.
      */
     public ClienteEntity findByEmail(String email) {
-        LOGGER.log(Level.INFO, "Consultando clientes por email ", email);
+        LOGGER.log(Level.INFO, String.format("Consultando clientes por email %s", email));
         TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.email = :email", ClienteEntity.class);
         query = query.setParameter("email", email);
         List<ClienteEntity> sameEmail = query.getResultList();
@@ -93,7 +93,7 @@ public class ClientePersistence {
         } else {
             result = sameEmail.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar clientes por email ", email);
+        LOGGER.log(Level.INFO, String.format("Saliendo de consultar clientes por email %s", email));
         return result;
     }
     

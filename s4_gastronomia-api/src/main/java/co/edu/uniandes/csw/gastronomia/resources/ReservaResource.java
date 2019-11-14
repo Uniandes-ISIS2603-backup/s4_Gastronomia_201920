@@ -36,6 +36,8 @@ import javax.ws.rs.WebApplicationException;
 public class ReservaResource {
     
     private static final Logger LOGGER = Logger.getLogger(ReservaResource.class.getName());
+    private static final String RECURSO = "El recurso /reservas/";
+    private static final String NO_EXISTE = " no existe.";
     
     @Inject
     private ReservaLogic reservaLogic;
@@ -62,7 +64,7 @@ public class ReservaResource {
         LOGGER.log(Level.INFO, "ReservaResource getReserva: input: {0}", reservaId);
         ReservaEntity reservaEntity = reservaLogic.getReserva(reservaId);
         if (reservaEntity == null) {
-            throw new WebApplicationException("El recurso /reservas/" + reservaId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + reservaId + NO_EXISTE, 404);
         }
         ReservaDTO reservaDetailDTO = new ReservaDTO(reservaEntity);
         LOGGER.log(Level.INFO, "ReservaResource getReserva: output: {0}", reservaDetailDTO);
@@ -75,7 +77,7 @@ public class ReservaResource {
         LOGGER.log(Level.INFO, "ReservaResource updateReserva: input: id: {0} , reserva: {1}", new Object[]{reservaId, reserva});
         reserva.setId(reservaId);
         if (reservaLogic.getReserva(reservaId) == null) {
-            throw new WebApplicationException("El recurso /reservas/" + reservaId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + reservaId + NO_EXISTE, 404);
         }
         ReservaDTO reservaDTO = new ReservaDTO(reservaLogic.updateReserva(reservaId, reserva.toEntity()));
         LOGGER.log(Level.INFO, "ReservaResource updateReserva: output: {0}", reservaDTO);
@@ -88,7 +90,7 @@ public class ReservaResource {
         LOGGER.log(Level.INFO, "ReservaResource deleteReserva: input: {0}", reservaId);
         ReservaEntity entity = reservaLogic.getReserva(reservaId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /reservas/" + reservaId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + reservaId + NO_EXISTE, 404);
         }
         reservaLogic.deleteReserva(reservaId);
         LOGGER.info("ReservaResource deleteReserva: output: void");

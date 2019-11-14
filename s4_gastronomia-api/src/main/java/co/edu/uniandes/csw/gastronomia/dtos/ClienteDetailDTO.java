@@ -42,35 +42,35 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
         if (cliente != null) 
         {
             if(cliente.getPreferencias() != null) {
-                preferencias  = new ArrayList<TipoComidaDTO>();
+                preferencias  = new ArrayList<>();
                 for(TipoComidaEntity tipoComidaEntity: cliente.getPreferencias()) {
                     preferencias.add(new TipoComidaDTO(tipoComidaEntity));
                 }
             }
             
             if (cliente.getTarjetas() != null) {
-                tarjetas = new ArrayList<TarjetaDeCreditoDTO>();
+                tarjetas = new ArrayList<>();
                 for(TarjetaDeCreditoEntity tarjetaEntity: cliente.getTarjetas()) {
                     tarjetas.add(new TarjetaDeCreditoDTO(tarjetaEntity));
                 }   
             }
             
             if (cliente.getReservas() != null) {
-                reservas = new ArrayList<ReservaDTO>();
+                reservas = new ArrayList<>();
                 for(ReservaEntity reservaEntity: cliente.getReservas()) {
                     reservas.add(new ReservaDTO(reservaEntity));
                 }
             }
             
             if (cliente.getFacturas() != null) {
-                facturas = new ArrayList<FacturaDTO>();
+                facturas = new ArrayList<>();
                 for(FacturaEntity facturaEntity: cliente.getFacturas()) {
                     facturas.add(new FacturaDTO(facturaEntity));
                 }
             }
             
             if (cliente.getFoodBlogs() != null) {
-                foodBlogs = new ArrayList<FoodBlogDTO>();
+                foodBlogs = new ArrayList<>();
                 for (FoodBlogEntity foodBlogEntity: cliente.getFoodBlogs()) {
                     foodBlogs.add(new FoodBlogDTO(foodBlogEntity));   
                 }

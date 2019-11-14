@@ -51,6 +51,7 @@ public class ReservaEntity extends BaseEntity{
     
 
     public ReservaEntity() {
+        // Constructor vacío para evitar problemas en la ejecución.
     }
 
     /**

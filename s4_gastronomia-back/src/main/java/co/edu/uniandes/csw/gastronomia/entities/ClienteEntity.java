@@ -34,23 +34,23 @@ public class ClienteEntity extends UsuarioEntity{
        
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<TarjetaDeCreditoEntity>();
+    private List<TarjetaDeCreditoEntity> tarjetas = new ArrayList<>();
 
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
-    private List<FoodBlogEntity> foodBlogs = new ArrayList<FoodBlogEntity>();
+    private List<FoodBlogEntity> foodBlogs = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
-    private List<TipoComidaEntity> preferencias = new ArrayList<TipoComidaEntity>();
+    private List<TipoComidaEntity> preferencias = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
-    private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
+    private List<FacturaEntity> facturas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
-    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+    private List<ReservaEntity> reservas = new ArrayList<>();
 
     public ClienteEntity() {
         super();
