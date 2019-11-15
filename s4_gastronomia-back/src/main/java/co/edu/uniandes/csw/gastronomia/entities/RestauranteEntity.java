@@ -267,9 +267,28 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     public void setHorario(Date horario) {
         this.horario = horario;
     } 
+    
     @Override
-    public boolean equals(Object other)
+    public boolean equals(Object ob)
     {
-        return super.equals(other);
+       if(! super.equals(ob))
+        {
+            return false;
+        }
+        RestauranteEntity usuarioOb = ( RestauranteEntity) ob ;
+        String usuario = usuarioOb.getNombre();
+        return usuario.equals(usuarioOb.getNombre());
+        
     }
+    
+    @Override
+    public int hashCode()
+    {
+     
+        if (this.getNombre() != null) {
+            return this.getNombre().hashCode();
+        }
+        return super.hashCode();
+    } 
+   
 }
