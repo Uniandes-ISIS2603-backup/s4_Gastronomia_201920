@@ -35,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2019-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"false\"\n}",
+					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2020-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"false\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -244,7 +244,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2019-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"true\"\n}"
+					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2020-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"true\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/reservas/{{new_id_a}}",
@@ -289,7 +289,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2019-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"true\"\n}"
+					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2020-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"true\"\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/reservas/0",
