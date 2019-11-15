@@ -365,6 +365,188 @@ public class ClienteLogicTest {
     }
     
     /**
+     * Prueba para actualizar un Cliente con nombre inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestNombreInvalido() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setNombre(null);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con nombre inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestNombreInvalido2() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setNombre("");
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con apellido inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestApellidoInvalido() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setApellido(null);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con apellido inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestApellidoInvalido2() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setApellido("");
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con username inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestUsernameInvalido() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setUsername(null);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con username inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestUsernameInvalido2() throws BusinessLogicException {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setUsername("");
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con email inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestEmailInvalido() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setEmail(null);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con email inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestEmailInvalido2() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setEmail("");
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con contraseña inválida
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestContrasenaInvalida() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setContrasena(null);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con contraseña inválida
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestContrasenaInvalida2() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setContrasena("");
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con número de contacto inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestNumeroContactoInvalido() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setNumeroContacto(null);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con número de contacto inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void upduateClienteTestNumeroContactoInvalido2() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setNumeroContacto("");
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
+     * Prueba para actualizar un Cliente con número de puntos inválido
+     *
+     * @throws co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException
+     */
+    @Test (expected = BusinessLogicException.class)
+    public void updateClienteTestPuntosInvalido() throws BusinessLogicException{
+        ClienteEntity entity = data.get(0);
+        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setPuntos(-10);
+        clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
+    }
+    
+    /**
      * Prueba para eliminar un cliente.
      *
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException

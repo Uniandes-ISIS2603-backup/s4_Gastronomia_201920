@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.gastronomia.ejb;
 import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.ReservaPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,9 @@ public class ReservaLogic {
     public ReservaEntity createReserva (ReservaEntity reservaEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del reserva");
         checkBusinessLogic(reservaEntity);
+        if (reservaEntity.isCancelada()) {
+            throw new BusinessLogicException("No es posible crear una reserva cancelada.");
+        }
         reservaEntity = persistence.create(reservaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del reserva");
         return reservaEntity;
@@ -100,6 +104,9 @@ public class ReservaLogic {
     private void checkBusinessLogic(ReservaEntity reservaEntity) throws BusinessLogicException{
         if (reservaEntity.getFecha() == null) {
            throw new BusinessLogicException("La fecha de la reserva es inválida"); 
+        }
+        if (reservaEntity.getNumPersonas() <= 0) {
+            throw new BusinessLogicException("El número de personas de la reserva no puede ser menor a 1.");
         }
     }
     

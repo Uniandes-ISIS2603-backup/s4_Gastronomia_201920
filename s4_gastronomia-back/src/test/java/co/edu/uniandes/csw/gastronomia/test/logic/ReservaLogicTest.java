@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.ReservaPersistence;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -107,6 +109,8 @@ public class ReservaLogicTest {
     @Test
     public void createReserva() throws BusinessLogicException {
         ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        newEntity.setNumPersonas(1);
+        newEntity.setCancelada(false);
         ReservaEntity result = reservaLogic.createReserva(newEntity);
         Assert.assertNotNull(result);
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
@@ -117,10 +121,30 @@ public class ReservaLogicTest {
     }
     
     @Test (expected = BusinessLogicException.class)
-    public void createReservaFechaNull() throws BusinessLogicException{
+    public void createReservaFechaNull() throws BusinessLogicException {
         ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        newEntity.setNumPersonas(1);
+        newEntity.setCancelada(false);
         newEntity.setFecha(null);
-        ReservaEntity result = reservaLogic.createReserva(newEntity);
+        reservaLogic.createReserva(newEntity);
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void createReservaNumPersonasInvalido() throws BusinessLogicException {
+        ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        newEntity.setFecha(new Date(System.currentTimeMillis()+86400000));
+        newEntity.setCancelada(false);
+        newEntity.setNumPersonas(0);
+        reservaLogic.createReserva(newEntity);
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void createReservaCancelada() throws BusinessLogicException {
+        ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        newEntity.setFecha(new Date(System.currentTimeMillis()+86400000));
+        newEntity.setNumPersonas(1);
+        newEntity.setCancelada(true);
+        reservaLogic.createReserva(newEntity);
     }
     
     /**
@@ -165,12 +189,33 @@ public class ReservaLogicTest {
         ReservaEntity entity = data.get(0);
         ReservaEntity pojoEntity = factory.manufacturePojo(ReservaEntity.class);
         pojoEntity.setId(entity.getId());
+        pojoEntity.setNumPersonas(1);
         reservaLogic.updateReserva(pojoEntity.getId(), pojoEntity);
         ReservaEntity resp = em.find(ReservaEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getMotivo(), resp.getMotivo());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
         Assert.assertEquals(pojoEntity.getNumPersonas(), resp.getNumPersonas());
         Assert.assertEquals(pojoEntity.isCancelada(), resp.isCancelada());
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void updateReservaFechaNull() throws BusinessLogicException {
+        ReservaEntity entity = data.get(0);
+        ReservaEntity pojoEntity = factory.manufacturePojo(ReservaEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setNumPersonas(1);
+        pojoEntity.setFecha(null);
+        reservaLogic.updateReserva(pojoEntity.getId(), pojoEntity);
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void updateReservaNumPersonasInvalido() throws BusinessLogicException {
+        ReservaEntity entity = data.get(0);
+        ReservaEntity pojoEntity = factory.manufacturePojo(ReservaEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setFecha(new Date(System.currentTimeMillis()+86400000));
+        pojoEntity.setNumPersonas(0);
+        reservaLogic.updateReserva(pojoEntity.getId(), pojoEntity);
     }
     
     /**
