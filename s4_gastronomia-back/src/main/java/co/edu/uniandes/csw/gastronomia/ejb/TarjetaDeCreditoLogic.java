@@ -32,6 +32,7 @@ public class TarjetaDeCreditoLogic {
     private ClientePersistence clientePersistence;
     /**
      * Metodo para crear una tarjeta de credito
+     * @param clienteId
      * @param tarjeta tarjeta que se quiere crear
      * @return retorna el id de la tarjeta creada
      * @throws BusinessLogicException 
@@ -67,7 +68,7 @@ public class TarjetaDeCreditoLogic {
             throw new BusinessLogicException("La tarjeta no es visa ni mastercard");
         }
          LOGGER.info("Termina proceso de creación de tarjeta");
-        return tarjeta = persistence.create(tarjeta);   
+        return persistence.create(tarjeta);   
     }
     /**
      * Metodo
