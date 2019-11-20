@@ -106,8 +106,8 @@ public class ClienteResource {
         LOGGER.info("ClienteResource deleteCliente: output: void");
     }
     
-    @Path("{clienteId: \\d+}/tarjetas")
-    public Class<TarjetaDeCreditoResource> getReviewResource(@PathParam("clienteId") Long id) throws BusinessLogicException
+    @Path("{clientesId: \\d+}/tarjetas")
+    public Class<TarjetaDeCreditoResource> getReviewResource(@PathParam("clientesId") Long id) throws BusinessLogicException
     {
         if (clienteLogic.getCliente(id) == null) {
             throw new WebApplicationException(RECURSO + id + "/tarjetas" + NO_EXISTE, 404);

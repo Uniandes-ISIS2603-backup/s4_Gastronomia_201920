@@ -6,6 +6,57 @@
 	},
 	"item": [
 		{
+			"name": "Crear un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "780e987f-8dca-4fa7-8e4f-13c4da4bf491",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Carolina\",\n\t\"apellido\": \"Castillo\",\n\t\"username\": \"c.castillo\",\n\t\"email\": \"c.castillo@gmail.com\",\n\t\"contrasena\": \"password\",\n\t\"cumpleaños\": \"1998-09-14T05:00:00Z[UTC]\",\n\t\"numeroContacto\": \"+57 3218959151\",\n\t\"puntos\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Crear tarjeta",
 			"event": [
 				{
@@ -33,7 +84,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 4444444444444444\r\n}",
+					"raw": "{\r\n\r\n    \"cvv\": 111,\r\n    \"fechaVencimiento\": \"2019-02-23T05:00:00Z[UTC]\",\r\n    \"numero\": 4444444444444444\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +92,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -50,6 +101,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -91,7 +144,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -100,6 +153,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -141,7 +196,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -150,6 +205,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -191,7 +248,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -200,6 +257,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -241,7 +300,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -250,6 +309,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -291,7 +352,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -300,6 +361,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -341,7 +404,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -350,6 +413,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas"
 					]
 				}
@@ -382,7 +447,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -391,6 +456,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -434,7 +501,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -443,6 +510,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -484,7 +553,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -493,6 +562,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -534,7 +605,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -543,6 +614,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -584,7 +657,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -593,6 +666,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -634,7 +709,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -643,6 +718,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -684,7 +761,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -693,6 +770,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -734,7 +813,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -743,6 +822,8 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
 					]
@@ -768,7 +849,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tarjetas/{{new_id_t}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}/tarjetas/{{new_id_t}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -777,8 +858,48 @@
 					"path": [
 						"s4_gastronomia-api",
 						"api",
+						"clientes",
+						"{{new_id_c}}",
 						"tarjetas",
 						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d403e21b-3da3-4bbc-9b8a-9a2285ec0292",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"clientes",
+						"{{new_id_c}}"
 					]
 				}
 			},

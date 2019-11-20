@@ -1,11 +1,12 @@
 delete from RESTAURANTEENTITY_PLATOENTITY;
 delete from RESTAURANTEENTITY_RESERVAENTITY;
+delete from TarjetaDeCreditoEntity;
 delete from ClienteEntity;
 delete from ReservaEntity;
 delete from PlatoEntity;
 delete from RestauranteEntity;
 delete from AdministradorEntity;
-delete from TarjetaDeCreditoEntity;
+
 
 
 delete from FoodBlogEntity;
@@ -37,5 +38,4 @@ insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleano
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (18, 'fHhe61pq', 69.08, 0, '7 Talmadge Way', '04/16/2020', 'http://dummyimage.com/218x226.jpg/cc0000/ffffff', 0, 'Flowdesk', 0, 0, 1, 73.64, 'Kurortnyy');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (19, 'ozeJDFnB2Hp', 52.48, 0, '04 Lukken Court', '06/14/2020', 'http://dummyimage.com/126x130.bmp/dddddd/000000', 0, 'Aerified', 0, 1, 0, 62.52, 'Babica');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (20, 'j7hblN3Q11n', 97.08, 0, '7702 Northridge Court', '04/08/2020', 'http://dummyimage.com/170x172.bmp/dddddd/000000', 0, 'Solarbreeze', 0, 1, 1, 14.29, 'Saumur');
-
 
