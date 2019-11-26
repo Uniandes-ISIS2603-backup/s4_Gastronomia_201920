@@ -1,5 +1,4 @@
-delete from RESTAURANTEENTITY_PLATOENTITY;
-delete from RESTAURANTEENTITY_RESERVAENTITY;
+
 delete from TarjetaDeCreditoEntity;
 delete from ClienteEntity;
 delete from ReservaEntity;

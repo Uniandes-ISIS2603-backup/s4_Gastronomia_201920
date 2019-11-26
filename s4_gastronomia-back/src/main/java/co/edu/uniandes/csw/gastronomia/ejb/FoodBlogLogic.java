@@ -35,11 +35,7 @@ public class FoodBlogLogic {
     public FoodBlogEntity createFoodBlog(FoodBlogEntity fb)
     {
        LOGGER.log(Level.INFO,"creacion delfoodblog");
-       fb.setNumeroMeGusta(0);
-       fb.setNumeroNoMegusta(0);
-       fb.setTexto("");
-       fb.setComentarios("");
-       fb.setArchivoMultimedia("");
+       
           FoodBlogEntity neFoodBlogentity  = persistence.create(fb);
         LOGGER.log(Level.INFO, "Termina la creacion de foodblogs");
         return neFoodBlogentity;

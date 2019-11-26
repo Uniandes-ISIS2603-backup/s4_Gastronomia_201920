@@ -43,6 +43,31 @@ private String comentarios;
  @PodamExclude
  @ManyToOne
  private ClienteEntity cliente;
+
+//    public FoodBlogEntity(String texto, Integer numeroMeGusta, Integer numeroNoMegusta, String archivoMultimedia, String comentarios) {
+//        super();
+//        this.texto = texto;
+//        this.numeroMeGusta = numeroMeGusta;
+//        this.numeroNoMegusta = numeroNoMegusta;
+//        this.archivoMultimedia = archivoMultimedia;
+//        this.comentarios = comentarios;
+//    }
+//
+//    public FoodBlogEntity(String texto, Integer numeroMeGusta, Integer numeroNoMegusta, String archivoMultimedia, String comentarios, ClienteEntity cliente) {
+//        super();
+//        this.texto = texto;
+//        this.numeroMeGusta = numeroMeGusta;
+//        this.numeroNoMegusta = numeroNoMegusta;
+//        this.archivoMultimedia = archivoMultimedia;
+//        this.comentarios = comentarios;
+//        this.cliente = cliente;
+//    }
+
+    public FoodBlogEntity() {
+        super();
+    }
+ 
+ 
 //-------------------------------------------------------
 //metodos Get Set
 //-------------------------------------------------------

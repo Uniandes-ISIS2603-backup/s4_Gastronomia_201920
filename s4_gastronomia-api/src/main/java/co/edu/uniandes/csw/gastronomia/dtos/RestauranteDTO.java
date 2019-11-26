@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 /**
  * {
-   "id"=,
+   "id",
     "imagen":,
     "nombre":,
     "contrasena":,

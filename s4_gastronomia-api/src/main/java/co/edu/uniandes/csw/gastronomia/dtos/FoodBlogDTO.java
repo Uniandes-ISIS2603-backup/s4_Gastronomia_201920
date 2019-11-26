@@ -9,7 +9,15 @@ import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
 import java.io.Serializable;
 
 /**
- *
+ *Json{
+ * "id":,
+ * "texto":,
+ * "numeroMeGusta":,
+ * "numeroNoMeGusta":,
+ * "archivoMultimedia":,
+ * "comentarios":
+ * }
+ * 
  * @author Estudiante
  */
 public class FoodBlogDTO implements Serializable  
@@ -83,7 +91,7 @@ public FoodBlogDTO()
      * @return the texto
      */
     public String getTexto() {
-        return texto;
+        return this.texto;
     }
 
     /**
@@ -97,7 +105,7 @@ public FoodBlogDTO()
      * @return the numeroMeGusta
      */
     public Integer getNumeroMeGusta() {
-        return numeroMeGusta;
+        return this.numeroMeGusta;
     }
 
     /**
@@ -111,7 +119,7 @@ public FoodBlogDTO()
      * @return the numeroNoMegusta
      */
     public Integer getNumeroNoMegusta() {
-        return numeroNoMegusta;
+        return this.numeroNoMegusta;
     }
 
     /**
@@ -125,7 +133,7 @@ public FoodBlogDTO()
      * @return the archivoMultimedia
      */
     public String getArchivoMultimedia() {
-        return archivoMultimedia;
+        return this.archivoMultimedia;
     }
 
     /**
@@ -139,7 +147,7 @@ public FoodBlogDTO()
      * @return the comentarios
      */
     public String getComentarios() {
-        return comentarios;
+        return this.comentarios;
     }
 
     /**
