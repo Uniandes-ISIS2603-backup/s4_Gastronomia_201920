@@ -1503,7 +1503,7 @@ public class RestauranteLogicTest
     @Test
     public void getRestaurantesTest()
     {
-        try {
+        //try {
             List<RestauranteEntity> l = restauranteLogic.getRestaurantes();
             int  c = 0;
             for(RestauranteEntity x : l)
@@ -1517,9 +1517,9 @@ public class RestauranteLogicTest
                 }
             }
             Assert.assertTrue(c==data.size());
-        } catch (BusinessLogicException ex) {
-            Assert.fail("Nos epudo hacer la busqueda");
-        }
+        //} catch (BusinessLogicException ex) {
+            //Assert.fail("Nos epudo hacer la busqueda");
+        //}
     }
     @Test
     public void getRestauranteTest()
