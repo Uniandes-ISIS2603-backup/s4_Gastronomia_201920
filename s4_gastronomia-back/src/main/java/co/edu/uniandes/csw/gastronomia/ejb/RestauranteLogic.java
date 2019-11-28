@@ -23,6 +23,20 @@ public class RestauranteLogic
 {
     private static final Logger LOGGER = Logger.getLogger(RestauranteLogic.class.getName());
 
+    private static final String COND_RESTAURANTE1="El restaurante no tiene nombre";
+    
+    private static final String COND_RESTAURANTE2="El tipo de restaurante no puede ser nulo o vacio";
+    
+    private static final String BAD_PASSWORD="Bad password sheme ";
+    
+   
+    private static final String IMAGEN="La imagen está vaci o no existe";
+    
+   private static final String DIRECCION= "La direcion es nula o no tiene";
+   
+      private static final String BOOLEAN= "No puede mandar un booleano nulo";
+     
+    
     @Inject
     private RestaurantePersistence persistence;
     
@@ -35,23 +49,23 @@ public class RestauranteLogic
         }
         if(r.getNombre()==null)
         {
-            throw new BusinessLogicException("El restaurante no tiene nombre");
+            throw new BusinessLogicException(COND_RESTAURANTE1);
         }
         if(r.getNombre().isEmpty())
         {
-            throw new BusinessLogicException("El restaurante no tiene nombre");
+            throw new BusinessLogicException(COND_RESTAURANTE1);
         }
         if(r.getContrasena()==null )
         {
-            throw new BusinessLogicException("Bad password sheme ");
+            throw new BusinessLogicException(BAD_PASSWORD);
         }
         if(r.getContrasena().isEmpty() )
         {
-           throw new BusinessLogicException("Bad password sheme "); 
+           throw new BusinessLogicException(BAD_PASSWORD); 
         }
         if( r.getContrasena().length() < 8)
         {
-            throw new BusinessLogicException("Bad password sheme "); 
+            throw new BusinessLogicException(BAD_PASSWORD); 
         }
         if(r.getZonaDeFumadores()==null)
         {
@@ -71,19 +85,19 @@ public class RestauranteLogic
         }
         if(r.getImagen()==null )
         {
-            throw new BusinessLogicException("La imagen está vaci o no existe");
+            throw new BusinessLogicException(IMAGEN);
         }
         if( r.getImagen().isEmpty())
         {
-            throw new BusinessLogicException("La imagen está vaci o no existe");
+            throw new BusinessLogicException(IMAGEN);
         }
         if(r.getDireccion()==null)
         {
-            throw new BusinessLogicException("La direcion es nula o no tiene");
+            throw new BusinessLogicException(DIRECCION);
         }               
         if(r.getDireccion().isEmpty())
         {
-            throw new BusinessLogicException("La direcion es nula o no tiene");
+            throw new BusinessLogicException(DIRECCION);
         }
         if(r.getHorario()==null)
         {
@@ -99,11 +113,11 @@ public class RestauranteLogic
         }
         if(r.getTipoRestaurante()==null)
         {
-            throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
+            throw new BusinessLogicException(COND_RESTAURANTE2);
         }
         if(r.getTipoRestaurante().isEmpty())
         {
-            throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
+            throw new BusinessLogicException(COND_RESTAURANTE2);
         }
         if(r.getMusicaEnVivo()==null)
         {
@@ -121,7 +135,7 @@ public class RestauranteLogic
         return persistence.create(r);
     }
     
-    public List<RestauranteEntity> getRestaurantes() throws BusinessLogicException
+    public List<RestauranteEntity> getRestaurantes() 
     {
         LOGGER.log(Level.INFO,"Se está haciendo una busqueda general de todos los restaurantes");
         List<RestauranteEntity> result = persistence.findAll();
@@ -159,7 +173,7 @@ public class RestauranteLogic
     {
         if(b==null)
         {
-            throw new BusinessLogicException("No puede mandar un booleano nulo");
+            throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findPetFriendly(b);
     }
@@ -168,7 +182,7 @@ public class RestauranteLogic
     {
         if(b==null)
         {
-            throw new BusinessLogicException("No puede mandar un booleano nulo");
+            throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findMusicaEnVivo(b);
     }
@@ -177,7 +191,7 @@ public class RestauranteLogic
     {
         if(b==null)
         {
-            throw new BusinessLogicException("No puede mandar un booleano nulo");
+            throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findServicioALaMesa(b);
     }
@@ -186,7 +200,7 @@ public class RestauranteLogic
     {
         if(b==null)
         {
-            throw new BusinessLogicException("No puede mandar un booleano nulo");
+            throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findDescuentoCumpleanos(b);
     }
@@ -271,23 +285,23 @@ public class RestauranteLogic
         }
         if(r.getNombre()==null)
         {
-            throw new BusinessLogicException("El restaurante no tiene nombre");
+            throw new BusinessLogicException(COND_RESTAURANTE1);
         }
         if(r.getNombre().isEmpty())
         {
-            throw new BusinessLogicException("El restaurante no tiene nombre");
+            throw new BusinessLogicException(COND_RESTAURANTE1);
         }
         if(r.getContrasena()==null )
         {
-            throw new BusinessLogicException("Bad password sheme ");
+            throw new BusinessLogicException(BAD_PASSWORD);
         }
         if(r.getContrasena().isEmpty() )
         {
-           throw new BusinessLogicException("Bad password sheme "); 
+           throw new BusinessLogicException(BAD_PASSWORD); 
         }
         if( r.getContrasena().length() < 8)
         {
-            throw new BusinessLogicException("Bad password sheme "); 
+            throw new BusinessLogicException(BAD_PASSWORD); 
         }
         if(r.getZonaDeFumadores()==null)
         {
@@ -307,19 +321,19 @@ public class RestauranteLogic
         }
         if(r.getImagen()==null )
         {
-            throw new BusinessLogicException("La imagen está vaci o no existe");
+            throw new BusinessLogicException(IMAGEN);
         }
         if( r.getImagen().isEmpty())
         {
-            throw new BusinessLogicException("La imagen está vaci o no existe");
+            throw new BusinessLogicException(IMAGEN);
         }
         if(r.getDireccion()==null)
         {
-            throw new BusinessLogicException("La direcion es nula o no tiene");
+            throw new BusinessLogicException(DIRECCION);
         }               
         if(r.getDireccion().isEmpty())
         {
-            throw new BusinessLogicException("La direcion es nula o no tiene");
+            throw new BusinessLogicException(DIRECCION);
         }
         if(r.getHorario()==null)
         {
@@ -335,11 +349,11 @@ public class RestauranteLogic
         }
         if(r.getTipoRestaurante()==null)
         {
-            throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
+            throw new BusinessLogicException(COND_RESTAURANTE2);
         }
         if(r.getTipoRestaurante().isEmpty())
         {
-            throw new BusinessLogicException("El tipo de restaurante no puede ser nulo o vacio");
+            throw new BusinessLogicException(COND_RESTAURANTE2);
         }
         if(r.getMusicaEnVivo()==null)
         {
