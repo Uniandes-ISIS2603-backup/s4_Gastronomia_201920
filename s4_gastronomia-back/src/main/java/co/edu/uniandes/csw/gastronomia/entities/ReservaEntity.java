@@ -31,7 +31,7 @@ public class ReservaEntity extends BaseEntity{
     
     private int numPersonas;
     
-    private boolean cancelada;
+    private Boolean cancelada;
   
     @PodamExclude
     @ManyToOne
@@ -79,7 +79,7 @@ public class ReservaEntity extends BaseEntity{
     /**
      * @return the cancelada
      */
-    public boolean isCancelada() {
+    public Boolean isCancelada() {
         return cancelada;
     }
 
@@ -135,7 +135,7 @@ public class ReservaEntity extends BaseEntity{
     /**
      * @param cancelada the cancelada to set
      */
-    public void setCancelada(boolean cancelada) {
+    public void setCancelada(Boolean cancelada) {
         this.cancelada = cancelada;
     }
 
