@@ -34,7 +34,7 @@ public class ClienteDTO implements Serializable
     
     private String numeroContacto;
     
-    private int puntos;
+    private Integer puntos;
    
     public ClienteDTO() {
     }
