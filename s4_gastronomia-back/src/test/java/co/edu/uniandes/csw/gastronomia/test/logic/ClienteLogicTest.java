@@ -352,6 +352,7 @@ public class ClienteLogicTest {
         ClienteEntity entity = data.get(0);
         ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
         pojoEntity.setId(entity.getId());
+        pojoEntity.setPuntos(0);
         clienteLogic.updateCliente(pojoEntity.getId(), pojoEntity);
         ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
