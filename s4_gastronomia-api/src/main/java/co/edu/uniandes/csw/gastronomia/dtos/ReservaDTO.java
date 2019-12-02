@@ -21,7 +21,7 @@ public class ReservaDTO implements Serializable{
     
     private Date fecha;
     
-    private int numPersonas;
+    private Integer numPersonas;
     
     private Boolean cancelada;
     
@@ -88,7 +88,7 @@ public class ReservaDTO implements Serializable{
     /**
      * @return the numPersonas
      */
-    public int getNumPersonas() {
+    public Integer getNumPersonas() {
         return numPersonas;
     }
 
@@ -123,7 +123,7 @@ public class ReservaDTO implements Serializable{
     /**
      * @param numPersonas the numPersonas to set
      */
-    public void setNumPersonas(int numPersonas) {
+    public void setNumPersonas(Integer numPersonas) {
         this.numPersonas = numPersonas;
     }
 
