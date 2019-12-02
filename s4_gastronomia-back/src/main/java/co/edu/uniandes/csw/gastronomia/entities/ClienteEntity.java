@@ -30,7 +30,7 @@ public class ClienteEntity extends UsuarioEntity{
     
     private String numeroContacto;
     
-    private int puntos;
+    private Integer puntos;
        
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -73,7 +73,7 @@ public class ClienteEntity extends UsuarioEntity{
     /**
      * @return the puntos
      */
-    public int getPuntos() {
+    public Integer getPuntos() {
         return puntos;
     }
 
@@ -129,7 +129,7 @@ public class ClienteEntity extends UsuarioEntity{
     /**
      * @param puntos the puntos to set
      */
-    public void setPuntos(int puntos) {
+    public void setPuntos(Integer puntos) {
         this.puntos = puntos;
     }
 
