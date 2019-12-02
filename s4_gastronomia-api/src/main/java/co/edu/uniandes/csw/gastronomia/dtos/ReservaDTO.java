@@ -23,7 +23,7 @@ public class ReservaDTO implements Serializable{
     
     private int numPersonas;
     
-    private boolean cancelada;
+    private Boolean cancelada;
     
     private RestauranteDTO restaurante;
     
@@ -95,7 +95,7 @@ public class ReservaDTO implements Serializable{
     /**
      * @return the cancelada
      */
-    public boolean isCancelada() {
+    public Boolean isCancelada() {
         return cancelada;
     }
 
@@ -130,7 +130,7 @@ public class ReservaDTO implements Serializable{
     /**
      * @param cancelada the cancelada to set
      */
-    public void setCancelada(boolean cancelada) {
+    public void setCancelada(Boolean cancelada) {
         this.cancelada = cancelada;
     }
 
