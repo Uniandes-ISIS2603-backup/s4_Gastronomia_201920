@@ -112,7 +112,7 @@ public class ClienteDTO implements Serializable
     /**
      * @return the puntos
      */
-    public int getPuntos() {
+    public Integer getPuntos() {
         return puntos;
     }
 
@@ -175,7 +175,7 @@ public class ClienteDTO implements Serializable
     /**
      * @param puntos the puntos to set
      */
-    public void setPuntos(int puntos) {
+    public void setPuntos(Integer puntos) {
         this.puntos = puntos;
     }
 
