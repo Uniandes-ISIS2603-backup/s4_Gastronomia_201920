@@ -29,7 +29,7 @@ public class ReservaEntity extends BaseEntity{
     @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
     
-    private int numPersonas;
+    private Integer numPersonas;
     
     private Boolean cancelada;
   
@@ -72,7 +72,7 @@ public class ReservaEntity extends BaseEntity{
     /**
      * @return the numPersonas
      */
-    public int getNumPersonas() {
+    public Integer getNumPersonas() {
         return numPersonas;
     }
 
@@ -128,7 +128,7 @@ public class ReservaEntity extends BaseEntity{
     /**
      * @param numPersonas the numPersonas to set
      */
-    public void setNumPersonas(int numPersonas) {
+    public void setNumPersonas(Integer numPersonas) {
         this.numPersonas = numPersonas;
     }
 
