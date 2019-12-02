@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
+import co.edu.uniandes.csw.gastronomia.adapters.DateAdapter;
 import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -19,6 +21,7 @@ public class ReservaDTO implements Serializable{
     
     private String motivo;
     
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fecha;
     
     private Integer numPersonas;
