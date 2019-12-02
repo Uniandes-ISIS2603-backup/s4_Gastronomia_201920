@@ -84,7 +84,7 @@ public class TarjetaDeCreditoResource {
         {
             throw new WebApplicationException("El recurso /tarjetas/" + tarjetasId + " no existe.", 404);
         }
-        TarjetaDeCreditoDTO tarjetaDTO = new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(tarjetasId, tarjeta.toEntity()));
+        TarjetaDeCreditoDTO tarjetaDTO = new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(clienteId, tarjeta.toEntity()));
         return tarjetaDTO;
     }
       
