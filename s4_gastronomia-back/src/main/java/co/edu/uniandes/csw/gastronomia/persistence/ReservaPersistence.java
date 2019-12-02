@@ -44,7 +44,7 @@ public class ReservaPersistence {
      * @param reservaId: id correspondiente a la reserva buscada.
      * @return la reserva encontrada con el id dado por parámetro.
      */
-    public ReservaEntity find (Long reservaId) {
+    public ReservaEntity find(Long reservaId) {
         return em.find(ReservaEntity.class, reservaId);
     }
     
