@@ -39,3 +39,23 @@ insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleano
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (19, 'ozeJDFnB2Hp', 52.48, 0, '04 Lukken Court', '06/14/2020', 'http://dummyimage.com/126x130.bmp/dddddd/000000', 0, 'Aerified', 0, 1, 0, 62.52, 'Babica');
 insert into RestauranteEntity (id, contrasena, costoReserva, descuentaoCumpleanos, direccion, horario, imagen, musicaEnVivo, nombre, petFriendly, servicioALaMesa, zonaDeFumadores, precioPorPersona, tipoRestaurante) values (20, 'j7hblN3Q11n', 97.08, 0, '7702 Northridge Court', '04/08/2020', 'http://dummyimage.com/170x172.bmp/dddddd/000000', 0, 'Solarbreeze', 0, 1, 1, 14.29, 'Saumur');
 
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (1,'asdasd','asdasdasd',20,'asdasdasd',1);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (2,'asdasd','asdasdasd',20,'asdasdasd',2);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (3,'asdasd','asdasdasd',20,'asdasdasd',3);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (4,'asdasd','asdasdasd',20,'asdasdasd',4);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (5,'asdasd','asdasdasd',20,'asdasdasd',5);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (6,'asdasd','asdasdasd',20,'asdasdasd',6);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (7,'asdasd','asdasdasd',20,'asdasdasd',7);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (8,'asdasd','asdasdasd',20,'asdasdasd',8);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (9,'asdasd','asdasdasd',20,'asdasdasd',9);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (10,'asdasd','asdasdasd',20,'asdasdasd',10);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (11,'asdasd','asdasdasd',20,'asdasdasd',11);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (12,'asdasd','asdasdasd',20,'asdasdasd',12);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (13,'asdasd','asdasdasd',20,'asdasdasd',13);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (14,'asdasd','asdasdasd',20,'asdasdasd',14);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (15,'asdasd','asdasdasd',20,'asdasdasd',15);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (16,'asdasd','asdasdasd',20,'asdasdasd',16);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (17,'asdasd','asdasdasd',20,'asdasdasd',17);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (18,'asdasd','asdasdasd',20,'asdasdasd',18);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (19,'asdasd','asdasdasd',20,'asdasdasd',19);
+insert into PlatoEntity(id, descripcion, nombrecomida, precio, rutaImagen, restaurante_id) values (20,'asdasd','asdasdasd',20,'asdasdasd',20);
