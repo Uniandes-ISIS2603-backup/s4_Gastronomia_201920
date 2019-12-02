@@ -79,7 +79,7 @@ public class ReservaEntity extends BaseEntity{
     /**
      * @return the cancelada
      */
-    public Boolean isCancelada() {
+    public Boolean getCancelada() {
         return cancelada;
     }
 

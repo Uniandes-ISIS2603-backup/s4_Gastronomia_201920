@@ -40,7 +40,7 @@ public class ReservaDTO implements Serializable{
             this.motivo = reservaEntity.getMotivo();
             this.fecha = reservaEntity.getFecha();
             this.numPersonas = reservaEntity.getNumPersonas();
-            this.cancelada = reservaEntity.isCancelada();
+            this.cancelada = reservaEntity.getCancelada();
             this.restaurante = new RestauranteDTO(reservaEntity.getRestaurante());
             this.factura = new FacturaDTO(reservaEntity.getFactura());
             this.resena = new ResenaDTO(reservaEntity.getResena());
@@ -52,6 +52,7 @@ public class ReservaDTO implements Serializable{
         reservaEntity.setMotivo(this.motivo);
         reservaEntity.setFecha(this.fecha);
         reservaEntity.setNumPersonas(this.numPersonas);
+        reservaEntity.setCancelada(this.cancelada);
         if (getRestaurante() != null) {
             reservaEntity.setRestaurante(this.restaurante.toEntity());
         }
@@ -95,7 +96,7 @@ public class ReservaDTO implements Serializable{
     /**
      * @return the cancelada
      */
-    public Boolean isCancelada() {
+    public Boolean getCancelada() {
         return cancelada;
     }
 

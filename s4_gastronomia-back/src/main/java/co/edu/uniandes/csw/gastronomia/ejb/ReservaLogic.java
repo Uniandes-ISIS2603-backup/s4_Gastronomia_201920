@@ -37,7 +37,7 @@ public class ReservaLogic {
     public ReservaEntity createReserva (ReservaEntity reservaEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del reserva");
         checkBusinessLogic(reservaEntity);
-        if (reservaEntity.isCancelada()) {
+        if (reservaEntity.getCancelada()) {
             throw new BusinessLogicException("No es posible crear una reserva cancelada.");
         }
         reservaEntity = persistence.create(reservaEntity);

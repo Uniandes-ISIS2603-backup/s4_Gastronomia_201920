@@ -111,7 +111,7 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getMotivo(), entity.getMotivo());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getNumPersonas(), entity.getNumPersonas());
-        Assert.assertEquals(newEntity.isCancelada(), entity.isCancelada());       
+        Assert.assertEquals(newEntity.getCancelada(), entity.getCancelada());       
     }
     
     /**
@@ -125,7 +125,7 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getMotivo(), entity.getMotivo());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getNumPersonas(), entity.getNumPersonas());
-        Assert.assertEquals(newEntity.isCancelada(), entity.isCancelada());
+        Assert.assertEquals(newEntity.getCancelada(), entity.getCancelada());
     }
     
     /**
@@ -175,6 +175,6 @@ public class ReservaPersistenceTest {
         Assert.assertEquals(newEntity.getMotivo(), resp.getMotivo());
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
         Assert.assertEquals(newEntity.getNumPersonas(), resp.getNumPersonas());
-        Assert.assertEquals(newEntity.isCancelada(), resp.isCancelada());
+        Assert.assertEquals(newEntity.getCancelada(), resp.getCancelada());
     }
 }
