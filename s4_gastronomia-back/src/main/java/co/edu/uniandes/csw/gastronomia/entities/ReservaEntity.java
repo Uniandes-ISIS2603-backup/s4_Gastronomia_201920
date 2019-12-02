@@ -84,6 +84,13 @@ public class ReservaEntity extends BaseEntity{
     }
 
     /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
      * @return the restaurante
      */
     public RestauranteEntity getRestaurante() {
@@ -133,6 +140,13 @@ public class ReservaEntity extends BaseEntity{
     }
 
     /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
      * @param restaurante the restaurante to set
      */
     public void setRestaurante(RestauranteEntity restaurante) {
@@ -152,6 +166,8 @@ public class ReservaEntity extends BaseEntity{
     public void setResena(ResenaEntity resena) {
         this.resena = resena;
     }
+    
+    
     
    @Override
     public boolean equals(Object obj) {

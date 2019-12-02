@@ -25,23 +25,16 @@ public class ResenaEntity extends BaseEntity implements Serializable {
      * El comentqrio de la resena que hace un usuario
      */
     private String comentario;
-
     
-   @PodamExclude 
-   @OneToOne
-   private ReservaEntity reserva;
+    @PodamExclude 
+    @OneToOne
+    private ReservaEntity reserva;
+
     /**
      * @return the calificacion
      */
     public int getCalificacion() {
         return calificacion;
-    }
-
-    /**
-     * @param calificacion the calificacion to set
-     */
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
     }
 
     /**
@@ -52,12 +45,35 @@ public class ResenaEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * @return the reserva
+     */
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    /**
+     * @param calificacion the calificacion to set
+     */
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    /**
      * @param comentario the comentario to set
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-     @Override
+
+    /**
+     * @param reserva the reserva to set
+     */
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
+    }
+    
+    
+    @Override
     public boolean equals(Object obj)
     {
         if(! super.equals(obj))
@@ -65,36 +81,17 @@ public class ResenaEntity extends BaseEntity implements Serializable {
             return false;
         } 
         ResenaEntity resenaObj=(ResenaEntity) obj;
-        return comentario.equals(resenaObj.getComentario());
+        return getComentario().equals(resenaObj.getComentario());
     }
-   @Override
+    
+    @Override
     public int hashCode()
-   {
-       
-       
+    {
        if(this.getComentario()!=null)
        {
            return this.getComentario().hashCode();
        }
        return super.hashCode();
-   }
-
-    /**
-     * @return the reserva
-     */
-    //public ReservaEntity getReserva() {
-    //    return reserva;
-   // }
-
-    /**
-     * @param reserva the reserva to set
-     */
-    //public void setReserva(ReservaEntity reserva) {
-    //    this.reserva = reserva;
-   // }
-   
-    
-    
-
+    }
     
 }
