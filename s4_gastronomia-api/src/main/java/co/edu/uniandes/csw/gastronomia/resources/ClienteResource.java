@@ -81,6 +81,28 @@ public class ClienteResource {
         return clienteDetailDTO;
     }
     
+    /**
+     * Busca el cliente con el id asociado recibido en la URL y lo devuelve.
+     *
+     * @param clientesId Identificador del cliente que se esta buscando. Este debe
+     * ser una cadena de dígitos.
+     * @return JSON {@link ClienteDetailDTO} - El cliente buscado
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el cliente.
+     */
+    @GET
+    @Path("{clienteUsername: \\S+}")
+    public ClienteDetailDTO getCliente(@PathParam("clienteUsername") String clienteUsername) {
+        LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clienteUsername);
+        ClienteEntity clienteEntity = clienteLogic.getCliente(clienteUsername);
+        if (clienteEntity == null) {
+            throw new WebApplicationException(RECURSO + clienteUsername + NO_EXISTE, 404);
+        }
+        ClienteDetailDTO clienteDetailDTO = new ClienteDetailDTO(clienteEntity);
+        LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", clienteDetailDTO);
+        return clienteDetailDTO;
+    }
+    
     @PUT
     @Path("{clienteId: \\d+}")
     public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente) throws BusinessLogicException {
