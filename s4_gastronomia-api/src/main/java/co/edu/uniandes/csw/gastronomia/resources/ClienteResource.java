@@ -81,6 +81,9 @@ public class ClienteResource {
         return clienteDetailDTO;
     }
     
+    
+    
+    
     @PUT
     @Path("{clienteId: \\d+}")
     public ClienteDTO updateCliente(@PathParam("clienteId") Long clienteId, ClienteDTO cliente) throws BusinessLogicException {
