@@ -80,6 +80,22 @@ public class ClienteLogic {
     }
     
     /**
+     * Busca un cliente por Username
+     *
+     * @param clientesUsername El username del cliente a buscar
+     * @return El cliente encontrado, null si no lo encuentra.
+     */
+    public ClienteEntity getCliente(String clienteUsername) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con username = {0}", clienteUsername);
+        ClienteEntity clienteEntity = persistence.findByUsername(clienteUsername);
+        if (clienteEntity == null) {
+            LOGGER.log(Level.SEVERE, "El cliente con el username = {0} no existe", clienteUsername);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con id = {0}", clienteUsername);
+        return clienteEntity;
+    }
+    
+    /**
      * Actualizar un cliente por ID
      *
      * @param clienteId El ID del cliente a actualizar
