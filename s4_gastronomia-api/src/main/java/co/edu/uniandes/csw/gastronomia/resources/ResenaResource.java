@@ -62,7 +62,12 @@ public class ResenaResource {
     @Path("{resenasId: \\d+}")
     public void deleteResena(@PathParam("resenasId") Long resenaId) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "ResenaResource deleteResena: input: {0}", resenaId);
+        ResenaEntity resena= logic.getResena(resenaId);
+         LOGGER.log(Level.INFO, "ResenaResource deleteResena: input: {0}", resenaId);
+        if (resena==null)
+        {
+            throw new WebApplicationException("El recurso /resena " + resenaId+ "no existe" );
+        }
         logic.deleteResena(resenaId);
         LOGGER.log(Level.INFO, "ResenaResource createResena: output: void");
     }
