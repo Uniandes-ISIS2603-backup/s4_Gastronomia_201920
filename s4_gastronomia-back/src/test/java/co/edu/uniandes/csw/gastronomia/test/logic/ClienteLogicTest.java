@@ -325,12 +325,30 @@ public class ClienteLogicTest {
     }
 
     /**
-     * Prueba para consultar un cliente.
+     * Prueba para consultar un cliente por su id.
      */
     @Test
-    public void getClienteTest() {
+    public void getClienteTestById() {
         ClienteEntity entity = data.get(0);
         ClienteEntity resultEntity = clienteLogic.getCliente(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(resultEntity.getApellido(), entity.getApellido());
+        Assert.assertEquals(resultEntity.getUsername(), entity.getUsername());
+        Assert.assertEquals(resultEntity.getEmail(), entity.getEmail());
+        Assert.assertEquals(resultEntity.getContrasena(), entity.getContrasena());
+        Assert.assertEquals(resultEntity.getCumpleanos(), entity.getCumpleanos());
+        Assert.assertEquals(resultEntity.getNumeroContacto(), entity.getNumeroContacto());
+        Assert.assertEquals(resultEntity.getPuntos(), entity.getPuntos());
+    }
+    
+    /**
+     * Prueba para consultar un cliente por su username.
+     */
+    @Test
+    public void getClienteTestByUsername() {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity resultEntity = clienteLogic.getCliente(entity.getUsername());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
         Assert.assertEquals(resultEntity.getApellido(), entity.getApellido());
