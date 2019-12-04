@@ -159,8 +159,7 @@ public class RestaurantePersistence
         q.setParameter("pass", pass);
         try
         {
-            RestauranteEntity r =(RestauranteEntity) q.getSingleResult();
-            return r;
+            return (RestauranteEntity) q.getSingleResult();
         }
         catch(Exception e )
         {
