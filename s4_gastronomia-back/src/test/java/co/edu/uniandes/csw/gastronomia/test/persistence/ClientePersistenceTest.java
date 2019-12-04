@@ -6,7 +6,17 @@
 package co.edu.uniandes.csw.gastronomia.test.persistence;
 
 import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
+import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
+import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
+import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
+import co.edu.uniandes.csw.gastronomia.entities.TarjetaDeCreditoEntity;
+import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
 import co.edu.uniandes.csw.gastronomia.persistence.ClientePersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.FacturaPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.FoodBlogPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.ReservaPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.TarjetaDeCreditoPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.TipoComidaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -33,6 +43,21 @@ public class ClientePersistenceTest {
     
     @Inject
     ClientePersistence clientePersistence;
+    
+    @Inject
+    TarjetaDeCreditoPersistence tarjetaPersistence;
+    
+    @Inject
+    FoodBlogPersistence foogBlogPersistence;
+    
+    @Inject
+    TipoComidaPersistence preferenciasPersistence;
+    
+    @Inject
+    FacturaPersistence facturaPersistence;
+    
+    @Inject
+    ReservaPersistence reservaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -81,6 +106,11 @@ public class ClientePersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
+        em.createQuery("delete from ReservaEntity").executeUpdate();
+        em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from TipoComidaEntity").executeUpdate();
+        em.createQuery("delete from FoodBlogEntity").executeUpdate();
+        em.createQuery("delete from TarjetaDeCreditoEntity").executeUpdate();
         em.createQuery("delete from ClienteEntity").executeUpdate();
     }
 
@@ -105,6 +135,42 @@ public class ClientePersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         ClienteEntity result = clientePersistence.create(newEntity);
+        
+        TarjetaDeCreditoEntity tarjetaEntity = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
+        tarjetaEntity.setCliente(result);
+        TarjetaDeCreditoEntity tarjetaResult = tarjetaPersistence.create(tarjetaEntity);
+        ArrayList tarjetas = new ArrayList<>();
+        tarjetas.add(tarjetaResult);
+        newEntity.setTarjetas(tarjetas);
+        
+        FoodBlogEntity foodBlogEntity = factory.manufacturePojo(FoodBlogEntity.class);
+        foodBlogEntity.setCliente(result);
+        FoodBlogEntity foodBlogResult = foogBlogPersistence.create(foodBlogEntity);
+        ArrayList foodBlogs = new ArrayList<>();
+        foodBlogs.add(foodBlogResult);
+        //newEntity.setFoodBlogs(foodBlogs);
+        
+        TipoComidaEntity tipoComidaEntity = factory.manufacturePojo(TipoComidaEntity.class);
+        tipoComidaEntity.setCliente(result);
+        TipoComidaEntity tipoComidaResult = preferenciasPersistence.create(tipoComidaEntity);
+        ArrayList preferencias = new ArrayList<>();
+        preferencias.add(tipoComidaResult);
+        //newEntity.setPreferencias(preferencias);
+        
+        FacturaEntity facturaEntity = factory.manufacturePojo(FacturaEntity.class);
+        facturaEntity.setCliente(result);
+        FacturaEntity facturaResult = facturaPersistence.create(facturaEntity);
+        ArrayList facturas = new ArrayList<>();
+        facturas.add(facturaResult);
+        newEntity.setFacturas(facturas);
+        
+        ReservaEntity reservaEntity = factory.manufacturePojo(ReservaEntity.class);
+        reservaEntity.setCliente(result);
+        ReservaEntity reservaResult = reservaPersistence.create(reservaEntity);
+        ArrayList reservas = new ArrayList<>();
+        reservas.add(reservaResult);
+        newEntity.setReservas(reservas);
+        
         Assert.assertNotNull(result);
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
@@ -115,6 +181,11 @@ public class ClientePersistenceTest {
         Assert.assertEquals(newEntity.getCumpleanos(), entity.getCumpleanos());
         Assert.assertEquals(newEntity.getNumeroContacto(), entity.getNumeroContacto());
         Assert.assertEquals(newEntity.getPuntos(), entity.getPuntos());
+        Assert.assertEquals(newEntity.getTarjetas(), entity.getTarjetas());
+        Assert.assertEquals(newEntity.getFoodBlogs(), entity.getFoodBlogs());
+        Assert.assertEquals(newEntity.getPreferencias(), entity.getPreferencias());
+        Assert.assertEquals(newEntity.getFacturas(), entity.getFacturas());
+        Assert.assertEquals(newEntity.getReservas(), entity.getReservas());
         
     }
     
