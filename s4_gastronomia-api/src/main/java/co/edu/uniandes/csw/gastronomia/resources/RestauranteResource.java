@@ -40,6 +40,7 @@ public class RestauranteResource
 {
     private static final Logger LOGGER = Logger.getLogger(RestauranteResource.class.getName());
     
+    private static final String RECURSO="El recurso /restaurantes/";
     @Inject
     private RestauranteLogic logic;
     
@@ -72,7 +73,7 @@ public class RestauranteResource
         RestauranteEntity r = logic.getRestaurante(id);
         if(r==null)
         {
-           throw new WebApplicationException("El recurso /restaurantes/" + id + " no existe.", 404); 
+           throw new WebApplicationException(RECURSO + id + " no existe.", 404); 
         }
         RestauranteDetailDTO rr = new RestauranteDetailDTO(r);
         return rr;
@@ -85,121 +86,7 @@ public class RestauranteResource
         return r;
     }
     
-//    @GET
-//    public List<RestauranteDetailDTO> getRestaurantes2(@QueryParam("contrasena") String contrasena, @QueryParam("nombre") String nombre, @QueryParam("precioPorPersonaMax") Double precioPorPersonaMax,@QueryParam("precioPorPersonaMin") Double precioPorPersonaMin,@QueryParam("precioPorReservaMax") Double precioPorReservaMax,@QueryParam("precioPorReservaMin") Double precioPorReservaMin, @QueryParam("cumpleanos") Boolean cumpleanos,@QueryParam("petFriendly") Boolean pet,@QueryParam("musicaEnVivo") Boolean musica, @QueryParam("servicioALaMesa") Boolean sam, @QueryParam("zonaFumadores") Boolean fumadores,@QueryParam("direccion") String dir) throws BusinessLogicException
-//    {
-//        List<RestauranteDetailDTO> t = entity2DTO(logic.getRestaurantes());
-//        if(nombre!=null && contrasena!=null)
-//        {
-//            t.clear();
-//            t.add(new RestauranteDetailDTO(logic.getRestauranteContrasenaNombre(nombre, contrasena)));
-//        }
-//        else
-//        {
-//            List<RestauranteDetailDTO> x = new ArrayList<RestauranteDetailDTO>();
-//            if(nombre!=null)
-//            {
-//                x=entity2DTO(logic.getRestauranteNombre(nombre));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//            if(precioPorPersonaMax!=null && precioPorPersonaMin!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesPrecioPromedioRango(precioPorReservaMax, precioPorReservaMin));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//            if(precioPorReservaMax!=null && precioPorReservaMin!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesPrecioReservaRango(precioPorReservaMax, precioPorReservaMin));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//            if(cumpleanos!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesDescuentoCumpleanos(new Boolean(cumpleanos)));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//            if(pet!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesPetFriendly(new Boolean(pet)));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//            if(musica!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesMusicaEnVivo(new Boolean(musica)));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//            if(sam!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesServicioALaMesa(new Boolean(sam)));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-////            if(fumadores!=null)
-////            {
-////                x=entity2DTO(logic.getRestaurante(fumadores));
-////                for(RestauranteDetailDTO r : t)
-////                {
-////                    if(!x.contains(r))
-////                    {
-////                        t.remove(r);
-////                    }
-////                }
-////            }
-//            if(dir!=null)
-//            {
-//                x=entity2DTO(logic.getRestaurantesDireccion(dir));
-//                for(RestauranteDetailDTO r : t)
-//                {
-//                    if(!x.contains(r))
-//                    {
-//                        t.remove(r);
-//                    }
-//                }
-//            }
-//        }
-//        return t;
-//    }
-    
+
     
     //--------------------------------------------------------------------------
     //Put method
@@ -211,7 +98,7 @@ public class RestauranteResource
         r.setId(id);
         if(logic.getRestaurante(id)==null)
         {
-            throw new WebApplicationException("El recurso /restaurantes/" + id + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + id + " no existe.", 404);
         }
         RestauranteDetailDTO rr = new RestauranteDetailDTO(logic.updateRestaurante(r.toEntity(), id));
         return rr;
@@ -220,7 +107,7 @@ public class RestauranteResource
     public Class<PlatoResource> getReviewResource(@PathParam("restaurantesId") Long id) throws BusinessLogicException
     {
         if (logic.getRestaurante(id) == null) {
-            throw new WebApplicationException("El recurso /restaurantes/" + id + "/platos no existe.", 404);
+            throw new WebApplicationException(RECURSO + id + "/platos no existe.", 404);
         }
         return PlatoResource.class;
     }

@@ -156,9 +156,9 @@
             foodblogLogic.createFoodBlog(fb3);
             List<FoodBlogEntity> foodBlogs=foodblogLogic.getFoodBlogs();
            
-            Assert.assertEquals(foodBlogs.contains(fb1), true);
-            Assert.assertEquals(foodBlogs.contains(fb2), true);
-            Assert.assertEquals(foodBlogs.contains(fb3), true);
+            Assert.assertEquals(true,foodBlogs.contains(fb1) );
+            Assert.assertEquals(true,foodBlogs.contains(fb2) );
+            Assert.assertEquals( true,foodBlogs.contains(fb3));
             
         }
         }

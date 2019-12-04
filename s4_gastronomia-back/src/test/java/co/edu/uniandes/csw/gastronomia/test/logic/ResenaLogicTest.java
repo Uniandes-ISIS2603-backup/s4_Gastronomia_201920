@@ -67,8 +67,8 @@ public class ResenaLogicTest
              int n = (int)(Math.random()*4)+1;
              fb.setCalificacion(n);
              ResenaEntity rta= resenaLogic.createResena(fb);
-             Assert.assertEquals(rta.getCalificacion()<=5,true);
-             Assert.assertEquals(rta.getCalificacion()>=1 ,true);
+             Assert.assertEquals(true,rta.getCalificacion()<=5);
+             Assert.assertEquals(true ,rta.getCalificacion()>=1);
              Assert.assertNotNull(rta);
              Assert.assertEquals(rta, fb);
              Assert.assertNotNull(rta.getCalificacion());
@@ -91,9 +91,9 @@ public class ResenaLogicTest
             resenaLogic.createResena(fb3);
             List<ResenaEntity> resenas=resenaLogic.getResenas();
             Assert.assertEquals(3, resenas.size());
-            Assert.assertEquals(resenas.contains(fb1), true);
-            Assert.assertEquals(resenas.contains(fb2), true);
-            Assert.assertEquals(resenas.contains(fb3), true);
+            Assert.assertEquals(true,resenas.contains(fb1) );
+            Assert.assertEquals(true,resenas.contains(fb2));
+            Assert.assertEquals(true,resenas.contains(fb3));
         }
         @Test 
         public void getFoodblogTest()throws BusinessLogicException

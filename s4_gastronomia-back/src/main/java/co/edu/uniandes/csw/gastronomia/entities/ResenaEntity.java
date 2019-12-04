@@ -20,7 +20,7 @@ public class ResenaEntity extends BaseEntity implements Serializable {
     /**
      * La calificacion que rescibe un restaurante por parte de un usario
      */
-    private int calificacion;
+    private Integer calificacion;
     /**
      * El comentqrio de la resena que hace un usuario
      */
@@ -33,7 +33,7 @@ public class ResenaEntity extends BaseEntity implements Serializable {
     /**
      * @return the calificacion
      */
-    public int getCalificacion() {
+    public Integer getCalificacion() {
         return calificacion;
     }
 

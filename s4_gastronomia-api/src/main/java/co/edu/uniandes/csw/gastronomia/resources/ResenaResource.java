@@ -63,6 +63,11 @@ public class ResenaResource {
     public void deleteResena(@PathParam("resenasId") Long resenaId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ResenaResource deleteResena: input: {0}", resenaId);
+         ResenaEntity re = logic.getResena(resenaId);
+        if(re==null)
+        {
+           throw new WebApplicationException("El food blog con id/" + resenaId + " no existe.", 404); 
+        }
         logic.deleteResena(resenaId);
         LOGGER.log(Level.INFO, "ResenaResource createResena: output: void");
     }

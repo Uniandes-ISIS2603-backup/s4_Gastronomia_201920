@@ -23,6 +23,7 @@ public class RestaurantePersistence
 {
     private static final Logger LOGGER = Logger.getLogger(RestaurantePersistence.class.getName());
 
+    private static final String BUSCANDO="Buscando todos los restaurantes con nombre";
     @PersistenceContext(unitName = "gastronomiaPU")
     protected EntityManager em;
     /**
@@ -84,7 +85,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findNombre(String n)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre "+n);
+        LOGGER.log(Level.INFO,BUSCANDO+n);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.nombre = :nombre", RestauranteEntity.class);
         q.setParameter("nombre", n);
         return q.getResultList();
@@ -92,7 +93,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findPrecioPromedioRango(Double min, Double max)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.precioPorPersona >= :min and u.precioPorPersona <= :max", RestauranteEntity.class);
         q.setParameter("min", min);
         q.setParameter("max", max);
@@ -101,7 +102,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findPrecioReservaRango(Double min, Double max)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.costoReserva >= :min and u.costoReserva <= :max", RestauranteEntity.class);
         q.setParameter("min", min);
         q.setParameter("max", max);
@@ -110,7 +111,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findDescuentoCumpleanos(Boolean b)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.descuentaoCumpleanos = :bol", RestauranteEntity.class);
         q.setParameter("bol", b);
         return q.getResultList();
@@ -118,7 +119,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findServicioALaMesa(Boolean b)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.servicioALaMesa = :bol", RestauranteEntity.class);
         q.setParameter("bol", b);
         return q.getResultList();
@@ -126,7 +127,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findMusicaEnVivo(Boolean b)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.musicaEnVivo = :bol", RestauranteEntity.class);
         q.setParameter("bol", b);
         return q.getResultList();
@@ -134,7 +135,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findPetFriendly(Boolean b)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.petFriendly = :bol", RestauranteEntity.class);
         q.setParameter("bol", b);
         return q.getResultList();
@@ -144,7 +145,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findDireccion(String b)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.direccion like :bol", RestauranteEntity.class);
         q.setParameter("bol", b);
         return q.getResultList();
@@ -152,7 +153,7 @@ public class RestaurantePersistence
     
     public RestauranteEntity findNombrePassword(String nombre, String pass)
     {
-        LOGGER.log(Level.INFO, "Buscando todos los restaurantes con nombre ");
+        LOGGER.log(Level.INFO, BUSCANDO);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.nombre = :nombre and u.contrasena = :pass", RestauranteEntity.class);
         q.setParameter("nombre", nombre);
         q.setParameter("pass", pass);
