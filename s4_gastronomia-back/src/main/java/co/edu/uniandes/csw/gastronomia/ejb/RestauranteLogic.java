@@ -19,296 +19,360 @@ import javax.inject.Inject;
  * @author Estudiante
  */
 @Stateless
-public class RestauranteLogic 
-{
+public class RestauranteLogic {
+
     private static final Logger LOGGER = Logger.getLogger(RestauranteLogic.class.getName());
 
-    private static final String COND_RESTAURANTE1="El restaurante no tiene nombre";
-    
-    private static final String COND_RESTAURANTE2="El tipo de restaurante no puede ser nulo o vacio";
-    
-    private static final String B_PASS="Bad password sheme ";
-    
-   
-    private static final String IMAGEN="La imagen está vaci o no existe";
-    
-    private static final String DIRECCION= "La direcion es nula o no tiene";
-   
-    private static final String BOOLEAN= "No puede mandar un booleano nulo";
-     
-    
+    private static final String COND_RESTAURANTE1 = "El restaurante no tiene nombre";
+
+    private static final String COND_RESTAURANTE2 = "El tipo de restaurante no puede ser nulo o vacio";
+
+    private static final String B_PASS = "Bad password sheme ";
+
+    private static final String IMAGEN = "La imagen está vaci o no existe";
+
+    private static final String DIRECCION = "La direcion es nula o no tiene";
+
+    private static final String BOOLEAN = "No puede mandar un booleano nulo";
+
     @Inject
     private RestaurantePersistence persistence;
-   
-    public void verificadorCondiciones1(RestauranteEntity r) throws BusinessLogicException
-    {
-         if(r.getNombre().equals(null))
-        {
+
+    public void verificadorCondiciones1(RestauranteEntity r) throws BusinessLogicException {
+        if (r.getNombre().equals(null)) {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if(r.getNombre().isEmpty())
-        {
+        if (r.getNombre().isEmpty()) {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if(r.getContrasena()==null )
-        {
+        if (r.getContrasena() == null) {
             throw new BusinessLogicException(B_PASS);
         }
-        if(r.getContrasena().isEmpty() )
-        {
-           throw new BusinessLogicException(B_PASS); 
+        if (r.getContrasena().isEmpty()) {
+            throw new BusinessLogicException(B_PASS);
         }
-        if( r.getContrasena().length() < 8)
-        {
-            throw new BusinessLogicException(B_PASS); 
+        if (r.getContrasena().length() < 8) {
+            throw new BusinessLogicException(B_PASS);
         }
-        if(r.getZonaDeFumadores()==null)
-        {
+        if (r.getZonaDeFumadores() == null) {
             throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
         }
-        if(r.getDescuentaoCumpleanos()==null)
-        {
+        if (r.getDescuentaoCumpleanos() == null) {
             throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
         }
-        if(r.getPetFriendly()==null)
-        {
+        if (r.getPetFriendly() == null) {
             throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
         }
-        if(r.getServicioALaMesa()==null)
-        {
+        if (r.getServicioALaMesa() == null) {
             throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
         }
-        if(r.getImagen()==null )
-        {
+        if (r.getImagen() == null) {
             throw new BusinessLogicException(IMAGEN);
         }
-        if( r.getImagen().isEmpty())
-        {
+        if (r.getImagen().isEmpty()) {
             throw new BusinessLogicException(IMAGEN);
         }
-        if(r.getDireccion()==null)
-        {
+        if (r.getDireccion() == null) {
             throw new BusinessLogicException(DIRECCION);
-        }               
+        }
     }
-    
-      public void verificadorCondiciones2(RestauranteEntity r) throws BusinessLogicException
-      {
-          if(r.getDireccion().isEmpty())
-        {
+
+    public void verificadorCondiciones2(RestauranteEntity r) throws BusinessLogicException {
+        if (r.getDireccion().isEmpty()) {
             throw new BusinessLogicException(DIRECCION);
         }
-        if(r.getHorario()==null)
-        {
+        if (r.getHorario() == null) {
             throw new BusinessLogicException("No tiene horario");
         }
-        if(r.getCostoReserva()== null)
-        {
+        if (r.getCostoReserva() == null) {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
-        if(r.getCostoReserva()<=0.0)
-        {
+        if (r.getCostoReserva() <= 0.0) {
             throw new BusinessLogicException("El costo de reserva es negativo");
         }
-        if(r.getTipoRestaurante()==null)
-        {
+        if (r.getTipoRestaurante() == null) {
             throw new BusinessLogicException(COND_RESTAURANTE2);
         }
-        if(r.getTipoRestaurante().isEmpty())
-        {
+        if (r.getTipoRestaurante().isEmpty()) {
             throw new BusinessLogicException(COND_RESTAURANTE2);
         }
-        if(r.getMusicaEnVivo()==null)
-        {
+        if (r.getMusicaEnVivo() == null) {
             throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
         }
-        if(r.getPrecioPorPersona() == null)
-        {
+        if (r.getPrecioPorPersona() == null) {
             throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
         }
-        if(r.getPrecioPorPersona()<=0.0)
-        {
+        if (r.getPrecioPorPersona() <= 0.0) {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }
-      }
-    
-    public RestauranteEntity createRestaurante(RestauranteEntity r)throws BusinessLogicException            
-    {
-        LOGGER.log(Level.INFO,"Se está creando el restaurante con id={0}",r.getId());
-        if(persistence.find(r.getId())!=null)
-        {
+    }
+
+    public RestauranteEntity createRestaurante(RestauranteEntity r) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Se está creando el restaurante con id={0}", r.getId());
+        if (persistence.find(r.getId()) != null) {
             throw new BusinessLogicException("El restaurante ya existe");
         }
-        verificadorCondiciones1(r);
-        verificadorCondiciones2(r);
-        LOGGER.log(Level.INFO,"Se creó el restaurante con id={0}",r.getId());
+        if (r.getNombre() == (null)) {
+            throw new BusinessLogicException(COND_RESTAURANTE1);
+        }
+        if (r.getNombre().isEmpty()) {
+            throw new BusinessLogicException(COND_RESTAURANTE1);
+        }
+        if (r.getContrasena() == null) {
+            throw new BusinessLogicException(B_PASS);
+        }
+        if (r.getContrasena().isEmpty()) {
+            throw new BusinessLogicException(B_PASS);
+        }
+        if (r.getContrasena().length() < 8) {
+            throw new BusinessLogicException(B_PASS);
+        }
+        if (r.getZonaDeFumadores() == null) {
+            throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
+        }
+        if (r.getDescuentaoCumpleanos() == null) {
+            throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
+        }
+        if (r.getPetFriendly() == null) {
+            throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
+        }
+        if (r.getServicioALaMesa() == null) {
+            throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
+        }
+        if (r.getImagen() == null) {
+            throw new BusinessLogicException(IMAGEN);
+        }
+        if (r.getImagen().isEmpty()) {
+            throw new BusinessLogicException(IMAGEN);
+        }
+        if (r.getDireccion() == null) {
+            throw new BusinessLogicException(DIRECCION);
+        }
+        if (r.getDireccion().isEmpty()) {
+            throw new BusinessLogicException(DIRECCION);
+        }
+        if (r.getHorario() == null) {
+            throw new BusinessLogicException("No tiene horario");
+        }
+        if (r.getCostoReserva() == null) {
+            throw new BusinessLogicException("El costo de reserva es nulo");
+        }
+        if (r.getCostoReserva() <= 0.0) {
+            throw new BusinessLogicException("El costo de reserva es negativo");
+        }
+        if (r.getTipoRestaurante() == null) {
+            throw new BusinessLogicException(COND_RESTAURANTE2);
+        }
+        if (r.getTipoRestaurante().isEmpty()) {
+            throw new BusinessLogicException(COND_RESTAURANTE2);
+        }
+        if (r.getMusicaEnVivo() == null) {
+            throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
+        }
+        if (r.getPrecioPorPersona() == null) {
+            throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
+        }
+        if (r.getPrecioPorPersona() <= 0.0) {
+            throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
+        }
+
+        LOGGER.log(Level.INFO, "Se creó el restaurante con id={0}", r.getId());
         return persistence.create(r);
     }
-    
-    public List<RestauranteEntity> getRestaurantes() 
-    {
-        LOGGER.log(Level.INFO,"Se está haciendo una busqueda general de todos los restaurantes");
+
+    public List<RestauranteEntity> getRestaurantes() {
+        LOGGER.log(Level.INFO, "Se está haciendo una busqueda general de todos los restaurantes");
         List<RestauranteEntity> result = persistence.findAll();
-        LOGGER.log(Level.INFO,"Se termino la busqueda de los restaurantes");
+        LOGGER.log(Level.INFO, "Se termino la busqueda de los restaurantes");
         return result;
     }
-    
-    public RestauranteEntity getRestauranteContrasenaNombre(String nombre , String contrasena) throws BusinessLogicException
-    {
-        if(nombre==null)
-        {
+
+    public RestauranteEntity getRestauranteContrasenaNombre(String nombre, String contrasena) throws BusinessLogicException {
+        if (nombre == null) {
             throw new BusinessLogicException("Bad name format, null string");
         }
-        if(nombre.isEmpty())
-        {
+        if (nombre.isEmpty()) {
             throw new BusinessLogicException("Bad name format, empty string");
         }
-        if(contrasena==null)
-        {
+        if (contrasena == null) {
             throw new BusinessLogicException("Bad password format, null string");
         }
-        if(contrasena.isEmpty())
-        {
+        if (contrasena.isEmpty()) {
             throw new BusinessLogicException("Bad password format, empty string");
         }
         RestauranteEntity r = persistence.findNombrePassword(nombre, contrasena);
-        if(r==null)
-        {
+        if (r == null) {
             throw new BusinessLogicException("Wrong, it doesn´t exist");
         }
         return r;
     }
-    
-    public List<RestauranteEntity> getRestaurantesPetFriendly(Boolean b)throws  BusinessLogicException
-    {
-        if(b==null)
-        {
+
+    public List<RestauranteEntity> getRestaurantesPetFriendly(Boolean b) throws BusinessLogicException {
+        if (b == null) {
             throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findPetFriendly(b);
     }
-    
-    public List<RestauranteEntity> getRestaurantesMusicaEnVivo(Boolean b)throws  BusinessLogicException
-    {
-        if(b==null)
-        {
+
+    public List<RestauranteEntity> getRestaurantesMusicaEnVivo(Boolean b) throws BusinessLogicException {
+        if (b == null) {
             throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findMusicaEnVivo(b);
     }
-    
-    public List<RestauranteEntity> getRestaurantesServicioALaMesa(Boolean b)throws  BusinessLogicException
-    {
-        if(b==null)
-        {
+
+    public List<RestauranteEntity> getRestaurantesServicioALaMesa(Boolean b) throws BusinessLogicException {
+        if (b == null) {
             throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findServicioALaMesa(b);
     }
-    
-    public List<RestauranteEntity> getRestaurantesDescuentoCumpleanos(Boolean b)throws  BusinessLogicException
-    {
-        if(b==null)
-        {
+
+    public List<RestauranteEntity> getRestaurantesDescuentoCumpleanos(Boolean b) throws BusinessLogicException {
+        if (b == null) {
             throw new BusinessLogicException(BOOLEAN);
         }
         return persistence.findDescuentoCumpleanos(b);
     }
-    
-    public List<RestauranteEntity> getRestaurantesPrecioReservaRango(Double max, Double min)throws  BusinessLogicException
-    {
-       if(max==null)
-       {
-           throw new BusinessLogicException("El max no puede ser nulo");
-       }
-       if(min==null)
-       {
-           throw new BusinessLogicException("El min no puede ser nulo");
-       }
-       if(max<min)
-       {
-           throw new BusinessLogicException("El max no puede ser menor que el min");
-       }
-       return persistence.findPrecioReservaRango(min, max);
+
+    public List<RestauranteEntity> getRestaurantesPrecioReservaRango(Double max, Double min) throws BusinessLogicException {
+        if (max == null) {
+            throw new BusinessLogicException("El max no puede ser nulo");
+        }
+        if (min == null) {
+            throw new BusinessLogicException("El min no puede ser nulo");
+        }
+        if (max < min) {
+            throw new BusinessLogicException("El max no puede ser menor que el min");
+        }
+        return persistence.findPrecioReservaRango(min, max);
     }
-    
-    public List<RestauranteEntity> getRestaurantesPrecioPromedioRango(Double max, Double min)throws  BusinessLogicException
-    {
-       if(max==null)
-       {
-           throw new BusinessLogicException("El max no puede ser nulo");
-       }
-       if(min==null)
-       {
-           throw new BusinessLogicException("El min no puede ser nulo");
-       }
-       if(max<min)
-       {
-           throw new BusinessLogicException("El max no puede ser menor que el min");
-       }
-       return persistence.findPrecioPromedioRango(min, max);
+
+    public List<RestauranteEntity> getRestaurantesPrecioPromedioRango(Double max, Double min) throws BusinessLogicException {
+        if (max == null) {
+            throw new BusinessLogicException("El max no puede ser nulo");
+        }
+        if (min == null) {
+            throw new BusinessLogicException("El min no puede ser nulo");
+        }
+        if (max < min) {
+            throw new BusinessLogicException("El max no puede ser menor que el min");
+        }
+        return persistence.findPrecioPromedioRango(min, max);
     }
-    
-    public List<RestauranteEntity> getRestaurantesDireccion(String dir)throws BusinessLogicException
-    {
-        if(dir==null){
+
+    public List<RestauranteEntity> getRestaurantesDireccion(String dir) throws BusinessLogicException {
+        if (dir == null) {
             throw new BusinessLogicException("Bad String format");
         }
-        if(dir.isEmpty())
-        {
+        if (dir.isEmpty()) {
             throw new BusinessLogicException("Bad String format");
         }
         return persistence.findDireccion(dir);
     }
-    
-    public List<RestauranteEntity> getRestauranteNombre(String nombre)throws BusinessLogicException
-    {
-        if(nombre==null){
+
+    public List<RestauranteEntity> getRestauranteNombre(String nombre) throws BusinessLogicException {
+        if (nombre == null) {
             throw new BusinessLogicException("Bad name format");
         }
-        if(nombre.isEmpty())
-        {
+        if (nombre.isEmpty()) {
             throw new BusinessLogicException("Bad name format");
         }
         return persistence.findNombre(nombre);
     }
-    
-    public RestauranteEntity getRestaurante(Long id) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO,"Se está haciendo una busqueda del restaurante con id={0}",id);
+
+    public RestauranteEntity getRestaurante(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Se está haciendo una busqueda del restaurante con id={0}", id);
         RestauranteEntity r = persistence.find(id);
-        if(r==null)
-        {
-            throw new BusinessLogicException("No existe el restaurante con id "+id);
+        if (r == null) {
+            throw new BusinessLogicException("No existe el restaurante con id " + id);
         }
-        LOGGER.log(Level.INFO,"Se encontro el restaurante con id={0}",id);
+        LOGGER.log(Level.INFO, "Se encontro el restaurante con id={0}", id);
         return r;
     }
-    
-    public RestauranteEntity updateRestaurante(RestauranteEntity r , Long id) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO,"Se está haciendo una modificación del restaurante con id={0}",id);
+
+    public RestauranteEntity updateRestaurante(RestauranteEntity r, Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Se está haciendo una modificación del restaurante con id={0}", id);
         RestauranteEntity e = persistence.find(id);
-        if(e==null)
-        {
+        if (e == null) {
             throw new BusinessLogicException("no existe el restaurante que se quiere modificar");
         }
-        verificadorCondiciones1(r);
-        verificadorCondiciones2(r);
+        if (r.getNombre() == (null)) {
+            throw new BusinessLogicException(COND_RESTAURANTE1);
+        }
+        if (r.getNombre().isEmpty()) {
+            throw new BusinessLogicException(COND_RESTAURANTE1);
+        }
+        if (r.getContrasena() == null) {
+            throw new BusinessLogicException(B_PASS);
+        }
+        if (r.getContrasena().isEmpty()) {
+            throw new BusinessLogicException(B_PASS);
+        }
+        if (r.getContrasena().length() < 8) {
+            throw new BusinessLogicException(B_PASS);
+        }
+        if (r.getZonaDeFumadores() == null) {
+            throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
+        }
+        if (r.getDescuentaoCumpleanos() == null) {
+            throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
+        }
+        if (r.getPetFriendly() == null) {
+            throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
+        }
+        if (r.getServicioALaMesa() == null) {
+            throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
+        }
+        if (r.getImagen() == null) {
+            throw new BusinessLogicException(IMAGEN);
+        }
+        if (r.getImagen().isEmpty()) {
+            throw new BusinessLogicException(IMAGEN);
+        }
+        if (r.getDireccion() == null) {
+            throw new BusinessLogicException(DIRECCION);
+        }
+        if (r.getDireccion().isEmpty()) {
+            throw new BusinessLogicException(DIRECCION);
+        }
+        if (r.getHorario() == null) {
+            throw new BusinessLogicException("No tiene horario");
+        }
+        if (r.getCostoReserva() == null) {
+            throw new BusinessLogicException("El costo de reserva es nulo");
+        }
+        if (r.getCostoReserva() <= 0.0) {
+            throw new BusinessLogicException("El costo de reserva es negativo");
+        }
+        if (r.getTipoRestaurante() == null) {
+            throw new BusinessLogicException(COND_RESTAURANTE2);
+        }
+        if (r.getTipoRestaurante().isEmpty()) {
+            throw new BusinessLogicException(COND_RESTAURANTE2);
+        }
+        if (r.getMusicaEnVivo() == null) {
+            throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
+        }
+        if (r.getPrecioPorPersona() == null) {
+            throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
+        }
+        if (r.getPrecioPorPersona() <= 0.0) {
+            throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
+        }
+
         e = persistence.update(r);
-        LOGGER.log(Level.INFO,"Se está modifico el restaurante con id={0}",id);
+        LOGGER.log(Level.INFO, "Se está modifico el restaurante con id={0}", id);
         return e;
     }
-    
-    public void deleteRestaurante(Long id) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO,"Se está borrando el restaurante con id={0}",id);
+
+    public void deleteRestaurante(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Se está borrando el restaurante con id={0}", id);
         RestauranteEntity r = persistence.find(id);
-        if(r==null)
-        {
-            throw new BusinessLogicException("El restaurante que se quiere borrar no existe"); 
+        if (r == null) {
+            throw new BusinessLogicException("El restaurante que se quiere borrar no existe");
         }
         persistence.delete(id);
     }
-    
+
 }
