@@ -213,6 +213,7 @@ public class RestauranteLogicTest
         }
         try 
         {
+            r.setDescuentaoCumpleanos(null);
             r1 = restauranteLogic.createRestaurante(r);
             Assert.fail("No se puede crear sin descuento de cumpleaños");
         } 
@@ -2016,6 +2017,7 @@ public class RestauranteLogicTest
         try 
         {
             r.setId(data.get(0).getId());
+            r.setDescuentaoCumpleanos(null);
             r1 = restauranteLogic.updateRestaurante(r,r.getId());
             Assert.fail("No se puede crear sin descuento de cumpleaños");
         } 
