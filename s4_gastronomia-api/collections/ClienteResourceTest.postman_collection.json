@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "20bd0c62-4099-4766-8bea-d0e0bb158d14",
+		"_postman_id": "1d13e377-2b45-4a9c-92bb-f8692961eeba",
 		"name": "ClienteResourceTest",
 		"description": "Cliente Resource Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -35,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Carolina\",\n\t\"apellido\": \"Castillo\",\n\t\"username\": \"c.castillo\",\n\t\"email\": \"c.castillo@gmail.com\",\n\t\"contrasena\": \"password\",\n\t\"cumpleaños\": \"1998-09-14T05:00:00Z[UTC]\",\n\t\"numeroContacto\": \"+57 3218959151\",\n\t\"puntos\": 0\n}",
+					"raw": "{\n\t\"nombre\": \"Carolina\",\n\t\"apellido\": \"Castillo\",\n\t\"username\": \"c.castillo\",\n\t\"email\": \"c.castillo@gmail.com\",\n\t\"contrasena\": \"password\",\n\t\"cumpleanos\": \"1998-09-14T05:00:00Z[UTC]\",\n\t\"numeroContacto\": \"+57 3218959151\",\n\t\"puntos\": 0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -87,7 +87,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Natalia\",\n\t\"apellido\": \"Padilla\",\n\t\"username\": \"n.padilla\",\n\t\"email\": \"n.padilla@gmail.com\",\n\t\"contrasena\": \"password\",\n\t\"cumpleaños\": \"1998-10-09T05:00:00Z[UTC]\",\n\t\"numeroContacto\": \"+57 3218959106\",\n\t\"puntos\": 0\n}",
+					"raw": "{\n\t\"nombre\": \"Natalia\",\n\t\"apellido\": \"Padilla\",\n\t\"username\": \"n.padilla\",\n\t\"email\": \"n.padilla@gmail.com\",\n\t\"contrasena\": \"password\",\n\t\"cumpleanos\": \"1998-10-09T05:00:00Z[UTC]\",\n\t\"numeroContacto\": \"+57 3218959106\",\n\t\"puntos\": 0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
