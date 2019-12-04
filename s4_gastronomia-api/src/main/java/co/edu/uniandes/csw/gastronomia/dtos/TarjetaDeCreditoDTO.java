@@ -31,10 +31,13 @@ public class TarjetaDeCreditoDTO implements Serializable {
     }
     public TarjetaDeCreditoDTO(TarjetaDeCreditoEntity tarjeta)
     {
+        if(tarjeta != null)
+        {
         id = tarjeta.getId();
         numero = tarjeta.getNumero(); 
         cvv = tarjeta.getCvv(); 
         fechaVencimiento = tarjeta.getFechaVencimiento(); 
+        }
     }
     public TarjetaDeCreditoEntity toEntity()
     {
@@ -49,7 +52,7 @@ public class TarjetaDeCreditoDTO implements Serializable {
     /**
      * @return the numero
      */
-    public long getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
@@ -92,7 +95,7 @@ public class TarjetaDeCreditoDTO implements Serializable {
     /**
      * @return the id
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
