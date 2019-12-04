@@ -91,8 +91,6 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany(mappedBy = "restaurante", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ReservaEntity> reservas;
-    
-
 
     public RestauranteEntity()
     {
@@ -137,10 +135,14 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.administrador = administrador;
         this.platos = platos;
         this.reservas = reservas;
-    }
+}
+    
 
-    public List<ReservaEntity> getReservas() {
-        return reservas;
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
     }
 
     public void setPlatos(List<PlatoEntity> platos) {
@@ -150,19 +152,24 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
-    
-    public String getNombre() {
-        return nombre;
-    }
+
+   
     
 
-    public void setAdministrador(AdministradorEntity administrador) {
-        this.administrador = administrador;
+    /**
+     * @return the tipoRestaurante
+     */
+    public String getTipoRestaurante() {
+        return tipoRestaurante;
     }
 
-    public List<PlatoEntity> getPlatos() {
-        return platos;
+    /**
+     * @return the precioPorPersona
+     */
+    public Double getPrecioPorPersona() {
+        return precioPorPersona;
     }
+
 
 
     public AdministradorEntity getAdministrador() {
@@ -197,90 +204,149 @@ public void setPrecioPorPersona(Double precioPorPersona) {
         this.precioPorPersona = precioPorPersona;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-   
-
-    public void setTipoRestaurante(String tipoRestaurante) {
-        this.tipoRestaurante = tipoRestaurante;
-    }
-
-    public Double getPrecioPorPersona() {
-        return precioPorPersona;
-    }
-    
-public Boolean getServicioALaMesa() {
-        return servicioALaMesa;
-    }
-    
-    public Boolean getDescuentaoCumpleanos() {
-        return descuentaoCumpleanos;
-    }
-
-    public void setDescuentaoCumpleaños(Boolean descuentaoCumpleaños) {
-        this.descuentaoCumpleanos = descuentaoCumpleaños;
-    }
-    
-    
-    public void setServicioALaMesa(Boolean servicioALaMesa) {
-        this.servicioALaMesa = servicioALaMesa;
-    }
-    
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
+    /**
+     * @return the zonaDeFumadores
+     */
     public Boolean getZonaDeFumadores() {
         return zonaDefumadores;
     }
 
-    
-
-    
-    public void setPetFriendly(Boolean petFriendly) {
-        this.petFriendly = petFriendly;
+    /**
+     * @return the petFriendly
+     */
+    public Boolean getPetFriendly() {
+        return petFriendly;
     }
 
-    
+    /**
+     * @return the servicioALaMesa
+     */
+    public Boolean getServicioALaMesa() {
+        return servicioALaMesa;
+    }
 
-
+    /**
+     * @return the musicaEnVivo
+     */
     public Boolean getMusicaEnVivo() {
         return musicaEnVivo;
     }
+
+    /**
+     * @return the costoReserva
+     */
+    public Double getCostoReserva() {
+        return costoReserva;
+    }
+
+    /**
+     * @return the horario
+     */
+    public Date getHorario() {
+        return horario;
+    }
+
+    /**
+     * @return the platos
+     */
+    public List<PlatoEntity> getPlatos() {
+        return platos;
+    }
+
+
+    /**
+     * @return the reservas
+     */
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+ 
     
-     public String getTipoRestaurante() {
-        return tipoRestaurante;
+    
+
+    
+    public Boolean getDescuentaoCumpleanos() {
+        return descuentaoCumpleanos;
+}
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    /**
+     * @param tipoRestaurante the tipoRestaurante to set
+     */
+    public void setTipoRestaurante(String tipoRestaurante) {
+        this.tipoRestaurante = tipoRestaurante;
+    }
+    
+  
+ 
+
+    /**
+     * @param descuentaoCumpleanos the descuentaoCumpleanos to set
+     */
+    public void setDescuentaoCumpleanos(Boolean descuentaoCumpleanos) {
+        this.descuentaoCumpleanos = descuentaoCumpleanos;
+    }
+
+    /**
+     * @param zonaDeFumadores the zonaDeFumadores to set
+     */
+    public void setZonaDeFumadores(Boolean zonaDeFumadores) {
+        this.zonaDefumadores = zonaDeFumadores;
+    }
+
+    /**
+     * @param petFriendly the petFriendly to set
+     */
+    public void setPetFriendly(Boolean petFriendly) {
+        this.petFriendly = petFriendly;
     }
 
     public void setMusicaEnVivo(Boolean musicaEnVivo) {
         this.musicaEnVivo = musicaEnVivo;
     }
-    
-public Date getHorario() {
-        return horario;
+ 
+      
+    public void setServicioALaMesa(Boolean servicioALaMesa) {
+        this.servicioALaMesa = servicioALaMesa;
     }
-    public Double getCostoReserva() {
-        return costoReserva;
-    }
-
+    /**
+     * @param costoReserva the costoReserva to set
+     */
     public void setCostoReserva(Double costoReserva) {
         this.costoReserva = costoReserva;
     }
 
-    public Boolean getPetFriendly() {
-        return petFriendly;
-    }
 
-
+    /**
+     * @param horario the horario to set
+     */
     public void setHorario(Date horario) {
         this.horario = horario;
-    } 
-    
-    public void setZonaDeFumadores(Boolean zonaDefumadores) {
-        this.zonaDefumadores = zonaDefumadores;
     }
+
+    /**
+     * @param administrador the administrador to set
+     */
+    public void setAdministrador(AdministradorEntity administrador) {
+        this.administrador = administrador;
+    }
+
+    
+    
     
     @Override
     public boolean equals(Object ob)

@@ -45,6 +45,7 @@ private String comentarios;
  private ClienteEntity cliente;
 
 
+
     public FoodBlogEntity() {
         super();
     }

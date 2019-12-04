@@ -106,7 +106,7 @@ public class TarjetaDeCreditoPersistenceTest {
       TarjetaDeCreditoEntity entity = em.find(TarjetaDeCreditoEntity.class, result.getId());
       Assert.assertEquals(tarjetaNueva.getNumero(), entity.getNumero());
       Assert.assertEquals(tarjetaNueva.getCvv(), entity.getCvv());
-      Assert.assertEquals(tarjetaNueva.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+      Assert.assertEquals(tarjetaNueva.getFechaVencimiento(), entity.getFechaVencimiento());
        
     }
     /**
@@ -122,7 +122,7 @@ public class TarjetaDeCreditoPersistenceTest {
       tarjetaPersistence.update(entity);
       TarjetaDeCreditoEntity resp = em.find(TarjetaDeCreditoEntity.class, tarjeta.getId());
       Assert.assertEquals(entity.getCvv(),resp.getCvv());
-      Assert.assertEquals(entity.getFechaDeVencimiento(),resp.getFechaDeVencimiento());
+      Assert.assertEquals(entity.getFechaVencimiento(),resp.getFechaVencimiento());
       Assert.assertEquals(entity.getNumero(),resp.getNumero());
     }
     /**
@@ -139,7 +139,7 @@ public class TarjetaDeCreditoPersistenceTest {
        
       Assert.assertEquals(tarjeta.getNumero(), entity.getNumero());
       Assert.assertEquals(tarjeta.getCvv(), entity.getCvv());
-      Assert.assertEquals(tarjeta.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+      Assert.assertEquals(tarjeta.getFechaVencimiento(), entity.getFechaVencimiento());
     }
     /**
      * Prueba para eliminar una tarjeta de credito

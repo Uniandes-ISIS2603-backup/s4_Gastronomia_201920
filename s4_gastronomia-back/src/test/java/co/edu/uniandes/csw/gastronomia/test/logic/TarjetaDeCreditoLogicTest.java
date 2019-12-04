@@ -115,7 +115,7 @@ public class TarjetaDeCreditoLogicTest {
         Assert.assertNotNull(resultado);
         TarjetaDeCreditoEntity entidad = em.find(TarjetaDeCreditoEntity.class, resultado.getId());
         Assert.assertEquals(entidad.getCvv(), resultado.getCvv());
-        Assert.assertEquals(entidad.getFechaDeVencimiento(), resultado.getFechaDeVencimiento());
+        Assert.assertEquals(entidad.getFechaVencimiento(), resultado.getFechaVencimiento());
         Assert.assertEquals(entidad.getNumero(), resultado.getNumero());
     }
     /**
@@ -197,12 +197,12 @@ public class TarjetaDeCreditoLogicTest {
         TarjetaDeCreditoEntity result = em.find(TarjetaDeCreditoEntity.class, entity.getId()); 
         
       Assert.assertEquals(tarjeta.getCvv(),result.getCvv());
-      Assert.assertEquals(tarjeta.getFechaDeVencimiento(),result.getFechaDeVencimiento());
+      Assert.assertEquals(tarjeta.getFechaVencimiento(),result.getFechaVencimiento());
       Assert.assertEquals(tarjeta.getNumero(),result.getNumero());
     }
     /**
      * Test para verficar regla de negocio. Cvv no puede ser negativo
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException d
      */
     @Test(expected = BusinessLogicException.class )
     public void updateTarjetaCvvNegativoTest() throws BusinessLogicException
@@ -236,7 +236,7 @@ public class TarjetaDeCreditoLogicTest {
         TarjetaDeCreditoEntity entity = data.get(0);
         TarjetaDeCreditoEntity tarjeta = factory.manufacturePojo(TarjetaDeCreditoEntity.class);
         tarjeta.setId(entity.getId());
-        tarjeta.setFechaDeVencimiento(null);
+        tarjeta.setFechaVencimiento(null);
         tarjetaLogic.updatetarjetaDeCredito(tarjeta.getId(), tarjeta);
     }
     /**
@@ -289,7 +289,7 @@ public class TarjetaDeCreditoLogicTest {
        Assert.assertNotNull(resultado);
        Assert.assertEquals(resultado.getNumero(), entity.getNumero());
        Assert.assertEquals(resultado.getCvv(), entity.getCvv());
-       Assert.assertEquals(resultado.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+       Assert.assertEquals(resultado.getFechaVencimiento(), entity.getFechaVencimiento());
     }
     
     

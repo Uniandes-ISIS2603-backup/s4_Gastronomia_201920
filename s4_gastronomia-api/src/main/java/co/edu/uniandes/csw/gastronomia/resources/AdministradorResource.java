@@ -39,6 +39,7 @@ public class AdministradorResource
    private static final Logger LOGGER = Logger.getLogger(AdministradorResource.class.getName());
    private static final String NE = " no existe.";
    private static final String RECURSO = "El recurso /administrador/";
+
    
    @Inject
    private AdministradorLogic administradorLogic;
@@ -66,6 +67,7 @@ public class AdministradorResource
         if( administradorLogic.getAdministrador(administradorId) == null)
         {
              throw new WebApplicationException(RECURSO + administradorId + NE , 404);
+
         }
          administradorLogic.deleteAdministrador(administradorId);
         LOGGER.log(Level.INFO, "AdministradorResource deleteAdmin: output: void");
@@ -82,7 +84,9 @@ public class AdministradorResource
      AdministradorEntity r = administradorLogic.getAdministrador(id);
         if(r==null)
         {
+
            throw new WebApplicationException(RECURSO + id + NE, 404); 
+
         }
         return new AdministradorDetailDTO(r);
     }
@@ -118,7 +122,9 @@ public class AdministradorResource
       admin.setId(id);
       if( administradorLogic.getAdministrador(id) == null)
       {
+
           throw new WebApplicationException(RECURSO + id + NE, 404);
+
       }
       return new AdministradorDetailDTO(administradorLogic.updateAdministrador(admin.toEntity()));
      

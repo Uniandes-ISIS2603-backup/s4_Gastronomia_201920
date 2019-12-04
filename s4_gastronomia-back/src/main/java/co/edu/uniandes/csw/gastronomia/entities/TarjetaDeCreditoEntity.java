@@ -28,7 +28,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
-    private Date fechaDeVencimiento; 
+    private Date fechaVencimiento; 
     
     @PodamIntValue(minValue = 100, maxValue = 999)
     private Integer cvv; 
@@ -53,15 +53,15 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @return the fechaDeVencimiento
      */
-    public Date getFechaDeVencimiento() {
-        return fechaDeVencimiento;
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
     }
 
     /**
      * @param fechaDeVencimiento the fechaDeVencimiento to set
      */
-    public void setFechaDeVencimiento(Date fechaDeVencimiento) {
-        this.fechaDeVencimiento = fechaDeVencimiento;
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     /**

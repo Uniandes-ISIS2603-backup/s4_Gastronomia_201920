@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6a13c170-9785-47b6-abee-288708d07938",
+		"_postman_id": "260ebda1-1f6b-47b1-8f61-38bdc5ef49de",
 		"name": "ReservaResourceTest",
 		"description": "Reserva Resource Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -88,6 +88,156 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"motivo\": \"Grado\",\n\t\"fecha\": \"2021-04-04T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"false\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/reservas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "780e987f-8dca-4fa7-8e4f-13c4da4bf491",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cliente\", data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Carolina\",\n\t\"apellido\": \"Castillo\",\n\t\"username\": \"c.castillo\",\n\t\"email\": \"c.castillo@gmail.com\",\n\t\"contrasena\": \"password\",\n\t\"cumpleanos\": \"1998-09-14T05:00:00Z[UTC]\",\n\t\"numeroContacto\": \"+57 3218959151\",\n\t\"puntos\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be5d022a-14c5-43bc-9dd2-3462e5d0c6b8",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_restaurante\",data.id);",
+							"tests[\"El restaurante se creo\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"contrasena\": \"qbB1mondegnengoennsdnflsndgklsfdngkldNA\",\r\n    \"costoReserva\": 71.69,\r\n    \"descuentoCumpleanos\": false,\r\n    \"direccion\": \"32 Montana Terrace\",\r\n    \"horario\": \"2020-03-16T05:00:00Z[UTC]\",\r\n    \"imagen\": \"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\r\n    \"musicaEnVivo\": true,\r\n    \"nombre\": \"El David\",\r\n    \"petFriendly\": true,\r\n    \"precioPorPersona\": 4.74,\r\n    \"servicioALaMesa\": false,\r\n    \"tipoRestaurante\": \"Ampelgading\",\r\n    \"zonaDeFumadores\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/restaurantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_gastronomia-api",
+						"api",
+						"restaurantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una reserva con asociaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "780e987f-8dca-4fa7-8e4f-13c4da4bf491",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"motivo\": \"Celebración\",\n\t\"fecha\": \"2020-11-14T05:00:00Z[UTC]\",\n\t\"numPersonas\": \"6\",\n\t\"cancelada\": \"false\",\n\t\"restaurante\": {\n\t\t\"id\": {{new_id_restaurante}},\n\t\t\"contrasena\": \"qbB1mondegnengoennsdnflsndgklsfdngkldNA\",\n\t    \"costoReserva\": 71.69,\n\t    \"descuentoCumpleanos\": false,\n\t    \"direccion\": \"32 Montana Terrace\",\n\t    \"horario\": \"2020-03-16T05:00:00Z[UTC]\",\n\t    \"imagen\": \"http://dummyimage.com/119x170.jpg/ff4444/ffffff\",\n\t    \"musicaEnVivo\": true,\n\t    \"nombre\": \"El David\",\n\t    \"petFriendly\": true,\n\t    \"precioPorPersona\": 4.74,\n\t    \"servicioALaMesa\": false,\n\t    \"tipoRestaurante\": \"Ampelgading\",\n\t    \"zonaDeFumadores\": true\n\t},\n\t\"cliente\": {\n\t\t\"id\": {{new_id_cliente}},\n\t\t\"nombre\": \"Carolina\",\n\t\t\"apellido\": \"Castillo\",\n\t\t\"username\": \"c.castillo\",\n\t\t\"email\": \"c.castillo@gmail.com\",\n\t\t\"contrasena\": \"password\",\n\t\t\"cumpleanos\": \"1998-09-14T05:00:00Z[UTC]\",\n\t\t\"numeroContacto\": \"+57 3218959151\",\n\t\t\"puntos\": 0\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
