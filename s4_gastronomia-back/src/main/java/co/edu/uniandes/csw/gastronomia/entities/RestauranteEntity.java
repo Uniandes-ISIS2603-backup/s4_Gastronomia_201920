@@ -99,34 +99,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         super();
         //Empty constructor
     }
-public void inicializador(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario)
-{
-    this.imagen = imagen;//ya
-        this.nombre = nombre;//ya
-        this.contrasena = contrasena;//ya
-        this.direccion = direccion;//ya
-        this.tipoRestaurante = tipoRestaurante;//ya
-        this.precioPorPersona = precioPorPersona;//ya
-        this.descuentaoCumpleanos = descuentaoCumpleanos;//ya
-        this.zonaDeFumadores = zonaDeFumadores;//ya
-        this.petFriendly = petFriendly;//ya
-        this.servicioALaMesa = servicioALaMesa;//ya
-        this.musicaEnVivo = musicaEnVivo;//ya
-        this.costoReserva = costoReserva;//ya
-        this.horario = horario;//ya
-}
-    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario) {
-        super();
-        inicializador(imagen, nombre, contrasena, direccion, tipoRestaurante, precioPorPersona, descuentaoCumpleanos, zonaDeFumadores, petFriendly, servicioALaMesa, musicaEnVivo, costoReserva, horario);
-    }
 
-    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
-        super();
-        inicializador(imagen, nombre, contrasena, direccion, tipoRestaurante, precioPorPersona, descuentaoCumpleanos, zonaDeFumadores, petFriendly, servicioALaMesa, musicaEnVivo, costoReserva, horario);
-        this.administrador = administrador;
-        this.platos = platos;
-        this.reservas = reservas;
-    }
 
     public List<ReservaEntity> getReservas() {
         return reservas;
