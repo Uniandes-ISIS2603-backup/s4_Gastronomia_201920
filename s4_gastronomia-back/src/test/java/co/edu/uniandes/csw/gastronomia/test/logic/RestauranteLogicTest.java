@@ -115,11 +115,11 @@ public class RestauranteLogicTest
            n = (int)Math.random();
            if(n==0)
            {
-               r.setDescuentaoCumpleaños(Boolean.FALSE);
+               r.setDescuentaoCumpleanos(Boolean.FALSE);
            }
            else
            {
-               r.setDescuentaoCumpleaños(Boolean.TRUE);
+               r.setDescuentaoCumpleanos(Boolean.TRUE);
            }
         }
         if(r.getZonaDeFumadores()==null)
