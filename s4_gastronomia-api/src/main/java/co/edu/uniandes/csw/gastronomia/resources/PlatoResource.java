@@ -30,6 +30,7 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class PlatoResource {
     
+
     private static final String RECURSO = "El recurso /restaurantes/";
     private static final String PLATOS = "/platos/";
     private static final String NO_EXISTE = " no existe.";
@@ -63,6 +64,7 @@ public class PlatoResource {
         if(plato == null)
         {
             throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
+
         }
         return new PlatoDTO(plato);
     }
@@ -86,6 +88,7 @@ public class PlatoResource {
         if(entity == null)
         {
             throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
+
         }
         return new PlatoDTO(logic.updatePlato(restaurantesId, plato.toEntity()));
     }
@@ -98,6 +101,7 @@ public class PlatoResource {
         if(plato == null)
         {
             throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
+
         }
         logic.deletePlato(restaurantesId, platosId);
     }

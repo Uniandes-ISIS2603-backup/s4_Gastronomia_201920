@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.FoodBlogLogic;
 import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
@@ -38,6 +37,7 @@ public class FoodBlogResource
 {
      private static final Logger LOGGER = Logger.getLogger(FoodBlogResource.class.getName());
      
+      
      @Inject
      private FoodBlogLogic logic;
      

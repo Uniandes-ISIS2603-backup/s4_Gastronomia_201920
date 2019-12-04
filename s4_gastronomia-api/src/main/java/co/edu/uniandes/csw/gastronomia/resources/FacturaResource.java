@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -40,7 +39,6 @@ public class FacturaResource
     private static final Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
     private static final String RECURSO = "El recurso /facturas/";
     private static final String NO_EXISTE = " no existe.";
-    
     
     @Inject
     private FacturaLogic facturaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
