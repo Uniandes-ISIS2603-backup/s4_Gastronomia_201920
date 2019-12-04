@@ -70,7 +70,6 @@ public class AdministradorLogic {
      */
     public List<AdministradorEntity> getAdministradores()
     {
-       
         return  persistence.findAll();
     } 
     
@@ -82,7 +81,6 @@ public class AdministradorLogic {
     public AdministradorEntity getAdministrador(Long administradorId)
     {
         return persistence.find(administradorId);
-       
     }
     
      public AdministradorEntity getAdministrador(String adminUsername) {
@@ -94,6 +92,7 @@ public class AdministradorLogic {
      * id del administrador a actualizar
      * @return Instancia de AdministradorEntity con los datos actualizados
      */
+
     public AdministradorEntity updateAdministrador(AdministradorEntity administradorEntity) throws BusinessLogicException
     {
         

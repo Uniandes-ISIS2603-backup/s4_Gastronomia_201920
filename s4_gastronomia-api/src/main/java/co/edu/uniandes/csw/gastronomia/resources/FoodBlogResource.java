@@ -37,6 +37,7 @@ public class FoodBlogResource
 {
      private static final Logger LOGGER = Logger.getLogger(FoodBlogResource.class.getName());
      
+      
      @Inject
      private FoodBlogLogic logic;
      

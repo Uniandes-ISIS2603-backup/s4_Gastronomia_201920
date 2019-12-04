@@ -30,16 +30,18 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 public class TarjetaDeCreditoResource {
+    
+    private static final String RECURSO = "El recurso /tarjetas/";
+    private static final String NO_EXISTE = " no existe.";
+    
     @Inject 
     private TarjetaDeCreditoLogic logic;
     
-    private static final String NE = " no existe.";
     
     @POST
     public TarjetaDeCreditoDTO createTarjetaDeCredito(@PathParam("clientesId") Long clienteId, TarjetaDeCreditoDTO tarjeta)throws BusinessLogicException
     {
-        TarjetaDeCreditoDTO platoDTO = new TarjetaDeCreditoDTO(logic.createTarjetaDeCredito(clienteId, tarjeta.toEntity()));
-        return platoDTO;
+        return new TarjetaDeCreditoDTO(logic.createTarjetaDeCredito(clienteId, tarjeta.toEntity()));
     }
     
     @GET
@@ -49,7 +51,9 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(clienteId, tarjetasId);
         if(tarjeta == null)
         {
-            throw new WebApplicationException("El recurso  /tarjetas/" + tarjetasId + NE, 404);
+
+            throw new WebApplicationException(RECURSO + tarjetasId + NO_EXISTE, 404);
+
         }
         return new TarjetaDeCreditoDTO(tarjeta);
     }
@@ -66,7 +70,8 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(clienteId ,tarjetasId);
         if(tarjeta == null)
         {
-            throw new WebApplicationException("El recurso  /tarjetas/" + tarjetasId + NE, 404);
+
+            throw new WebApplicationException(RECURSO + tarjetasId + NO_EXISTE, 404);
         }
         logic.deleteTarjetaDeCredito(clienteId, tarjetasId);
     }
@@ -82,7 +87,8 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity entity = logic.findTarjetaDeCredito(clienteId, tarjetasId);
         if(entity == null)
         {
-            throw new WebApplicationException("El recurso /tarjetas/" + tarjetasId + NE, 404);
+
+            throw new WebApplicationException(RECURSO + tarjetasId + NO_EXISTE, 404);
         }
         return new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(clienteId, tarjeta.toEntity()));
     }
