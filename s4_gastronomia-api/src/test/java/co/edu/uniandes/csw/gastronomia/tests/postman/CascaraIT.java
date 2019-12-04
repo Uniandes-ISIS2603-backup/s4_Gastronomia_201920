@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.gastronomia.tests.postman;
 
-import co.edu.uniandes.csw.gastronomia.dtos.CascaraDTO;
+import co.edu.uniandes.csw.gastronomia.dtos.AdministradorDTO;
 import co.edu.uniandes.csw.gastronomia.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.gastronomia.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
@@ -39,7 +39,7 @@ public class CascaraIT {
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
                 .addPackage(RestConfig.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
-                .addPackage(CascaraDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
+                .addPackage(AdministradorDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
                 .addPackage(BusinessLogicExceptionMapper.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
