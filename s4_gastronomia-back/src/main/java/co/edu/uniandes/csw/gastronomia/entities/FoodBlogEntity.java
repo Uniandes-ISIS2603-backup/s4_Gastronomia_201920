@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.entities;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -45,24 +45,24 @@ private String comentarios;
  @ManyToOne
  private ClienteEntity cliente;
 
-//    public FoodBlogEntity(String texto, Integer numeroMeGusta, Integer numeroNoMegusta, String archivoMultimedia, String comentarios) {
-//        super();
-//        this.texto = texto;
-//        this.numeroMeGusta = numeroMeGusta;
-//        this.numeroNoMegusta = numeroNoMegusta;
-//        this.archivoMultimedia = archivoMultimedia;
-//        this.comentarios = comentarios;
-//    }
-//
-//    public FoodBlogEntity(String texto, Integer numeroMeGusta, Integer numeroNoMegusta, String archivoMultimedia, String comentarios, ClienteEntity cliente) {
-//        super();
-//        this.texto = texto;
-//        this.numeroMeGusta = numeroMeGusta;
-//        this.numeroNoMegusta = numeroNoMegusta;
-//        this.archivoMultimedia = archivoMultimedia;
-//        this.comentarios = comentarios;
-//        this.cliente = cliente;
-//    }
+    public FoodBlogEntity(String texto, Integer numeroMeGusta, Integer numeroNoMegusta, String archivoMultimedia, String comentarios) {
+        super();
+        this.texto = texto;
+        this.numeroMeGusta = numeroMeGusta;
+        this.numeroNoMegusta = numeroNoMegusta;
+        this.archivoMultimedia = archivoMultimedia;
+        this.comentarios = comentarios;
+    }
+
+    public FoodBlogEntity(String texto, Integer numeroMeGusta, Integer numeroNoMegusta, String archivoMultimedia, String comentarios, ClienteEntity cliente) {
+        super();
+        this.texto = texto;
+        this.numeroMeGusta = numeroMeGusta;
+        this.numeroNoMegusta = numeroNoMegusta;
+        this.archivoMultimedia = archivoMultimedia;
+        this.comentarios = comentarios;
+        this.cliente = cliente;
+    }
 
     public FoodBlogEntity() {
         super();

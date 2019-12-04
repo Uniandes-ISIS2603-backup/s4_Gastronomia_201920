@@ -34,14 +34,14 @@ public class TarjetaDeCreditoDTO implements Serializable {
         id = tarjeta.getId();
         numero = tarjeta.getNumero(); 
         cvv = tarjeta.getCvv(); 
-        fechaVencimiento = tarjeta.getFechaDeVencimiento(); 
+        fechaVencimiento = tarjeta.getFechaVencimiento(); 
     }
     public TarjetaDeCreditoEntity toEntity()
     {
         TarjetaDeCreditoEntity retorno = new TarjetaDeCreditoEntity(); 
         retorno.setId(id);
         retorno.setCvv(cvv);
-        retorno.setFechaDeVencimiento(fechaVencimiento);
+        retorno.setFechaVencimiento(fechaVencimiento);
         retorno.setNumero(numero);
         return retorno;
     }

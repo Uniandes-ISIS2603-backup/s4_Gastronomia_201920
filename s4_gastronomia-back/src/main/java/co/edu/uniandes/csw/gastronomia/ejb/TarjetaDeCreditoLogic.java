@@ -51,7 +51,7 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("El cvv no es de 3 digitos");
         }
-        else if(tarjeta.getFechaDeVencimiento() == null)
+        else if(tarjeta.getFechaVencimiento() == null)
         {
             throw new BusinessLogicException("La fecha es vacia");
         }
@@ -90,7 +90,7 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("El cvv no es de 3 digitos");
         }
-        else if(tarjetaEntity.getFechaDeVencimiento() == null)
+        else if(tarjetaEntity.getFechaVencimiento() == null)
         {
             throw new BusinessLogicException("La fecha es vacia");
         }
