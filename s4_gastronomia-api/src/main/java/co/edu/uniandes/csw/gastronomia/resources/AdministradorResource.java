@@ -84,8 +84,7 @@ public class AdministradorResource
         {
            throw new WebApplicationException(RUTA + id + NE, 404); 
         }
-        AdministradorDetailDTO admin2 = new AdministradorDetailDTO(r);
-        return admin2;
+        return new AdministradorDetailDTO(r);
     }
     
     @GET
@@ -96,8 +95,7 @@ public class AdministradorResource
         if (administradorEntity == null) {
             throw new WebApplicationException( administradorUsername , 404);
         }
-        AdministradorDetailDTO administradorDetailDTO = new AdministradorDetailDTO(administradorEntity);
-        return administradorDetailDTO;
+        return new AdministradorDetailDTO(administradorEntity);
     }
     
     
@@ -106,7 +104,6 @@ public class AdministradorResource
     @GET
     public List<AdministradorDetailDTO> getAdministradores() throws BusinessLogicException
     {
-      // List<AdministradorDetailDTO> admin = entity2DTO(administradorLogic.getAdministradores()  );
         return entity2DTO(administradorLogic.getAdministradores()  );
     }
     

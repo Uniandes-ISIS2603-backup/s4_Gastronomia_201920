@@ -24,7 +24,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 
 
@@ -75,15 +74,13 @@ public class RestauranteResource
         {
            throw new WebApplicationException(RECURSO + id + " no existe.", 404); 
         }
-        RestauranteDetailDTO rr = new RestauranteDetailDTO(r);
-        return rr;
+        return new RestauranteDetailDTO(r);
     }
     
     @GET
     public List<RestauranteDetailDTO> getRestaurantes() throws BusinessLogicException
     {
-        List<RestauranteDetailDTO> r = entity2DTO(logic.getRestaurantes());
-        return r;
+       return entity2DTO(logic.getRestaurantes());
     }
     
 
@@ -100,8 +97,7 @@ public class RestauranteResource
         {
             throw new WebApplicationException(RECURSO + id + " no existe.", 404);
         }
-        RestauranteDetailDTO rr = new RestauranteDetailDTO(logic.updateRestaurante(r.toEntity(), id));
-        return rr;
+        return new RestauranteDetailDTO(logic.updateRestaurante(r.toEntity(), id));
     }
      @Path("{restaurantesId: \\d+}/platos")
     public Class<PlatoResource> getReviewResource(@PathParam("restaurantesId") Long id) throws BusinessLogicException

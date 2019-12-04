@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.ResenaDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.ResenaDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.ResenaLogic;
 import co.edu.uniandes.csw.gastronomia.entities.ResenaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
@@ -86,8 +85,7 @@ public class ResenaResource {
         {
            throw new WebApplicationException("El food blog con id/" + id + " no existe.", 404); 
         }
-        ResenaDTO reN = new ResenaDTO(re);
-        return reN;
+        return new ResenaDTO(re);
     }
     /**
      * Devueleve una lista con toda las reseñas
@@ -97,8 +95,7 @@ public class ResenaResource {
      @GET
     public List<ResenaDTO> getResenas() throws BusinessLogicException
     {
-        List<ResenaDTO> res = entity2DTO(logic.getResenas());
-        return res;
+        return entity2DTO(logic.getResenas());
     }
     /**
      * Update de una reseña con el id pasado por parametro y con una nueva reseña
@@ -116,8 +113,7 @@ public class ResenaResource {
         {
             throw new WebApplicationException("La resena con el id:" + id , 404);
         }
-        ResenaDTO reD = new ResenaDTO(logic.updateResena(id,re.toEntity()));
-        return reD;
+        return new ResenaDTO(logic.updateResena(id,re.toEntity()));
     }
     
     /**
