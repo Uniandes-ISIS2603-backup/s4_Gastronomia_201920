@@ -5,8 +5,16 @@
  */
 package co.edu.uniandes.csw.gastronomia.test.persistence;
 
+import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
+import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
+import co.edu.uniandes.csw.gastronomia.entities.ResenaEntity;
 import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
+import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
+import co.edu.uniandes.csw.gastronomia.persistence.ClientePersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.FacturaPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.ResenaPersistence;
 import co.edu.uniandes.csw.gastronomia.persistence.ReservaPersistence;
+import co.edu.uniandes.csw.gastronomia.persistence.RestaurantePersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -33,6 +41,18 @@ public class ReservaPersistenceTest {
     
     @Inject
     ReservaPersistence reservaPersistence;
+    
+    @Inject
+    ClientePersistence clientePersistence;
+    
+    @Inject
+    RestaurantePersistence restaurantePersistence;
+    
+    @Inject
+    FacturaPersistence facturaPersistence;
+    
+    @Inject
+    ResenaPersistence resenaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -81,7 +101,11 @@ public class ReservaPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
+        em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from ResenaEntity").executeUpdate();
         em.createQuery("delete from ReservaEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from RestauranteEntity").executeUpdate();
     }
 
     /**
@@ -105,13 +129,37 @@ public class ReservaPersistenceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ReservaEntity newEntity = factory.manufacturePojo(ReservaEntity.class);
+        
+        ClienteEntity clienteEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity clienteResult = clientePersistence.create(clienteEntity);
+        newEntity.setCliente(clienteResult);
+        
+        RestauranteEntity restauranteEntity = factory.manufacturePojo(RestauranteEntity.class);
+        RestauranteEntity restauranteResult = restaurantePersistence.create(restauranteEntity);
+        newEntity.setRestaurante(restauranteResult);
+        
         ReservaEntity result = reservaPersistence.create(newEntity);
+        
+        FacturaEntity facturaEntity = factory.manufacturePojo(FacturaEntity.class);
+        facturaEntity.setReserva(result);
+        FacturaEntity facturaResult = facturaPersistence.create(facturaEntity);
+        newEntity.setFactura(facturaResult);
+        
+        ResenaEntity resenaEntity = factory.manufacturePojo(ResenaEntity.class);
+        resenaEntity.setReserva(result);
+        ResenaEntity resenaResult = resenaPersistence.create(resenaEntity);
+        newEntity.setResena(resenaResult);
+        
         Assert.assertNotNull(result);
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getMotivo(), entity.getMotivo());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getNumPersonas(), entity.getNumPersonas());
-        Assert.assertEquals(newEntity.getCancelada(), entity.getCancelada());       
+        Assert.assertEquals(newEntity.getCancelada(), entity.getCancelada());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getRestaurante(), entity.getRestaurante());
+        Assert.assertEquals(newEntity.getFactura(), entity.getFactura());
+        Assert.assertEquals(newEntity.getResena(), entity.getResena());
     }
     
     /**
