@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.FoodBlogDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.FoodBlogLogic;
 import co.edu.uniandes.csw.gastronomia.entities.FoodBlogEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
@@ -92,8 +91,8 @@ public class FoodBlogResource
         {
            throw new WebApplicationException("El food blog con id/" + id + " no existe.", 404); 
         }
-        FoodBlogDTO fbN = new FoodBlogDTO(fb);
-        return fbN;
+        return new FoodBlogDTO(fb);
+      
     }
     /**
      * Retornar los foodblogs
@@ -103,8 +102,7 @@ public class FoodBlogResource
     @GET
     public List<FoodBlogDTO> getFoodBlogs() throws BusinessLogicException
     {
-        List<FoodBlogDTO> fbs = entity2DTO(logic.getFoodBlogs());
-        return fbs;
+        return entity2DTO(logic.getFoodBlogs());
     }
     
     
@@ -127,8 +125,8 @@ public class FoodBlogResource
         {
             throw new WebApplicationException("El foodblog con el id:" + id + " no existe.", 404);
         }
-        FoodBlogDTO fBD = new FoodBlogDTO(logic.updateFoodBlog(id,fb.toEntity()));
-        return fBD;
+        return new FoodBlogDTO(logic.updateFoodBlog(id,fb.toEntity()));
+        
     }
     //--------------------------------------------------------------------------
     //private methods

@@ -47,90 +47,91 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("El restaurante ya existe");
         }
-        if(r.getNombre()==null)
+        else if(r.getNombre()==null)
         {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if(r.getNombre().isEmpty())
-        {
-            throw new BusinessLogicException(COND_RESTAURANTE1);
-        }
-        if(r.getContrasena()==null )
-        {
-            throw new BusinessLogicException(BAD_PASSWORD);
-        }
-        if(r.getContrasena().isEmpty() )
-        {
-           throw new BusinessLogicException(BAD_PASSWORD); 
-        }
-        if( r.getContrasena().length() < 8)
-        {
-            throw new BusinessLogicException(BAD_PASSWORD); 
-        }
-        if(r.getZonaDeFumadores()==null)
-        {
-            throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
-        }
-        if(r.getDescuentaoCumpleanos()==null)
-        {
-            throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
-        }
-        if(r.getPetFriendly()==null)
-        {
-            throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
-        }
-        if(r.getServicioALaMesa()==null)
-        {
-            throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
-        }
-        if(r.getImagen()==null )
-        {
-            throw new BusinessLogicException(IMAGEN);
-        }
-        if( r.getImagen().isEmpty())
-        {
-            throw new BusinessLogicException(IMAGEN);
-        }
-        if(r.getDireccion()==null)
-        {
-            throw new BusinessLogicException(DIRECCION);
-        }               
-        if(r.getDireccion().isEmpty())
-        {
-            throw new BusinessLogicException(DIRECCION);
-        }
-        if(r.getHorario()==null)
-        {
-            throw new BusinessLogicException("No tiene horario");
-        }
-        if(r.getCostoReserva()== null)
+        else if(r.getCostoReserva()== null)
         {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
-        if(r.getCostoReserva()<=0.0)
+        
+        else if(r.getContrasena().isEmpty() )
         {
-            throw new BusinessLogicException("El costo de reserva es negativo");
+           throw new BusinessLogicException(BAD_PASSWORD); 
         }
-        if(r.getTipoRestaurante()==null)
+        else if(r.getContrasena()==null )
         {
-            throw new BusinessLogicException(COND_RESTAURANTE2);
+            throw new BusinessLogicException(BAD_PASSWORD);
         }
-        if(r.getTipoRestaurante().isEmpty())
+        else if(r.getNombre().isEmpty())
         {
-            throw new BusinessLogicException(COND_RESTAURANTE2);
+            throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if(r.getMusicaEnVivo()==null)
+        else if( r.getContrasena().length() < 8)
+        {
+            throw new BusinessLogicException(BAD_PASSWORD); 
+        }
+        else if(r.getZonaDeFumadores()==null)
+        {
+            throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
+        }
+        else if(r.getDireccion()==null)
+        {
+            throw new BusinessLogicException(DIRECCION);
+        }
+        else if(r.getDescuentaoCumpleanos()==null)
+        {
+            throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
+        }
+        else if(r.getPetFriendly()==null)
+        {
+            throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
+        }
+        else if(r.getServicioALaMesa()==null)
+        {
+            throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
+        }
+        else if(r.getMusicaEnVivo()==null)
         {
             throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
         }
-        if(r.getPrecioPorPersona() == null)
+        else if(r.getImagen()==null )
         {
-            throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
+            throw new BusinessLogicException(IMAGEN);
+        }             
+        else if(r.getDireccion().isEmpty())
+        {
+            throw new BusinessLogicException(DIRECCION);
         }
-        if(r.getPrecioPorPersona()<=0.0)
+        else if(r.getHorario()==null)
+        {
+            throw new BusinessLogicException("No tiene horario");
+        }
+        else if(r.getCostoReserva()<=0.0)
+        {
+            throw new BusinessLogicException("El costo de reserva es negativo");
+        }
+        else if(r.getTipoRestaurante()==null)
+        {
+            throw new BusinessLogicException(COND_RESTAURANTE2);
+        }
+        else if(r.getPrecioPorPersona()<=0.0)
         {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }
+        else if(r.getTipoRestaurante().isEmpty())
+        {
+            throw new BusinessLogicException(COND_RESTAURANTE2);
+        }
+        else if(r.getPrecioPorPersona() == null)
+        {
+            throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
+        }
+        else if( r.getImagen().isEmpty())
+        {
+            throw new BusinessLogicException(IMAGEN);
+        } 
         LOGGER.log(Level.INFO,"Se creó el restaurante con id={0}",r.getId());
         return persistence.create(r);
     }
@@ -283,87 +284,87 @@ public class RestauranteLogic
         {
             throw new BusinessLogicException("no existe el restaurante que se quiere modificar");
         }
-        if(r.getNombre()==null)
+        else if(r.getNombre()==null)
         {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if(r.getNombre().isEmpty())
+        else if(r.getNombre().isEmpty())
         {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if(r.getContrasena()==null )
+        else if(r.getContrasena()==null )
         {
             throw new BusinessLogicException(BAD_PASSWORD);
         }
-        if(r.getContrasena().isEmpty() )
+        else if(r.getContrasena().isEmpty() )
         {
            throw new BusinessLogicException(BAD_PASSWORD); 
         }
-        if( r.getContrasena().length() < 8)
+        else if( r.getContrasena().length() < 8)
         {
             throw new BusinessLogicException(BAD_PASSWORD); 
         }
-        if(r.getZonaDeFumadores()==null)
+        else if(r.getZonaDeFumadores()==null)
         {
             throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
         }
-        if(r.getDescuentaoCumpleanos()==null)
+        else if(r.getDescuentaoCumpleanos()==null)
         {
             throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
         }
-        if(r.getPetFriendly()==null)
+        else if(r.getPetFriendly()==null)
         {
             throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
         }
-        if(r.getServicioALaMesa()==null)
+        else if(r.getServicioALaMesa()==null)
         {
             throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
         }
-        if(r.getImagen()==null )
+        else if(r.getImagen()==null )
         {
             throw new BusinessLogicException(IMAGEN);
         }
-        if( r.getImagen().isEmpty())
+        else if( r.getImagen().isEmpty())
         {
             throw new BusinessLogicException(IMAGEN);
         }
-        if(r.getDireccion()==null)
+        else if(r.getDireccion()==null)
         {
             throw new BusinessLogicException(DIRECCION);
         }               
-        if(r.getDireccion().isEmpty())
+        else if(r.getDireccion().isEmpty())
         {
             throw new BusinessLogicException(DIRECCION);
         }
-        if(r.getHorario()==null)
+        else if(r.getHorario()==null)
         {
             throw new BusinessLogicException("No tiene horario");
         }
-        if(r.getCostoReserva()== null)
+        else if(r.getCostoReserva()== null)
         {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
-        if(r.getCostoReserva()<=0.0)
+        else if(r.getCostoReserva()<=0.0)
         {
             throw new BusinessLogicException("El costo de reserva es negativo");
         }
-        if(r.getTipoRestaurante()==null)
+        else if(r.getTipoRestaurante()==null)
         {
             throw new BusinessLogicException(COND_RESTAURANTE2);
         }
-        if(r.getTipoRestaurante().isEmpty())
+        else if(r.getTipoRestaurante().isEmpty())
         {
             throw new BusinessLogicException(COND_RESTAURANTE2);
         }
-        if(r.getMusicaEnVivo()==null)
+        else if(r.getMusicaEnVivo()==null)
         {
             throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
         }
-        if(r.getPrecioPorPersona() == null)
+        else if(r.getPrecioPorPersona() == null)
         {
             throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
         }
-        if(r.getPrecioPorPersona()<=0.0)
+        else if(r.getPrecioPorPersona()<=0.0)
         {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }

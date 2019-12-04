@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -38,11 +37,7 @@ public class PlatoPersistence {
         q.setParameter("platoId", platoId);
         List<PlatoEntity> results = q.getResultList();
         PlatoEntity plato = null;
-        if (results == null) {
-            plato = null;
-        } else if (results.isEmpty()) {
-            plato = null;
-        } else if (results.size() >= 1) {
+        if (results.size() >= 1) {
             plato = results.get(0);
         }
         return plato;

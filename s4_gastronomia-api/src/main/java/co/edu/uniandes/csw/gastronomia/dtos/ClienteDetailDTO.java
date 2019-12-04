@@ -30,6 +30,8 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     private List<FacturaDTO> facturas;
     
     private List<FoodBlogDTO> foodBlogs;
+    
+    
 
     public ClienteDetailDTO() 
     {

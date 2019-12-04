@@ -39,7 +39,8 @@ public class FacturaResource
 {
     private static final Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
     
-    
+    private static final String RECURSO = "El recurso /facturas/";
+    private static final String NE = " no existe.";
     @Inject
     private FacturaLogic facturaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
@@ -98,7 +99,7 @@ public class FacturaResource
         FacturaEntity facturaEntity = facturaLogic.getFactura(facturaId);
         if (facturaEntity == null) 
         {
-            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + facturaId + NE, 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(facturaEntity);
         LOGGER.log(Level.INFO, "FacturaResource getFactura: output: {0}", facturaDTO);
@@ -127,7 +128,7 @@ public class FacturaResource
         factura.setId(facturaId);
         if (facturaLogic.getFactura(facturaId) == null) 
         {
-            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + facturaId + NE, 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(facturaLogic.updateFactura(facturaId, factura.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource updateFactura: output: {0}", facturaDTO);
@@ -152,7 +153,7 @@ public class FacturaResource
         FacturaEntity entity = facturaLogic.getFactura(facturaId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + facturaId + NE, 404);
         }
         facturaLogic.deleteFactura(facturaId);
         LOGGER.info("FacturaResource deleteFactura: output: void");

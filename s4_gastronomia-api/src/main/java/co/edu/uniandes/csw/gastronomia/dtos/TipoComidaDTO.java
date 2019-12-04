@@ -23,7 +23,7 @@ public class TipoComidaDTO implements Serializable
      */
     public TipoComidaDTO()
     {
-        
+        //Constructor vacio por defecto
     }
     
     /**

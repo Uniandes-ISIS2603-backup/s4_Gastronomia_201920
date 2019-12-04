@@ -85,7 +85,7 @@ public class RestaurantePersistence
     
     public List<RestauranteEntity> findNombre(String n)
     {
-        LOGGER.log(Level.INFO,BUSCANDO+n);
+        LOGGER.log(Level.INFO,BUSCANDO+" {0}",n);
         TypedQuery q = em.createQuery("select u from RestauranteEntity u where u.nombre = :nombre", RestauranteEntity.class);
         q.setParameter("nombre", n);
         return q.getResultList();
@@ -159,8 +159,8 @@ public class RestaurantePersistence
         q.setParameter("pass", pass);
         try
         {
-            RestauranteEntity r =(RestauranteEntity) q.getSingleResult();
-            return r;
+            return (RestauranteEntity) q.getSingleResult();
+            
         }
         catch(Exception e )
         {

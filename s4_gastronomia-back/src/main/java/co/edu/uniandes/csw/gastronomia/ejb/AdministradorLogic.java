@@ -70,7 +70,7 @@ public class AdministradorLogic {
      */
     public List<AdministradorEntity> getAdministradores()
     {
-       // List<AdministradorEntity> administradores = persistence.findAll();
+       
         return  persistence.findAll();
     } 
     
@@ -81,14 +81,12 @@ public class AdministradorLogic {
      */
     public AdministradorEntity getAdministrador(Long administradorId)
     {
-        AdministradorEntity administradorEntity = persistence.find(administradorId);
+        return persistence.find(administradorId);
        
-        return administradorEntity;
     }
     
      public AdministradorEntity getAdministrador(String adminUsername) {
-        AdministradorEntity adminEntity = persistence.findByUserName(adminUsername);
-        return adminEntity;
+        return persistence.findByUserName(adminUsername);
     }
      /**
      * Actualiza la información de una instancia de Administrador
@@ -96,8 +94,9 @@ public class AdministradorLogic {
      * id del administrador a actualizar
      * @return Instancia de AdministradorEntity con los datos actualizados
      */
-    public AdministradorEntity updateAdministrador( Long administradorId , AdministradorEntity administradorEntity) throws BusinessLogicException
+    public AdministradorEntity updateAdministrador(AdministradorEntity administradorEntity) throws BusinessLogicException
     {
+        
         if(administradorEntity.getApellido() == null )
         {
             throw new BusinessLogicException("El apellido" + UPDATE);

@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -37,11 +36,7 @@ public class TarjetaDeCreditoPersistence {
         q.setParameter("tarjetaId", tarjetaId);
         List<TarjetaDeCreditoEntity> results = q.getResultList();
         TarjetaDeCreditoEntity tarjeta = null;
-        if (results == null) {
-            tarjeta = null;
-        } else if (results.isEmpty()) {
-            tarjeta = null;
-        } else if (results.size() >= 1) {
+        if (results.size() >= 1) {
             tarjeta = results.get(0);
         }
         return tarjeta;

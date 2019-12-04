@@ -56,7 +56,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     /**
      * si tiene ona de fumadores
      */
-    private Boolean zonaDeFumadores;
+    private Boolean zonaDefumadores;
     /**
      * si es petFriendly
      */
@@ -109,14 +109,16 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.tipoRestaurante = tipoRestaurante;//ya
         this.precioPorPersona = precioPorPersona;//ya
         this.descuentaoCumpleanos = descuentaoCumpleanos;//ya
-        this.zonaDeFumadores = zonaDeFumadores;//ya
+        this.zonaDefumadores = zonaDeFumadores;//ya
         this.petFriendly = petFriendly;//ya
         this.servicioALaMesa = servicioALaMesa;//ya
         this.musicaEnVivo = musicaEnVivo;//ya
         this.costoReserva = costoReserva;//ya
         this.horario = horario;//ya
     }
-
+    
+    
+    
     public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
         super();
         this.imagen = imagen;
@@ -126,7 +128,7 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.tipoRestaurante = tipoRestaurante;
         this.precioPorPersona = precioPorPersona;
         this.descuentaoCumpleanos = descuentaoCumpleanos;
-        this.zonaDeFumadores = zonaDeFumadores;
+        this.zonaDefumadores = zonaDeFumadores;
         this.petFriendly = petFriendly;
         this.servicioALaMesa = servicioALaMesa;
         this.musicaEnVivo = musicaEnVivo;
@@ -141,14 +143,18 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         return reservas;
     }
 
+    public void setPlatos(List<PlatoEntity> platos) {
+        this.platos = platos;
+    }
+    
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
     
-    
-    public AdministradorEntity getAdministrador() {
-        return administrador;
+    public String getNombre() {
+        return nombre;
     }
+    
 
     public void setAdministrador(AdministradorEntity administrador) {
         this.administrador = administrador;
@@ -158,47 +164,44 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         return platos;
     }
 
-    public void setPlatos(List<PlatoEntity> platos) {
-        this.platos = platos;
-    }
 
-    
+    public AdministradorEntity getAdministrador() {
+        return administrador;
+    }
         
     public String getImagen() {
         return imagen;
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+    
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
-    public String getNombre() {
-        return nombre;
+    
+public String getDireccion() {
+        return direccion;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getContrasena() {
-        return contrasena;
-    }
+    
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
 
-    public String getDireccion() {
-        return direccion;
+    
+public void setPrecioPorPersona(Double precioPorPersona) {
+        this.precioPorPersona = precioPorPersona;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public String getTipoRestaurante() {
-        return tipoRestaurante;
-    }
+   
 
     public void setTipoRestaurante(String tipoRestaurante) {
         this.tipoRestaurante = tipoRestaurante;
@@ -207,11 +210,11 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     public Double getPrecioPorPersona() {
         return precioPorPersona;
     }
-
-    public void setPrecioPorPersona(Double precioPorPersona) {
-        this.precioPorPersona = precioPorPersona;
+    
+public Boolean getServicioALaMesa() {
+        return servicioALaMesa;
     }
-
+    
     public Boolean getDescuentaoCumpleanos() {
         return descuentaoCumpleanos;
     }
@@ -219,39 +222,45 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     public void setDescuentaoCumpleaños(Boolean descuentaoCumpleaños) {
         this.descuentaoCumpleanos = descuentaoCumpleaños;
     }
+    
+    
+    public void setServicioALaMesa(Boolean servicioALaMesa) {
+        this.servicioALaMesa = servicioALaMesa;
+    }
+    
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
     public Boolean getZonaDeFumadores() {
-        return zonaDeFumadores;
+        return zonaDefumadores;
     }
 
-    public void setZonaDeFumadores(Boolean zonaDeFumadores) {
-        this.zonaDeFumadores = zonaDeFumadores;
-    }
+    
 
-    public Boolean getPetFriendly() {
-        return petFriendly;
-    }
-
+    
     public void setPetFriendly(Boolean petFriendly) {
         this.petFriendly = petFriendly;
     }
 
-    public Boolean getServicioALaMesa() {
-        return servicioALaMesa;
-    }
+    
 
-    public void setServicioALaMesa(Boolean servicioALaMesa) {
-        this.servicioALaMesa = servicioALaMesa;
-    }
 
     public Boolean getMusicaEnVivo() {
         return musicaEnVivo;
+    }
+    
+     public String getTipoRestaurante() {
+        return tipoRestaurante;
     }
 
     public void setMusicaEnVivo(Boolean musicaEnVivo) {
         this.musicaEnVivo = musicaEnVivo;
     }
-
+    
+public Date getHorario() {
+        return horario;
+    }
     public Double getCostoReserva() {
         return costoReserva;
     }
@@ -260,13 +269,18 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.costoReserva = costoReserva;
     }
 
-    public Date getHorario() {
-        return horario;
+    public Boolean getPetFriendly() {
+        return petFriendly;
     }
+
 
     public void setHorario(Date horario) {
         this.horario = horario;
     } 
+    
+    public void setZonaDeFumadores(Boolean zonaDefumadores) {
+        this.zonaDefumadores = zonaDefumadores;
+    }
     
     @Override
     public boolean equals(Object ob)

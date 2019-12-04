@@ -21,14 +21,12 @@ public class NumeroTarjetaDeCreditoStrategy implements AttributeStrategy<Long> {
        if(retorno % 2 == 0)
        {
        String  visaString = "4" + (rand.nextInt(999999)+1000000) + "" + (rand.nextInt(9999999)+10000000) +"";
-       long visaNum = Math.abs(Long.parseLong(visaString));
-       return visaNum;
+       return Math.abs(Long.parseLong(visaString));
        }
        else
        {
        String mastercardString = "5" + (rand.nextInt(999999)+1000000) + "" + (rand.nextInt(9999999)+10000000) +"";
-       long mastercard = Math.abs(Long.parseLong(mastercardString));
-       return mastercard;
+       return Math.abs(Long.parseLong(mastercardString));
        }
     }
 }
