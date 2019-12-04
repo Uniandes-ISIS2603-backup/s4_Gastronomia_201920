@@ -41,40 +41,11 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
         super(cliente);
         if (cliente != null) 
         {
-            if(cliente.getPreferencias() != null) {
-                preferencias  = new ArrayList<>();
-                for(TipoComidaEntity tipoComidaEntity: cliente.getPreferencias()) {
-                    preferencias.add(new TipoComidaDTO(tipoComidaEntity));
-                }
-            }
-            
-            if (cliente.getTarjetas() != null) {
-                tarjetas = new ArrayList<>();
-                for(TarjetaDeCreditoEntity tarjetaEntity: cliente.getTarjetas()) {
-                    tarjetas.add(new TarjetaDeCreditoDTO(tarjetaEntity));
-                }   
-            }
-            
-            if (cliente.getReservas() != null) {
-                reservas = new ArrayList<>();
-                for(ReservaEntity reservaEntity: cliente.getReservas()) {
-                    reservas.add(new ReservaDTO(reservaEntity));
-                }
-            }
-            
-            if (cliente.getFacturas() != null) {
-                facturas = new ArrayList<>();
-                for(FacturaEntity facturaEntity: cliente.getFacturas()) {
-                    facturas.add(new FacturaDTO(facturaEntity));
-                }
-            }
-            
-            if (cliente.getFoodBlogs() != null) {
-                foodBlogs = new ArrayList<>();
-                for (FoodBlogEntity foodBlogEntity: cliente.getFoodBlogs()) {
-                    foodBlogs.add(new FoodBlogDTO(foodBlogEntity));   
-                }
-            }   
+            preferencias = listTipoComidaEntity2DTO(cliente.getPreferencias());
+            tarjetas = listTarjetaEntity2DTO(cliente.getTarjetas());
+            reservas = listReservaEntity2DTO(cliente.getReservas());
+            facturas = listFacturaEntity2DTO(cliente.getFacturas());
+            foodBlogs = listFoodBlogEntity2DTO(cliente.getFoodBlogs());
         }
     }
     
@@ -199,4 +170,56 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     public void setFoodBlogs(List<FoodBlogDTO> foodBlogs) {
         this.foodBlogs = foodBlogs;
     }
+    
+    private List<TipoComidaDTO> listTipoComidaEntity2DTO(List<TipoComidaEntity> entityList) {
+        List<TipoComidaDTO> list = new ArrayList<>();
+        if (entityList != null ) {
+            for (TipoComidaEntity entity : entityList) {
+                list.add(new TipoComidaDTO(entity));
+            } 
+        }
+        return list; 
+    }
+    
+    private List<TarjetaDeCreditoDTO> listTarjetaEntity2DTO(List<TarjetaDeCreditoEntity> entityList) {
+        List<TarjetaDeCreditoDTO> list = new ArrayList<>();
+        if (entityList != null ) {
+            for (TarjetaDeCreditoEntity entity : entityList) {
+                list.add(new TarjetaDeCreditoDTO(entity));
+            } 
+        }
+        return list; 
+    }
+    
+    private List<ReservaDTO> listReservaEntity2DTO(List<ReservaEntity> entityList) {
+        List<ReservaDTO> list = new ArrayList<>();
+        if (entityList != null ) {
+            for (ReservaEntity entity : entityList) {
+                list.add(new ReservaDTO(entity));
+            } 
+        }
+        return list; 
+    }
+    
+    private List<FacturaDTO> listFacturaEntity2DTO(List<FacturaEntity> entityList) {
+        List<FacturaDTO> list = new ArrayList<>();
+        if (entityList != null ) {
+            for (FacturaEntity entity : entityList) {
+                list.add(new FacturaDTO(entity));
+            } 
+        }
+        return list; 
+    }
+    
+    private List<FoodBlogDTO> listFoodBlogEntity2DTO(List<FoodBlogEntity> entityList) {
+        List<FoodBlogDTO> list = new ArrayList<>();
+        if (entityList != null ) {
+            for (FoodBlogEntity entity : entityList) {
+                list.add(new FoodBlogDTO(entity));
+            } 
+        }
+        return list; 
+    }
+    
+    
 }
