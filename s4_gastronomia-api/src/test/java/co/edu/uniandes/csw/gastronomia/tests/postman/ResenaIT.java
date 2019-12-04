@@ -20,16 +20,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+
+
 /**
  *
- * @author Estudiante
+ * @author Angela Suarez
  */
 @RunWith(Arquillian.class)
 public class ResenaIT {
-    
+
     private static final String COLLECTION = "ResenaResourceTest.postman_collection";
 
-@Deployment(testable = true)
+    @Deployment(testable = true)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "s4_gastronomia-api.war")//War del modulo api
                 // Se agrega las dependencias
