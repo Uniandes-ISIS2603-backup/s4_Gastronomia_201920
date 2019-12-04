@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.tests.postman;
 import co.edu.uniandes.csw.gastronomia.dtos.AdministradorDTO;
 import co.edu.uniandes.csw.gastronomia.mappers.BusinessLogicExceptionMapper;
-import co.edu.uniandes.csw.gastronomia.resources.AdministradorResource;
 import co.edu.uniandes.csw.gastronomia.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
 import java.io.File;
@@ -20,6 +19,8 @@ import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+
 
 /**
  *
