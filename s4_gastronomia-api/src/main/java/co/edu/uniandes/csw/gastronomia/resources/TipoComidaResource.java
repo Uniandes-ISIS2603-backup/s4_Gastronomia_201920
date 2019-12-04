@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.gastronomia.resources;
 
 import co.edu.uniandes.csw.gastronomia.dtos.TipoComidaDTO;
-import co.edu.uniandes.csw.gastronomia.dtos.TipoComidaDTO;
 import co.edu.uniandes.csw.gastronomia.ejb.TipoComidaLogic;
 import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
@@ -35,9 +34,11 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class TipoComidaResource 
+public class TipoComidaResource
 {
     private static final Logger LOGGER = Logger.getLogger(TipoComidaResource.class.getName());
+    private static final String RECURSO = "El recurso /tipoComidas/";
+    private static final String NO_EXISTE = " no existe.";
       
     @Inject
     private TipoComidaLogic tipoComidaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -97,7 +98,7 @@ public class TipoComidaResource
         TipoComidaEntity tipoComidaEntity = tipoComidaLogic.getTipoComida(tipoId);
         if (tipoComidaEntity == null) 
         {
-            throw new WebApplicationException("El recurso /tipoComidas/" + tipoId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tipoId + NO_EXISTE, 404);
         }
         TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaEntity);
         LOGGER.log(Level.INFO, "TipoComidaResource getTipo: output: {0}", tipoComidaDTO);
@@ -126,7 +127,7 @@ public class TipoComidaResource
         tipo.setId(tipoId);
         if (tipoComidaLogic.getTipoComida(tipoId) == null) 
         {
-            throw new WebApplicationException("El recurso /tipoComidas/" + tipoId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tipoId + NO_EXISTE, 404);
         }
         TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaLogic.updateTipoComida(tipoId, tipo.toEntity()));
         LOGGER.log(Level.INFO, "TipoComidaResource updateTipoComida: output: {0}", tipoComidaDTO);
@@ -151,7 +152,7 @@ public class TipoComidaResource
         TipoComidaEntity entity = tipoComidaLogic.getTipoComida(tipoId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /tipoComidas/" + tipoId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tipoId + NO_EXISTE, 404);
         }
         tipoComidaLogic.deleteTipoComida(tipoId);
         LOGGER.info("TipoComidaResource deleteTipoComida: output: void");
