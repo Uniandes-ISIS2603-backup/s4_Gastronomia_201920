@@ -37,6 +37,7 @@ import javax.ws.rs.WebApplicationException;
 public class TipoComidaResource
 {
     private static final Logger LOGGER = Logger.getLogger(TipoComidaResource.class.getName());
+
     private static final String RECURSO = "El recurso /tipoComidas/";
     private static final String NO_EXISTE = " no existe.";
       
@@ -98,6 +99,8 @@ public class TipoComidaResource
         TipoComidaEntity tipoComidaEntity = tipoComidaLogic.getTipoComida(tipoId);
         if (tipoComidaEntity == null) 
         {
+            
+
             throw new WebApplicationException(RECURSO + tipoId + NO_EXISTE, 404);
         }
         TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaEntity);
@@ -127,6 +130,7 @@ public class TipoComidaResource
         tipo.setId(tipoId);
         if (tipoComidaLogic.getTipoComida(tipoId) == null) 
         {
+
             throw new WebApplicationException(RECURSO + tipoId + NO_EXISTE, 404);
         }
         TipoComidaDTO tipoComidaDTO = new TipoComidaDTO(tipoComidaLogic.updateTipoComida(tipoId, tipo.toEntity()));
@@ -152,6 +156,7 @@ public class TipoComidaResource
         TipoComidaEntity entity = tipoComidaLogic.getTipoComida(tipoId);
         if (entity == null) 
         {
+
             throw new WebApplicationException(RECURSO + tipoId + NO_EXISTE, 404);
         }
         tipoComidaLogic.deleteTipoComida(tipoId);

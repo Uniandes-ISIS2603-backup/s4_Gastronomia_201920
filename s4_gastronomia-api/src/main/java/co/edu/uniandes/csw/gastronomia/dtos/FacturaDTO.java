@@ -33,7 +33,7 @@ public class FacturaDTO implements Serializable
      */
    public FacturaDTO()
    {
-       
+       //
    }
   
     /**

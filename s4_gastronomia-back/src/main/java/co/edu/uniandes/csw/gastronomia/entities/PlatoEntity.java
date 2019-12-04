@@ -104,7 +104,6 @@ public class PlatoEntity extends BaseEntity {
        return super.equals(o);
     }
     @Override
-    @Deprecated
     public int hashCode()
     {
         return super.hashCode();

@@ -92,8 +92,10 @@ public class AdministradorLogic {
      * id del administrador a actualizar
      * @return Instancia de AdministradorEntity con los datos actualizados
      */
-    public AdministradorEntity updateAdministrador( Long administradorId, AdministradorEntity administradorEntity) throws BusinessLogicException
+
+    public AdministradorEntity updateAdministrador(AdministradorEntity administradorEntity) throws BusinessLogicException
     {
+        
         if(administradorEntity.getApellido() == null )
         {
             throw new BusinessLogicException("El apellido" + UPDATE);

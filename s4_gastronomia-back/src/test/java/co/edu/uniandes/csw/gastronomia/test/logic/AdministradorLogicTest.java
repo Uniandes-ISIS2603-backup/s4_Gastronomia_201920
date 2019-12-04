@@ -253,7 +253,7 @@ public class AdministradorLogicTest {
         AdministradorEntity entity = data.get(0);
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setId(entity.getId());
-        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        administradorLogic.updateAdministrador(pojoEntity);
         AdministradorEntity resp = em.find(AdministradorEntity.class, entity.getId());
          Assert.assertEquals(pojoEntity.getEmail(), resp.getEmail());
         Assert.assertEquals(pojoEntity.getUsername(), resp.getUsername());
@@ -273,7 +273,7 @@ public class AdministradorLogicTest {
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setUsername(null);
         pojoEntity.setId(entity.getId());
-        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        administradorLogic.updateAdministrador(pojoEntity);
         
         
     }
@@ -286,7 +286,7 @@ public class AdministradorLogicTest {
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setNombre(null);
         pojoEntity.setId(entity.getId());
-        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        administradorLogic.updateAdministrador(pojoEntity);
         
         
     }
@@ -299,7 +299,7 @@ public class AdministradorLogicTest {
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setContrasena(null);
         pojoEntity.setId(entity.getId());
-        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        administradorLogic.updateAdministrador(pojoEntity);
         
         
     }
@@ -312,7 +312,7 @@ public class AdministradorLogicTest {
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setApellido(null);
         pojoEntity.setId(entity.getId());
-        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        administradorLogic.updateAdministrador(pojoEntity);
         
         
     }
@@ -324,7 +324,7 @@ public class AdministradorLogicTest {
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
         pojoEntity.setEmail(null);
         pojoEntity.setId(entity.getId());
-        administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);
+        administradorLogic.updateAdministrador(pojoEntity);
         
         
     }
