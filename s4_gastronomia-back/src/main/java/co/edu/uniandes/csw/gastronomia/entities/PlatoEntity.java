@@ -48,7 +48,7 @@ public class PlatoEntity extends BaseEntity {
     /**
      * @return the precio
      */
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
