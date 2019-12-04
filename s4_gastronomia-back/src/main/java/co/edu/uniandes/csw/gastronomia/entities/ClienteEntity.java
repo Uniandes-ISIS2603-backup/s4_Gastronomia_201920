@@ -49,7 +49,7 @@ public class ClienteEntity extends UsuarioEntity{
     private List<FacturaEntity> facturas = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = javax.persistence.FetchType.LAZY )
+    @OneToMany(mappedBy = "cliente")
     private List<ReservaEntity> reservas = new ArrayList<>();
 
     public ClienteEntity() {
