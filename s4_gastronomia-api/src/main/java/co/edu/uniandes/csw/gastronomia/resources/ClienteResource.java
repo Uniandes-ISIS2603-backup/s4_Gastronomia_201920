@@ -81,6 +81,7 @@ public class ClienteResource {
         return clienteDetailDTO;
     }
     
+
     /**
      * Busca el cliente con el id asociado recibido en la URL y lo devuelve.
      *

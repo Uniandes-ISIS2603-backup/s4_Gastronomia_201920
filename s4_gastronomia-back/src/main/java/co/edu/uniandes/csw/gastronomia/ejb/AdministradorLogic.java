@@ -86,6 +86,10 @@ public class AdministradorLogic {
         return administradorEntity;
     }
     
+     public AdministradorEntity getAdministrador(String adminUsername) {
+        AdministradorEntity adminEntity = persistence.findByUserName(adminUsername);
+        return adminEntity;
+    }
      /**
      * Actualiza la información de una instancia de Administrador
      * @param administradorEntity Instancia de AdministradorEntity con los nuevos datos y el 
