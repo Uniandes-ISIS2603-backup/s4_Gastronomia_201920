@@ -56,21 +56,21 @@ public class ReservaDTO implements Serializable{
     
     public ReservaEntity toEntity() {
         ReservaEntity reservaEntity = new ReservaEntity();
-        reservaEntity.setMotivo(this.motivo);
-        reservaEntity.setFecha(this.fecha);
-        reservaEntity.setNumPersonas(this.numPersonas);
-        reservaEntity.setCancelada(this.cancelada);
+        reservaEntity.setMotivo(this.getMotivo());
+        reservaEntity.setFecha(this.getFecha());
+        reservaEntity.setNumPersonas(this.getNumPersonas());
+        reservaEntity.setCancelada(this.getCancelada());
         if (getRestaurante() != null) {
-            reservaEntity.setRestaurante(this.restaurante.toEntity());
+            reservaEntity.setRestaurante(this.getRestaurante().toEntity());
         }
         if (getFactura() != null) {
-            reservaEntity.setFactura(this.factura.toEntity());
+            reservaEntity.setFactura(this.getFactura().toEntity());
         }
         if(getResena() != null) {
-            reservaEntity.setResena(this.resena.toEntity());
+            reservaEntity.setResena(this.getResena().toEntity());
         }
         if(getCliente() !=  null) {
-            reservaEntity.setCliente(this.cliente.toEntity());
+            reservaEntity.setCliente(this.getCliente().toEntity());
         }
         return reservaEntity;
     }
