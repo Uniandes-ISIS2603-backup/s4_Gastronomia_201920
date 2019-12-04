@@ -43,70 +43,7 @@ public class RestauranteLogic {
         if (persistence.find(r.getId()) != null) {
             throw new BusinessLogicException("El restaurante ya existe");
         }
-        if (r.getNombre() == null) {
-            throw new BusinessLogicException(COND_RESTAURANTE1);
-        }
-        if (r.getNombre().isEmpty()) {
-            throw new BusinessLogicException(COND_RESTAURANTE1);
-        }
-        if (r.getContrasena() == null) {
-            throw new BusinessLogicException(B_PASS);
-        }
-        if (r.getContrasena().isEmpty()) {
-            throw new BusinessLogicException(B_PASS);
-        }
-        if (r.getContrasena().length() < 8) {
-            throw new BusinessLogicException(B_PASS);
-        }
-        if (r.getZonaDeFumadores() == null) {
-            throw new BusinessLogicException("El booleano de zona de fuamadores no puede ser nulo");
-        }
-        if (r.getDescuentaoCumpleanos() == null) {
-            throw new BusinessLogicException("El booleano de descuentos de cumpleaños no puede ser nulo");
-        }
-        if (r.getPetFriendly() == null) {
-            throw new BusinessLogicException("El booleano de pet friendly no puede ser nulo");
-        }
-        if (r.getServicioALaMesa() == null) {
-            throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
-        }
-        if (r.getImagen() == null) {
-            throw new BusinessLogicException(IMAGEN);
-        }
-        if (r.getImagen().isEmpty()) {
-            throw new BusinessLogicException(IMAGEN);
-        }
-        if (r.getDireccion() == null) {
-            throw new BusinessLogicException(DIRECCION);
-        }
-        if (r.getDireccion().isEmpty()) {
-            throw new BusinessLogicException(DIRECCION);
-        }
-        if (r.getHorario() == null) {
-            throw new BusinessLogicException("No tiene horario");
-        }
-        if (r.getCostoReserva() == null) {
-            throw new BusinessLogicException("El costo de reserva es nulo");
-        }
-        if (r.getCostoReserva() <= 0.0) {
-            throw new BusinessLogicException("El costo de reserva es negativo");
-        }
-        if (r.getTipoRestaurante() == null) {
-            throw new BusinessLogicException(COND_RESTAURANTE2);
-        }
-        if (r.getTipoRestaurante().isEmpty()) {
-            throw new BusinessLogicException(COND_RESTAURANTE2);
-        }
-        if (r.getMusicaEnVivo() == null) {
-            throw new BusinessLogicException("el booleanno de musica en vivo no puede ser nulo");
-        }
-        if (r.getPrecioPorPersona() == null) {
-            throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
-        }
-        if (r.getPrecioPorPersona() <= 0.0) {
-            throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
-        }
-
+        checkBusinessLogic(r);
         LOGGER.log(Level.INFO, "Se creó el restaurante con id={0}", r.getId());
         return persistence.create(r);
     }
@@ -228,6 +165,22 @@ public class RestauranteLogic {
         if (e == null) {
             throw new BusinessLogicException("no existe el restaurante que se quiere modificar");
         }
+        checkBusinessLogic(r);
+        e = persistence.update(r);
+        LOGGER.log(Level.INFO, "Se está modifico el restaurante con id={0}", id);
+        return e;
+    }
+
+    public void deleteRestaurante(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Se está borrando el restaurante con id={0}", id);
+        RestauranteEntity r = persistence.find(id);
+        if (r == null) {
+            throw new BusinessLogicException("El restaurante que se quiere borrar no existe");
+        }
+        persistence.delete(id);
+    }
+    
+    public void checkBusinessLogic(RestauranteEntity r) throws BusinessLogicException {
         if (r.getNombre() == null) {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
@@ -291,19 +244,5 @@ public class RestauranteLogic {
         if (r.getPrecioPorPersona() <= 0.0) {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }
-
-        e = persistence.update(r);
-        LOGGER.log(Level.INFO, "Se está modifico el restaurante con id={0}", id);
-        return e;
     }
-
-    public void deleteRestaurante(Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Se está borrando el restaurante con id={0}", id);
-        RestauranteEntity r = persistence.find(id);
-        if (r == null) {
-            throw new BusinessLogicException("El restaurante que se quiere borrar no existe");
-        }
-        persistence.delete(id);
-    }
-
 }

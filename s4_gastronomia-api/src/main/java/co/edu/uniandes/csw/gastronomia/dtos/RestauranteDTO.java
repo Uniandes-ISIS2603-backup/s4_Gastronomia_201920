@@ -88,7 +88,7 @@ public class RestauranteDTO implements Serializable
         r.setDireccion(this.getDireccion());
         r.setTipoRestaurante(this.getTipoRestaurante());
         r.setPrecioPorPersona(this.getPrecioPorPersona());
-        r.setDescuentaoCumpleaños(this.getDescuentoCumpleanos());
+        r.setDescuentaoCumpleanos(this.getDescuentoCumpleanos());
         r.setZonaDeFumadores(this.getZonaDeFumadores());
         r.setPetFriendly(this.getPetFriendly());
         r.setServicioALaMesa(this.getServicioALaMesa());

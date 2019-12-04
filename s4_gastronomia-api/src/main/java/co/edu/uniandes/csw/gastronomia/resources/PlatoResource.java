@@ -30,9 +30,11 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class PlatoResource {
     
+
+    private static final String RECURSO = "El recurso /restaurantes/";
+    private static final String PLATOS = "/platos/";
+    private static final String NO_EXISTE = " no existe.";
     
-   private static final String RUTA = "El recurso /restaurantes/";
-   
     @Inject 
     private PlatoLogic logic;
     /**
@@ -45,8 +47,7 @@ public class PlatoResource {
     @POST
     public PlatoDTO createPlato(@PathParam("restaurantesId") Long restauranteId, PlatoDTO plato)throws BusinessLogicException
     {
-        PlatoDTO platoDTO = new PlatoDTO(logic.createPlato(restauranteId, plato.toEntity()));
-        return platoDTO;
+        return new PlatoDTO(logic.createPlato(restauranteId, plato.toEntity()));
     }
     /**
      * Metodo para consultar un plato de un restaurante
@@ -62,16 +63,15 @@ public class PlatoResource {
         PlatoEntity plato = logic.findPlato(restaurantesId, platosId);
         if(plato == null)
         {
-            throw new WebApplicationException(RUTA + restaurantesId + "/platos/" + platosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
+
         }
-        PlatoDTO platoDTO = new PlatoDTO(plato);
-        return platoDTO;
+        return new PlatoDTO(plato);
     }
     @GET
     public List<PlatoDTO> getPlatos(@PathParam("restaurantesId") Long restaurantesId)
     {
-        List<PlatoDTO> listaDTOs = listEntity2DTO(logic.getPlatos(restaurantesId));
-        return listaDTOs;       
+        return listEntity2DTO(logic.getPlatos(restaurantesId));      
     }
     
     
@@ -87,10 +87,10 @@ public class PlatoResource {
         PlatoEntity entity = logic.findPlato(restaurantesId, platosId);
         if(entity == null)
         {
-            throw new WebApplicationException(RUTA + restaurantesId + "/platos/" + platosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
+
         }
-        PlatoDTO platoDTO = new PlatoDTO(logic.updatePlato(restaurantesId, plato.toEntity()));
-        return platoDTO;
+        return new PlatoDTO(logic.updatePlato(restaurantesId, plato.toEntity()));
     }
     
     @DELETE
@@ -100,14 +100,15 @@ public class PlatoResource {
         PlatoEntity plato = logic.findPlato(restaurantesId, platosId);
         if(plato == null)
         {
-            throw new WebApplicationException(RUTA + restaurantesId + "/platos/" + platosId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
+
         }
         logic.deletePlato(restaurantesId, platosId);
     }
           
     private List<PlatoDTO> listEntity2DTO(List<PlatoEntity> entityList)
     {
-        List<PlatoDTO> list = new ArrayList<PlatoDTO>();
+        List<PlatoDTO> list = new ArrayList<>();
         for(PlatoEntity entity: entityList)
         {
             list.add(new PlatoDTO(entity));

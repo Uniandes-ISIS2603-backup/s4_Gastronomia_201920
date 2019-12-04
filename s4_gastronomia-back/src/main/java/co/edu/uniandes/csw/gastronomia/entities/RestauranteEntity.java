@@ -91,8 +91,6 @@ public class RestauranteEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany(mappedBy = "restaurante", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ReservaEntity> reservas;
-    
-
 
     public RestauranteEntity()
     {
@@ -100,137 +98,231 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         //Empty constructor
     }
 
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
 
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @return the contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @return the tipoRestaurante
+     */
+    public String getTipoRestaurante() {
+        return tipoRestaurante;
+    }
+
+    /**
+     * @return the precioPorPersona
+     */
+    public Double getPrecioPorPersona() {
+        return precioPorPersona;
+    }
+
+    /**
+     * @return the descuentaoCumpleanos
+     */
+    public Boolean getDescuentaoCumpleanos() {
+        return descuentaoCumpleanos;
+    }
+
+    /**
+     * @return the zonaDeFumadores
+     */
+    public Boolean getZonaDeFumadores() {
+        return zonaDeFumadores;
+    }
+
+    /**
+     * @return the petFriendly
+     */
+    public Boolean getPetFriendly() {
+        return petFriendly;
+    }
+
+    /**
+     * @return the servicioALaMesa
+     */
+    public Boolean getServicioALaMesa() {
+        return servicioALaMesa;
+    }
+
+    /**
+     * @return the musicaEnVivo
+     */
+    public Boolean getMusicaEnVivo() {
+        return musicaEnVivo;
+    }
+
+    /**
+     * @return the costoReserva
+     */
+    public Double getCostoReserva() {
+        return costoReserva;
+    }
+
+    /**
+     * @return the horario
+     */
+    public Date getHorario() {
+        return horario;
+    }
+
+    /**
+     * @return the administrador
+     */
+    public AdministradorEntity getAdministrador() {
+        return administrador;
+    }
+
+    /**
+     * @return the platos
+     */
+    public List<PlatoEntity> getPlatos() {
+        return platos;
+    }
+
+    /**
+     * @return the reservas
+     */
     public List<ReservaEntity> getReservas() {
         return reservas;
     }
 
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    /**
+     * @param tipoRestaurante the tipoRestaurante to set
+     */
+    public void setTipoRestaurante(String tipoRestaurante) {
+        this.tipoRestaurante = tipoRestaurante;
+    }
+
+    /**
+     * @param precioPorPersona the precioPorPersona to set
+     */
+    public void setPrecioPorPersona(Double precioPorPersona) {
+        this.precioPorPersona = precioPorPersona;
+    }
+
+    /**
+     * @param descuentaoCumpleanos the descuentaoCumpleanos to set
+     */
+    public void setDescuentaoCumpleanos(Boolean descuentaoCumpleanos) {
+        this.descuentaoCumpleanos = descuentaoCumpleanos;
+    }
+
+    /**
+     * @param zonaDeFumadores the zonaDeFumadores to set
+     */
+    public void setZonaDeFumadores(Boolean zonaDeFumadores) {
+        this.zonaDeFumadores = zonaDeFumadores;
+    }
+
+    /**
+     * @param petFriendly the petFriendly to set
+     */
+    public void setPetFriendly(Boolean petFriendly) {
+        this.petFriendly = petFriendly;
+    }
+
+    /**
+     * @param servicioALaMesa the servicioALaMesa to set
+     */
+    public void setServicioALaMesa(Boolean servicioALaMesa) {
+        this.servicioALaMesa = servicioALaMesa;
+    }
+
+    /**
+     * @param musicaEnVivo the musicaEnVivo to set
+     */
+    public void setMusicaEnVivo(Boolean musicaEnVivo) {
+        this.musicaEnVivo = musicaEnVivo;
+    }
+
+    /**
+     * @param costoReserva the costoReserva to set
+     */
+    public void setCostoReserva(Double costoReserva) {
+        this.costoReserva = costoReserva;
+    }
+
+    /**
+     * @param horario the horario to set
+     */
+    public void setHorario(Date horario) {
+        this.horario = horario;
+    }
+
+    /**
+     * @param administrador the administrador to set
+     */
+    public void setAdministrador(AdministradorEntity administrador) {
+        this.administrador = administrador;
+    }
+
+    /**
+     * @param platos the platos to set
+     */
+    public void setPlatos(List<PlatoEntity> platos) {
+        this.platos = platos;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
     
     
-    public AdministradorEntity getAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(AdministradorEntity administrador) {
-        this.administrador = administrador;
-    }
-
-    public List<PlatoEntity> getPlatos() {
-        return platos;
-    }
-
-    public void setPlatos(List<PlatoEntity> platos) {
-        this.platos = platos;
-    }
-
-    
-        
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTipoRestaurante() {
-        return tipoRestaurante;
-    }
-
-    public void setTipoRestaurante(String tipoRestaurante) {
-        this.tipoRestaurante = tipoRestaurante;
-    }
-
-    public Double getPrecioPorPersona() {
-        return precioPorPersona;
-    }
-
-    public void setPrecioPorPersona(Double precioPorPersona) {
-        this.precioPorPersona = precioPorPersona;
-    }
-
-    public Boolean getDescuentaoCumpleanos() {
-        return descuentaoCumpleanos;
-    }
-
-    public void setDescuentaoCumpleaños(Boolean descuentaoCumpleaños) {
-        this.descuentaoCumpleanos = descuentaoCumpleaños;
-    }
-
-    public Boolean getZonaDeFumadores() {
-        return zonaDeFumadores;
-    }
-
-    public void setZonaDeFumadores(Boolean zonaDeFumadores) {
-        this.zonaDeFumadores = zonaDeFumadores;
-    }
-
-    public Boolean getPetFriendly() {
-        return petFriendly;
-    }
-
-    public void setPetFriendly(Boolean petFriendly) {
-        this.petFriendly = petFriendly;
-    }
-
-    public Boolean getServicioALaMesa() {
-        return servicioALaMesa;
-    }
-
-    public void setServicioALaMesa(Boolean servicioALaMesa) {
-        this.servicioALaMesa = servicioALaMesa;
-    }
-
-    public Boolean getMusicaEnVivo() {
-        return musicaEnVivo;
-    }
-
-    public void setMusicaEnVivo(Boolean musicaEnVivo) {
-        this.musicaEnVivo = musicaEnVivo;
-    }
-
-    public Double getCostoReserva() {
-        return costoReserva;
-    }
-
-    public void setCostoReserva(Double costoReserva) {
-        this.costoReserva = costoReserva;
-    }
-
-    public Date getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Date horario) {
-        this.horario = horario;
-    } 
     
     @Override
     public boolean equals(Object ob)
