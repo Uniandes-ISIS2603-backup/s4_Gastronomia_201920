@@ -147,6 +147,15 @@ public class AdministradorLogicTest {
         AdministradorEntity resultado = administradorLogic.createAdministrador(newEntity);
     }
     
+    @Test(expected = BusinessLogicException.class)
+    public void createAdministradorTestConUsernameExistente() throws BusinessLogicException {
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+        newEntity.setUsername(data.get(0).getUsername());
+        administradorLogic.createAdministrador(newEntity);
+        
+    }
+    
+    
     @Test( expected = BusinessLogicException.class)
     public void createAdministradorNameNull() throws BusinessLogicException
     {
@@ -198,6 +207,20 @@ public class AdministradorLogicTest {
         Assert.assertEquals(getAdministrador.getApellido(), entity.getApellido());
     }
     
+        /**
+     * Prueba para consultar un cliente por su username.
+     */
+    @Test
+    public void getAdministradorTestByUsername() {
+        AdministradorEntity entity = data.get(0);
+        AdministradorEntity resultEntity = administradorLogic.getAdministrador(entity.getUsername());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(resultEntity.getApellido(), entity.getApellido());
+        Assert.assertEquals(resultEntity.getUsername(), entity.getUsername());
+        Assert.assertEquals(resultEntity.getEmail(), entity.getEmail());
+        Assert.assertEquals(resultEntity.getContrasena(), entity.getContrasena());
+    }
     /**
     *
     * Prueba para consultar la lista de  administradores

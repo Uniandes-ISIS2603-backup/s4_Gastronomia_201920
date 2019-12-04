@@ -39,11 +39,11 @@ public class AdministradorEntity  extends UsuarioEntity
         super();
     }
    
-   public AdministradorEntity(String name , String apellido , String username , String contrasena , String email , long pPhone)
-   {
-       super(name, apellido, username, contrasena, email);
-       this.phone = pPhone;
-   }
+   //public AdministradorEntity(String name , String apellido , String username , String contrasena , String email , long pPhone)
+   //{
+     //  super(name, apellido, username, contrasena, email);
+      // this.phone = pPhone;
+   // }
    
    public long getPhone()
    {

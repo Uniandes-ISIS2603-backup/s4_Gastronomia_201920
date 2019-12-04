@@ -67,15 +67,15 @@ public abstract class UsuarioEntity extends BaseEntity {
      * @param contrasena Corresponde a la contraseña del usuario
      */
     
-    public UsuarioEntity( String nombre , String apellido , String username , String contrasena , String email)
-    {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.username = username;
-        this.contrasena = contrasena;
-        this.email = email;
-    }
-
+    //public UsuarioEntity( String nombre , String apellido , String username , String contrasena , String email)
+    //{
+      //  this.nombre = nombre;
+      //  this.apellido = apellido;
+      // this.username = username;
+        //this.contrasena = contrasena;
+        //this.email = email;
+    //
+    //}
    
             
 
