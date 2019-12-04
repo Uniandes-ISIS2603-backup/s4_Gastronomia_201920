@@ -60,8 +60,8 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @param fechaDeVencimiento the fechaDeVencimiento to set
      */
-    public void setFechaVencimiento(Date fechaDeVencimiento) {
-        this.fechaVencimiento = fechaDeVencimiento;
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     /**
