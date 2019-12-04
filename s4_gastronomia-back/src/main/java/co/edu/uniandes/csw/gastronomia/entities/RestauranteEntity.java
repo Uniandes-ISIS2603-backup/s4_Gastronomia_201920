@@ -99,10 +99,9 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         super();
         //Empty constructor
     }
-
-    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario) {
-        super();
-        this.imagen = imagen;//ya
+public void inicializador(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario)
+{
+    this.imagen = imagen;//ya
         this.nombre = nombre;//ya
         this.contrasena = contrasena;//ya
         this.direccion = direccion;//ya
@@ -115,23 +114,15 @@ public class RestauranteEntity extends BaseEntity implements Serializable
         this.musicaEnVivo = musicaEnVivo;//ya
         this.costoReserva = costoReserva;//ya
         this.horario = horario;//ya
+}
+    public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario) {
+        super();
+        inicializador(imagen, nombre, contrasena, direccion, tipoRestaurante, precioPorPersona, descuentaoCumpleanos, zonaDeFumadores, petFriendly, servicioALaMesa, musicaEnVivo, costoReserva, horario);
     }
 
     public RestauranteEntity(String imagen, String nombre, String contrasena, String direccion, String tipoRestaurante, Double precioPorPersona, Boolean descuentaoCumpleanos, Boolean zonaDeFumadores, Boolean petFriendly, Boolean servicioALaMesa, Boolean musicaEnVivo, Double costoReserva, Date horario, AdministradorEntity administrador, List<PlatoEntity> platos, List<ReservaEntity> reservas) {
         super();
-        this.imagen = imagen;
-        this.nombre = nombre;
-        this.contrasena = contrasena;
-        this.direccion = direccion;
-        this.tipoRestaurante = tipoRestaurante;
-        this.precioPorPersona = precioPorPersona;
-        this.descuentaoCumpleanos = descuentaoCumpleanos;
-        this.zonaDeFumadores = zonaDeFumadores;
-        this.petFriendly = petFriendly;
-        this.servicioALaMesa = servicioALaMesa;
-        this.musicaEnVivo = musicaEnVivo;
-        this.costoReserva = costoReserva;
-        this.horario = horario;
+        inicializador(imagen, nombre, contrasena, direccion, tipoRestaurante, precioPorPersona, descuentaoCumpleanos, zonaDeFumadores, petFriendly, servicioALaMesa, musicaEnVivo, costoReserva, horario);
         this.administrador = administrador;
         this.platos = platos;
         this.reservas = reservas;

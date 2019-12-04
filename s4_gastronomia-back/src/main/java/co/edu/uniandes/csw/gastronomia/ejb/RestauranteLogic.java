@@ -27,7 +27,7 @@ public class RestauranteLogic
     
     private static final String COND_RESTAURANTE2="El tipo de restaurante no puede ser nulo o vacio";
     
-    private static final String BAD_PASSWORD="Bad password sheme ";
+    private static final String B_PASS="Bad password sheme ";
     
    
     private static final String IMAGEN="La imagen está vaci o no existe";
@@ -57,15 +57,15 @@ public class RestauranteLogic
         }
         if(r.getContrasena()==null )
         {
-            throw new BusinessLogicException(BAD_PASSWORD);
+            throw new BusinessLogicException(B_PASS);
         }
         if(r.getContrasena().isEmpty() )
         {
-           throw new BusinessLogicException(BAD_PASSWORD); 
+           throw new BusinessLogicException(B_PASS); 
         }
         if( r.getContrasena().length() < 8)
         {
-            throw new BusinessLogicException(BAD_PASSWORD); 
+            throw new BusinessLogicException(B_PASS); 
         }
         if(r.getZonaDeFumadores()==null)
         {
@@ -293,15 +293,15 @@ public class RestauranteLogic
         }
         if(r.getContrasena()==null )
         {
-            throw new BusinessLogicException(BAD_PASSWORD);
+            throw new BusinessLogicException(B_PASS);
         }
         if(r.getContrasena().isEmpty() )
         {
-           throw new BusinessLogicException(BAD_PASSWORD); 
+           throw new BusinessLogicException(B_PASS); 
         }
         if( r.getContrasena().length() < 8)
         {
-            throw new BusinessLogicException(BAD_PASSWORD); 
+            throw new BusinessLogicException(B_PASS); 
         }
         if(r.getZonaDeFumadores()==null)
         {

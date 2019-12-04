@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.gastronomia.entities.ResenaEntity;
 import co.edu.uniandes.csw.gastronomia.persistence.ResenaPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -172,7 +173,8 @@ public class ResenaPersistenceTest {
            ResenaEntity entity = data.get(0);
        int  entityint = entity.getCalificacion();
         Assert.assertNotNull(entityint);
-        //Assert.assertEquals(entityint, entity.getCalificacion());
+        Assert.assertTrue(Objects.equals(entity.getCalificacion(), entityint));
+        
      }
      
      /**
@@ -182,10 +184,11 @@ public class ResenaPersistenceTest {
      public void setCalificacionTest()
      {
         ResenaEntity entity=data.get(0);
-        int  newIntreated= 12345;
+        Integer  newIntreated= 12345;
         entity.setCalificacion(newIntreated);
         Assert.assertNotNull(entity.getCalificacion());
-        //Assert.assertEquals(entity.getCalificacion(), newIntreated);
+        Assert.assertTrue(Objects.equals(entity.getCalificacion(), newIntreated));
+        
      }
     /**
      * Prueba el metodo getTexto de la clase ResenaEntity.
