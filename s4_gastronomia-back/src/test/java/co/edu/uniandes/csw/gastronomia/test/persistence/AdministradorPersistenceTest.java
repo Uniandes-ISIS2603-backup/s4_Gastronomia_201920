@@ -207,6 +207,8 @@ public class AdministradorPersistenceTest
     {
         AdministradorEntity admin = data.get(0); 
         AdministradorEntity entity = em.find(AdministradorEntity.class, admin.getId());
+        String mirar = entity.getUsername();
+        Assert.assertTrue(mirar.equals(entity.getUsername()));
         
       Assert.assertTrue( !entity.equals(344));
       
