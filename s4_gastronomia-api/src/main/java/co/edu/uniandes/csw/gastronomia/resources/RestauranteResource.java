@@ -81,6 +81,7 @@ public class RestauranteResource
     public List<RestauranteDetailDTO> getRestaurantes() throws BusinessLogicException
     {
        return entity2DTO(logic.getRestaurantes());
+
     }
     
 

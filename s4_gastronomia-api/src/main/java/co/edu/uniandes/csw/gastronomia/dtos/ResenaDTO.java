@@ -19,11 +19,11 @@ public class ResenaDTO implements Serializable {
     
     private String comentario;
     
-    //private ReservaDTO reservaDto;
+    
     
     public ResenaDTO()
     {
-        
+        //Constructor vacio
     }
     
     public ResenaDTO(ResenaEntity r)

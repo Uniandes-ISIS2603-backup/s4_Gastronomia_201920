@@ -37,6 +37,7 @@ public class PlatoResource {
     
     @Inject 
     private PlatoLogic logic;
+
     /**
      * Metodo para crear un plato
      * @param restauranteId. Id del restaurante al cual pertenece el plaro
@@ -63,6 +64,7 @@ public class PlatoResource {
         PlatoEntity plato = logic.findPlato(restaurantesId, platosId);
         if(plato == null)
         {
+
             throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
 
         }
@@ -71,7 +73,8 @@ public class PlatoResource {
     @GET
     public List<PlatoDTO> getPlatos(@PathParam("restaurantesId") Long restaurantesId)
     {
-        return listEntity2DTO(logic.getPlatos(restaurantesId));      
+        return listEntity2DTO(logic.getPlatos(restaurantesId));
+
     }
     
     
@@ -87,6 +90,7 @@ public class PlatoResource {
         PlatoEntity entity = logic.findPlato(restaurantesId, platosId);
         if(entity == null)
         {
+
             throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
 
         }
@@ -100,6 +104,7 @@ public class PlatoResource {
         PlatoEntity plato = logic.findPlato(restaurantesId, platosId);
         if(plato == null)
         {
+
             throw new WebApplicationException(RECURSO + restaurantesId + PLATOS + platosId + NO_EXISTE, 404);
 
         }

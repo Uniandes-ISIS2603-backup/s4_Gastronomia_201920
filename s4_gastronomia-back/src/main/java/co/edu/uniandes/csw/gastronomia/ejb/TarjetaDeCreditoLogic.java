@@ -59,7 +59,7 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("El numero de tarjeta no puede ser negativo");
         }
-        else if(!(Long.toString(tarjeta.getNumero()).length() == 16))
+        else if((Long.toString(tarjeta.getNumero()).length() != 16))
         {
             throw new BusinessLogicException("El numero de tarjeta no tiene 16 digitos");
         }
@@ -98,7 +98,7 @@ public class TarjetaDeCreditoLogic {
         {
             throw new BusinessLogicException("El numero de tarjeta no puede ser negativo");
         }
-        else if(!(Long.toString(tarjetaEntity.getNumero()).length() == 16))
+        else if((Long.toString(tarjetaEntity.getNumero()).length() != 16))
         {
             throw new BusinessLogicException("El numero de tarjeta no tiene 16 digitos");
         }

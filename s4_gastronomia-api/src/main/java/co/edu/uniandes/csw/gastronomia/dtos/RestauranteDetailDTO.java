@@ -41,6 +41,7 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
     {
         super();
     }
+    
     public RestauranteEntity toEntity()
     {
         RestauranteEntity r = super.toEntity();

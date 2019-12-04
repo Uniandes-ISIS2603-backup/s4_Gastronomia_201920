@@ -114,6 +114,7 @@ public class ResenaResource {
             throw new WebApplicationException("La resena con el id:" + id , 404);
         }
         return new ResenaDTO(logic.updateResena(id,re.toEntity()));
+
     }
     
     /**

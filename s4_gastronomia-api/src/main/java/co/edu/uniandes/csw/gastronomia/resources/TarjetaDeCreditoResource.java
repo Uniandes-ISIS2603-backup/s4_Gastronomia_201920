@@ -37,6 +37,7 @@ public class TarjetaDeCreditoResource {
     @Inject 
     private TarjetaDeCreditoLogic logic;
     
+    
     @POST
     public TarjetaDeCreditoDTO createTarjetaDeCredito(@PathParam("clientesId") Long clienteId, TarjetaDeCreditoDTO tarjeta)throws BusinessLogicException
     {
@@ -50,7 +51,9 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(clienteId, tarjetasId);
         if(tarjeta == null)
         {
+
             throw new WebApplicationException(RECURSO + tarjetasId + NO_EXISTE, 404);
+
         }
         return new TarjetaDeCreditoDTO(tarjeta);
     }
@@ -67,6 +70,7 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity tarjeta = logic.findTarjetaDeCredito(clienteId ,tarjetasId);
         if(tarjeta == null)
         {
+
             throw new WebApplicationException(RECURSO + tarjetasId + NO_EXISTE, 404);
         }
         logic.deleteTarjetaDeCredito(clienteId, tarjetasId);
@@ -83,6 +87,7 @@ public class TarjetaDeCreditoResource {
         TarjetaDeCreditoEntity entity = logic.findTarjetaDeCredito(clienteId, tarjetasId);
         if(entity == null)
         {
+
             throw new WebApplicationException(RECURSO + tarjetasId + NO_EXISTE, 404);
         }
         return new TarjetaDeCreditoDTO(logic.updatetarjetaDeCredito(clienteId, tarjeta.toEntity()));
