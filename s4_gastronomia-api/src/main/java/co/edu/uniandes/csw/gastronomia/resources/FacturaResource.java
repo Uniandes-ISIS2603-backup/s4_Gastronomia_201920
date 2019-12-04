@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -38,7 +37,8 @@ import javax.ws.rs.WebApplicationException;
 public class FacturaResource 
 {
     private static final Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
-    
+    private static final String RUTA = "El recurso /facturas/";
+   
     
     @Inject
     private FacturaLogic facturaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -98,7 +98,7 @@ public class FacturaResource
         FacturaEntity facturaEntity = facturaLogic.getFactura(facturaId);
         if (facturaEntity == null) 
         {
-            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException(RUTA + facturaId + " no existe.", 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(facturaEntity);
         LOGGER.log(Level.INFO, "FacturaResource getFactura: output: {0}", facturaDTO);
@@ -127,7 +127,7 @@ public class FacturaResource
         factura.setId(facturaId);
         if (facturaLogic.getFactura(facturaId) == null) 
         {
-            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException(RUTA + facturaId + " no existe.", 404);
         }
         FacturaDTO facturaDTO = new FacturaDTO(facturaLogic.updateFactura(facturaId, factura.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource updateFactura: output: {0}", facturaDTO);
@@ -152,7 +152,7 @@ public class FacturaResource
         FacturaEntity entity = facturaLogic.getFactura(facturaId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /facturas/" + facturaId + " no existe.", 404);
+            throw new WebApplicationException(RUTA + facturaId + " no existe.", 404);
         }
         facturaLogic.deleteFactura(facturaId);
         LOGGER.info("FacturaResource deleteFactura: output: void");
