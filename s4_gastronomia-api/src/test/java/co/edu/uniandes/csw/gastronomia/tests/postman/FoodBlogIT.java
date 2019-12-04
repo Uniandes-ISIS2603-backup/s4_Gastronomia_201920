@@ -4,28 +4,33 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.gastronomia.tests.postman;
-
 import co.edu.uniandes.csw.gastronomia.dtos.AdministradorDTO;
 import co.edu.uniandes.csw.gastronomia.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.gastronomia.resources.AdministradorResource;
 import co.edu.uniandes.csw.gastronomia.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
 import java.io.File;
 import java.io.IOException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  *
- * @author Estudiante
+ * @author Angela Suarez
  */
+@RunWith(Arquillian.class)
 public class FoodBlogIT {
-     private static final String COLLECTION = "foodBlogsResourceTest.postman_collection";
-@Deployment(testable = true)
+
+    private static final String COLLECTION = "foodBlogsResourceTest.postman_collection";
+
+    @Deployment(testable = true)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "s4_gastronomia-api.war")//War del modulo api
                 // Se agrega las dependencias

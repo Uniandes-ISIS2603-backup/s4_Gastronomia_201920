@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.gastronomia.tests.postman;
 import co.edu.uniandes.csw.gastronomia.dtos.AdministradorDTO;
 import co.edu.uniandes.csw.gastronomia.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.gastronomia.resources.AdministradorResource;
 import co.edu.uniandes.csw.gastronomia.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
 import java.io.File;
@@ -22,14 +23,14 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Estudiante
+ * @author Angela Suarez
  */
 @RunWith(Arquillian.class)
 public class ResenaIT {
-    
+
     private static final String COLLECTION = "ResenaResourceTest.postman_collection";
 
-@Deployment(testable = true)
+    @Deployment(testable = true)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "s4_gastronomia-api.war")//War del modulo api
                 // Se agrega las dependencias
