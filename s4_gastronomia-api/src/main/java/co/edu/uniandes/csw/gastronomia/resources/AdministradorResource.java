@@ -89,17 +89,18 @@ public class AdministradorResource
     
     @GET
     @Path("{administradorUsername: \\S+}")
-    public AdministradorDetailDTO getAdministradorUsername(@PathParam("administradorUsername") String username) throws BusinessLogicException
-    {
-     
-     AdministradorEntity r = administradorLogic.getAdministradorUsername(username);
-        if(r==null)
-        {
-           throw new WebApplicationException("El recurso /administrador/" + username + NE, 404); 
+    public AdministradorDetailDTO getAdministrador(@PathParam("administradorUsername") String administradorUsername) {
+        
+        AdministradorEntity administradorEntity = administradorLogic.getAdministrador(administradorUsername);
+        if (administradorEntity == null) {
+            throw new WebApplicationException( administradorUsername , 404);
         }
-        AdministradorDetailDTO admin2 = new AdministradorDetailDTO(r);
-        return admin2;
+        AdministradorDetailDTO administradorDetailDTO = new AdministradorDetailDTO(administradorEntity);
+        return administradorDetailDTO;
     }
+    
+    
+    
     
     @GET
     public List<AdministradorDetailDTO> getAdministradores() throws BusinessLogicException
