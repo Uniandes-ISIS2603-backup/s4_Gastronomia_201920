@@ -37,6 +37,7 @@ public class ClienteDTO implements Serializable
     private Integer puntos;
    
     public ClienteDTO() {
+        
     }
     
     public ClienteDTO(ClienteEntity clienteEntity) {

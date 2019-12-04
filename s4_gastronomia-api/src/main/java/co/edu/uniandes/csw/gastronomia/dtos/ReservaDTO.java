@@ -37,6 +37,7 @@ public class ReservaDTO implements Serializable{
     private ClienteDTO cliente;
 
     public ReservaDTO() {
+        
     }
     
     public ReservaDTO(ReservaEntity reservaEntity) {
