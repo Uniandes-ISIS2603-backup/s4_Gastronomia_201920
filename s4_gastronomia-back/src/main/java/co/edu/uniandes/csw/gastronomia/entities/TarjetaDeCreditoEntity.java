@@ -39,7 +39,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @return the numero
      */
-    public long getNumero() {
+    public Long getNumero() {
         return numero;
     }
 
@@ -67,7 +67,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     /**
      * @return the cvv
      */
-    public int getCvv() {
+    public Integer getCvv() {
         return cvv;
     }
 
@@ -90,7 +90,6 @@ public class TarjetaDeCreditoEntity extends BaseEntity{
     }
     
     @Override
-    @Deprecated
     public int hashCode()
     {
         return super.hashCode();

@@ -48,7 +48,7 @@ public class PlatoEntity extends BaseEntity {
     /**
      * @return the precio
      */
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
@@ -104,7 +104,6 @@ public class PlatoEntity extends BaseEntity {
        return super.equals(o);
     }
     @Override
-    @Deprecated
     public int hashCode()
     {
         return super.hashCode();

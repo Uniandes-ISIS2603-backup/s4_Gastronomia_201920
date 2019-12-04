@@ -92,9 +92,6 @@ public class ResenaLogic {
         if (resenaEntity==null) {
             throw new BusinessLogicException("La resena que porla cual se quiere actualizar es nula");
         }
-        if (true) {
-            
-        }
         else if (resenaEntity.getCalificacion()==0 || resenaEntity.getCalificacion()>5 || resenaEntity.getCalificacion()<0) {
             throw new BusinessLogicException("La calificacion debe ser un numero del 1 al 5");
         }

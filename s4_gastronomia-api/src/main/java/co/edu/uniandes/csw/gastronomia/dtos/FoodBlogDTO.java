@@ -48,7 +48,7 @@ private String archivoMultimedia;
  */
 private String comentarios;
 
-//private ClienteDTO clienteDto;
+
 public FoodBlogDTO()
 {
   //

@@ -28,11 +28,14 @@ public class PlatoDTO implements Serializable {
     }
     public PlatoDTO(PlatoEntity plato)
     {
+        if(plato !=  null)
+        {
         id = plato.getId();
         precio = plato.getPrecio(); 
         rutaImagen  = plato.getRutaImagen();
         descripcion = plato.getDescripcion(); 
         nombre = plato.getNombreComida();
+        }
     }
     public PlatoEntity toEntity()
     {
