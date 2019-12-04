@@ -33,6 +33,8 @@ public class ReservaDTO implements Serializable{
     private FacturaDTO factura;
 
     private ResenaDTO resena;
+    
+    private ClienteDTO cliente;
 
     public ReservaDTO() {
     }
@@ -47,6 +49,7 @@ public class ReservaDTO implements Serializable{
             this.restaurante = new RestauranteDTO(reservaEntity.getRestaurante());
             this.factura = new FacturaDTO(reservaEntity.getFactura());
             this.resena = new ResenaDTO(reservaEntity.getResena());
+            this.cliente = new ClienteDTO(reservaEntity.getCliente());
         }
     }
     
@@ -64,6 +67,9 @@ public class ReservaDTO implements Serializable{
         }
         if(getResena() != null) {
             reservaEntity.setResena(this.resena.toEntity());
+        }
+        if(getCliente() !=  null) {
+            reservaEntity.setCliente(this.cliente.toEntity());
         }
         return reservaEntity;
     }
@@ -179,4 +185,20 @@ public class ReservaDTO implements Serializable{
     public void setResena(ResenaDTO resena) {
         this.resena = resena;
     }  
+    
+    /**
+     * @return the cliente
+     */
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
+    }  
+    
+    
 }
