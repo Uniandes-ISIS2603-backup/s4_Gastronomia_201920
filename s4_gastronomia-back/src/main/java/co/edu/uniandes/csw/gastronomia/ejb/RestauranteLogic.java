@@ -205,9 +205,11 @@ public class RestauranteLogic {
         if (r.getDireccion() == null || r.getDireccion().isEmpty()) {
             throw new BusinessLogicException(DIRECCION);
         }
+        
         if (r.getHorario() == null) {
             throw new BusinessLogicException("No tiene horario");
         }
+        switch
         if (r.getCostoReserva() == null) {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
