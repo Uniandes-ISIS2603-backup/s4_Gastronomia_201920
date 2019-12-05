@@ -38,10 +38,12 @@ public class ResenaLogic {
         if (r.getCalificacion()<=0 || r.getCalificacion()>5 ) {
             throw new BusinessLogicException("La calificacion debe ser un numero del 1 al 5");
         }
-        if (r.getComentario().equals("")|| r.getComentario()== null) {
+        if (r.getComentario().equals("")) {
              throw new BusinessLogicException("El comentario de la resenia no puede ser vacio");
         }
-
+        if(r.getComentario()== null){
+             throw new BusinessLogicException("El comentario de la resenia no puede ser null");
+        }
 
         ResenaEntity neResenaentity  = persistence.create(r);
         LOGGER.log(Level.INFO, "Termina la creacion de resenas");
