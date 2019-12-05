@@ -209,10 +209,16 @@ public class RestauranteLogic {
         if (r.getHorario() == null) {
             throw new BusinessLogicException("No tiene horario");
         }
+        
+    }
+    
+    public void checkBusinessLogic1(RestauranteEntity r) throws BusinessLogicException {
+       
+        
         if (r.getCostoReserva() == null) {
             throw new BusinessLogicException("El costo de reserva es nulo");
         }
-        else if (r.getCostoReserva() <= 0.0) {
+        if (r.getCostoReserva() <= 0.0) {
             throw new BusinessLogicException("El costo de reserva es negativo");
         }
         if (r.getTipoRestaurante() == null || r.getTipoRestaurante().isEmpty()) {
@@ -224,7 +230,7 @@ public class RestauranteLogic {
         if (r.getPrecioPorPersona() == null) {
             throw new BusinessLogicException("el costo promedio de persona no puede ser nulo");
         }
-        else if (r.getPrecioPorPersona() <= 0.0) {
+        if (r.getPrecioPorPersona() <= 0.0) {
             throw new BusinessLogicException("el cosoto promedio de persona no puede ser menor a 0");
         }
     }
