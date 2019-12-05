@@ -134,7 +134,7 @@ public class RestauranteLogic {
             throw new BusinessLogicException("Bad String format");
         }
         if (dir.isEmpty()) {
-            throw new BusinessLogicException("Bad String format");
+            throw new BusinessLogicException("Bad String format, Empty String");
         }
         return persistence.findDireccion(dir);
     }
@@ -144,7 +144,7 @@ public class RestauranteLogic {
             throw new BusinessLogicException("Bad name format");
         }
         if (nombre.isEmpty()) {
-            throw new BusinessLogicException("Bad name format");
+            throw new BusinessLogicException("Bad name format, Empty String");
         }
         return persistence.findNombre(nombre);
     }

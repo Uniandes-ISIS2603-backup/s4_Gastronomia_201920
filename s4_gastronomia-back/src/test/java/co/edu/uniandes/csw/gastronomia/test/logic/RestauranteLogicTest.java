@@ -1882,6 +1882,19 @@ public class RestauranteLogicTest
             //pasa
         }
     }
+    
+    @Test
+    public void getRestauranteDireccionTest()
+    {
+        try {
+            RestauranteEntity r = data.get(0);
+            List<RestauranteEntity> r1 = restauranteLogic.getRestaurantesDireccion(r.getDireccion());
+            Assert.assertNotNull(r1);
+            Assert.assertTrue(r1.equals(r1));
+        } catch (BusinessLogicException ex) {
+            Assert.fail();
+        }
+    }
     @Test 
     public void getRestauranteDireccionNull()
     {
@@ -1903,6 +1916,19 @@ public class RestauranteLogicTest
             //pasa
         }
     }
+    
+    @Test
+    public void getRestauranteNombreTest()
+    {
+        try {
+            RestauranteEntity r = data.get(0);
+            List<RestauranteEntity> r1 = restauranteLogic.getRestauranteNombre(r.getNombre());
+            Assert.assertNotNull(r1);
+            Assert.assertTrue(r1.equals(r1));
+        } catch (BusinessLogicException ex) {
+            Assert.fail();
+        }
+    }
     @Test 
     public void getRestauranteNombreNull()
     {
@@ -1919,7 +1945,7 @@ public class RestauranteLogicTest
     {
         try {
             List<RestauranteEntity> r1 = restauranteLogic.getRestauranteNombre("");
-            Assert.fail();
+            Assert.fail("Empty String");
         } catch (BusinessLogicException ex) {
             //pasa
         }
