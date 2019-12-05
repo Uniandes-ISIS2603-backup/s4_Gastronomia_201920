@@ -35,7 +35,7 @@ public class ResenaLogic {
     public ResenaEntity createResena(ResenaEntity r) throws BusinessLogicException
     {
        LOGGER.log(Level.INFO,"creacion de los resenas");
-        if (r.getCalificacion()==0 || r.getCalificacion()>5 || r.getCalificacion()<0) {
+        if (r.getCalificacion()<=0 || r.getCalificacion()>5 ) {
             throw new BusinessLogicException("La calificacion debe ser un numero del 1 al 5");
         }
         if (r.getComentario().equals("")|| r.getComentario()== null) {
