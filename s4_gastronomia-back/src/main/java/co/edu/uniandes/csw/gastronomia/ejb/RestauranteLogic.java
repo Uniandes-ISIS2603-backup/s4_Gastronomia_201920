@@ -181,19 +181,10 @@ public class RestauranteLogic {
     }
     
     public void checkBusinessLogic(RestauranteEntity r) throws BusinessLogicException {
-        if (r.getNombre() == null) {
+        if (r.getNombre() == null || r.getNombre().isEmpty()) {
             throw new BusinessLogicException(COND_RESTAURANTE1);
         }
-        if (r.getNombre().isEmpty()) {
-            throw new BusinessLogicException(COND_RESTAURANTE1);
-        }
-        if (r.getContrasena() == null) {
-            throw new BusinessLogicException(B_PASS);
-        }
-        if (r.getContrasena().isEmpty()) {
-            throw new BusinessLogicException(B_PASS);
-        }
-        if (r.getContrasena().length() < 8) {
+        if (r.getContrasena() == null || r.getContrasena().isEmpty() || r.getContrasena().length() < 8) {
             throw new BusinessLogicException(B_PASS);
         }
         if (r.getZonaDeFumadores() == null) {
@@ -208,16 +199,10 @@ public class RestauranteLogic {
         if (r.getServicioALaMesa() == null) {
             throw new BusinessLogicException("El booleano de servicio a la mesa no puede ser nulo");
         }
-        if (r.getImagen() == null) {
+        if (r.getImagen() == null || r.getImagen().isEmpty()) {
             throw new BusinessLogicException(IMAGEN);
         }
-        if (r.getImagen().isEmpty()) {
-            throw new BusinessLogicException(IMAGEN);
-        }
-        if (r.getDireccion() == null) {
-            throw new BusinessLogicException(DIRECCION);
-        }
-        if (r.getDireccion().isEmpty()) {
+        if (r.getDireccion() == null || r.getDireccion().isEmpty()) {
             throw new BusinessLogicException(DIRECCION);
         }
         if (r.getHorario() == null) {
@@ -229,10 +214,7 @@ public class RestauranteLogic {
         if (r.getCostoReserva() <= 0.0) {
             throw new BusinessLogicException("El costo de reserva es negativo");
         }
-        if (r.getTipoRestaurante() == null) {
-            throw new BusinessLogicException(COND_RESTAURANTE2);
-        }
-        if (r.getTipoRestaurante().isEmpty()) {
+        if (r.getTipoRestaurante() == null || r.getTipoRestaurante().isEmpty()) {
             throw new BusinessLogicException(COND_RESTAURANTE2);
         }
         if (r.getMusicaEnVivo() == null) {
