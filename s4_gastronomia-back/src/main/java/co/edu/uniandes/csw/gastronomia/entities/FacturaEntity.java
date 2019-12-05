@@ -21,117 +21,103 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author af.benitez
  */
 @Entity
-public class FacturaEntity extends BaseEntity
-{
+public class FacturaEntity extends BaseEntity {
 
     /**
-    * Valor completo de la factura.
-    */
-    private int valorCompleto;
-    
+     * Valor completo de la factura.
+     */
+    private Integer valorCompleto;
+
     /**
-    * Valor del servicio prestado por el restaurante.
-    */
-    private int valor;
- 
+     * Valor del servicio prestado por el restaurante.
+     */
+    private Integer valor;
+
     /**
-    * Dia que se realizo la factura.
-    */
+     * Dia que se realizo la factura.
+     */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fecha;
-        
+
     /**
-    * Saber si se pago la factura.
-    */
-    private boolean sePago;
-    
+     * Saber si se pago la factura.
+     */
+    private Boolean sePago;
+
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ClienteEntity cliente;
-    
-   @PodamExclude 
-   @OneToOne
-   private ReservaEntity reserva;
+
+    @PodamExclude
+    @OneToOne
+    private ReservaEntity reserva;
 
     /**
-    * Constructor de la clase FacturaEntity.
-    */
-    public FacturaEntity()
-    {
+     * Constructor de la clase FacturaEntity.
+     */
+    public FacturaEntity() {
         //Constructor vacio para evitar falla.
     }
-    
+
     /**
      * @return el valorCompleto
      */
-    public int getValorCompleto() 
-    {
+    public int getValorCompleto() {
         return valorCompleto;
     }
 
     /**
      * @param pValorCompleto el pValorCompleto to set
      */
-    public void setValorCompleto(int pValorCompleto)
-    {
+    public void setValorCompleto(int pValorCompleto) {
         this.valorCompleto = pValorCompleto;
     }
 
     /**
      * @return el valor
      */
-    public int getValor()
-    {
+    public int getValor() {
         return valor;
     }
 
     /**
      * @param pValor el valor to set
      */
-    public void setValor(int pValor) 
-    {
+    public void setValor(int pValor) {
         this.valor = pValor;
     }
 
     /**
      * @return sePago
      */
-    public boolean getSePago() 
-    {
+    public boolean getSePago() {
         return sePago;
     }
 
     /**
      * @param sePago boolean a asignar a sePago
      */
-    public void setSePago(boolean sePago) 
-    {
+    public void setSePago(boolean sePago) {
         this.sePago = sePago;
     }
-    
-   
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (! super.equals(obj)) 
-        {
-          return false;
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
         }
         FacturaEntity reservaObj = (FacturaEntity) obj;
         return this.getId().equals(reservaObj.getId());
     }
-    
+
     @Override
-    public int hashCode()
-    {
-        if (this.getId() != null)
-        {
+    public int hashCode() {
+        if (this.getId() != null) {
             return this.getId().hashCode();
         }
         return super.hashCode();
-    } 
+    }
 
     /**
      * @return the fecha

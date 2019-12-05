@@ -59,6 +59,11 @@ public class RestauranteResource
     public void deleteRestaurante(@PathParam("restaurantesId") Long restaurantesId) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "RestauranteResource deleteRestaurante: input: {0}", restaurantesId);
+        RestauranteEntity re = logic.getRestaurante(restaurantesId);
+        if (re==null)
+        {
+             throw new WebApplicationException("El restaurante  con id/" + restaurantesId + " no existe.", 404); 
+        }
         logic.deleteRestaurante(restaurantesId);
         LOGGER.log(Level.INFO, "RestauranteResource createRestaurante: output: void");
     }
