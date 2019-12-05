@@ -58,7 +58,7 @@ public class RestauranteResource
     @Path("{restaurantesId: \\d+}")
     public void deleteRestaurante(@PathParam("restaurantesId") Long restaurantesId) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "RestauranteResource deleteRestaurante: input: {0}", restaurantesId);
+        LOGGER.log(Level.INFO, "RestauranteResource deleteRestaurante: input: {0}", restaurantesId);      
         logic.deleteRestaurante(restaurantesId);
         LOGGER.log(Level.INFO, "RestauranteResource createRestaurante: output: void");
     }

@@ -16,46 +16,43 @@ import java.util.List;
  *
  * @author Estudiante
  */
-public class RestauranteDetailDTO extends RestauranteDTO implements Serializable 
-{
+public class RestauranteDetailDTO extends RestauranteDTO implements Serializable {
+
     private AdministradorDTO administrador;
     private List<PlatoDTO> platos = new ArrayList<>();
     private List<ReservaDTO> reservas = new ArrayList<>();
-    
-    public RestauranteDetailDTO(RestauranteEntity r) 
-    {
+
+    public RestauranteDetailDTO(RestauranteEntity r) {
         super(r);
-        administrador= new AdministradorDTO(r.getAdministrador());
-        List<PlatoEntity> lista= r.getPlatos();
-        for(PlatoEntity p: lista)
-        {
+
+        administrador = new AdministradorDTO(r.getAdministrador());
+        List<PlatoEntity> lista = r.getPlatos();
+        for (PlatoEntity p : lista) {
             platos.add(new PlatoDTO(p));
         }
         List<ReservaEntity> lista1 = r.getReservas();
-        for(ReservaEntity p: lista1)
+        for (ReservaEntity p : lista1) 
         {
             reservas.add(new ReservaDTO(p));
         }
+
     }
-    public RestauranteDetailDTO() 
-    {
+
+    public RestauranteDetailDTO() {
         super();
     }
-    
+
     @Override
-    public RestauranteEntity toEntity()
-    {
+    public RestauranteEntity toEntity() {
         RestauranteEntity r = super.toEntity();
         r.setAdministrador(administrador.toEntity());
-        List<PlatoEntity> lista= new ArrayList<>();
-        for(PlatoDTO pp : platos)
-        {
+        List<PlatoEntity> lista = new ArrayList<>();
+        for (PlatoDTO pp : platos) {
             lista.add(pp.toEntity());
         }
         r.setPlatos(lista);
-        List<ReservaEntity> lista1= new ArrayList<>();
-        for(ReservaDTO pp : reservas)
-        {
+        List<ReservaEntity> lista1 = new ArrayList<>();
+        for (ReservaDTO pp : reservas) {
             lista1.add(pp.toEntity());
         }
         r.setReservas(lista1);
@@ -69,15 +66,13 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
     public void setReservas(List<ReservaDTO> reservas) {
         this.reservas = reservas;
     }
-    
-    public AdministradorDTO getAdministrador()
-    {
+
+    public AdministradorDTO getAdministrador() {
         return administrador;
     }
-    
-    public void setAdministrador(AdministradorDTO admi)
-    {
-        administrador=admi;
+
+    public void setAdministrador(AdministradorDTO admi) {
+        administrador = admi;
     }
 
     public List<PlatoDTO> getPlatos() {
@@ -87,5 +82,5 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
     public void setPlatos(List<PlatoDTO> platos) {
         this.platos = platos;
     }
-    
+
 }
