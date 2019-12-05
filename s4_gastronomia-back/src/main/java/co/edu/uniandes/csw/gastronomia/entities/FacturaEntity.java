@@ -111,7 +111,15 @@ public class FacturaEntity extends BaseEntity {
         return this.getId().equals(reservaObj.getId());
     }
 
-    
+    @Override
+    public int hashCode()
+    {
+        if (this.getId() != null)
+        {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    } 
 
     /**
      * @return the fecha

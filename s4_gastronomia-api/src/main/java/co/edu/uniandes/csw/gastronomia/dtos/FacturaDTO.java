@@ -50,7 +50,7 @@ public class FacturaDTO implements Serializable
             this.valor = fEntity.getValor();
             this.sePago = fEntity.getSePago();
             this.fecha = fEntity.getFecha();
-            
+            fEntity.equals(this);
         }
     }
 

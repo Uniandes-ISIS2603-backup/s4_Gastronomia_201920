@@ -43,7 +43,9 @@ public class RestauranteLogic {
         if (persistence.find(r.getId()) != null) {
             throw new BusinessLogicException("El restaurante ya existe");
         }
+        
         checkBusinessLogic(r);
+        checkBusinessLogic1(r);
         LOGGER.log(Level.INFO, "Se creó el restaurante con id={0}", r.getId());
         return persistence.create(r);
     }
