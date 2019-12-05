@@ -66,5 +66,25 @@ public class TipoComidaEntity extends BaseEntity
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-   
+    
+     @Override
+    public boolean equals(Object obj)
+    {
+        if (! super.equals(obj)) 
+        {
+          return false;
+        }
+        TipoComidaEntity reservaObj = (TipoComidaEntity) obj;
+        return this.getId().equals(reservaObj.getId());
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        if (this.getId() != null)
+        {
+            return this.getId().hashCode();
+        }
+        return super.hashCode();
+    } 
 }
