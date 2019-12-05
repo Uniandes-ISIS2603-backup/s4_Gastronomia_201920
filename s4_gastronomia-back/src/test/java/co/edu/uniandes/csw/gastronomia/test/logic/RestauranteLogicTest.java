@@ -2032,7 +2032,7 @@ public class RestauranteLogicTest
         }
         try 
         {
-            r1 = restauranteLogic.updateRestaurante(r,Long.parseLong(0+""));
+            r1 = restauranteLogic.updateRestaurante(r,r.getId());
             Assert.assertNotNull(r1);
             Assert.assertTrue(r1.equals(r));
         } 
