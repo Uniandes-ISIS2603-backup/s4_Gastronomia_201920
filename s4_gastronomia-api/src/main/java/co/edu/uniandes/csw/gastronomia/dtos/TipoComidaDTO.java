@@ -37,6 +37,7 @@ public class TipoComidaDTO implements Serializable
         {
             this.id = tEntity.getId();
             this.nombre = tEntity.getNombre(); 
+            tEntity.equals(this);
         }
     }
 
@@ -50,7 +51,7 @@ public class TipoComidaDTO implements Serializable
         TipoComidaEntity tipoEntity = new TipoComidaEntity();
         tipoEntity.setId(this.id);
         tipoEntity.setNombre(this.nombre);
-       
+        
         return tipoEntity;
     }
 
