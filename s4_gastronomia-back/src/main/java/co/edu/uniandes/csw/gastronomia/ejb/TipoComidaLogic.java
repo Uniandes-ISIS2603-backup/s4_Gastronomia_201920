@@ -92,6 +92,7 @@ public class TipoComidaLogic
         return tipoComidaEntity;
     }
 
+    
     /**
      * Actualizar un tipo comida por ID
      *
@@ -103,7 +104,7 @@ public class TipoComidaLogic
     public TipoComidaEntity updateTipoComida(Long tipoId, TipoComidaEntity tipoComidaEntity) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el tipo comida con id = {0}", tipoId);
-        if (persistence.find(tipoComidaEntity.getId()) == null)
+        if (persistence.find(tipoId) == null)
         {
             throw new BusinessLogicException("El id es inválido");
         }

@@ -104,10 +104,11 @@ public class FacturaLogic
      */
     public FacturaEntity updateFactura(Long facturaId, FacturaEntity facturaEntity) throws BusinessLogicException 
     {
+        
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la factura con id = {0}", facturaId);
-        if (persistence.find(facturaEntity.getId()) == null)
+        if (persistence.find(facturaId) == null)
         {
-            throw new BusinessLogicException("El id es inválido");
+            throw new BusinessLogicException("El id no existe");
         }
         FacturaEntity newEntity = persistence.update(facturaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la factura con id = {0}", facturaEntity.getId());
