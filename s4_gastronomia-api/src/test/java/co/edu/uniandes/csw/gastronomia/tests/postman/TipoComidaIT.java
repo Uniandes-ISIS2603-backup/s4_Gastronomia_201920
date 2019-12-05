@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Estudiante
+ * @author af.benitez
  */
 @RunWith(Arquillian.class)
 public class TipoComidaIT {
