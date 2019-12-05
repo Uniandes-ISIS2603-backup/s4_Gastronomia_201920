@@ -198,7 +198,10 @@ public class TipoComidaLogicTest
         Assert.assertNotNull(resultEntity);
         
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());  
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre()); 
+        
+        TipoComidaEntity r = tipoComidaLogic.getTipoComida(Long.MIN_VALUE);
+         Assert.fail();
     }
 
     /**
@@ -217,6 +220,9 @@ public class TipoComidaLogicTest
         
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        
+        TipoComidaEntity r = tipoComidaLogic.updateTipoComida(Long.MIN_VALUE, entity);
+         Assert.fail();
     }
 
     /**
@@ -231,5 +237,8 @@ public class TipoComidaLogicTest
         tipoComidaLogic.deleteTipoComida(entity.getId());
         TipoComidaEntity deleted = em.find(TipoComidaEntity.class, entity.getId());
         Assert.assertNull(deleted);
+        
+        tipoComidaLogic.deleteTipoComida(Long.MIN_VALUE);
+         Assert.fail();
     }
 }
