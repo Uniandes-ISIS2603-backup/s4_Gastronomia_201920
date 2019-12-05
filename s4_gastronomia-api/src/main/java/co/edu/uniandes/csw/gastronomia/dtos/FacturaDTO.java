@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.gastronomia.dtos;
 
 import co.edu.uniandes.csw.gastronomia.adapters.DateAdapter;
+import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import co.edu.uniandes.csw.gastronomia.entities.FacturaEntity;
+import co.edu.uniandes.csw.gastronomia.entities.ReservaEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -28,6 +30,9 @@ public class FacturaDTO implements Serializable
         
    private boolean sePago;
 
+   private ClienteEntity cliente;
+   
+   private ReservaEntity reserva;
     /**
      * Constructor por defecto
      */
@@ -50,7 +55,8 @@ public class FacturaDTO implements Serializable
             this.valor = fEntity.getValor();
             this.sePago = fEntity.getSePago();
             this.fecha = fEntity.getFecha();
-            fEntity.equals(this);
+            this.cliente = fEntity.getCliente();
+            this.reserva = fEntity.getReserva();
         }
     }
 
@@ -66,8 +72,9 @@ public class FacturaDTO implements Serializable
         facturaEntity.setValorCompleto(this.valorCompleto);
         facturaEntity.setSePago(this.sePago);
         facturaEntity.setFecha(this.fecha);
+        facturaEntity.setCliente(this.getCliente());
+        facturaEntity.setReserva(this.getReserva());
         
-       
         return facturaEntity;
     }
     /**
@@ -139,5 +146,33 @@ public class FacturaDTO implements Serializable
      */
     public void setSePago(boolean sePago) {
         this.sePago = sePago;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the reserva
+     */
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    /**
+     * @param reserva the reserva to set
+     */
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
     }
 }
