@@ -162,7 +162,6 @@ public class FacturaLogicTest
     public void createFacturaTestConValorCompletoInvalido() throws BusinessLogicException 
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-       
         newEntity.setValorCompleto(-1);
         facturaLogic.createFactura(newEntity);
     }
