@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class FacturaIT {
-    private static final String COLLECTION = "RestauranteResourceTest.postman_collection";
+    private static final String COLLECTION = "FacturasResourceTest.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
