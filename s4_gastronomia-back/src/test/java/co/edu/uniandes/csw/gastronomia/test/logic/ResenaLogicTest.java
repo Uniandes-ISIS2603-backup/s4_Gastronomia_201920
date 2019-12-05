@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.gastronomia.test.logic;
 
 import co.edu.uniandes.csw.gastronomia.ejb.ResenaLogic;
 import co.edu.uniandes.csw.gastronomia.entities.ResenaEntity;
+import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.ResenaPersistence;
 import java.util.ArrayList;
@@ -68,11 +69,36 @@ public class ResenaLogicTest
              fb.setCalificacion(n);
              ResenaEntity rta= resenaLogic.createResena(fb);
              Assert.assertEquals(true,rta.getCalificacion()<=5);
+             Assert.assertEquals(false,rta.getCalificacion()>5);
+             Assert.assertEquals(false,rta.getCalificacion()== 0);
+             Assert.assertEquals(false,rta.getCalificacion()< 0);
              Assert.assertEquals(true ,rta.getCalificacion()>=1);
              Assert.assertNotNull(rta);
              Assert.assertEquals(rta, fb);
              Assert.assertNotNull(rta.getCalificacion());
              Assert.assertNotNull(rta.getComentario());
+             try 
+        {
+            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
+            r.setComentario("");
+            r = resenaLogic.createResena(r);
+            Assert.fail();
+        } 
+        catch (BusinessLogicException ex) 
+        {
+            //nada
+        }    
+             try 
+        {
+            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
+            r.setComentario(null);
+            r = resenaLogic.createResena(r);
+            Assert.fail();
+        } 
+        catch (BusinessLogicException ex) 
+        {
+            //nada
+        }    
                
         }
         
