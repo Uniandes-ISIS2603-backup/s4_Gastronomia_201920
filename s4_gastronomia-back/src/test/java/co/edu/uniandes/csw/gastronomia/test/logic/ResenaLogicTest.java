@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.gastronomia.test.logic;
 
 import co.edu.uniandes.csw.gastronomia.ejb.ResenaLogic;
 import co.edu.uniandes.csw.gastronomia.entities.ResenaEntity;
-import co.edu.uniandes.csw.gastronomia.entities.RestauranteEntity;
 import co.edu.uniandes.csw.gastronomia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.gastronomia.persistence.ResenaPersistence;
 import java.util.ArrayList;
@@ -60,89 +59,26 @@ public class ResenaLogicTest
             .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
             .addAsManifestResource("META-INF/beans.xml", "beans.xml");
         }
+        
         @Test
-        public void creaResenaTestComentario() throws BusinessLogicException
+        public void creaResenaTest() throws BusinessLogicException
         {
-             
-             try 
-            {
-            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
-            r.setComentario("hola");
-            r.setCalificacion(4);
-            r = resenaLogic.createResena(r);
-            Assert.assertNotNull(r);
-            } 
-            catch (BusinessLogicException ex) 
-            {
-            //nada
-            }   
-        }
-        @Test
-        public void creaResenaTestComentarioVacio() throws BusinessLogicException
-        {
-             
-             try 
-            {
-            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
-            r.setComentario("");
-            r = resenaLogic.createResena(r);
-            Assert.fail();
-            } 
-            catch (BusinessLogicException ex) 
-            {
-            //nada
-            }   
-        }
-        @Test
-        public void creaResenaTestComentarioNull() throws BusinessLogicException
-        {
-             
-             try 
-            {
-            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
-            r.setComentario(null);
-            r = resenaLogic.createResena(r);
-            Assert.fail();
-            } 
-            catch (BusinessLogicException ex) 
-            {
-            //nada
-            }   
-        }
-        @Test
-        public void creaResenaTestCalificacionMenor() throws BusinessLogicException
-        {
-             
-             try 
-            {
-            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
-            r.setCalificacion(0);
-            r = resenaLogic.createResena(r);
-            Assert.fail();
-            } 
-            catch (BusinessLogicException ex) 
-            {
-            //nada
-            }   
-        }
-        public void creaResenaTestCalificacionMayor() throws BusinessLogicException
-        {
-             
-             try 
-            {
-            ResenaEntity r = factory.manufacturePojo(ResenaEntity.class);
-            r.setCalificacion(6);
-            r = resenaLogic.createResena(r);
-            Assert.fail();
-            } 
-            catch (BusinessLogicException ex) 
-            {
-            //nada
-            }   
-        }
+             ResenaEntity fb= factory.manufacturePojo(ResenaEntity.class);
+             int n = (int)(Math.random()*4)+1;
+             fb.setCalificacion(n);
+             ResenaEntity rta= resenaLogic.createResena(fb);
+             Assert.assertEquals(true,rta.getCalificacion()<=5);
+             Assert.assertEquals(false,rta.getCalificacion()>5);
+             Assert.assertEquals(false,rta.getCalificacion()== 0);
+             Assert.assertEquals(false,rta.getCalificacion()< 0);
+             Assert.assertEquals(true ,rta.getCalificacion()>=1);
+             Assert.assertNotNull(rta);
+             Assert.assertEquals(rta, fb);
+             Assert.assertNotNull(rta.getCalificacion());
+             Assert.assertNotNull(rta.getComentario());
              
                
-        
+        }
         
         @Test
         public void getResenasTest() throws BusinessLogicException
