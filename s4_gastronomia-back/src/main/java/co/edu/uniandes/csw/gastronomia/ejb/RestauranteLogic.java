@@ -166,6 +166,7 @@ public class RestauranteLogic {
             throw new BusinessLogicException("no existe el restaurante que se quiere modificar");
         }
         checkBusinessLogic(r);
+        checkBusinessLogic1(r);
         e = persistence.update(r);
         LOGGER.log(Level.INFO, "Se está modifico el restaurante con id={0}", id);
         return e;

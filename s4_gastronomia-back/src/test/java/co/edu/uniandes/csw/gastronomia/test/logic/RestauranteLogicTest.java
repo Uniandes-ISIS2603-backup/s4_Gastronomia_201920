@@ -1882,6 +1882,49 @@ public class RestauranteLogicTest
             //pasa
         }
     }
+    @Test 
+    public void getRestauranteDireccionNull()
+    {
+        try {
+            List<RestauranteEntity> r1 = restauranteLogic.getRestaurantesDireccion(null);
+            Assert.fail();
+        } catch (BusinessLogicException ex) {
+            //pasa
+        }
+    }
+    
+    @Test 
+    public void getRestauranteDireccionEmpty()
+    {
+        try {
+            List<RestauranteEntity> r1 = restauranteLogic.getRestaurantesDireccion("");
+            Assert.fail();
+        } catch (BusinessLogicException ex) {
+            //pasa
+        }
+    }
+    @Test 
+    public void getRestauranteNombreNull()
+    {
+        try {
+            List<RestauranteEntity> r1 = restauranteLogic.getRestauranteNombre(null);
+            Assert.fail();
+        } catch (BusinessLogicException ex) {
+            //pasa
+        }
+    }
+    
+    @Test 
+    public void getRestauranteNombreEmpty()
+    {
+        try {
+            List<RestauranteEntity> r1 = restauranteLogic.getRestauranteNombre("");
+            Assert.fail();
+        } catch (BusinessLogicException ex) {
+            //pasa
+        }
+    }
+    
     //--------------------------------------------------------------------------
     //delete
     //--------------------------------------------------------------------------
@@ -1906,6 +1949,73 @@ public class RestauranteLogicTest
     //--------------------------------------------------------------------------
     //update
     //--------------------------------------------------------------------------
+    @Test
+    public void updateRestauranteNull()
+    {
+        RestauranteEntity r = factory.manufacturePojo(RestauranteEntity.class);
+        r.setId(data.get(0).getId());
+        RestauranteEntity r1;
+        int n;
+        if(r.getDescuentaoCumpleanos()==null)
+        {
+           n = (int)Math.random();
+           if(n==0)
+           {
+               r.setDescuentaoCumpleanos(Boolean.FALSE);
+           }
+           else
+           {
+               r.setDescuentaoCumpleanos(Boolean.TRUE);
+           }
+        }
+        if(r.getZonaDeFumadores()==null)
+        {
+           n = (int)Math.random();
+           if(n==0)
+           {
+               r.setZonaDeFumadores(Boolean.FALSE);
+           }
+           else
+           {
+               r.setZonaDeFumadores(Boolean.TRUE);
+           }
+        }        
+        if(r.getPetFriendly()==null)
+        {
+           n = (int)Math.random();
+           if(n==0)
+           {
+               r.setPetFriendly(Boolean.FALSE);
+           }
+           else
+           {
+               r.setPetFriendly(Boolean.TRUE);
+           }
+        }
+        if(r.getMusicaEnVivo()==null)
+        {
+           n = (int)Math.random();
+           if(n==0)
+           {
+               r.setMusicaEnVivo(Boolean.FALSE);
+           }
+           else
+           {
+               r.setMusicaEnVivo(Boolean.TRUE);
+           }
+        }
+        try 
+        {
+            r1 = restauranteLogic.updateRestaurante(r,Long.parseLong(0+""));
+            Assert.assertNotNull(r1);
+            Assert.assertTrue(r1.equals(r));
+        } 
+        catch (BusinessLogicException ex) 
+        {
+            Assert.fail(ex.getMessage());
+        }        
+    }
+    
     @Test
     public void updateRestaurante()
     {
@@ -1971,7 +2081,8 @@ public class RestauranteLogicTest
         {
             Assert.fail(ex.getMessage());
         }        
-    }    
+    }
+    
     @Test
     public void updateRestauraneSinDescuentoCumpleanosTest()
     {
