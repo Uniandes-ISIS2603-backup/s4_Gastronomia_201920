@@ -125,7 +125,8 @@ public class FacturaLogicTest
     public void createFacturaTest() throws BusinessLogicException 
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-        
+        newEntity.setValor(10);
+        newEntity.setValorCompleto(11);
         FacturaEntity result = facturaLogic.createFactura(newEntity);
         Assert.assertNotNull(result);
         
@@ -148,7 +149,7 @@ public class FacturaLogicTest
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
        
-        newEntity.setValor(0);
+        newEntity.setValor(-1);
         facturaLogic.createFactura(newEntity);
     }
 
@@ -162,7 +163,7 @@ public class FacturaLogicTest
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
        
-        newEntity.setValorCompleto(0);
+        newEntity.setValorCompleto(-1);
         facturaLogic.createFactura(newEntity);
     }
 

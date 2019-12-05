@@ -50,6 +50,11 @@ public class TipoComidaLogic
             }
         }
         
+        if(persistence.find(tipoComidaEntity.getId()) != null)
+        {
+            throw new BusinessLogicException("No se puede crear un tipo de comida con un id existente.");
+        }
+        
         persistence.create(tipoComidaEntity);
         
         LOGGER.log(Level.INFO, "Termina proceso de creación de tipo de comida");
