@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e7969404-96c5-42e1-aebe-44bc124988d6",
+		"_postman_id": "22b9869a-3988-4126-b665-5461c05f3092",
 		"name": "TipoComidasResourceTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -41,12 +41,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -91,12 +91,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -142,12 +142,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -183,12 +183,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -226,12 +226,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -268,12 +268,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/0",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -318,12 +318,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -370,12 +370,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/0",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -404,12 +404,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/{{new_id_f}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
@@ -439,12 +439,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s4_gastronomia-api/api/tipoComidas/0",
+					"raw": "http://{{ip}}:{{puerto}}/s4_gastronomia-api/api/tipoComidas/0",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s4_gastronomia-api",
 						"api",
