@@ -102,22 +102,7 @@ public class FacturaEntity extends BaseEntity {
         this.sePago = sePago;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
-            return false;
-        }
-        FacturaEntity reservaObj = (FacturaEntity) obj;
-        return this.getId().equals(reservaObj.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
+   
 
     /**
      * @return the fecha
