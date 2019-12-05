@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.gastronomia.dtos;
 
-import co.edu.uniandes.csw.gastronomia.entities.ClienteEntity;
 import co.edu.uniandes.csw.gastronomia.entities.TipoComidaEntity;
 import java.io.Serializable;
 
@@ -18,8 +17,6 @@ public class TipoComidaDTO implements Serializable
     private long id;
     
     private String nombre;
-    
-    private ClienteEntity cliente;
     
     /**
      * Constructor por defecto
@@ -40,7 +37,7 @@ public class TipoComidaDTO implements Serializable
         {
             this.id = tEntity.getId();
             this.nombre = tEntity.getNombre(); 
-            this.cliente = tEntity.getCliente();
+            
         }
     }
 
@@ -54,7 +51,6 @@ public class TipoComidaDTO implements Serializable
         TipoComidaEntity tipoEntity = new TipoComidaEntity();
         tipoEntity.setId(this.id);
         tipoEntity.setNombre(this.nombre);
-        tipoEntity.setCliente(this.getCliente());
         
         return tipoEntity;
     }
@@ -85,19 +81,5 @@ public class TipoComidaDTO implements Serializable
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    /**
-     * @return the cliente
-     */
-    public ClienteEntity getCliente() {
-        return cliente;
-    }
-
-    /**
-     * @param cliente the cliente to set
-     */
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
     }
 }
