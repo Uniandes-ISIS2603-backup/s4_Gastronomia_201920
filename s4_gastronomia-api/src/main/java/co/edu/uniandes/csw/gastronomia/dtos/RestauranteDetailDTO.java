@@ -24,16 +24,16 @@ public class RestauranteDetailDTO extends RestauranteDTO implements Serializable
 
     public RestauranteDetailDTO(RestauranteEntity r) {
         super(r);
-        if (r != null) {
-            administrador = new AdministradorDTO(r.getAdministrador());
-            List<PlatoEntity> lista = r.getPlatos();
-            for (PlatoEntity p : lista) {
-                platos.add(new PlatoDTO(p));
-            }
-            List<ReservaEntity> lista1 = r.getReservas();
-            for (ReservaEntity p : lista1) {
-                reservas.add(new ReservaDTO(p));
-            }
+
+        administrador = new AdministradorDTO(r.getAdministrador());
+        List<PlatoEntity> lista = r.getPlatos();
+        for (PlatoEntity p : lista) {
+            platos.add(new PlatoDTO(p));
+        }
+        List<ReservaEntity> lista1 = r.getReservas();
+        for (ReservaEntity p : lista1) 
+        {
+            reservas.add(new ReservaDTO(p));
         }
 
     }

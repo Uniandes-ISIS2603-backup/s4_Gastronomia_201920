@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 public class FacturaDTO implements Serializable 
 {
-   private Long id;
+   private long id;
    
-   private Integer valorCompleto;
+   private int valorCompleto;
     
-   private Integer valor;
+   private int valor;
 
    @XmlJavaTypeAdapter(DateAdapter.class)
    private Date fecha;
         
-   private Boolean sePago;
+   private boolean sePago;
 
     /**
      * Constructor por defecto

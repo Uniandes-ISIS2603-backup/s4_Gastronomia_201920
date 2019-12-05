@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class TipoComidaDTO implements Serializable 
 {
-    private Long id;
+    private long id;
     
     private String nombre;
     

@@ -33,7 +33,7 @@ public class AdministradorEntity  extends UsuarioEntity
    private List<RestauranteEntity> restaurantes = new ArrayList<>();
    
    
-   private Long phone;
+   private long phone;
 
     public AdministradorEntity() {
         super();

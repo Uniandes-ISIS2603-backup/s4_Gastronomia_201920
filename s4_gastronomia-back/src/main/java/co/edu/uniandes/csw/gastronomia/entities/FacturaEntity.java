@@ -26,12 +26,12 @@ public class FacturaEntity extends BaseEntity {
     /**
      * Valor completo de la factura.
      */
-    private Integer valorCompleto;
+    private int valorCompleto;
 
     /**
      * Valor del servicio prestado por el restaurante.
      */
-    private Integer valor;
+    private int valor;
 
     /**
      * Dia que se realizo la factura.
@@ -43,7 +43,7 @@ public class FacturaEntity extends BaseEntity {
     /**
      * Saber si se pago la factura.
      */
-    private Boolean sePago;
+    private boolean sePago;
 
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
