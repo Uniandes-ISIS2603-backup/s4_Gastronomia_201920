@@ -148,7 +148,6 @@ public class FacturaLogicTest
     public void createFacturaTestConValorInvalido() throws BusinessLogicException 
     {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-       
         newEntity.setValor(-1);
         facturaLogic.createFactura(newEntity);
     }
